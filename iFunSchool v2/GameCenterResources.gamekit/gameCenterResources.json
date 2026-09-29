@@ -1,0 +1,3286 @@
+{
+  "meta" : {
+    "version" : "2024-11-15"
+  },
+  "resources" : {
+    "achievementImages" : {
+      "pl.beling.ifunschool.add10-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.add10-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.add10-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.add10-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.add10-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.add10-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.add50-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.add50-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.add50-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.add50-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.add50-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.add50-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.add100-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.add100-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.add100-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.add100-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.add100-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.add100-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.div10-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.div10-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.div10-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.div10-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.div10-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.div10-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.div50-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.div50-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.div50-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.div50-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.div50-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.div50-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.div100-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.div100-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.div100-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.div100-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.div100-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.div100-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.elements10-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.elements10-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.elements10-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.elements10-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.elements10-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.elements10-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.elements50-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.elements50-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.elements50-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.elements50-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.elements50-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.elements50-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.elements100-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.elements100-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.elements100-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.elements100-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.elements100-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.elements100-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.flags10-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.flags10-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.flags10-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.flags10-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.flags10-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.flags10-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.flags50-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.flags50-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.flags50-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.flags50-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.flags50-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.flags50-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.flags100-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.flags100-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.flags100-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.flags100-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.flags100-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.flags100-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.gold1-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.gold1-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.gold1-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.gold5-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.gold5-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.gold5-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.gold10-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.gold10-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.gold10-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.gold15-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.gold15-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.gold15-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.gold20-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.gold20-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.gold20-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.gold25-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.gold25-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.gold25-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.gold30-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.gold30-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.gold30-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.gold40-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.gold40-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.gold40-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.gold50-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.gold50-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.gold50-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.gold60-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.gold60-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.gold60-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.gold70-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.gold70-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.gold70-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.gold75-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.gold75-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.gold75-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.gold80-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.gold80-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.gold80-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.gold90-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.gold90-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.gold90-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.gold100-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.gold100-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.gold100-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.gold115-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.gold115-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.gold115-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.gold125-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.gold125-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.gold125-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.gold150-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.gold150-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.gold150-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.mult10-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.mult10-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.mult10-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.mult10-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.mult10-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.mult10-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.mult50-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.mult50-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.mult50-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.mult50-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.mult50-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.mult50-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.mult100-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.mult100-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.mult100-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.mult100-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.mult100-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.mult100-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.stars10-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.stars10-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.stars10-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.stars20-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.stars20-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.stars20-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.stars30-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.stars30-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.stars30-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.stars40-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.stars40-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.stars40-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.stars50-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.stars50-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.stars50-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.stars60-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.stars60-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.stars60-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.stars70-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.stars70-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.stars70-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.stars80-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.stars80-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.stars80-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.stars90-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.stars90-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.stars90-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.stars100-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.stars100-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.stars100-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.stars120-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.stars120-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.stars120-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.stars140-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.stars140-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.stars140-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.stars160-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.stars160-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.stars160-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.stars180-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.stars180-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.stars180-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.stars200-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.stars200-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.stars200-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.stars225-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.stars225-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.stars225-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.stars250-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.stars250-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.stars250-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.stars275-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.stars275-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.stars275-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.stars300-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.stars300-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.stars300-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.stars330-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.stars330-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.stars330-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.stars360-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.stars360-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.stars360-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.stars390-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.stars390-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.stars390-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.stars400-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.stars400-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.stars400-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.stars450-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.stars450-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.stars450-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.stars500-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.stars500-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.stars500-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.stars550-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.stars550-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.stars550-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.stars600-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.stars600-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.stars600-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak1-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak1-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.streak1-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak1-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak1-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.streak1-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak2-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak2-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.streak2-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak2-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak2-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.streak2-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak3-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak3-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.streak3-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak3-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak3-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.streak3-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak4-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak4-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.streak4-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak4-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak4-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.streak4-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak5-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak5-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.streak5-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak5-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak5-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.streak5-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak6-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak6-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.streak6-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak6-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak6-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.streak6-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak7-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak7-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.streak7-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak7-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak7-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.streak7-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak8-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak8-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.streak8-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak8-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak8-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.streak8-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak9-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak9-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.streak9-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak9-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak9-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.streak9-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak10-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak10-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.streak10-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak10-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak10-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.streak10-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak11-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak11-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.streak11-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak11-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak11-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.streak11-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak12-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak12-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.streak12-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak12-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak12-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.streak12-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak13-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak13-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.streak13-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak13-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak13-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.streak13-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak14-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak14-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.streak14-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak14-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak14-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.streak14-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak15-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak15-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.streak15-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak15-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak15-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.streak15-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak16-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak16-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.streak16-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak16-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak16-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.streak16-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak17-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak17-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.streak17-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak17-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak17-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.streak17-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak18-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak18-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.streak18-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak18-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak18-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.streak18-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak19-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak19-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.streak19-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak19-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak19-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.streak19-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak20-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak20-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.streak20-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak20-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak20-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.streak20-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak21-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak21-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.streak21-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak21-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak21-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.streak21-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak22-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak22-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.streak22-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak22-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak22-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.streak22-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak23-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak23-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.streak23-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak23-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak23-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.streak23-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak24-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak24-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.streak24-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak24-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak24-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.streak24-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak25-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak25-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.streak25-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak25-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak25-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.streak25-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak26-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak26-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.streak26-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak26-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak26-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.streak26-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak27-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak27-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.streak27-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak27-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak27-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.streak27-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak28-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak28-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.streak28-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak28-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak28-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.streak28-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak29-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak29-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.streak29-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak29-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak29-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.streak29-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak30-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak30-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.streak30-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.streak30-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.streak30-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.streak30-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.sub10-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.sub10-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.sub10-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.sub10-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.sub10-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.sub10-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.sub50-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.sub50-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.sub50-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.sub50-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.sub50-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.sub50-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.sub100-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.sub100-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.sub100-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.sub100-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.sub100-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.sub100-pl.png"
+        }
+      ]
+    },
+    "achievementLocalizations" : {
+      "pl.beling.ifunschool.add10" : [
+        {
+          "afterEarnedDescription" : "Answered 10% of addition questions correctly.",
+          "beforeEarnedDescription" : "Answer 10% of addition questions correctly.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.add10-en-US",
+          "name" : "Addition - Bronze (10%)"
+        },
+        {
+          "afterEarnedDescription" : "Odpowiedziano prawidłowo na 10% pytań z dodawania.",
+          "beforeEarnedDescription" : "Odpowiedz prawidłowo na 10% pytań z dodawania.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.add10-pl",
+          "name" : "Dodawanie - Brąz (10%)"
+        }
+      ],
+      "pl.beling.ifunschool.add50" : [
+        {
+          "afterEarnedDescription" : "Answered 50% of addition questions correctly.",
+          "beforeEarnedDescription" : "Answer 50% of addition questions correctly.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.add50-en-US",
+          "name" : "Addition - Silver (50%)"
+        },
+        {
+          "afterEarnedDescription" : "Odpowiedziano prawidłowo na 50% pytań z dodawania.",
+          "beforeEarnedDescription" : "Odpowiedz prawidłowo na 50% pytań z dodawania.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.add50-pl",
+          "name" : "Dodawanie - Srebro (50%)"
+        }
+      ],
+      "pl.beling.ifunschool.add100" : [
+        {
+          "afterEarnedDescription" : "Mastered all basic addition questions.",
+          "beforeEarnedDescription" : "Master all basic addition questions.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.add100-en-US",
+          "name" : "Addition - Gold (100%)"
+        },
+        {
+          "afterEarnedDescription" : "Opanowano wszystkie operacje dodawania.",
+          "beforeEarnedDescription" : "Opanuj materiał z dodawania.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.add100-pl",
+          "name" : "Dodawanie - Złoto (100%)"
+        }
+      ],
+      "pl.beling.ifunschool.div10" : [
+        {
+          "afterEarnedDescription" : "Answered 10% of division questions correctly.",
+          "beforeEarnedDescription" : "Answer 10% of division questions correctly.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.div10-en-US",
+          "name" : "Division - Bronze (10%)"
+        },
+        {
+          "afterEarnedDescription" : "Odpowiedziano prawidłowo na 10% pytań z dzielenia.",
+          "beforeEarnedDescription" : "Odpowiedz prawidłowo na 10% pytań z dzielenia.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.div10-pl",
+          "name" : "Dzielenie - Brąz (10%)"
+        }
+      ],
+      "pl.beling.ifunschool.div50" : [
+        {
+          "afterEarnedDescription" : "Answered 50% of division questions correctly.",
+          "beforeEarnedDescription" : "Answer 50% of division questions correctly.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.div50-en-US",
+          "name" : "Division - Silver (50%)"
+        },
+        {
+          "afterEarnedDescription" : "Odpowiedziano prawidłowo na 50% pytań z dzielenia.",
+          "beforeEarnedDescription" : "Odpowiedz prawidłowo na 50% pytań z dzielenia.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.div50-pl",
+          "name" : "Dzielenie - Srebro (50%)"
+        }
+      ],
+      "pl.beling.ifunschool.div100" : [
+        {
+          "afterEarnedDescription" : "Mastered all basic division questions.",
+          "beforeEarnedDescription" : "Master all basic division questions.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.div100-en-US",
+          "name" : "Division - Gold (100%)"
+        },
+        {
+          "afterEarnedDescription" : "Opanowano wszystkie operacje dzielenia.",
+          "beforeEarnedDescription" : "Opanuj materiał z dzielenia.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.div100-pl",
+          "name" : "Dzielenie - Złoto (100%)"
+        }
+      ],
+      "pl.beling.ifunschool.elements10" : [
+        {
+          "afterEarnedDescription" : "Learned 10% of chemical elements.",
+          "beforeEarnedDescription" : "Learn 10% of chemical elements.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.elements10-en-US",
+          "name" : "Elements - Bronze (10%)"
+        },
+        {
+          "afterEarnedDescription" : "Opanowano 10% pierwiastków chemicznych.",
+          "beforeEarnedDescription" : "Opanuj 10% pierwiastków chemicznych.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.elements10-pl",
+          "name" : "Pierwiastki - Brąz (10%)"
+        }
+      ],
+      "pl.beling.ifunschool.elements50" : [
+        {
+          "afterEarnedDescription" : "Learned 50% of chemical elements.",
+          "beforeEarnedDescription" : "Learn 50% of chemical elements.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.elements50-en-US",
+          "name" : "Elements - Silver (50%)"
+        },
+        {
+          "afterEarnedDescription" : "Opanowano 50% pierwiastków chemicznych.",
+          "beforeEarnedDescription" : "Opanuj 50% pierwiastków chemicznych.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.elements50-pl",
+          "name" : "Pierwiastki - Srebro (50%)"
+        }
+      ],
+      "pl.beling.ifunschool.elements100" : [
+        {
+          "afterEarnedDescription" : "Mastered all chemical elements.",
+          "beforeEarnedDescription" : "Master all chemical elements.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.elements100-en-US",
+          "name" : "Elements - Gold (100%)"
+        },
+        {
+          "afterEarnedDescription" : "Opanowano cały układ okresowy pierwiastków.",
+          "beforeEarnedDescription" : "Opanuj układ okresowy pierwiastków.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.elements100-pl",
+          "name" : "Pierwiastki - Złoto (100%)"
+        }
+      ],
+      "pl.beling.ifunschool.flags10" : [
+        {
+          "afterEarnedDescription" : "Identified 10% of world flags.",
+          "beforeEarnedDescription" : "Identify 10% of world flags.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.flags10-en-US",
+          "name" : "Flags - Bronze (10%)"
+        },
+        {
+          "afterEarnedDescription" : "Rozpoznano 10% flag świata.",
+          "beforeEarnedDescription" : "Rozpoznaj 10% flag świata.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.flags10-pl",
+          "name" : "Flagi - Brąz (10%)"
+        }
+      ],
+      "pl.beling.ifunschool.flags50" : [
+        {
+          "afterEarnedDescription" : "Identified 50% of world flags.",
+          "beforeEarnedDescription" : "Identify 50% of world flags.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.flags50-en-US",
+          "name" : "Flags - Silver (50%)"
+        },
+        {
+          "afterEarnedDescription" : "Rozpoznano 50% flag świata.",
+          "beforeEarnedDescription" : "Rozpoznaj 50% flag świata.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.flags50-pl",
+          "name" : "Flagi - Srebro (50%)"
+        }
+      ],
+      "pl.beling.ifunschool.flags100" : [
+        {
+          "afterEarnedDescription" : "Mastered all world flags.",
+          "beforeEarnedDescription" : "Master all world flags.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.flags100-en-US",
+          "name" : "Flags - Gold (100%)"
+        },
+        {
+          "afterEarnedDescription" : "Opanowano wszystkie flagi świata.",
+          "beforeEarnedDescription" : "Opanuj wszystkie flagi świata.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.flags100-pl",
+          "name" : "Flagi - Złoto (100%)"
+        }
+      ],
+      "pl.beling.ifunschool.gold1" : [
+        {
+          "afterEarnedDescription" : "Got 1 gold stars",
+          "beforeEarnedDescription" : "Get 1 gold stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.gold1-en-US",
+          "name" : "1 Gold Star"
+        }
+      ],
+      "pl.beling.ifunschool.gold5" : [
+        {
+          "afterEarnedDescription" : "Got 5 gold stars",
+          "beforeEarnedDescription" : "Get 5 gold stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.gold5-en-US",
+          "name" : "5 Gold Stars"
+        }
+      ],
+      "pl.beling.ifunschool.gold10" : [
+        {
+          "afterEarnedDescription" : "Got 10 gold stars",
+          "beforeEarnedDescription" : "Get 10 gold stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.gold10-en-US",
+          "name" : "10 Gold Stars"
+        }
+      ],
+      "pl.beling.ifunschool.gold15" : [
+        {
+          "afterEarnedDescription" : "Got 15 gold stars",
+          "beforeEarnedDescription" : "Get 15 gold stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.gold15-en-US",
+          "name" : "15 Gold Stars"
+        }
+      ],
+      "pl.beling.ifunschool.gold20" : [
+        {
+          "afterEarnedDescription" : "Got 20 gold stars",
+          "beforeEarnedDescription" : "Get 20 gold stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.gold20-en-US",
+          "name" : "20 Gold Stars"
+        }
+      ],
+      "pl.beling.ifunschool.gold25" : [
+        {
+          "afterEarnedDescription" : "Got 25 gold stars",
+          "beforeEarnedDescription" : "Get 25 gold stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.gold25-en-US",
+          "name" : "25 Gold Stars"
+        }
+      ],
+      "pl.beling.ifunschool.gold30" : [
+        {
+          "afterEarnedDescription" : "Got 30 gold stars",
+          "beforeEarnedDescription" : "Get 30 gold stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.gold30-en-US",
+          "name" : "30 Gold Stars"
+        }
+      ],
+      "pl.beling.ifunschool.gold40" : [
+        {
+          "afterEarnedDescription" : "Got 40 gold stars",
+          "beforeEarnedDescription" : "Get 40 gold stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.gold40-en-US",
+          "name" : "40 Gold Stars"
+        }
+      ],
+      "pl.beling.ifunschool.gold50" : [
+        {
+          "afterEarnedDescription" : "Got 50 gold stars",
+          "beforeEarnedDescription" : "Get 50 gold stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.gold50-en-US",
+          "name" : "50 Gold Stars"
+        }
+      ],
+      "pl.beling.ifunschool.gold60" : [
+        {
+          "afterEarnedDescription" : "Got 60 gold stars",
+          "beforeEarnedDescription" : "Get 60 gold stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.gold60-en-US",
+          "name" : "60 Gold Stars"
+        }
+      ],
+      "pl.beling.ifunschool.gold70" : [
+        {
+          "afterEarnedDescription" : "Got 70 gold stars",
+          "beforeEarnedDescription" : "Get 70 gold stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.gold70-en-US",
+          "name" : "70 Gold Stars"
+        }
+      ],
+      "pl.beling.ifunschool.gold75" : [
+        {
+          "afterEarnedDescription" : "Got 75 gold stars",
+          "beforeEarnedDescription" : "Get 75 gold stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.gold75-en-US",
+          "name" : "75 Gold Stars"
+        }
+      ],
+      "pl.beling.ifunschool.gold80" : [
+        {
+          "afterEarnedDescription" : "Got 80 gold stars",
+          "beforeEarnedDescription" : "Get 80 gold stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.gold80-en-US",
+          "name" : "80 Gold Stars"
+        }
+      ],
+      "pl.beling.ifunschool.gold90" : [
+        {
+          "afterEarnedDescription" : "Got 90 gold stars",
+          "beforeEarnedDescription" : "Get 90 gold stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.gold90-en-US",
+          "name" : "90 Gold Stars"
+        }
+      ],
+      "pl.beling.ifunschool.gold100" : [
+        {
+          "afterEarnedDescription" : "Got 100 gold stars",
+          "beforeEarnedDescription" : "Get 100 gold stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.gold100-en-US",
+          "name" : "100 Gold Stars"
+        }
+      ],
+      "pl.beling.ifunschool.gold115" : [
+        {
+          "afterEarnedDescription" : "Got 115 gold stars",
+          "beforeEarnedDescription" : "Get 115 gold stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.gold115-en-US",
+          "name" : "115 Gold Stars"
+        }
+      ],
+      "pl.beling.ifunschool.gold125" : [
+        {
+          "afterEarnedDescription" : "Got 125 gold stars",
+          "beforeEarnedDescription" : "Get 125 gold stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.gold125-en-US",
+          "name" : "125 Gold Stars"
+        }
+      ],
+      "pl.beling.ifunschool.gold150" : [
+        {
+          "afterEarnedDescription" : "Got 150 gold stars",
+          "beforeEarnedDescription" : "Get 150 gold stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.gold150-en-US",
+          "name" : "150 Gold Stars"
+        }
+      ],
+      "pl.beling.ifunschool.mult10" : [
+        {
+          "afterEarnedDescription" : "Answered 10% of multiplication questions correctly.",
+          "beforeEarnedDescription" : "Answer 10% of multiplication questions correctly.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.mult10-en-US",
+          "name" : "Multiplication - Bronze (10%)"
+        },
+        {
+          "afterEarnedDescription" : "Odpowiedziano prawidłowo na 10% pytań z mnożenia.",
+          "beforeEarnedDescription" : "Odpowiedz prawidłowo na 10% pytań z mnożenia.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.mult10-pl",
+          "name" : "Mnożenie - Brąz (10%)"
+        }
+      ],
+      "pl.beling.ifunschool.mult50" : [
+        {
+          "afterEarnedDescription" : "Answered 50% of multiplication questions correctly.",
+          "beforeEarnedDescription" : "Answer 50% of multiplication questions correctly.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.mult50-en-US",
+          "name" : "Multiplication - Silver (50%)"
+        },
+        {
+          "afterEarnedDescription" : "Odpowiedziano prawidłowo na 50% pytań z mnożenia.",
+          "beforeEarnedDescription" : "Odpowiedz prawidłowo na 50% pytań z mnożenia.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.mult50-pl",
+          "name" : "Mnożenie - Srebro (50%)"
+        }
+      ],
+      "pl.beling.ifunschool.mult100" : [
+        {
+          "afterEarnedDescription" : "Mastered all basic multiplication questions.",
+          "beforeEarnedDescription" : "Master all basic multiplication questions.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.mult100-en-US",
+          "name" : "Multiplication - Gold (100%)"
+        },
+        {
+          "afterEarnedDescription" : "Opanowano całą tabliczkę mnożenia.",
+          "beforeEarnedDescription" : "Opanuj tabliczkę mnożenia.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.mult100-pl",
+          "name" : "Mnożenie - Złoto (100%)"
+        }
+      ],
+      "pl.beling.ifunschool.stars10" : [
+        {
+          "afterEarnedDescription" : "Got 10 stars",
+          "beforeEarnedDescription" : "Get 10 stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.stars10-en-US",
+          "name" : "10 Stars"
+        }
+      ],
+      "pl.beling.ifunschool.stars20" : [
+        {
+          "afterEarnedDescription" : "Got 20 stars",
+          "beforeEarnedDescription" : "Get 20 stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.stars20-en-US",
+          "name" : "20 Stars"
+        }
+      ],
+      "pl.beling.ifunschool.stars30" : [
+        {
+          "afterEarnedDescription" : "Got 30 stars",
+          "beforeEarnedDescription" : "Get 30 stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.stars30-en-US",
+          "name" : "30 Stars"
+        }
+      ],
+      "pl.beling.ifunschool.stars40" : [
+        {
+          "afterEarnedDescription" : "Got 40 stars",
+          "beforeEarnedDescription" : "Get 40 stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.stars40-en-US",
+          "name" : "40 Stars"
+        }
+      ],
+      "pl.beling.ifunschool.stars50" : [
+        {
+          "afterEarnedDescription" : "Got 50 stars",
+          "beforeEarnedDescription" : "Get 50 stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.stars50-en-US",
+          "name" : "50 Stars"
+        }
+      ],
+      "pl.beling.ifunschool.stars60" : [
+        {
+          "afterEarnedDescription" : "Got 60 stars",
+          "beforeEarnedDescription" : "Get 60 stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.stars60-en-US",
+          "name" : "60 Stars"
+        }
+      ],
+      "pl.beling.ifunschool.stars70" : [
+        {
+          "afterEarnedDescription" : "Got 70 stars",
+          "beforeEarnedDescription" : "Get 70 stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.stars70-en-US",
+          "name" : "70 Stars"
+        }
+      ],
+      "pl.beling.ifunschool.stars80" : [
+        {
+          "afterEarnedDescription" : "Got 80 stars",
+          "beforeEarnedDescription" : "Get 80 stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.stars80-en-US",
+          "name" : "80 Stars"
+        }
+      ],
+      "pl.beling.ifunschool.stars90" : [
+        {
+          "afterEarnedDescription" : "Got 90 stars",
+          "beforeEarnedDescription" : "Get 90 stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.stars90-en-US",
+          "name" : "90 Stars"
+        }
+      ],
+      "pl.beling.ifunschool.stars100" : [
+        {
+          "afterEarnedDescription" : "Got 100 stars",
+          "beforeEarnedDescription" : "Get 100 stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.stars100-en-US",
+          "name" : "100 Stars"
+        }
+      ],
+      "pl.beling.ifunschool.stars120" : [
+        {
+          "afterEarnedDescription" : "Got 120 stars",
+          "beforeEarnedDescription" : "Get 120 stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.stars120-en-US",
+          "name" : "120 Stars"
+        }
+      ],
+      "pl.beling.ifunschool.stars140" : [
+        {
+          "afterEarnedDescription" : "Got 140 stars",
+          "beforeEarnedDescription" : "Get 140 stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.stars140-en-US",
+          "name" : "140 Stars"
+        }
+      ],
+      "pl.beling.ifunschool.stars160" : [
+        {
+          "afterEarnedDescription" : "Got 160 stars",
+          "beforeEarnedDescription" : "Get 160 stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.stars160-en-US",
+          "name" : "160 Stars"
+        }
+      ],
+      "pl.beling.ifunschool.stars180" : [
+        {
+          "afterEarnedDescription" : "Got 180 stars",
+          "beforeEarnedDescription" : "Get 180 stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.stars180-en-US",
+          "name" : "180 Stars"
+        }
+      ],
+      "pl.beling.ifunschool.stars200" : [
+        {
+          "afterEarnedDescription" : "Got 200 stars",
+          "beforeEarnedDescription" : "Get 200 stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.stars200-en-US",
+          "name" : "200 Stars"
+        }
+      ],
+      "pl.beling.ifunschool.stars225" : [
+        {
+          "afterEarnedDescription" : "Got 225 stars",
+          "beforeEarnedDescription" : "Get 225 stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.stars225-en-US",
+          "name" : "225 Stars"
+        }
+      ],
+      "pl.beling.ifunschool.stars250" : [
+        {
+          "afterEarnedDescription" : "Got 250 stars",
+          "beforeEarnedDescription" : "Get 250 stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.stars250-en-US",
+          "name" : "250 Stars"
+        }
+      ],
+      "pl.beling.ifunschool.stars275" : [
+        {
+          "afterEarnedDescription" : "Got 275 stars",
+          "beforeEarnedDescription" : "Get 275 stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.stars275-en-US",
+          "name" : "275 Stars"
+        }
+      ],
+      "pl.beling.ifunschool.stars300" : [
+        {
+          "afterEarnedDescription" : "Got 300 stars",
+          "beforeEarnedDescription" : "Get 300 stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.stars300-en-US",
+          "name" : "300 Stars"
+        }
+      ],
+      "pl.beling.ifunschool.stars330" : [
+        {
+          "afterEarnedDescription" : "Got 330 stars",
+          "beforeEarnedDescription" : "Get 330 stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.stars330-en-US",
+          "name" : "330 Stars"
+        }
+      ],
+      "pl.beling.ifunschool.stars360" : [
+        {
+          "afterEarnedDescription" : "Got 360 stars",
+          "beforeEarnedDescription" : "Get 360 stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.stars360-en-US",
+          "name" : "360 Stars"
+        }
+      ],
+      "pl.beling.ifunschool.stars390" : [
+        {
+          "afterEarnedDescription" : "Got 390 stars",
+          "beforeEarnedDescription" : "Get 390 stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.stars390-en-US",
+          "name" : "390 Stars"
+        }
+      ],
+      "pl.beling.ifunschool.stars400" : [
+        {
+          "afterEarnedDescription" : "Got 400 stars",
+          "beforeEarnedDescription" : "Get 400 stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.stars400-en-US",
+          "name" : "400 Stars"
+        }
+      ],
+      "pl.beling.ifunschool.stars450" : [
+        {
+          "afterEarnedDescription" : "Got 450 stars",
+          "beforeEarnedDescription" : "Get 450 stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.stars450-en-US",
+          "name" : "450 Stars"
+        }
+      ],
+      "pl.beling.ifunschool.stars500" : [
+        {
+          "afterEarnedDescription" : "Got 500 stars",
+          "beforeEarnedDescription" : "Get 500 stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.stars500-en-US",
+          "name" : "500 Stars"
+        }
+      ],
+      "pl.beling.ifunschool.stars550" : [
+        {
+          "afterEarnedDescription" : "Got 550 stars",
+          "beforeEarnedDescription" : "Get 550 stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.stars550-en-US",
+          "name" : "Stars 550"
+        }
+      ],
+      "pl.beling.ifunschool.stars600" : [
+        {
+          "afterEarnedDescription" : "Got 600 stars",
+          "beforeEarnedDescription" : "Get 600 stars",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.stars600-en-US",
+          "name" : "600 Stars"
+        }
+      ],
+      "pl.beling.ifunschool.streak1" : [
+        {
+          "afterEarnedDescription" : "Played on 1 different days!",
+          "beforeEarnedDescription" : "Play on 1 different days with min. 1 star.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.streak1-en-US",
+          "name" : "Day 1 Streak"
+        },
+        {
+          "afterEarnedDescription" : "Zagrano w 1 różnych dni!",
+          "beforeEarnedDescription" : "Zagraj w 1 różnych dni z min. 1 gwiazdką.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.streak1-pl",
+          "name" : "Dzień 1 Streak"
+        }
+      ],
+      "pl.beling.ifunschool.streak2" : [
+        {
+          "afterEarnedDescription" : "Played on 2 different days!",
+          "beforeEarnedDescription" : "Play on 2 different days with min. 1 star.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.streak2-en-US",
+          "name" : "Day 2 Streak"
+        },
+        {
+          "afterEarnedDescription" : "Zagrano w 2 różnych dni!",
+          "beforeEarnedDescription" : "Zagraj w 2 różnych dni z min. 1 gwiazdką.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.streak2-pl",
+          "name" : "Dzień 2 Streak"
+        }
+      ],
+      "pl.beling.ifunschool.streak3" : [
+        {
+          "afterEarnedDescription" : "Played on 3 different days!",
+          "beforeEarnedDescription" : "Play on 3 different days with min. 1 star.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.streak3-en-US",
+          "name" : "Day 3 Streak"
+        },
+        {
+          "afterEarnedDescription" : "Zagrano w 3 różnych dni!",
+          "beforeEarnedDescription" : "Zagraj w 3 różnych dni z min. 1 gwiazdką.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.streak3-pl",
+          "name" : "Dzień 3 Streak"
+        }
+      ],
+      "pl.beling.ifunschool.streak4" : [
+        {
+          "afterEarnedDescription" : "Played on 4 different days!",
+          "beforeEarnedDescription" : "Play on 4 different days with min. 1 star.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.streak4-en-US",
+          "name" : "Day 4 Streak"
+        },
+        {
+          "afterEarnedDescription" : "Zagrano w 4 różnych dni!",
+          "beforeEarnedDescription" : "Zagraj w 4 różnych dni z min. 1 gwiazdką.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.streak4-pl",
+          "name" : "Dzień 4 Streak"
+        }
+      ],
+      "pl.beling.ifunschool.streak5" : [
+        {
+          "afterEarnedDescription" : "Played on 5 different days!",
+          "beforeEarnedDescription" : "Play on 5 different days with min. 1 star.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.streak5-en-US",
+          "name" : "Day 5 Streak"
+        },
+        {
+          "afterEarnedDescription" : "Zagrano w 5 różnych dni!",
+          "beforeEarnedDescription" : "Zagraj w 5 różnych dni z min. 1 gwiazdką.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.streak5-pl",
+          "name" : "Dzień 5 Streak"
+        }
+      ],
+      "pl.beling.ifunschool.streak6" : [
+        {
+          "afterEarnedDescription" : "Played on 6 different days!",
+          "beforeEarnedDescription" : "Play on 6 different days with min. 1 star.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.streak6-en-US",
+          "name" : "Day 6 Streak"
+        },
+        {
+          "afterEarnedDescription" : "Zagrano w 6 różnych dni!",
+          "beforeEarnedDescription" : "Zagraj w 6 różnych dni z min. 1 gwiazdką.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.streak6-pl",
+          "name" : "Dzień 6 Streak"
+        }
+      ],
+      "pl.beling.ifunschool.streak7" : [
+        {
+          "afterEarnedDescription" : "Played on 7 different days!",
+          "beforeEarnedDescription" : "Play on 7 different days with min. 1 star.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.streak7-en-US",
+          "name" : "Day 7 Streak"
+        },
+        {
+          "afterEarnedDescription" : "Zagrano w 7 różnych dni!",
+          "beforeEarnedDescription" : "Zagraj w 7 różnych dni z min. 1 gwiazdką.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.streak7-pl",
+          "name" : "Dzień 7 Streak"
+        }
+      ],
+      "pl.beling.ifunschool.streak8" : [
+        {
+          "afterEarnedDescription" : "Played on 8 different days!",
+          "beforeEarnedDescription" : "Play on 8 different days with min. 1 star.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.streak8-en-US",
+          "name" : "Day 8 Streak"
+        },
+        {
+          "afterEarnedDescription" : "Zagrano w 8 różnych dni!",
+          "beforeEarnedDescription" : "Zagraj w 8 różnych dni z min. 1 gwiazdką.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.streak8-pl",
+          "name" : "Dzień 8 Streak"
+        }
+      ],
+      "pl.beling.ifunschool.streak9" : [
+        {
+          "afterEarnedDescription" : "Played on 9 different days!",
+          "beforeEarnedDescription" : "Play on 9 different days with min. 1 star.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.streak9-en-US",
+          "name" : "Day 9 Streak"
+        },
+        {
+          "afterEarnedDescription" : "Zagrano w 9 różnych dni!",
+          "beforeEarnedDescription" : "Zagraj w 9 różnych dni z min. 1 gwiazdką.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.streak9-pl",
+          "name" : "Dzień 9 Streak"
+        }
+      ],
+      "pl.beling.ifunschool.streak10" : [
+        {
+          "afterEarnedDescription" : "Played on 10 different days!",
+          "beforeEarnedDescription" : "Play on 10 different days with min. 1 star.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.streak10-en-US",
+          "name" : "Day 10 Streak"
+        },
+        {
+          "afterEarnedDescription" : "Zagrano w 10 różnych dni!",
+          "beforeEarnedDescription" : "Zagraj w 10 różnych dni z min. 1 gwiazdką.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.streak10-pl",
+          "name" : "Dzień 10 Streak"
+        }
+      ],
+      "pl.beling.ifunschool.streak11" : [
+        {
+          "afterEarnedDescription" : "Played on 11 different days!",
+          "beforeEarnedDescription" : "Play on 11 different days with min. 1 star.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.streak11-en-US",
+          "name" : "Day 11 Streak"
+        },
+        {
+          "afterEarnedDescription" : "Zagrano w 11 różnych dni!",
+          "beforeEarnedDescription" : "Zagraj w 11 różnych dni z min. 1 gwiazdką.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.streak11-pl",
+          "name" : "Dzień 11 Streak"
+        }
+      ],
+      "pl.beling.ifunschool.streak12" : [
+        {
+          "afterEarnedDescription" : "Played on 12 different days!",
+          "beforeEarnedDescription" : "Play on 12 different days with min. 1 star.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.streak12-en-US",
+          "name" : "Day 12 Streak"
+        },
+        {
+          "afterEarnedDescription" : "Zagrano w 12 różnych dni!",
+          "beforeEarnedDescription" : "Zagraj w 12 różnych dni z min. 1 gwiazdką.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.streak12-pl",
+          "name" : "Dzień 12 Streak"
+        }
+      ],
+      "pl.beling.ifunschool.streak13" : [
+        {
+          "afterEarnedDescription" : "Played on 13 different days!",
+          "beforeEarnedDescription" : "Play on 13 different days with min. 1 star.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.streak13-en-US",
+          "name" : "Day 13 Streak"
+        },
+        {
+          "afterEarnedDescription" : "Zagrano w 13 różnych dni!",
+          "beforeEarnedDescription" : "Zagraj w 13 różnych dni z min. 1 gwiazdką.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.streak13-pl",
+          "name" : "Dzień 13 Streak"
+        }
+      ],
+      "pl.beling.ifunschool.streak14" : [
+        {
+          "afterEarnedDescription" : "Played on 14 different days!",
+          "beforeEarnedDescription" : "Play on 14 different days with min. 1 star.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.streak14-en-US",
+          "name" : "Day 14 Streak"
+        },
+        {
+          "afterEarnedDescription" : "Zagrano w 14 różnych dni!",
+          "beforeEarnedDescription" : "Zagraj w 14 różnych dni z min. 1 gwiazdką.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.streak14-pl",
+          "name" : "Dzień 14 Streak"
+        }
+      ],
+      "pl.beling.ifunschool.streak15" : [
+        {
+          "afterEarnedDescription" : "Played on 15 different days!",
+          "beforeEarnedDescription" : "Play on 15 different days with min. 1 star.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.streak15-en-US",
+          "name" : "Day 15 Streak"
+        },
+        {
+          "afterEarnedDescription" : "Zagrano w 15 różnych dni!",
+          "beforeEarnedDescription" : "Zagraj w 15 różnych dni z min. 1 gwiazdką.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.streak15-pl",
+          "name" : "Dzień 15 Streak"
+        }
+      ],
+      "pl.beling.ifunschool.streak16" : [
+        {
+          "afterEarnedDescription" : "Played on 16 different days!",
+          "beforeEarnedDescription" : "Play on 16 different days with min. 1 star.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.streak16-en-US",
+          "name" : "Day 16 Streak"
+        },
+        {
+          "afterEarnedDescription" : "Zagrano w 16 różnych dni!",
+          "beforeEarnedDescription" : "Zagraj w 16 różnych dni z min. 1 gwiazdką.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.streak16-pl",
+          "name" : "Dzień 16 Streak"
+        }
+      ],
+      "pl.beling.ifunschool.streak17" : [
+        {
+          "afterEarnedDescription" : "Played on 17 different days!",
+          "beforeEarnedDescription" : "Play on 17 different days with min. 1 star.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.streak17-en-US",
+          "name" : "Day 17 Streak"
+        },
+        {
+          "afterEarnedDescription" : "Zagrano w 17 różnych dni!",
+          "beforeEarnedDescription" : "Zagraj w 17 różnych dni z min. 1 gwiazdką.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.streak17-pl",
+          "name" : "Dzień 17 Streak"
+        }
+      ],
+      "pl.beling.ifunschool.streak18" : [
+        {
+          "afterEarnedDescription" : "Played on 18 different days!",
+          "beforeEarnedDescription" : "Play on 18 different days with min. 1 star.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.streak18-en-US",
+          "name" : "Day 18 Streak"
+        },
+        {
+          "afterEarnedDescription" : "Zagrano w 18 różnych dni!",
+          "beforeEarnedDescription" : "Zagraj w 18 różnych dni z min. 1 gwiazdką.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.streak18-pl",
+          "name" : "Dzień 18 Streak"
+        }
+      ],
+      "pl.beling.ifunschool.streak19" : [
+        {
+          "afterEarnedDescription" : "Played on 19 different days!",
+          "beforeEarnedDescription" : "Play on 19 different days with min. 1 star.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.streak19-en-US",
+          "name" : "Day 19 Streak"
+        },
+        {
+          "afterEarnedDescription" : "Zagrano w 19 różnych dni!",
+          "beforeEarnedDescription" : "Zagraj w 19 różnych dni z min. 1 gwiazdką.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.streak19-pl",
+          "name" : "Dzień 19 Streak"
+        }
+      ],
+      "pl.beling.ifunschool.streak20" : [
+        {
+          "afterEarnedDescription" : "Played on 20 different days!",
+          "beforeEarnedDescription" : "Play on 20 different days with min. 1 star.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.streak20-en-US",
+          "name" : "Day 20 Streak"
+        },
+        {
+          "afterEarnedDescription" : "Zagrano w 20 różnych dni!",
+          "beforeEarnedDescription" : "Zagraj w 20 różnych dni z min. 1 gwiazdką.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.streak20-pl",
+          "name" : "Dzień 20 Streak"
+        }
+      ],
+      "pl.beling.ifunschool.streak21" : [
+        {
+          "afterEarnedDescription" : "Played on 21 different days!",
+          "beforeEarnedDescription" : "Play on 21 different days with min. 1 star.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.streak21-en-US",
+          "name" : "Day 21 Streak"
+        },
+        {
+          "afterEarnedDescription" : "Zagrano w 21 różnych dni!",
+          "beforeEarnedDescription" : "Zagraj w 21 różnych dni z min. 1 gwiazdką.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.streak21-pl",
+          "name" : "Dzień 21 Streak"
+        }
+      ],
+      "pl.beling.ifunschool.streak22" : [
+        {
+          "afterEarnedDescription" : "Played on 22 different days!",
+          "beforeEarnedDescription" : "Play on 22 different days with min. 1 star.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.streak22-en-US",
+          "name" : "Day 22 Streak"
+        },
+        {
+          "afterEarnedDescription" : "Zagrano w 22 różnych dni!",
+          "beforeEarnedDescription" : "Zagraj w 22 różnych dni z min. 1 gwiazdką.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.streak22-pl",
+          "name" : "Dzień 22 Streak"
+        }
+      ],
+      "pl.beling.ifunschool.streak23" : [
+        {
+          "afterEarnedDescription" : "Played on 23 different days!",
+          "beforeEarnedDescription" : "Play on 23 different days with min. 1 star.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.streak23-en-US",
+          "name" : "Day 23 Streak"
+        },
+        {
+          "afterEarnedDescription" : "Zagrano w 23 różnych dni!",
+          "beforeEarnedDescription" : "Zagraj w 23 różnych dni z min. 1 gwiazdką.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.streak23-pl",
+          "name" : "Dzień 23 Streak"
+        }
+      ],
+      "pl.beling.ifunschool.streak24" : [
+        {
+          "afterEarnedDescription" : "Played on 24 different days!",
+          "beforeEarnedDescription" : "Play on 24 different days with min. 1 star.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.streak24-en-US",
+          "name" : "Day 24 Streak"
+        },
+        {
+          "afterEarnedDescription" : "Zagrano w 24 różnych dni!",
+          "beforeEarnedDescription" : "Zagraj w 24 różnych dni z min. 1 gwiazdką.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.streak24-pl",
+          "name" : "Dzień 24 Streak"
+        }
+      ],
+      "pl.beling.ifunschool.streak25" : [
+        {
+          "afterEarnedDescription" : "Played on 25 different days!",
+          "beforeEarnedDescription" : "Play on 25 different days with min. 1 star.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.streak25-en-US",
+          "name" : "Day 25 Streak"
+        },
+        {
+          "afterEarnedDescription" : "Zagrano w 25 różnych dni!",
+          "beforeEarnedDescription" : "Zagraj w 25 różnych dni z min. 1 gwiazdką.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.streak25-pl",
+          "name" : "Dzień 25 Streak"
+        }
+      ],
+      "pl.beling.ifunschool.streak26" : [
+        {
+          "afterEarnedDescription" : "Played on 26 different days!",
+          "beforeEarnedDescription" : "Play on 26 different days with min. 1 star.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.streak26-en-US",
+          "name" : "Day 26 Streak"
+        },
+        {
+          "afterEarnedDescription" : "Zagrano w 26 różnych dni!",
+          "beforeEarnedDescription" : "Zagraj w 26 różnych dni z min. 1 gwiazdką.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.streak26-pl",
+          "name" : "Dzień 26 Streak"
+        }
+      ],
+      "pl.beling.ifunschool.streak27" : [
+        {
+          "afterEarnedDescription" : "Played on 27 different days!",
+          "beforeEarnedDescription" : "Play on 27 different days with min. 1 star.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.streak27-en-US",
+          "name" : "Day 27 Streak"
+        },
+        {
+          "afterEarnedDescription" : "Zagrano w 27 różnych dni!",
+          "beforeEarnedDescription" : "Zagraj w 27 różnych dni z min. 1 gwiazdką.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.streak27-pl",
+          "name" : "Dzień 27 Streak"
+        }
+      ],
+      "pl.beling.ifunschool.streak28" : [
+        {
+          "afterEarnedDescription" : "Played on 28 different days!",
+          "beforeEarnedDescription" : "Play on 28 different days with min. 1 star.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.streak28-en-US",
+          "name" : "Day 28 Streak"
+        },
+        {
+          "afterEarnedDescription" : "Zagrano w 28 różnych dni!",
+          "beforeEarnedDescription" : "Zagraj w 28 różnych dni z min. 1 gwiazdką.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.streak28-pl",
+          "name" : "Dzień 28 Streak"
+        }
+      ],
+      "pl.beling.ifunschool.streak29" : [
+        {
+          "afterEarnedDescription" : "Played on 29 different days!",
+          "beforeEarnedDescription" : "Play on 29 different days with min. 1 star.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.streak29-en-US",
+          "name" : "Day 29 Streak"
+        },
+        {
+          "afterEarnedDescription" : "Zagrano w 29 różnych dni!",
+          "beforeEarnedDescription" : "Zagraj w 29 różnych dni z min. 1 gwiazdką.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.streak29-pl",
+          "name" : "Dzień 29 Streak"
+        }
+      ],
+      "pl.beling.ifunschool.streak30" : [
+        {
+          "afterEarnedDescription" : "Played on 30 different days!",
+          "beforeEarnedDescription" : "Play on 30 different days with min. 1 star.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.streak30-en-US",
+          "name" : "Day 30 Streak"
+        },
+        {
+          "afterEarnedDescription" : "Zagrano w 30 różnych dni!",
+          "beforeEarnedDescription" : "Zagraj w 30 różnych dni z min. 1 gwiazdką.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.streak30-pl",
+          "name" : "Dzień 30 Streak"
+        }
+      ],
+      "pl.beling.ifunschool.sub10" : [
+        {
+          "afterEarnedDescription" : "Answered 10% of subtraction questions correctly.",
+          "beforeEarnedDescription" : "Answer 10% of subtraction questions correctly.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.sub10-en-US",
+          "name" : "Subtraction - Bronze (10%)"
+        },
+        {
+          "afterEarnedDescription" : "Odpowiedziano prawidłowo na 10% pytań z odejmowania.",
+          "beforeEarnedDescription" : "Odpowiedz prawidłowo na 10% pytań z odejmowania.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.sub10-pl",
+          "name" : "Odejmowanie - Brąz (10%)"
+        }
+      ],
+      "pl.beling.ifunschool.sub50" : [
+        {
+          "afterEarnedDescription" : "Answered 50% of subtraction questions correctly.",
+          "beforeEarnedDescription" : "Answer 50% of subtraction questions correctly.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.sub50-en-US",
+          "name" : "Subtraction - Silver (50%)"
+        },
+        {
+          "afterEarnedDescription" : "Odpowiedziano prawidłowo na 50% pytań z odejmowania.",
+          "beforeEarnedDescription" : "Odpowiedz prawidłowo na 50% pytań z odejmowania.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.sub50-pl",
+          "name" : "Odejmowanie - Srebro (50%)"
+        }
+      ],
+      "pl.beling.ifunschool.sub100" : [
+        {
+          "afterEarnedDescription" : "Mastered all basic subtraction questions.",
+          "beforeEarnedDescription" : "Master all basic subtraction questions.",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.sub100-en-US",
+          "name" : "Subtraction - Gold (100%)"
+        },
+        {
+          "afterEarnedDescription" : "Opanowano wszystkie operacje odejmowania.",
+          "beforeEarnedDescription" : "Opanuj materiał z odejmowania.",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.sub100-pl",
+          "name" : "Odejmowanie - Złoto (100%)"
+        }
+      ]
+    },
+    "achievements" : [
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 10,
+        "referenceName" : "Stars 10",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.stars10"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 10,
+        "referenceName" : "Stars 20",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.stars20"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 10,
+        "referenceName" : "Stars 30",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.stars30"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 10,
+        "referenceName" : "Stars 40",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.stars40"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 10,
+        "referenceName" : "Stars 50",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.stars50"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 10,
+        "referenceName" : "Stars 60",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.stars60"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 10,
+        "referenceName" : "Stars 70",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.stars70"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 10,
+        "referenceName" : "Stars 80",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.stars80"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 10,
+        "referenceName" : "Stars 90",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.stars90"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 10,
+        "referenceName" : "Stars 100",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.stars100"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 20,
+        "referenceName" : "Stars 120",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.stars120"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 20,
+        "referenceName" : "Stars 140",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.stars140"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 20,
+        "referenceName" : "Stars 160",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.stars160"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 20,
+        "referenceName" : "Stars 180",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.stars180"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 20,
+        "referenceName" : "Stars 200",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.stars200"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 25,
+        "referenceName" : "Stars 225",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.stars225"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 25,
+        "referenceName" : "Stars 250",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.stars250"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 25,
+        "referenceName" : "Stars 275",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.stars275"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 25,
+        "referenceName" : "Stars 300",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.stars300"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 30,
+        "referenceName" : "Stars 330",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.stars330"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 30,
+        "referenceName" : "Stars 360",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.stars360"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 30,
+        "referenceName" : "Stars 390",
+        "repeatable" : false,
+        "showBeforeEarned" : false,
+        "vendorIdentifier" : "pl.beling.ifunschool.stars390"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 10,
+        "referenceName" : "Stars 400",
+        "repeatable" : false,
+        "showBeforeEarned" : false,
+        "vendorIdentifier" : "pl.beling.ifunschool.stars400"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 50,
+        "referenceName" : "Stars 450",
+        "repeatable" : false,
+        "showBeforeEarned" : false,
+        "vendorIdentifier" : "pl.beling.ifunschool.stars450"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 50,
+        "referenceName" : "Stars 500",
+        "repeatable" : false,
+        "showBeforeEarned" : false,
+        "vendorIdentifier" : "pl.beling.ifunschool.stars500"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 50,
+        "referenceName" : "Stars 550",
+        "repeatable" : false,
+        "showBeforeEarned" : false,
+        "vendorIdentifier" : "pl.beling.ifunschool.stars550"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 50,
+        "referenceName" : "Stars 600",
+        "repeatable" : false,
+        "showBeforeEarned" : false,
+        "vendorIdentifier" : "pl.beling.ifunschool.stars600"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Gold 1",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.gold1"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 4,
+        "referenceName" : "Gold 5",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.gold5"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 5,
+        "referenceName" : "Gold 10",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.gold10"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 5,
+        "referenceName" : "Gold 15",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.gold15"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 5,
+        "referenceName" : "Gold 20",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.gold20"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 5,
+        "referenceName" : "Gold 25",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.gold25"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 5,
+        "referenceName" : "Gold 30",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.gold30"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 10,
+        "referenceName" : "Gold 40",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.gold40"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 10,
+        "referenceName" : "Gold 50",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.gold50"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 10,
+        "referenceName" : "Gold 60",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.gold60"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 10,
+        "referenceName" : "Gold 70",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.gold70"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 5,
+        "referenceName" : "Gold 75",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.gold75"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 5,
+        "referenceName" : "Gold 80",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.gold80"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 10,
+        "referenceName" : "Gold 90",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.gold90"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 10,
+        "referenceName" : "Gold 100",
+        "repeatable" : false,
+        "showBeforeEarned" : false,
+        "vendorIdentifier" : "pl.beling.ifunschool.gold100"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 15,
+        "referenceName" : "Gold 115",
+        "repeatable" : false,
+        "showBeforeEarned" : false,
+        "vendorIdentifier" : "pl.beling.ifunschool.gold115"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 10,
+        "referenceName" : "Gold 125",
+        "repeatable" : false,
+        "showBeforeEarned" : false,
+        "vendorIdentifier" : "pl.beling.ifunschool.gold125"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 25,
+        "referenceName" : "Gold 150",
+        "repeatable" : false,
+        "showBeforeEarned" : false,
+        "vendorIdentifier" : "pl.beling.ifunschool.gold150"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Add 10%",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.add10"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Add 50%",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.add50"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Add 100%",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.add100"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Sub 10%",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.sub10"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Sub 50%",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.sub50"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Sub 100%",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.sub100"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Mult 10%",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.mult10"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Mult 50%",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.mult50"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Mult 100%",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.mult100"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Div 10%",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.div10"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Div 50%",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.div50"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Div 100%",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.div100"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Flags 10%",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.flags10"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Flags 50%",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.flags50"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Flags 100%",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.flags100"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Elements 10%",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.elements10"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Elements 50%",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.elements50"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Elements 100%",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.elements100"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Streak Day 1",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.streak1"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Streak Day 2",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.streak2"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Streak Day 3",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.streak3"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Streak Day 4",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.streak4"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Streak Day 5",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.streak5"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Streak Day 6",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.streak6"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Streak Day 7",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.streak7"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Streak Day 8",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.streak8"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Streak Day 9",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.streak9"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Streak Day 10",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.streak10"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Streak Day 11",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.streak11"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Streak Day 12",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.streak12"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Streak Day 13",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.streak13"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Streak Day 14",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.streak14"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Streak Day 15",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.streak15"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Streak Day 16",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.streak16"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Streak Day 17",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.streak17"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Streak Day 18",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.streak18"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Streak Day 19",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.streak19"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Streak Day 20",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.streak20"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Streak Day 21",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.streak21"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Streak Day 22",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.streak22"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Streak Day 23",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.streak23"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Streak Day 24",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.streak24"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Streak Day 25",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.streak25"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Streak Day 26",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.streak26"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Streak Day 27",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.streak27"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Streak Day 28",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.streak28"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Streak Day 29",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.streak29"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Streak Day 30",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.streak30"
+      }
+    ],
+    "leaderboardImages" : {
+      "pl.beling.ifunschool.total-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.total-en-US",
+          "url" : "en-US\/LeaderboardImage-pl.beling.ifunschool.total-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.totalLvl0-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.totalLvl0-en-US",
+          "url" : "en-US\/LeaderboardImage-pl.beling.ifunschool.totalLvl0-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.totalLvl1-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.totalLvl1-en-US",
+          "url" : "en-US\/LeaderboardImage-pl.beling.ifunschool.totalLvl1-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.totalLvl2-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.totalLvl2-en-US",
+          "url" : "en-US\/LeaderboardImage-pl.beling.ifunschool.totalLvl2-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.totalLvl3-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.totalLvl3-en-US",
+          "url" : "en-US\/LeaderboardImage-pl.beling.ifunschool.totalLvl3-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.totalLvl4-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.totalLvl4-en-US",
+          "url" : "en-US\/LeaderboardImage-pl.beling.ifunschool.totalLvl4-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.totalLvl5-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.totalLvl5-en-US",
+          "url" : "en-US\/LeaderboardImage-pl.beling.ifunschool.totalLvl5-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.totals-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.totals-en-US",
+          "url" : "en-US\/LeaderboardImage-pl.beling.ifunschool.totals-en-US.png"
+        }
+      ]
+    },
+    "leaderboardLocalizations" : {
+      "pl.beling.ifunschool.total" : [
+        {
+          "formatterOverride" : "DECIMAL_POINT_2_PLACE",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.total-en-US",
+          "name" : "Total Score - old version (1.0)"
+        }
+      ],
+      "pl.beling.ifunschool.totalLvl0" : [
+        {
+          "formatterOverride" : "DECIMAL_POINT_2_PLACE",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.totalLvl0-en-US",
+          "name" : "Beginner"
+        }
+      ],
+      "pl.beling.ifunschool.totalLvl1" : [
+        {
+          "formatterOverride" : "DECIMAL_POINT_2_PLACE",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.totalLvl1-en-US",
+          "name" : "Easy"
+        }
+      ],
+      "pl.beling.ifunschool.totalLvl2" : [
+        {
+          "formatterOverride" : "DECIMAL_POINT_2_PLACE",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.totalLvl2-en-US",
+          "name" : "Medium"
+        }
+      ],
+      "pl.beling.ifunschool.totalLvl3" : [
+        {
+          "formatterOverride" : "DECIMAL_POINT_2_PLACE",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.totalLvl3-en-US",
+          "name" : "Hard"
+        }
+      ],
+      "pl.beling.ifunschool.totalLvl4" : [
+        {
+          "formatterOverride" : "DECIMAL_POINT_2_PLACE",
+          "formatterSuffix" : "points",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.totalLvl4-en-US",
+          "name" : "Ultimate"
+        }
+      ],
+      "pl.beling.ifunschool.totalLvl5" : [
+        {
+          "formatterOverride" : "DECIMAL_POINT_2_PLACE",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.totalLvl5-en-US",
+          "name" : "Godlike"
+        }
+      ],
+      "pl.beling.ifunschool.totals" : [
+        {
+          "formatterOverride" : "DECIMAL_POINT_2_PLACE",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.totals-en-US",
+          "name" : "Total Score"
+        }
+      ]
+    },
+    "leaderboards" : [
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "defaultFormatter" : "INTEGER",
+        "referenceName" : "Total Points",
+        "scoreRangeEnd" : null,
+        "scoreRangeStart" : null,
+        "scoreSortType" : "DESC",
+        "submissionType" : "BEST_SCORE",
+        "vendorIdentifier" : "pl.beling.ifunschool.totals",
+        "visibility" : "SHOW_FOR_ALL"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "defaultFormatter" : "INTEGER",
+        "referenceName" : "Total Score - Beginner",
+        "scoreRangeEnd" : null,
+        "scoreRangeStart" : null,
+        "scoreSortType" : "DESC",
+        "submissionType" : "BEST_SCORE",
+        "vendorIdentifier" : "pl.beling.ifunschool.totalLvl0",
+        "visibility" : "SHOW_FOR_ALL"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "defaultFormatter" : null,
+        "referenceName" : "Total Score - Easy",
+        "scoreRangeEnd" : null,
+        "scoreRangeStart" : null,
+        "scoreSortType" : "DESC",
+        "submissionType" : "BEST_SCORE",
+        "vendorIdentifier" : "pl.beling.ifunschool.totalLvl1",
+        "visibility" : "SHOW_FOR_ALL"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "defaultFormatter" : null,
+        "referenceName" : "Total Score - Medium",
+        "scoreRangeEnd" : null,
+        "scoreRangeStart" : null,
+        "scoreSortType" : "DESC",
+        "submissionType" : "BEST_SCORE",
+        "vendorIdentifier" : "pl.beling.ifunschool.totalLvl2",
+        "visibility" : "SHOW_FOR_ALL"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "defaultFormatter" : "INTEGER",
+        "referenceName" : "Total Score - Hard",
+        "scoreRangeEnd" : null,
+        "scoreRangeStart" : null,
+        "scoreSortType" : "DESC",
+        "submissionType" : "BEST_SCORE",
+        "vendorIdentifier" : "pl.beling.ifunschool.totalLvl3",
+        "visibility" : "SHOW_FOR_ALL"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "defaultFormatter" : "INTEGER",
+        "referenceName" : "Total Score - Ultimate",
+        "scoreRangeEnd" : null,
+        "scoreRangeStart" : null,
+        "scoreSortType" : "DESC",
+        "submissionType" : "BEST_SCORE",
+        "vendorIdentifier" : "pl.beling.ifunschool.totalLvl4",
+        "visibility" : "SHOW_FOR_ALL"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "defaultFormatter" : "INTEGER",
+        "referenceName" : "Total Score - Godlike",
+        "scoreRangeEnd" : null,
+        "scoreRangeStart" : null,
+        "scoreSortType" : "DESC",
+        "submissionType" : "BEST_SCORE",
+        "vendorIdentifier" : "pl.beling.ifunschool.totalLvl5",
+        "visibility" : "SHOW_FOR_ALL"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "defaultFormatter" : "INTEGER",
+        "referenceName" : "Total Score - v 1.0",
+        "scoreRangeEnd" : null,
+        "scoreRangeStart" : null,
+        "scoreSortType" : "DESC",
+        "submissionType" : "BEST_SCORE",
+        "vendorIdentifier" : "pl.beling.ifunschool.total",
+        "visibility" : "HIDE_FOR_ALL"
+      }
+    ]
+  }
+}

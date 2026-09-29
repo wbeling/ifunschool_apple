@@ -160,6 +160,9 @@
 		B774D12D132D394200622D38 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B775D6C51316EDFB00BDC76E /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		B775E4EE131C20B4000F37E7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		B7BAFB6A306C652D00656C7F /* iFunSchool_v2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iFunSchool_v2.entitlements; sourceTree = "<group>"; };
+		B7BAFB6B306C652D00656C7F /* iFunSchool_v2_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iFunSchool_v2_macOS.entitlements; sourceTree = "<group>"; };
+		B7BAFB6C306C652D00656C7F /* iFunSchool_v2_tvOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iFunSchool_v2_tvOS.entitlements; sourceTree = "<group>"; };
 		B7D191023017DB92008DE2C2 /* iFunSchool v2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "iFunSchool v2.entitlements"; sourceTree = "<group>"; };
 		B7D191743017E942008DE2C2 /* iFunSchool.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = iFunSchool.storekit; sourceTree = "<group>"; };
 		B8747C001386B70100BC88D0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -319,6 +322,10 @@
 		V20000000000000000000007 /* iFunSchool v2 */ = {
 			isa = PBXGroup;
 			children = (
+				B7D191023017DB92008DE2C2 /* iFunSchool v2.entitlements */,
+				B7BAFB6A306C652D00656C7F /* iFunSchool_v2.entitlements */,
+				B7BAFB6B306C652D00656C7F /* iFunSchool_v2_macOS.entitlements */,
+				B7BAFB6C306C652D00656C7F /* iFunSchool_v2_tvOS.entitlements */,
 				FEA8A1032C12345600000002 /* StreakView.swift */,
 				FEA8A1012C12345600000001 /* StreakTracker.swift */,
 				V2PMFILE000000000000000 /* ProfileManager.swift */,
@@ -333,7 +340,6 @@
 				V2FILEINFOPLISTMAC0000 /* iFunSchool_v2_macOS-Info.plist */,
 				V2FILEINFOPLISTTV00000 /* iFunSchool_v2_tvOS-Info.plist */,
 				B72A51CB30188A050042546B /* TODO.md */,
-				B7D191023017DB92008DE2C2 /* iFunSchool v2.entitlements */,
 				V20000000000000000000002 /* iFunSchoolv2App.swift */,
 				B733D2DA3018073600D648AE /* Colors.swift */,
 				V20000000000000000000003 /* ContentView.swift */,
@@ -494,8 +500,6 @@
 				TargetAttributes = {
 					V2000000000000000000000B = {
 						CreatedOnToolsVersion = 12.3;
-						DevelopmentTeam = SP4XNG9W4N;
-						ProvisioningStyle = Automatic;
 					};
 					V2MACOSUITESTTARGET00 = {
 						DevelopmentTeam = SP4XNG9W4N;

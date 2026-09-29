@@ -1,0 +1,35 @@
+# Explicitly specify Xcode project file
+project("./iFunSchool.xcodeproj")
+
+# Explicitly specify simulator SDK to avoid SDK version auto-detection errors
+sdk("iphonesimulator")
+
+devices([
+  "iPhone 17 Pro Max",
+  "iPhone 17 Pro",
+  "iPad Pro 13-inch (M5)"
+])
+
+languages([
+  "en-US",
+  "pl"
+])
+
+# Xcode Scheme for UI Tests
+scheme("iFunSchool v2UITests")
+
+# Output directory for generated screenshots
+output_directory("./fastlane/screenshots")
+
+# Clear previous screenshots before running
+clear_previous_screenshots(true)
+
+# Reinstall app between runs for clean state
+reinstall_app(true)
+
+# Stop testing after first failure
+stop_after_first_error(false)
+
+# Override status bar to display static time (9:41 AM), 100% battery, and full signal bars
+override_status_bar(true)
+override_status_bar_arguments("--time 9:41 --batteryState charged --batteryLevel 100")

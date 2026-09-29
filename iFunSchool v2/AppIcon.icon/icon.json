@@ -1,0 +1,73 @@
+{
+  "fill" : {
+    "automatic-gradient" : "display-p3:0.29126,0.52588,0.43945,1.00000"
+  },
+  "groups" : [
+    {
+      "layers" : [
+        {
+          "glass" : true,
+          "hidden" : false,
+          "image-name" : "Image 7.png",
+          "name" : "iFun",
+          "position" : {
+            "scale" : 1,
+            "translation-in-points" : [
+              0,
+              587
+            ]
+          }
+        }
+      ],
+      "name" : "First",
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.5
+      }
+    },
+    {
+      "blur-material" : 0.5,
+      "layers" : [
+        {
+          "image-name" : "Image 3.png",
+          "name" : "School",
+          "position" : {
+            "scale" : 0.65,
+            "translation-in-points" : [
+              0,
+              135
+            ]
+          }
+        }
+      ],
+      "lighting" : "individual",
+      "name" : "Second",
+      "position" : {
+        "scale" : 1,
+        "translation-in-points" : [
+          0.829833984375,
+          15.15509033203125
+        ]
+      },
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 1
+      },
+      "specular" : true,
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.5
+      }
+    }
+  ],
+  "supported-platforms" : {
+    "circles" : [
+      "watchOS"
+    ],
+    "squares" : "shared"
+  }
+}
