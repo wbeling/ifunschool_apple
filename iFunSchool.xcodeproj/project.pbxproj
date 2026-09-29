@@ -1,0 +1,1264 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 70;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2B2280F97217447DB40D0090 /* ProgressGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057CDA05A77A48878BF4E4FC /* ProgressGridView.swift */; };
+		8823F3677D024D8AA8A004EE /* ProgressGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057CDA05A77A48878BF4E4FC /* ProgressGridView.swift */; };
+		B7014115301D206E0079DFCF /* GameCenterResources.gamekit in Resources */ = {isa = PBXBuildFile; fileRef = B7014114301D206E0079DFCF /* GameCenterResources.gamekit */; };
+		B7014116301D206E0079DFCF /* GameCenterResources.gamekit in Resources */ = {isa = PBXBuildFile; fileRef = B7014114301D206E0079DFCF /* GameCenterResources.gamekit */; };
+		B7014117301D206E0079DFCF /* GameCenterResources.gamekit in Resources */ = {isa = PBXBuildFile; fileRef = B7014114301D206E0079DFCF /* GameCenterResources.gamekit */; };
+		B7014139301D3E960079DFCF /* StreakView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA8A1032C12345600000002 /* StreakView.swift */; };
+		B701413A301D3E960079DFCF /* StreakTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA8A1012C12345600000001 /* StreakTracker.swift */; };
+		B701413B301D3E960079DFCF /* StreakView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA8A1032C12345600000002 /* StreakView.swift */; };
+		B701413C301D3E960079DFCF /* StreakTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA8A1012C12345600000001 /* StreakTracker.swift */; };
+		B701413D301D3E960079DFCF /* StreakView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA8A1032C12345600000002 /* StreakView.swift */; };
+		B701413E301D3E960079DFCF /* StreakTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA8A1012C12345600000001 /* StreakTracker.swift */; };
+		B7225D3E301A3F3A00BAB7C3 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = B7225D3D301A3F3A00BAB7C3 /* AppIcon.icon */; };
+		B7225D3F301A3F3A00BAB7C3 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = B7225D3D301A3F3A00BAB7C3 /* AppIcon.icon */; };
+		B7225D40301A3F3A00BAB7C3 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = B7225D3D301A3F3A00BAB7C3 /* AppIcon.icon */; };
+		B7225D41301A469D00BAB7C3 /* AppIcon-macOS.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = V2FILEAPPICONMAC000000 /* AppIcon-macOS.xcassets */; };
+		B72A51CC30188A050042546C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B72A51CC30188A050042546D /* LaunchScreen.storyboard */; };
+		B733D2DB3018073900D648AE /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B733D2DA3018073600D648AE /* Colors.swift */; };
+		B7D191753017E942008DE2C2 /* iFunSchool.storekit in Resources */ = {isa = PBXBuildFile; fileRef = B7D191743017E942008DE2C2 /* iFunSchool.storekit */; };
+		B7DAFAEE301A59D9001AC1F6 /* ItemProgressTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1672FE6893D74518BA6C8251 /* ItemProgressTracker.swift */; };
+		B7DAFAEF301A59D9001AC1F6 /* ProgressGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057CDA05A77A48878BF4E4FC /* ProgressGridView.swift */; };
+		DFA226F7E768431297566099 /* ItemProgressTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1672FE6893D74518BA6C8251 /* ItemProgressTracker.swift */; };
+		EDBB57AD65C04FE5AB83E645 /* ItemProgressTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1672FE6893D74518BA6C8251 /* ItemProgressTracker.swift */; };
+		V20000000000000000000005 /* iFunSchoolv2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000002 /* iFunSchoolv2App.swift */; };
+		V20000000000000000000006 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000003 /* ContentView.swift */; };
+		V20000000000000000000012 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000010 /* GameModel.swift */; };
+		V20000000000000000000013 /* GameListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000011 /* GameListViewModel.swift */; };
+		V20000000000000000000023 /* QuestionGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000020 /* QuestionGenerator.swift */; };
+		V20000000000000000000024 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000021 /* GameViewModel.swift */; };
+		V20000000000000000000025 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000022 /* GameView.swift */; };
+		V20000000000000000000032 /* ScoreStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000030 /* ScoreStorage.swift */; };
+		V20000000000000000000033 /* AchievementService.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000031 /* AchievementService.swift */; };
+		V20000000000000000000042 /* AudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000040 /* AudioService.swift */; };
+		V20000000000000000000043 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000041 /* SettingsView.swift */; };
+		V20000000000000000000055 /* HapticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000050 /* HapticService.swift */; };
+		V20000000000000000000056 /* ReviewPromptService.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000051 /* ReviewPromptService.swift */; };
+		V20000000000000000000057 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000052 /* Localizable.xcstrings */; };
+		V20000000000000000000062 /* StoreKitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000060 /* StoreKitService.swift */; };
+		V20000000000000000000063 /* StoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000061 /* StoreView.swift */; };
+		V20000000000000000000071 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000070 /* LoadingView.swift */; };
+		V2ASTESTBUILD01 /* AchievementService.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000031 /* AchievementService.swift */; };
+		V2ASTESTBUILDMAC /* AchievementService.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000031 /* AchievementService.swift */; };
+		V2ASTESTBUILDTVO /* AchievementService.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000031 /* AchievementService.swift */; };
+		V2AUDTESTBUILD01 /* AudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000040 /* AudioService.swift */; };
+		V2AUDTESTBUILDMAC /* AudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000040 /* AudioService.swift */; };
+		V2AUDTESTBUILDTVO /* AudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000040 /* AudioService.swift */; };
+		V2BTNSTYLEIOS00000000 /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2BTNSTYLEFILE0000000 /* ButtonStyles.swift */; };
+		V2BTNSTYLEMAC00000000 /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2BTNSTYLEFILE0000000 /* ButtonStyles.swift */; };
+		V2BTNSTYLETVO00000000 /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2BTNSTYLEFILE0000000 /* ButtonStyles.swift */; };
+		V2GMSRCTESTBUILD01 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000010 /* GameModel.swift */; };
+		V2GMSRCTESTBUILDMAC /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000010 /* GameModel.swift */; };
+		V2GMSRCTESTBUILDTVO /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000010 /* GameModel.swift */; };
+		V2HAPTESTBUILD01 /* HapticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000050 /* HapticService.swift */; };
+		V2HAPTESTBUILDMAC /* HapticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000050 /* HapticService.swift */; };
+		V2HAPTESTBUILDTVO /* HapticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000050 /* HapticService.swift */; };
+		V2IPTTESTBUILD01 /* ItemProgressTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1672FE6893D74518BA6C8251 /* ItemProgressTracker.swift */; };
+		V2IPTTESTBUILDMAC /* ItemProgressTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1672FE6893D74518BA6C8251 /* ItemProgressTracker.swift */; };
+		V2IPTTESTBUILDTVO /* ItemProgressTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1672FE6893D74518BA6C8251 /* ItemProgressTracker.swift */; };
+		V2MACOSHELPBUILD000 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2UITESTFILE00000000001 /* SnapshotHelper.swift */; };
+		V2MACOSTESTBUILD000 /* iFunSchoolv2SnapshotUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2UITESTFILE00000000002 /* iFunSchoolv2SnapshotUITests.swift */; };
+		V2MSRC000000000000000000 /* iFunSchoolv2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000002 /* iFunSchoolv2App.swift */; };
+		V2MSRC000000000000000001 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B733D2DA3018073600D648AE /* Colors.swift */; };
+		V2MSRC000000000000000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000003 /* ContentView.swift */; };
+		V2MSRC000000000000000003 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000010 /* GameModel.swift */; };
+		V2MSRC000000000000000004 /* GameListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000011 /* GameListViewModel.swift */; };
+		V2MSRC000000000000000005 /* QuestionGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000020 /* QuestionGenerator.swift */; };
+		V2MSRC000000000000000006 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000021 /* GameViewModel.swift */; };
+		V2MSRC000000000000000007 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000022 /* GameView.swift */; };
+		V2MSRC000000000000000008 /* ScoreStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000030 /* ScoreStorage.swift */; };
+		V2MSRC000000000000000009 /* AchievementService.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000031 /* AchievementService.swift */; };
+		V2MSRC000000000000000010 /* AudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000040 /* AudioService.swift */; };
+		V2MSRC000000000000000011 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000041 /* SettingsView.swift */; };
+		V2MSRC000000000000000012 /* HapticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000050 /* HapticService.swift */; };
+		V2MSRC000000000000000013 /* ReviewPromptService.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000051 /* ReviewPromptService.swift */; };
+		V2MSRC000000000000000014 /* StoreKitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000060 /* StoreKitService.swift */; };
+		V2MSRC000000000000000015 /* StoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000061 /* StoreView.swift */; };
+		V2MSRC000000000000000016 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000070 /* LoadingView.swift */; };
+		V2PMIOSBUILD0000000000 /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2PMFILE000000000000000 /* ProfileManager.swift */; };
+		V2PMMACBUILD0000000000 /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2PMFILE000000000000000 /* ProfileManager.swift */; };
+		V2PMTESTBUILD01 /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2PMFILE000000000000000 /* ProfileManager.swift */; };
+		V2PMTESTBUILDMAC /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2PMFILE000000000000000 /* ProfileManager.swift */; };
+		V2PMTESTBUILDTVO /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2PMFILE000000000000000 /* ProfileManager.swift */; };
+		V2PMTVOBUILD0000000000 /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2PMFILE000000000000000 /* ProfileManager.swift */; };
+		V2PVIOSBUILD0000000000 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2PVFILE000000000000000 /* ProfileView.swift */; };
+		V2PVMACBUILD0000000000 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2PVFILE000000000000000 /* ProfileView.swift */; };
+		V2PVTVOBUILD0000000000 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2PVFILE000000000000000 /* ProfileView.swift */; };
+		V2QGSRCTESTBUILD01 /* QuestionGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000020 /* QuestionGenerator.swift */; };
+		V2QGSRCTESTBUILDMAC /* QuestionGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000020 /* QuestionGenerator.swift */; };
+		V2QGSRCTESTBUILDTVO /* QuestionGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000020 /* QuestionGenerator.swift */; };
+		V2QGUNITTESTBUILD01 /* QuestionGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2QGUNITTESTFILE0001 /* QuestionGeneratorTests.swift */; };
+		V2QGUNITTESTBUILD02 /* QuestionGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2QGUNITTESTFILE0001 /* QuestionGeneratorTests.swift */; };
+		V2QGUNITTESTBUILD03 /* QuestionGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2QGUNITTESTFILE0001 /* QuestionGeneratorTests.swift */; };
+		V2RESAPPICONTV00000000 /* AppIcon-tvOS.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = V2FILEAPPICONTV0000000 /* AppIcon-tvOS.xcassets */; };
+		V2RESASSETSIOS00000000 /* AssetsV2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = V2FILEASSETSV20000000 /* AssetsV2.xcassets */; };
+		V2RESASSETSMAC00000000 /* AssetsV2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = V2FILEASSETSV20000000 /* AssetsV2.xcassets */; };
+		V2RESASSETSTV000000000 /* AssetsV2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = V2FILEASSETSV20000000 /* AssetsV2.xcassets */; };
+		V2RESLOCMAC00000000000 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000052 /* Localizable.xcstrings */; };
+		V2RESLOCTV000000000000 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000052 /* Localizable.xcstrings */; };
+		V2REVTESTBUILD01 /* ReviewPromptService.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000051 /* ReviewPromptService.swift */; };
+		V2REVTESTBUILDMAC /* ReviewPromptService.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000051 /* ReviewPromptService.swift */; };
+		V2REVTESTBUILDTVO /* ReviewPromptService.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000051 /* ReviewPromptService.swift */; };
+		V2SKSTESTBUILD01 /* StoreKitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000060 /* StoreKitService.swift */; };
+		V2SKSTESTBUILDMAC /* StoreKitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000060 /* StoreKitService.swift */; };
+		V2SKSTESTBUILDTVO /* StoreKitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000060 /* StoreKitService.swift */; };
+		V2SSSTESTBUILD01 /* ScoreStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000030 /* ScoreStorage.swift */; };
+		V2SSSTESTBUILDMAC /* ScoreStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000030 /* ScoreStorage.swift */; };
+		V2SSSTESTBUILDTVO /* ScoreStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000030 /* ScoreStorage.swift */; };
+		V2STRKTESTBUILD01 /* StreakTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA8A1012C12345600000001 /* StreakTracker.swift */; };
+		V2STRKTESTBUILDMAC /* StreakTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA8A1012C12345600000001 /* StreakTracker.swift */; };
+		V2STRKTESTBUILDTVO /* StreakTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA8A1012C12345600000001 /* StreakTracker.swift */; };
+		V2TSRC000000000000000000 /* iFunSchoolv2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000002 /* iFunSchoolv2App.swift */; };
+		V2TSRC000000000000000001 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B733D2DA3018073600D648AE /* Colors.swift */; };
+		V2TSRC000000000000000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000003 /* ContentView.swift */; };
+		V2TSRC000000000000000003 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000010 /* GameModel.swift */; };
+		V2TSRC000000000000000004 /* GameListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000011 /* GameListViewModel.swift */; };
+		V2TSRC000000000000000005 /* QuestionGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000020 /* QuestionGenerator.swift */; };
+		V2TSRC000000000000000006 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000021 /* GameViewModel.swift */; };
+		V2TSRC000000000000000007 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000022 /* GameView.swift */; };
+		V2TSRC000000000000000008 /* ScoreStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000030 /* ScoreStorage.swift */; };
+		V2TSRC000000000000000009 /* AchievementService.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000031 /* AchievementService.swift */; };
+		V2TSRC000000000000000010 /* AudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000040 /* AudioService.swift */; };
+		V2TSRC000000000000000011 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000041 /* SettingsView.swift */; };
+		V2TSRC000000000000000012 /* HapticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000050 /* HapticService.swift */; };
+		V2TSRC000000000000000013 /* ReviewPromptService.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000051 /* ReviewPromptService.swift */; };
+		V2TSRC000000000000000014 /* StoreKitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000060 /* StoreKitService.swift */; };
+		V2TSRC000000000000000015 /* StoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000061 /* StoreView.swift */; };
+		V2TSRC000000000000000016 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000070 /* LoadingView.swift */; };
+		V2TVOSHELPBUILD0000 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2UITESTFILE00000000001 /* SnapshotHelper.swift */; };
+		V2TVOSTESTBUILD0000 /* iFunSchoolv2SnapshotUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2UITESTFILE00000000002 /* iFunSchoolv2SnapshotUITests.swift */; };
+		V2UITESTBUILDFILE000001 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2UITESTFILE00000000001 /* SnapshotHelper.swift */; };
+		V2UITESTBUILDFILE000002 /* iFunSchoolv2SnapshotUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2UITESTFILE00000000002 /* iFunSchoolv2SnapshotUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		057CDA05A77A48878BF4E4FC /* ProgressGridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressGridView.swift; sourceTree = "<group>"; };
+		1672FE6893D74518BA6C8251 /* ItemProgressTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemProgressTracker.swift; sourceTree = "<group>"; };
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		28EEBFDC1118E19E00187D67 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		5E05CE5417ECAA1400AE265F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = iFunSchool/Images.xcassets; sourceTree = "<group>"; };
+		5EB5FC6917EF387B0075B603 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		8D1107310486CEB800E47090 /* iFunSchool-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iFunSchool-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		B7014114301D206E0079DFCF /* GameCenterResources.gamekit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = GameCenterResources.gamekit; sourceTree = "<group>"; };
+		B701413F301D3E960079DFCF /* iFunSchool v2 tvOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iFunSchool v2 tvOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7014140301D3E960079DFCF /* iFunSchool v2 macOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iFunSchool v2 macOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7014141301D3E960079DFCF /* iFunSchool v2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iFunSchool v2UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7225D3D301A3F3A00BAB7C3 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
+		B72A51CB30188A050042546B /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
+		B72A51CC30188A050042546D /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B733D2DA3018073600D648AE /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		B774D12D132D394200622D38 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		B775D6C51316EDFB00BDC76E /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		B775E4EE131C20B4000F37E7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		B7D191023017DB92008DE2C2 /* iFunSchool v2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "iFunSchool v2.entitlements"; sourceTree = "<group>"; };
+		B7D191743017E942008DE2C2 /* iFunSchool.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = iFunSchool.storekit; sourceTree = "<group>"; };
+		B8747C001386B70100BC88D0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		B8747C061386BABF00BC88D0 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		B8C3EBAE1395638700999723 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		B8C3EBB01395770100999723 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		FEA8A1012C12345600000001 /* StreakTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakTracker.swift; sourceTree = "<group>"; };
+		FEA8A1032C12345600000002 /* StreakView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakView.swift; sourceTree = "<group>"; };
+		V20000000000000000000001 /* iFunSchool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iFunSchool.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		V20000000000000000000002 /* iFunSchoolv2App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iFunSchoolv2App.swift; sourceTree = "<group>"; };
+		V20000000000000000000003 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		V20000000000000000000004 /* iFunSchool_v2-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iFunSchool_v2-Info.plist"; sourceTree = "<group>"; };
+		V20000000000000000000010 /* GameModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
+		V20000000000000000000011 /* GameListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameListViewModel.swift; sourceTree = "<group>"; };
+		V20000000000000000000020 /* QuestionGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionGenerator.swift; sourceTree = "<group>"; };
+		V20000000000000000000021 /* GameViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
+		V20000000000000000000022 /* GameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		V20000000000000000000030 /* ScoreStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreStorage.swift; sourceTree = "<group>"; };
+		V20000000000000000000031 /* AchievementService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementService.swift; sourceTree = "<group>"; };
+		V20000000000000000000040 /* AudioService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioService.swift; sourceTree = "<group>"; };
+		V20000000000000000000041 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		V20000000000000000000050 /* HapticService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HapticService.swift; sourceTree = "<group>"; };
+		V20000000000000000000051 /* ReviewPromptService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewPromptService.swift; sourceTree = "<group>"; };
+		V20000000000000000000052 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		V20000000000000000000060 /* StoreKitService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreKitService.swift; sourceTree = "<group>"; };
+		V20000000000000000000061 /* StoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreView.swift; sourceTree = "<group>"; };
+		V20000000000000000000070 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		V2BTNSTYLEFILE0000000 /* ButtonStyles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
+		V2FILEAPPICONMAC000000 /* AppIcon-macOS.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "AppIcon-macOS.xcassets"; sourceTree = "<group>"; };
+		V2FILEAPPICONTV0000000 /* AppIcon-tvOS.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "AppIcon-tvOS.xcassets"; sourceTree = "<group>"; };
+		V2FILEASSETSV20000000 /* AssetsV2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AssetsV2.xcassets; sourceTree = "<group>"; };
+		V2FILEINFOPLISTMAC0000 /* iFunSchool_v2_macOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iFunSchool_v2_macOS-Info.plist"; sourceTree = "<group>"; };
+		V2FILEINFOPLISTTV00000 /* iFunSchool_v2_tvOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iFunSchool_v2_tvOS-Info.plist"; sourceTree = "<group>"; };
+		V2PMFILE000000000000000 /* ProfileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
+		V2PRODUCTMAC0000000000 /* iFunSchool v2 macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "iFunSchool v2 macOS.app"; path = iFunSchool.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		V2PRODUCTTV00000000000 /* iFunSchool v2 tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "iFunSchool v2 tvOS.app"; path = iFunSchool.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		V2PVFILE000000000000000 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		V2QGUNITTESTFILE0001 /* QuestionGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionGeneratorTests.swift; sourceTree = "<group>"; };
+		V2UITESTFILE00000000001 /* SnapshotHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
+		V2UITESTFILE00000000002 /* iFunSchoolv2SnapshotUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iFunSchoolv2SnapshotUITests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		B76E1046306C5A1200EA0133 /* Sounds */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Sounds; sourceTree = "<group>"; };
+		B76E1047306C5A2400EA0133 /* Dane */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Dane; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		V2000000000000000000000A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		V2MACFRM00000000000000 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		V2MACOSUITESTFRM000 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		V2TVOFRM00000000000000 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		V2TVOSUITESTFRM0000 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		V2UITESTFRM0000000000000 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				V2PRODUCTMAC0000000000 /* iFunSchool v2 macOS.app */,
+				V2PRODUCTTV00000000000 /* iFunSchool v2 tvOS.app */,
+				V20000000000000000000001 /* iFunSchool.app */,
+				B701413F301D3E960079DFCF /* iFunSchool v2 tvOSUITests.xctest */,
+				B7014140301D3E960079DFCF /* iFunSchool v2 macOSUITests.xctest */,
+				B7014141301D3E960079DFCF /* iFunSchool v2UITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				B799087613A77AD200B2941C /* Resources */,
+				V20000000000000000000007 /* iFunSchool v2 */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				V2UITESTGROUP00000000000 /* iFunSchool v2UITests */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107310486CEB800E47090 /* iFunSchool-Info.plist */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5EB5FC6917EF387B0075B603 /* Social.framework */,
+				B8C3EBB01395770100999723 /* AudioToolbox.framework */,
+				B8C3EBAE1395638700999723 /* SystemConfiguration.framework */,
+				B8747C061386BABF00BC88D0 /* Security.framework */,
+				B775E4EE131C20B4000F37E7 /* AVFoundation.framework */,
+				B8747C001386B70100BC88D0 /* StoreKit.framework */,
+				B775D6C51316EDFB00BDC76E /* GameKit.framework */,
+				B774D12D132D394200622D38 /* QuartzCore.framework */,
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
+				28EEBFDC1118E19E00187D67 /* CoreData.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B799087613A77AD200B2941C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5E05CE5417ECAA1400AE265F /* Images.xcassets */,
+				B76E1046306C5A1200EA0133 /* Sounds */,
+				B76E1047306C5A2400EA0133 /* Dane */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		V20000000000000000000007 /* iFunSchool v2 */ = {
+			isa = PBXGroup;
+			children = (
+				FEA8A1032C12345600000002 /* StreakView.swift */,
+				FEA8A1012C12345600000001 /* StreakTracker.swift */,
+				V2PMFILE000000000000000 /* ProfileManager.swift */,
+				V2PVFILE000000000000000 /* ProfileView.swift */,
+				1672FE6893D74518BA6C8251 /* ItemProgressTracker.swift */,
+				057CDA05A77A48878BF4E4FC /* ProgressGridView.swift */,
+				B7225D3D301A3F3A00BAB7C3 /* AppIcon.icon */,
+				V2BTNSTYLEFILE0000000 /* ButtonStyles.swift */,
+				V2FILEASSETSV20000000 /* AssetsV2.xcassets */,
+				V2FILEAPPICONMAC000000 /* AppIcon-macOS.xcassets */,
+				V2FILEAPPICONTV0000000 /* AppIcon-tvOS.xcassets */,
+				V2FILEINFOPLISTMAC0000 /* iFunSchool_v2_macOS-Info.plist */,
+				V2FILEINFOPLISTTV00000 /* iFunSchool_v2_tvOS-Info.plist */,
+				B72A51CB30188A050042546B /* TODO.md */,
+				B7D191023017DB92008DE2C2 /* iFunSchool v2.entitlements */,
+				V20000000000000000000002 /* iFunSchoolv2App.swift */,
+				B733D2DA3018073600D648AE /* Colors.swift */,
+				V20000000000000000000003 /* ContentView.swift */,
+				V20000000000000000000010 /* GameModel.swift */,
+				V20000000000000000000011 /* GameListViewModel.swift */,
+				V20000000000000000000020 /* QuestionGenerator.swift */,
+				V20000000000000000000021 /* GameViewModel.swift */,
+				V20000000000000000000022 /* GameView.swift */,
+				V20000000000000000000030 /* ScoreStorage.swift */,
+				V20000000000000000000031 /* AchievementService.swift */,
+				V20000000000000000000040 /* AudioService.swift */,
+				V20000000000000000000041 /* SettingsView.swift */,
+				V20000000000000000000050 /* HapticService.swift */,
+				V20000000000000000000051 /* ReviewPromptService.swift */,
+				V20000000000000000000060 /* StoreKitService.swift */,
+				V20000000000000000000061 /* StoreView.swift */,
+				V20000000000000000000070 /* LoadingView.swift */,
+				B72A51CC30188A050042546D /* LaunchScreen.storyboard */,
+				V20000000000000000000052 /* Localizable.xcstrings */,
+				V20000000000000000000004 /* iFunSchool_v2-Info.plist */,
+				B7D191743017E942008DE2C2 /* iFunSchool.storekit */,
+				B7014114301D206E0079DFCF /* GameCenterResources.gamekit */,
+			);
+			path = "iFunSchool v2";
+			sourceTree = "<group>";
+		};
+		V2UITESTGROUP00000000000 /* iFunSchool v2UITests */ = {
+			isa = PBXGroup;
+			children = (
+				V2UITESTFILE00000000001 /* SnapshotHelper.swift */,
+				V2UITESTFILE00000000002 /* iFunSchoolv2SnapshotUITests.swift */,
+				V2QGUNITTESTFILE0001 /* QuestionGeneratorTests.swift */,
+			);
+			path = "iFunSchool v2UITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		V2000000000000000000000B /* iFunSchool v2 iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = V2000000000000000000000C /* Build configuration list for PBXNativeTarget "iFunSchool v2 iOS" */;
+			buildPhases = (
+				V20000000000000000000009 /* Resources */,
+				V20000000000000000000008 /* Sources */,
+				V2000000000000000000000A /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				B76E1046306C5A1200EA0133 /* Sounds */,
+				B76E1047306C5A2400EA0133 /* Dane */,
+			);
+			name = "iFunSchool v2 iOS";
+			productName = "iFunSchool v2";
+			productReference = V20000000000000000000001 /* iFunSchool.app */;
+			productType = "com.apple.product-type.application";
+		};
+		V2MACOSUITESTTARGET00 /* iFunSchool v2 macOSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B7014147301D65320079DFCF /* Build configuration list for PBXNativeTarget "iFunSchool v2 macOSUITests" */;
+			buildPhases = (
+				V2MACOSUITESTSRC000 /* Sources */,
+				V2MACOSUITESTFRM000 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "iFunSchool v2 macOSUITests";
+			productName = "iFunSchool v2 macOSUITests";
+			productReference = B7014140301D3E960079DFCF /* iFunSchool v2 macOSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		V2TARGETMAC00000000000 /* iFunSchool v2 macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = V2CFGMACLIST0000000000 /* Build configuration list for PBXNativeTarget "iFunSchool v2 macOS" */;
+			buildPhases = (
+				V2MACRES00000000000000 /* Resources */,
+				V2MACSRC00000000000000 /* Sources */,
+				V2MACFRM00000000000000 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				B76E1046306C5A1200EA0133 /* Sounds */,
+			);
+			name = "iFunSchool v2 macOS";
+			productName = "iFunSchool v2 macOS";
+			productReference = V2PRODUCTMAC0000000000 /* iFunSchool v2 macOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		V2TARGETTVO00000000000 /* iFunSchool v2 tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = V2CFGTVOLIST0000000000 /* Build configuration list for PBXNativeTarget "iFunSchool v2 tvOS" */;
+			buildPhases = (
+				V2TVORES00000000000000 /* Resources */,
+				V2TVOSRC00000000000000 /* Sources */,
+				V2TVOFRM00000000000000 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				B76E1046306C5A1200EA0133 /* Sounds */,
+			);
+			name = "iFunSchool v2 tvOS";
+			productName = "iFunSchool v2 tvOS";
+			productReference = V2PRODUCTTV00000000000 /* iFunSchool v2 tvOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		V2TVOSUITESTTARGET000 /* iFunSchool v2 tvOSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B7014146301D65320079DFCF /* Build configuration list for PBXNativeTarget "iFunSchool v2 tvOSUITests" */;
+			buildPhases = (
+				V2TVOSUITESTSRC0000 /* Sources */,
+				V2TVOSUITESTFRM0000 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "iFunSchool v2 tvOSUITests";
+			productName = "iFunSchool v2 tvOSUITests";
+			productReference = B701413F301D3E960079DFCF /* iFunSchool v2 tvOSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		V2UITESTTARGET00000000000 /* iFunSchool v2UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = V2UITESTCFGLIST0000000000 /* Build configuration list for PBXNativeTarget "iFunSchool v2UITests" */;
+			buildPhases = (
+				V2UITESTSRC0000000000000 /* Sources */,
+				V2UITESTFRM0000000000000 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "iFunSchool v2UITests";
+			productName = "iFunSchool v2UITests";
+			productReference = B7014141301D3E960079DFCF /* iFunSchool v2UITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1230;
+				ORGANIZATIONNAME = Beling.pl;
+				TargetAttributes = {
+					V2000000000000000000000B = {
+						CreatedOnToolsVersion = 12.3;
+						DevelopmentTeam = SP4XNG9W4N;
+						ProvisioningStyle = Automatic;
+					};
+					V2MACOSUITESTTARGET00 = {
+						DevelopmentTeam = SP4XNG9W4N;
+						ProvisioningStyle = Automatic;
+					};
+					V2TARGETMAC00000000000 = {
+						DevelopmentTeam = SP4XNG9W4N;
+						ProvisioningStyle = Automatic;
+					};
+					V2TARGETTVO00000000000 = {
+						DevelopmentTeam = SP4XNG9W4N;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "iFunSchool" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+				pl,
+				Base,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			productRefGroup = 19C28FACFE9D520D11CA2CBB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				V2000000000000000000000B /* iFunSchool v2 iOS */,
+				V2TARGETMAC00000000000 /* iFunSchool v2 macOS */,
+				V2TARGETTVO00000000000 /* iFunSchool v2 tvOS */,
+				V2TVOSUITESTTARGET000 /* iFunSchool v2 tvOSUITests */,
+				V2MACOSUITESTTARGET00 /* iFunSchool v2 macOSUITests */,
+				V2UITESTTARGET00000000000 /* iFunSchool v2UITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		V20000000000000000000009 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				V2RESASSETSIOS00000000 /* AssetsV2.xcassets in Resources */,
+				B7014116301D206E0079DFCF /* GameCenterResources.gamekit in Resources */,
+				B7225D3E301A3F3A00BAB7C3 /* AppIcon.icon in Resources */,
+				B7D191753017E942008DE2C2 /* iFunSchool.storekit in Resources */,
+				B72A51CC30188A050042546C /* LaunchScreen.storyboard in Resources */,
+				V20000000000000000000057 /* Localizable.xcstrings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		V2MACRES00000000000000 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				V2RESASSETSMAC00000000 /* AssetsV2.xcassets in Resources */,
+				B7014117301D206E0079DFCF /* GameCenterResources.gamekit in Resources */,
+				B7225D40301A3F3A00BAB7C3 /* AppIcon.icon in Resources */,
+				B7225D41301A469D00BAB7C3 /* AppIcon-macOS.xcassets in Resources */,
+				V2RESLOCMAC00000000000 /* Localizable.xcstrings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		V2TVORES00000000000000 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B7225D3F301A3F3A00BAB7C3 /* AppIcon.icon in Resources */,
+				V2RESASSETSTV000000000 /* AssetsV2.xcassets in Resources */,
+				B7014115301D206E0079DFCF /* GameCenterResources.gamekit in Resources */,
+				V2RESAPPICONTV00000000 /* AppIcon-tvOS.xcassets in Resources */,
+				V2RESLOCTV000000000000 /* Localizable.xcstrings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		V20000000000000000000008 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B7014139301D3E960079DFCF /* StreakView.swift in Sources */,
+				B701413A301D3E960079DFCF /* StreakTracker.swift in Sources */,
+				V2PMIOSBUILD0000000000 /* ProfileManager.swift in Sources */,
+				V2PVIOSBUILD0000000000 /* ProfileView.swift in Sources */,
+				EDBB57AD65C04FE5AB83E645 /* ItemProgressTracker.swift in Sources */,
+				2B2280F97217447DB40D0090 /* ProgressGridView.swift in Sources */,
+				V2BTNSTYLEIOS00000000 /* ButtonStyles.swift in Sources */,
+				V20000000000000000000005 /* iFunSchoolv2App.swift in Sources */,
+				V20000000000000000000006 /* ContentView.swift in Sources */,
+				V20000000000000000000012 /* GameModel.swift in Sources */,
+				B733D2DB3018073900D648AE /* Colors.swift in Sources */,
+				V20000000000000000000013 /* GameListViewModel.swift in Sources */,
+				V20000000000000000000023 /* QuestionGenerator.swift in Sources */,
+				V20000000000000000000024 /* GameViewModel.swift in Sources */,
+				V20000000000000000000025 /* GameView.swift in Sources */,
+				V20000000000000000000032 /* ScoreStorage.swift in Sources */,
+				V20000000000000000000033 /* AchievementService.swift in Sources */,
+				V20000000000000000000042 /* AudioService.swift in Sources */,
+				V20000000000000000000043 /* SettingsView.swift in Sources */,
+				V20000000000000000000055 /* HapticService.swift in Sources */,
+				V20000000000000000000056 /* ReviewPromptService.swift in Sources */,
+				V20000000000000000000062 /* StoreKitService.swift in Sources */,
+				V20000000000000000000063 /* StoreView.swift in Sources */,
+				V20000000000000000000071 /* LoadingView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		V2MACOSUITESTSRC000 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				V2MACOSHELPBUILD000 /* SnapshotHelper.swift in Sources */,
+				V2MACOSTESTBUILD000 /* iFunSchoolv2SnapshotUITests.swift in Sources */,
+				V2PMTESTBUILDMAC /* ProfileManager.swift in Sources */,
+				V2SKSTESTBUILDMAC /* StoreKitService.swift in Sources */,
+				V2SSSTESTBUILDMAC /* ScoreStorage.swift in Sources */,
+				V2ASTESTBUILDMAC /* AchievementService.swift in Sources */,
+				V2AUDTESTBUILDMAC /* AudioService.swift in Sources */,
+				V2HAPTESTBUILDMAC /* HapticService.swift in Sources */,
+				V2REVTESTBUILDMAC /* ReviewPromptService.swift in Sources */,
+				V2STRKTESTBUILDMAC /* StreakTracker.swift in Sources */,
+				V2IPTTESTBUILDMAC /* ItemProgressTracker.swift in Sources */,
+				V2QGSRCTESTBUILDMAC /* QuestionGenerator.swift in Sources */,
+				V2GMSRCTESTBUILDMAC /* GameModel.swift in Sources */,
+				V2QGUNITTESTBUILD03 /* QuestionGeneratorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		V2MACSRC00000000000000 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B701413B301D3E960079DFCF /* StreakView.swift in Sources */,
+				B701413C301D3E960079DFCF /* StreakTracker.swift in Sources */,
+				V2PMMACBUILD0000000000 /* ProfileManager.swift in Sources */,
+				V2PVMACBUILD0000000000 /* ProfileView.swift in Sources */,
+				DFA226F7E768431297566099 /* ItemProgressTracker.swift in Sources */,
+				8823F3677D024D8AA8A004EE /* ProgressGridView.swift in Sources */,
+				V2BTNSTYLEMAC00000000 /* ButtonStyles.swift in Sources */,
+				V2MSRC000000000000000000 /* iFunSchoolv2App.swift in Sources */,
+				V2MSRC000000000000000001 /* Colors.swift in Sources */,
+				V2MSRC000000000000000002 /* ContentView.swift in Sources */,
+				V2MSRC000000000000000003 /* GameModel.swift in Sources */,
+				V2MSRC000000000000000004 /* GameListViewModel.swift in Sources */,
+				V2MSRC000000000000000005 /* QuestionGenerator.swift in Sources */,
+				V2MSRC000000000000000006 /* GameViewModel.swift in Sources */,
+				V2MSRC000000000000000007 /* GameView.swift in Sources */,
+				V2MSRC000000000000000008 /* ScoreStorage.swift in Sources */,
+				V2MSRC000000000000000009 /* AchievementService.swift in Sources */,
+				V2MSRC000000000000000010 /* AudioService.swift in Sources */,
+				V2MSRC000000000000000011 /* SettingsView.swift in Sources */,
+				V2MSRC000000000000000012 /* HapticService.swift in Sources */,
+				V2MSRC000000000000000013 /* ReviewPromptService.swift in Sources */,
+				V2MSRC000000000000000014 /* StoreKitService.swift in Sources */,
+				V2MSRC000000000000000015 /* StoreView.swift in Sources */,
+				V2MSRC000000000000000016 /* LoadingView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		V2TVOSRC00000000000000 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B701413D301D3E960079DFCF /* StreakView.swift in Sources */,
+				B701413E301D3E960079DFCF /* StreakTracker.swift in Sources */,
+				V2PMTVOBUILD0000000000 /* ProfileManager.swift in Sources */,
+				V2PVTVOBUILD0000000000 /* ProfileView.swift in Sources */,
+				B7DAFAEE301A59D9001AC1F6 /* ItemProgressTracker.swift in Sources */,
+				B7DAFAEF301A59D9001AC1F6 /* ProgressGridView.swift in Sources */,
+				V2BTNSTYLETVO00000000 /* ButtonStyles.swift in Sources */,
+				V2TSRC000000000000000000 /* iFunSchoolv2App.swift in Sources */,
+				V2TSRC000000000000000001 /* Colors.swift in Sources */,
+				V2TSRC000000000000000002 /* ContentView.swift in Sources */,
+				V2TSRC000000000000000003 /* GameModel.swift in Sources */,
+				V2TSRC000000000000000004 /* GameListViewModel.swift in Sources */,
+				V2TSRC000000000000000005 /* QuestionGenerator.swift in Sources */,
+				V2TSRC000000000000000006 /* GameViewModel.swift in Sources */,
+				V2TSRC000000000000000007 /* GameView.swift in Sources */,
+				V2TSRC000000000000000008 /* ScoreStorage.swift in Sources */,
+				V2TSRC000000000000000009 /* AchievementService.swift in Sources */,
+				V2TSRC000000000000000010 /* AudioService.swift in Sources */,
+				V2TSRC000000000000000011 /* SettingsView.swift in Sources */,
+				V2TSRC000000000000000012 /* HapticService.swift in Sources */,
+				V2TSRC000000000000000013 /* ReviewPromptService.swift in Sources */,
+				V2TSRC000000000000000014 /* StoreKitService.swift in Sources */,
+				V2TSRC000000000000000015 /* StoreView.swift in Sources */,
+				V2TSRC000000000000000016 /* LoadingView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		V2TVOSUITESTSRC0000 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				V2TVOSHELPBUILD0000 /* SnapshotHelper.swift in Sources */,
+				V2TVOSTESTBUILD0000 /* iFunSchoolv2SnapshotUITests.swift in Sources */,
+				V2PMTESTBUILDTVO /* ProfileManager.swift in Sources */,
+				V2SKSTESTBUILDTVO /* StoreKitService.swift in Sources */,
+				V2SSSTESTBUILDTVO /* ScoreStorage.swift in Sources */,
+				V2ASTESTBUILDTVO /* AchievementService.swift in Sources */,
+				V2AUDTESTBUILDTVO /* AudioService.swift in Sources */,
+				V2HAPTESTBUILDTVO /* HapticService.swift in Sources */,
+				V2REVTESTBUILDTVO /* ReviewPromptService.swift in Sources */,
+				V2STRKTESTBUILDTVO /* StreakTracker.swift in Sources */,
+				V2IPTTESTBUILDTVO /* ItemProgressTracker.swift in Sources */,
+				V2QGSRCTESTBUILDTVO /* QuestionGenerator.swift in Sources */,
+				V2GMSRCTESTBUILDTVO /* GameModel.swift in Sources */,
+				V2QGUNITTESTBUILD02 /* QuestionGeneratorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		V2UITESTSRC0000000000000 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				V2UITESTBUILDFILE000001 /* SnapshotHelper.swift in Sources */,
+				V2UITESTBUILDFILE000002 /* iFunSchoolv2SnapshotUITests.swift in Sources */,
+				V2PMTESTBUILD01 /* ProfileManager.swift in Sources */,
+				V2SKSTESTBUILD01 /* StoreKitService.swift in Sources */,
+				V2SSSTESTBUILD01 /* ScoreStorage.swift in Sources */,
+				V2ASTESTBUILD01 /* AchievementService.swift in Sources */,
+				V2AUDTESTBUILD01 /* AudioService.swift in Sources */,
+				V2HAPTESTBUILD01 /* HapticService.swift in Sources */,
+				V2REVTESTBUILD01 /* ReviewPromptService.swift in Sources */,
+				V2STRKTESTBUILD01 /* StreakTracker.swift in Sources */,
+				V2IPTTESTBUILD01 /* ItemProgressTracker.swift in Sources */,
+				V2QGSRCTESTBUILD01 /* QuestionGenerator.swift in Sources */,
+				V2GMSRCTESTBUILD01 /* GameModel.swift in Sources */,
+				V2QGUNITTESTBUILD01 /* QuestionGeneratorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		B7014142301D3E960079DFCF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				CODE_SIGN_IDENTITY = "";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "iFunSchool v2 tvOSUITests";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pl.beling.ifunschool.v2tvOSUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvsimulator;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 15.0;
+			};
+			name = Debug;
+		};
+		B7014143301D3E960079DFCF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				CODE_SIGN_IDENTITY = "";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "iFunSchool v2 tvOSUITests";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pl.beling.ifunschool.v2tvOSUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvsimulator;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 15.0;
+			};
+			name = Release;
+		};
+		B7014144301D3E960079DFCF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = SP4XNG9W4N;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "iFunSchool v2 macOSUITests";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				PRODUCT_BUNDLE_IDENTIFIER = pl.beling.ifunschool.v2macOSUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		B7014145301D3E960079DFCF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = SP4XNG9W4N;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "iFunSchool v2 macOSUITests";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				PRODUCT_BUNDLE_IDENTIFIER = pl.beling.ifunschool.v2macOSUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Beling.pl";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Beling.pl";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		V2000000000000000000000D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = "iFunSchool v2/iFunSchool_v2.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 109;
+				DEVELOPMENT_TEAM = SP4XNG9W4N;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "iFunSchool v2/iFunSchool_v2-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 10.0;
+				PRODUCT_BUNDLE_IDENTIFIER = pl.beling.ifunschool;
+				PRODUCT_NAME = iFunSchool;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		V2000000000000000000000E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = "iFunSchool v2/iFunSchool_v2.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 109;
+				DEVELOPMENT_TEAM = SP4XNG9W4N;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "iFunSchool v2/iFunSchool_v2-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 10.0;
+				PRODUCT_BUNDLE_IDENTIFIER = pl.beling.ifunschool;
+				PRODUCT_NAME = iFunSchool;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		V2CFGMACDBG00000000000 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = "iFunSchool v2/iFunSchool_v2_macOS.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 100;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = SP4XNG9W4N;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				INFOPLIST_FILE = "iFunSchool v2/iFunSchool_v2_macOS-Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.educational-games";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 10.0;
+				PRODUCT_BUNDLE_IDENTIFIER = pl.beling.ifunschool;
+				PRODUCT_NAME = iFunSchool;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		V2CFGMACREL00000000000 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = "iFunSchool v2/iFunSchool_v2_macOS.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 100;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = SP4XNG9W4N;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				INFOPLIST_FILE = "iFunSchool v2/iFunSchool_v2_macOS-Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.educational-games";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 10.0;
+				PRODUCT_BUNDLE_IDENTIFIER = pl.beling.ifunschool;
+				PRODUCT_NAME = iFunSchool;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		V2CFGTVODBG00000000000 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "Brand Assets";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = "iFunSchool v2/iFunSchool_v2_tvOS.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 100;
+				DEVELOPMENT_TEAM = SP4XNG9W4N;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "iFunSchool v2/iFunSchool_v2_tvOS-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 10.0;
+				PRODUCT_BUNDLE_IDENTIFIER = pl.beling.ifunschool;
+				PRODUCT_NAME = iFunSchool;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = appletvos;
+				SUPPORTED_PLATFORMS = "appletvos appletvsimulator";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 15.0;
+			};
+			name = Debug;
+		};
+		V2CFGTVOREL00000000000 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "Brand Assets";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = "iFunSchool v2/iFunSchool_v2_tvOS.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 100;
+				DEVELOPMENT_TEAM = SP4XNG9W4N;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "iFunSchool v2/iFunSchool_v2_tvOS-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 10.0;
+				PRODUCT_BUNDLE_IDENTIFIER = pl.beling.ifunschool;
+				PRODUCT_NAME = iFunSchool;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = appletvos;
+				SUPPORTED_PLATFORMS = "appletvos appletvsimulator";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 15.0;
+			};
+			name = Release;
+		};
+		V2UITESTCFGDBG0000000000 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				CODE_SIGN_IDENTITY = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "iFunSchool v2UITests";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pl.beling.ifunschool.v2UITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		V2UITESTCFGREL0000000000 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				CODE_SIGN_IDENTITY = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "iFunSchool v2UITests";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pl.beling.ifunschool.v2UITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B7014146301D65320079DFCF /* Build configuration list for PBXNativeTarget "iFunSchool v2 tvOSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B7014142301D3E960079DFCF /* Debug */,
+				B7014143301D3E960079DFCF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B7014147301D65320079DFCF /* Build configuration list for PBXNativeTarget "iFunSchool v2 macOSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B7014144301D3E960079DFCF /* Debug */,
+				B7014145301D3E960079DFCF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "iFunSchool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		V2000000000000000000000C /* Build configuration list for PBXNativeTarget "iFunSchool v2 iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				V2000000000000000000000D /* Debug */,
+				V2000000000000000000000E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		V2CFGMACLIST0000000000 /* Build configuration list for PBXNativeTarget "iFunSchool v2 macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				V2CFGMACDBG00000000000 /* Debug */,
+				V2CFGMACREL00000000000 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		V2CFGTVOLIST0000000000 /* Build configuration list for PBXNativeTarget "iFunSchool v2 tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				V2CFGTVODBG00000000000 /* Debug */,
+				V2CFGTVOREL00000000000 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		V2UITESTCFGLIST0000000000 /* Build configuration list for PBXNativeTarget "iFunSchool v2UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				V2UITESTCFGDBG0000000000 /* Debug */,
+				V2UITESTCFGREL0000000000 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}

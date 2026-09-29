@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>B4B181A2-D9D7-456E-9554-2DB1AEEC13AE</string>
+	<key>IDESourceControlProjectName</key>
+	<string>iFunSchool</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>4E003578-B332-4DA2-8FCA-9538C941FE1A</key>
+		<string>ssh://bitbucket.org/wbeling/ios.git</string>
+		<key>7722CDFD-EB58-4550-A39C-09B663F80BC0</key>
+		<string>https://github.com/arashpayan/appirater.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>iFunSchool/iFunSchool.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>4E003578-B332-4DA2-8FCA-9538C941FE1A</key>
+		<string>../../..</string>
+		<key>7722CDFD-EB58-4550-A39C-09B663F80BC0</key>
+		<string>../../Classes/appirater</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://bitbucket.org/wbeling/ios.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>4E003578-B332-4DA2-8FCA-9538C941FE1A</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>7722CDFD-EB58-4550-A39C-09B663F80BC0</string>
+			<key>IDESourceControlWCCName</key>
+			<string>appirater</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>4E003578-B332-4DA2-8FCA-9538C941FE1A</string>
+			<key>IDESourceControlWCCName</key>
+			<string>iOS</string>
+		</dict>
+	</array>
+</dict>
+</plist>
