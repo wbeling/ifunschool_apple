@@ -197,7 +197,7 @@
 		V2FILEINFOPLISTMAC0000 /* iFunSchool_v2_macOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iFunSchool_v2_macOS-Info.plist"; sourceTree = "<group>"; };
 		V2FILEINFOPLISTTV00000 /* iFunSchool_v2_tvOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iFunSchool_v2_tvOS-Info.plist"; sourceTree = "<group>"; };
 		V2PMFILE000000000000000 /* ProfileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
-		V2PRODUCTMAC0000000000 /* iFunSchool v2 macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "iFunSchool v2 macOS.app"; path = iFunSchool.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		V2PRODUCTMAC0000000000 /* iFunSchool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iFunSchool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		V2PRODUCTTV00000000000 /* iFunSchool v2 tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "iFunSchool v2 tvOS.app"; path = iFunSchool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		V2PVFILE000000000000000 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		V2QGUNITTESTFILE0001 /* QuestionGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionGeneratorTests.swift; sourceTree = "<group>"; };
@@ -259,7 +259,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				V2PRODUCTMAC0000000000 /* iFunSchool v2 macOS.app */,
+				V2PRODUCTMAC0000000000 /* iFunSchool.app */,
 				V2PRODUCTTV00000000000 /* iFunSchool v2 tvOS.app */,
 				V20000000000000000000001 /* iFunSchool.app */,
 				B701413F301D3E960079DFCF /* iFunSchool v2 tvOSUITests.xctest */,
@@ -433,7 +433,7 @@
 			);
 			name = "iFunSchool v2 macOS";
 			productName = "iFunSchool v2 macOS";
-			productReference = V2PRODUCTMAC0000000000 /* iFunSchool v2 macOS.app */;
+			productReference = V2PRODUCTMAC0000000000 /* iFunSchool.app */;
 			productType = "com.apple.product-type.application";
 		};
 		V2TARGETTVO00000000000 /* iFunSchool v2 tvOS */ = {
@@ -502,10 +502,6 @@
 						CreatedOnToolsVersion = 12.3;
 					};
 					V2MACOSUITESTTARGET00 = {
-						DevelopmentTeam = SP4XNG9W4N;
-						ProvisioningStyle = Automatic;
-					};
-					V2TARGETMAC00000000000 = {
 						DevelopmentTeam = SP4XNG9W4N;
 						ProvisioningStyle = Automatic;
 					};

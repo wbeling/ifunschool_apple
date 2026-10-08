@@ -101,7 +101,7 @@ struct SettingsView: View {
                     Text(LocalizedStringKey("nav_done"))
                         .font(.headline)
                 }
-                .buttonStyle(.plain)
+                .buttonStyle(FunActionButtonStyle())
             }
             .padding(.horizontal, 24)
             .padding(.vertical, 16)

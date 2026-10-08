@@ -1,5 +1,10 @@
-* nowe leaderboards (z ograniczeniem czasowym)
+* usunąć informacje o subskrypcjach ze sklepu
+- poprawic wyglad dla tvOS wszedzie
+- sprawdzic wyglad jasny i ciemny
+- przycisk kup nie pojawia sie nigdy albo tylko na grze za 15 punktow
+- nowe leaderboards (z ograniczeniem czasowym)
 * translations
+- wydac wersje dla tvOS jako pierwsza
 
 # v2.0
 

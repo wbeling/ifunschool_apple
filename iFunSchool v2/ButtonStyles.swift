@@ -123,7 +123,7 @@ private struct FunActionButtonBody: View {
 
     var body: some View {
         configuration.label
-            .scaleEffect(isFocused ? 1.04 : (configuration.isPressed ? 0.96 : 1.0))
+            //.scaleEffect(isFocused ? 1.04 : (configuration.isPressed ? 0.96 : 1.0))
             .shadow(color: isFocused ? Color.blue.opacity(0.6) : Color.black.opacity(0.1), radius: isFocused ? 8 : 2, y: isFocused ? 4 : 1)
             .overlay(
                 RoundedRectangle(cornerRadius: cornerRadius)
@@ -164,7 +164,7 @@ private struct FunAnswerButtonBody: View {
 
     var body: some View {
         configuration.label
-            .scaleEffect(isFocused ? 1.04 : (configuration.isPressed ? 0.96 : 1.0))
+//            .scaleEffect(isFocused ? 1.04 : (configuration.isPressed ? 0.96 : 1.0))
             .shadow(color: isFocused ? Color.blue.opacity(0.5) : Color.black.opacity(0.04), radius: isFocused ? 8 : 4, y: isFocused ? 4 : 2)
             .overlay(
                 RoundedRectangle(cornerRadius: 14)
@@ -246,13 +246,13 @@ private struct FunHeaderButtonBody: View {
                 Circle()
                     .fill(isFocused ? FunColors.fillColor : Color.clear)
             )
-            #if os(tvOS)
-            .overlay(
-                Circle()
-                    .stroke(borderColor, lineWidth: 1.0)
-            )
-            #endif
-            .scaleEffect(isFocused ? 1.15 : (configuration.isPressed ? 0.9 : 1.0))
+//            #if os(tvOS)
+//            .overlay(
+//                Circle()
+//                    .stroke(borderColor, lineWidth: 1.0)
+//            )
+//            #endif
+//            .scaleEffect(isFocused ? 1.15 : (configuration.isPressed ? 0.9 : 1.0))
             .animation(.easeInOut(duration: 0.15), value: isFocused)
             .animation(.easeInOut(duration: 0.1), value: configuration.isPressed)
     }
