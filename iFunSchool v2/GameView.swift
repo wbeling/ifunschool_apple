@@ -6,9 +6,13 @@ struct GameView: View {
     @State private var showAbortAlert: Bool = false
     var onDismiss: (() -> Void)? = nil
 
-    init(gameType: GameType, level: GameLevel, onDismiss: (() -> Void)? = nil) {
-        _viewModel = StateObject(wrappedValue: GameViewModel(gameType: gameType, level: level))
+    init(viewModel: GameViewModel, onDismiss: (() -> Void)? = nil) {
+        _viewModel = StateObject(wrappedValue: viewModel)
         self.onDismiss = onDismiss
+    }
+
+    init(gameType: GameType, level: GameLevel, onDismiss: (() -> Void)? = nil) {
+        self.init(viewModel: GameViewModel(gameType: gameType, level: level), onDismiss: onDismiss)
     }
 
     var body: some View {
@@ -102,9 +106,13 @@ struct GameView: View {
 
             VStack(spacing: 2) {
                 Text(viewModel.gameType.title)
-                    .font(.headline.bold())
+                    .font(headerTitleFont)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.7)
                 Text(viewModel.level.title)
-                    .font(.caption.bold())
+                    .font(headerLevelFont)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.7)
                     .padding(.horizontal, 8)
                     .padding(.vertical, 2)
                     .background(viewModel.level == .godlike ? Color.black : Color.secondary.opacity(0.15))
@@ -123,7 +131,9 @@ struct GameView: View {
                 Image(systemName: "number.circle.fill")
                     .foregroundColor(.blue)
                 Text("\(viewModel.currentQuestionIndex) / \(viewModel.totalQuestions)")
-                    .font(.subheadline.weight(.semibold))
+                    .font(progressCounterFont)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.8)
             }
             .padding(.horizontal, 12)
             .padding(.vertical, 6)
@@ -137,7 +147,9 @@ struct GameView: View {
                 Image(systemName: "star.fill")
                     .foregroundColor(.orange)
                 Text("\(Int(viewModel.gameScore)) pts")
-                    .font(.subheadline.weight(.bold))
+                    .font(progressCounterFont.weight(.bold))
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.8)
             }
             .padding(.horizontal, 12)
             .padding(.vertical, 6)
@@ -175,16 +187,20 @@ struct GameView: View {
 
             HStack {
                 Text(viewModel.isMemoryPhase ? NSLocalizedString("game_memorize_phase", comment: "Memorize Phase") : NSLocalizedString("game_time_left", comment: "Time Left"))
-                    .font(.caption2)
+                    .font(timerLabelFont)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.7)
                     .foregroundColor(.secondary)
                 Spacer()
                 if viewModel.isMemoryPhase && viewModel.currentQuestion?.memoryGridItems != nil {
                     Text(String(format: "%.1fs", viewModel.memoryPreviewCountdown))
-                        .font(.caption2.bold())
+                        .font(timerLabelFont.bold())
+                        .lineLimit(1)
                         .foregroundColor(.purple)
                 } else {
                     Text(String(format: "%.1fs", viewModel.timeRemaining))
-                        .font(.caption2.bold())
+                        .font(timerLabelFont.bold())
+                        .lineLimit(1)
                         .foregroundColor(timerColor)
                 }
             }
@@ -211,19 +227,23 @@ struct GameView: View {
                     VStack(spacing: 14) {
                         HStack(spacing: 6) {
                             Image(systemName: "eye.fill")
+                                .font(bannerTitleFont)
                                 .foregroundColor(.purple)
                             Text(NSLocalizedString("game_try_to_remember", comment: "Try to remember:"))
-                                .font(.headline.bold())
+                                .font(bannerTitleFont)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.6)
                                 .foregroundColor(.purple)
                             Spacer()
                             Text(String(format: "%.1fs", viewModel.memoryPreviewCountdown))
-                                .font(.headline.bold())
+                                .font(bannerTitleFont)
+                                .lineLimit(1)
                                 .foregroundColor(.purple)
                         }
                         .padding(.horizontal, 8)
 
                         let columns = [
-                            GridItem(.adaptive(minimum: 72, maximum: 90), spacing: 14)
+                            GridItem(.adaptive(minimum: memoryGridColumnRange.min, maximum: memoryGridColumnRange.max), spacing: 14)
                         ]
 
                         HStack {
@@ -231,9 +251,9 @@ struct GameView: View {
                             LazyVGrid(columns: columns, alignment: .center, spacing: 14) {
                                 ForEach(gridItems) { item in
                                     Image(systemName: item.shapeSymbol)
-                                        .font(.system(size: 54))
+                                        .font(.system(size: memoryShapeIconSize))
                                         .foregroundColor(colorFromName(item.colorName))
-                                        .frame(width: 72, height: 72)
+                                        .frame(width: memoryShapeTileSize, height: memoryShapeTileSize)
                                         .background(FunColors.bgColor3)
                                         .cornerRadius(14)
                                         .shadow(color: Color.black.opacity(0.04), radius: 3, x: 0, y: 1)
@@ -249,17 +269,24 @@ struct GameView: View {
 
                     VStack(spacing: 12) {
                         Text(question.subtext ?? NSLocalizedString("prompt_memory_math_subtext", comment: "Memorize operations:"))
-                            .font(.subheadline)
+                            .font(subtextFontSize)
+                            .lineLimit(2)
+                            .minimumScaleFactor(0.6)
                             .foregroundColor(.secondary)
+                            .multilineTextAlignment(.center)
 
                         Text(currentStepItem)
-                            .font(.system(size: 64, weight: .bold, design: .rounded))
+                            .font(.system(size: memoryStepMaxSize, weight: .bold, design: .rounded))
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.3)
                             .foregroundColor(.blue)
                             .transition(.scale.combined(with: .opacity))
                             .id("math_\(viewModel.currentMemoryStepIndex)")
 
                         Text(String(format: NSLocalizedString("game_step_format", comment: "Step %d of %d"), viewModel.currentMemoryStepIndex + 1, steps.count))
-                            .font(.caption.bold())
+                            .font(subtextFontSize.weight(.bold))
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.7)
                             .foregroundColor(.secondary)
                     }
                     .padding(.vertical, 12)
@@ -268,7 +295,9 @@ struct GameView: View {
                 // Post-Memory Question Prompt or Standard Question
                 if let subtext = question.subtext {
                     Text(subtext)
-                        .font(.subheadline)
+                        .font(subtextFontSize)
+                        .lineLimit(2)
+                        .minimumScaleFactor(0.6)
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
                 }
@@ -281,7 +310,7 @@ struct GameView: View {
                             Image(uiImage: uiImage)
                                 .resizable()
                                 .scaledToFit()
-                                .frame(maxWidth: 220, maxHeight: 130)
+                                .frame(maxWidth: flagMaxWidth, maxHeight: flagMaxHeight)
                                 .cornerRadius(10)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 10)
@@ -292,10 +321,10 @@ struct GameView: View {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 12)
                                     .fill(Color.blue.opacity(0.1))
-                                    .frame(width: 160, height: 100)
+                                    .frame(width: flagMaxWidth * 0.75, height: flagMaxHeight * 0.75)
                                 
                                 Image(systemName: "flag.fill")
-                                    .font(.system(size: 48))
+                                    .font(.system(size: flagMaxHeight * 0.35))
                                     .foregroundColor(.blue)
                             }
                         }
@@ -304,7 +333,7 @@ struct GameView: View {
                             Image(nsImage: nsImage)
                                 .resizable()
                                 .scaledToFit()
-                                .frame(maxWidth: 220, maxHeight: 130)
+                                .frame(maxWidth: flagMaxWidth, maxHeight: flagMaxHeight)
                                 .cornerRadius(10)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 10)
@@ -315,10 +344,10 @@ struct GameView: View {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 12)
                                     .fill(Color.blue.opacity(0.1))
-                                    .frame(width: 160, height: 100)
+                                    .frame(width: flagMaxWidth * 0.75, height: flagMaxHeight * 0.75)
                                 
                                 Image(systemName: "flag.fill")
-                                    .font(.system(size: 48))
+                                    .font(.system(size: flagMaxHeight * 0.35))
                                     .foregroundColor(.blue)
                             }
                         }
@@ -328,9 +357,12 @@ struct GameView: View {
                 } else {
                     // Formula or Question Prompt
                     Text(question.text)
-                        .font(.system(size: 32, weight: .bold, design: .rounded))
+                        .font(.system(size: questionTextMaxSize, weight: .bold, design: .rounded))
+                        .lineLimit(2)
+                        .minimumScaleFactor(0.25)
                         .foregroundColor(.primary)
                         .multilineTextAlignment(.center)
+                        .padding(.horizontal, 8)
                         .padding(.vertical, 8)
                 }
             }
@@ -369,10 +401,10 @@ struct GameView: View {
                     ProgressView()
                         .scaleEffect(1.2)
                     Text(NSLocalizedString("game_memorize_grid_notice", comment: "Memorize grid"))
-                        .font(.subheadline)
+                        .font(subtextFontSize)
                         .foregroundColor(.secondary)
                 }
-                .frame(maxWidth: .infinity, minHeight: 140)
+                .frame(maxWidth: .infinity, minHeight: answerButtonMinHeight * 2 + 12)
                 .background(FunColors.bgColor2.opacity(0.6))
                 .cornerRadius(16)
                 .padding(.horizontal, 8)
@@ -385,9 +417,14 @@ struct GameView: View {
                             viewModel.selectAnswer(index: idx)
                         }) {
                             Text(optionText)
-                                .font(.system(size: 22, weight: .bold, design: .rounded))
+                                .font(.system(size: answerOptionMaxSize, weight: .bold, design: .rounded))
+                                .lineLimit(2)
+                                .minimumScaleFactor(0.25)
+                                .multilineTextAlignment(.center)
+                                .padding(.horizontal, 8)
+                                .padding(.vertical, 4)
                                 .foregroundColor(buttonTextColor(for: idx, question: question))
-                                .frame(maxWidth: .infinity, minHeight: 64)
+                                .frame(maxWidth: .infinity, minHeight: answerButtonMinHeight)
                                 .background(buttonBackgroundColor(for: idx, question: question))
                                 .cornerRadius(14)
                                 .overlay(
@@ -476,6 +513,8 @@ struct GameView: View {
 
                 Text(gameOverTitle)
                     .font(.largeTitle.bold())
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.6)
             }
 
             // New High Score Badge
@@ -485,6 +524,8 @@ struct GameView: View {
                         .foregroundColor(.yellow)
                     Text(NSLocalizedString("gameover_new_high_score", comment: "NEW HIGH SCORE!"))
                         .font(.headline.bold())
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.7)
                         .foregroundColor(.yellow)
                 }
                 .padding(.horizontal, 16)
@@ -501,6 +542,8 @@ struct GameView: View {
                             .foregroundColor(.orange)
                         Text(NSLocalizedString("gameover_achievement_unlocked", comment: "Achievement Unlocked!"))
                             .font(.subheadline.bold())
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.7)
                             .foregroundColor(.orange)
                     }
                     ForEach(viewModel.newlyUnlockedAchievements, id: \.self) { ach in
@@ -523,6 +566,8 @@ struct GameView: View {
                     Spacer()
                     Text("\(Int(viewModel.gameScore)) pts")
                         .font(.title3.bold())
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.7)
                 }
 
                 Divider()
@@ -593,4 +638,278 @@ struct GameView: View {
         default: return NSLocalizedString("gameover_try_again", comment: "TRY AGAIN!")
         }
     }
+
+    // MARK: - Platform Responsive Typography & Dimensions
+    private var isIPad: Bool {
+        #if os(iOS)
+        return UIDevice.current.userInterfaceIdiom == .pad
+        #else
+        return false
+        #endif
+    }
+
+    private var questionTextMaxSize: CGFloat {
+        #if os(tvOS)
+        return 110
+        #elseif os(macOS)
+        return 72
+        #else
+        return isIPad ? 76 : 56
+        #endif
+    }
+
+    private var memoryStepMaxSize: CGFloat {
+        #if os(tvOS)
+        return 140
+        #elseif os(macOS)
+        return 96
+        #else
+        return isIPad ? 96 : 76
+        #endif
+    }
+
+    private var answerOptionMaxSize: CGFloat {
+        #if os(tvOS)
+        return 56
+        #elseif os(macOS)
+        return 38
+        #else
+        return isIPad ? 40 : 32
+        #endif
+    }
+
+    private var answerButtonMinHeight: CGFloat {
+        #if os(tvOS)
+        return 96
+        #elseif os(macOS)
+        return 72
+        #else
+        return isIPad ? 76 : 64
+        #endif
+    }
+
+    private var memoryShapeIconSize: CGFloat {
+        #if os(tvOS)
+        return 88
+        #elseif os(macOS)
+        return 64
+        #else
+        return isIPad ? 68 : 54
+        #endif
+    }
+
+    private var memoryShapeTileSize: CGFloat {
+        #if os(tvOS)
+        return 116
+        #elseif os(macOS)
+        return 84
+        #else
+        return isIPad ? 88 : 72
+        #endif
+    }
+
+    private var memoryGridColumnRange: (min: CGFloat, max: CGFloat) {
+        #if os(tvOS)
+        return (116, 150)
+        #elseif os(macOS)
+        return (84, 110)
+        #else
+        return isIPad ? (88, 110) : (72, 90)
+        #endif
+    }
+
+    private var flagMaxWidth: CGFloat {
+        #if os(tvOS)
+        return 360
+        #elseif os(macOS)
+        return 260
+        #else
+        return isIPad ? 280 : 220
+        #endif
+    }
+
+    private var flagMaxHeight: CGFloat {
+        #if os(tvOS)
+        return 2102
+        #elseif os(macOS)
+        return 150
+        #else
+        return isIPad ? 160 : 130
+        #endif
+    }
+
+    private var subtextFontSize: Font {
+        #if os(tvOS)
+        return .title3
+        #elseif os(macOS)
+        return .body
+        #else
+        return isIPad ? .body : .subheadline
+        #endif
+    }
+
+    private var bannerTitleFont: Font {
+        #if os(tvOS)
+        return .title2.bold()
+        #elseif os(macOS)
+        return .title3.bold()
+        #else
+        return isIPad ? .title3.bold() : .headline.bold()
+        #endif
+    }
+
+    private var headerTitleFont: Font {
+        #if os(tvOS)
+        return .title2.bold()
+        #elseif os(macOS)
+        return .title3.bold()
+        #else
+        return isIPad ? .title3.bold() : .headline.bold()
+        #endif
+    }
+
+    private var headerLevelFont: Font {
+        #if os(tvOS)
+        return .body.bold()
+        #else
+        return .caption.bold()
+        #endif
+    }
+
+    private var progressCounterFont: Font {
+        #if os(tvOS)
+        return .title3.weight(.semibold)
+        #elseif os(macOS)
+        return .body.weight(.semibold)
+        #else
+        return isIPad ? .body.weight(.semibold) : .subheadline.weight(.semibold)
+        #endif
+    }
+
+    private var timerLabelFont: Font {
+        #if os(tvOS)
+        return .subheadline
+        #else
+        return .caption2
+        #endif
+    }
+}
+
+// MARK: - Previews
+
+#Preview("Standard Game (Math)") {
+    GameView(
+        viewModel: .mock(
+            gameType: .addition,
+            level: .easy,
+            question: Question(
+                text: "8 + 5 = ?", 
+                subtext: "Calculate the sum",
+                options: ["11", "13", "14", "12"],
+                correctIndex: 1,
+                maxTime: 20.0
+            ),
+            totalQuestions: 15,
+            currentQuestionIndex: 3,
+            timeRemaining: 14.5,
+            gameScore: 150.0
+        )
+    )
+}
+
+#Preview("Flag Game (Image)") {
+    GameView(
+        viewModel: .mock(
+            gameType: .flags,
+            level: .medium,
+            question: Question(
+                itemKey: "country_Poland",
+                text: "Poland",
+                subtext: "Select the correct country",
+                options: ["France", "Poland", "Germany", "Italy"],
+                correctIndex: 1,
+                maxTime: 20.0,
+                flagImageName: "Poland"
+            ),
+            totalQuestions: 15,
+            currentQuestionIndex: 5,
+            timeRemaining: 18.0,
+            gameScore: 320.0
+        )
+    )
+}
+
+#Preview("Answer Feedback (Correct Selected)") {
+    GameView(
+        viewModel: .mock(
+            gameType: .multiplication,
+            level: .easy,
+            question: Question(
+                text: "6 × 7 = ?",
+                subtext: "Calculate the product",
+                options: ["36", "42", "48", "49"],
+                correctIndex: 1,
+                maxTime: 20.0
+            ),
+            totalQuestions: 15,
+            currentQuestionIndex: 7,
+            timeRemaining: 12.0,
+            gameScore: 480.0,
+            selectedAnswerIndex: 1,
+            isFeedbackShowing: true
+        )
+    )
+}
+
+#Preview("Memory Math (Step: +5)") {
+    GameView(viewModel: .mockMemoryMath(step: "+5"))
+}
+
+#Preview("Memory Shapes (Grid)") {
+    GameView(viewModel: .mockMemoryShapes())
+}
+
+#Preview("Long Text Scaling") {
+    GameView(
+        viewModel: .mock(
+            gameType: .flags,
+            level: .hard,
+            question: Question(
+                text: "Democratic Republic of the Congo",
+                subtext: "Which country has this national flag?",
+                options: [
+                    "Democratic Republic of the Congo",
+                    "Central African Republic",
+                    "Saint Vincent and the Grenadines",
+                    "Federated States of Micronesia"
+                ],
+                correctIndex: 0,
+                maxTime: 20.0,
+                flagImageName: "Poland"
+            ),
+            totalQuestions: 15,
+            currentQuestionIndex: 8,
+            timeRemaining: 16.0,
+            gameScore: 750.0
+        )
+    )
+}
+
+#Preview("Game Over") {
+    GameView(
+        viewModel: .mock(
+            gameType: .addition,
+            level: .easy,
+            totalQuestions: 15,
+            gameScore: 1250.0,
+            isGameOver: true,
+            earnedStars: 4,
+            correctCount: 14,
+            wrongCount: 1
+        )
+    )
+}
+
+#Preview("Live Game") {
+    GameView(gameType: .addition, level: .easy)
 }
