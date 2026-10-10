@@ -3216,7 +3216,7 @@
 
         },
         "archived" : false,
-        "defaultFormatter" : null,
+        "defaultFormatter" : "INTEGER",
         "referenceName" : "Total Score - Medium",
         "scoreRangeEnd" : null,
         "scoreRangeStart" : null,

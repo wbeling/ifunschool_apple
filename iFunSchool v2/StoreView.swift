@@ -58,13 +58,6 @@ struct StoreView: View {
                     // Standalone Restore Purchases Button at Bottom
                     restoreButton
 
-                    // Footer Notice
-                    Text(LocalizedStringKey("store_footer_notice"))
-                        .font(.caption2)
-                        .foregroundColor(.secondary)
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal, 16)
-                        .padding(.bottom, 24)
                 }
                 #if os(tvOS)
                 .padding(.horizontal, 56)
@@ -119,14 +112,6 @@ struct StoreView: View {
 
                     // Standalone Restore Purchases Button at Bottom
                     restoreButton
-
-                    // Footer Notice
-                    Text(LocalizedStringKey("store_footer_notice"))
-                        .font(.caption2)
-                        .foregroundColor(.secondary)
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal, 16)
-                        .padding(.bottom, 24)
                 }
                 .padding(.horizontal, 16)
             }

@@ -12,7 +12,10 @@ devices([
 
 languages([
   "en-US",
-  "pl"
+  "pl",
+  "de",
+  "es",
+  "fr"
 ])
 
 # Xcode Scheme for UI Tests

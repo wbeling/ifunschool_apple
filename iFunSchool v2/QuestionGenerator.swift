@@ -164,7 +164,8 @@ class QuestionGenerator {
     private func loadPanstwaFromFile() {
         if let path = Bundle.main.path(forResource: "panstwa", ofType: "dat"),
            let content = try? String(contentsOfFile: path, encoding: .utf8) {
-            let loaded = content.components(separatedBy: .newlines)
+            let cleanContent = content.replacingOccurrences(of: "\u{FEFF}", with: "")
+            let loaded = cleanContent.components(separatedBy: .newlines)
                 .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
                 .filter { !$0.isEmpty }
             if !loaded.isEmpty {
