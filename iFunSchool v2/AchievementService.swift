@@ -45,7 +45,13 @@ class AchievementService: ObservableObject {
     }
 
     @discardableResult
-    func evaluateAndReport(totalGoldStars: Int, totalSilverStars: Int, totalScore: Double, playerID: String = ScoreStorage.shared.activePlayerID) -> [String] {
+    func evaluateAndReport(
+        totalGoldStars: Int,
+        totalSilverStars: Int,
+        totalScore: Double,
+        affectedLevel: GameLevel? = nil,
+        playerID: String = ScoreStorage.shared.activePlayerID
+    ) -> [String] {
         var unlockedSet = getUnlockedIDs(playerID: playerID)
         var newlyUnlockedTitles: [String] = []
         var achievementsToReport: [GKAchievement] = []
@@ -135,22 +141,35 @@ class AchievementService: ObservableObject {
         saveUnlockedIDs(unlockedSet, playerID: playerID)
 
         // Report to GameKit if authenticated
-        if isAuthenticated && !achievementsToReport.isEmpty {
-            GKAchievement.report(achievementsToReport) { error in
-                if let error = error {
-                    print("GameKit Achievement Report Error: \(error.localizedDescription)")
+        if isAuthenticated {
+            if !achievementsToReport.isEmpty {
+                GKAchievement.report(achievementsToReport) { error in
+                    if let error = error {
+                        print("GameKit Achievement Report Error: \(error.localizedDescription)")
+                    }
                 }
             }
 
-            // Submit leaderboard scores (Overall + Per Level)
-            let leaderBoardID = "pl.beling.ifunschool.totals"
-            GKLeaderboard.submitScore(Int(totalScore * 100), context: 0, player: GKLocalPlayer.local, leaderboardIDs: [leaderBoardID]) { error in
-                if let error = error {
-                    print("GameKit Leaderboard Submit Error: \(error.localizedDescription)")
+            // Submit leaderboard scores:
+            // Always update overall totals leaderboard if totalScore > 0
+            if totalScore > 0 {
+                let leaderBoardID = "pl.beling.ifunschool.totals"
+                GKLeaderboard.submitScore(Int(totalScore * 100), context: 0, player: GKLocalPlayer.local, leaderboardIDs: [leaderBoardID]) { error in
+                    if let error = error {
+                        print("GameKit Leaderboard Submit Error: \(error.localizedDescription)")
+                    }
                 }
             }
 
-            for level in GameLevel.allCases {
+            // Only submit score for affected level (e.g. playing on hard only updates hard leaderboard, not easy/medium/etc.)
+            let levelsToUpdate: [GameLevel]
+            if let affectedLevel = affectedLevel {
+                levelsToUpdate = [affectedLevel]
+            } else {
+                levelsToUpdate = GameLevel.allCases
+            }
+
+            for level in levelsToUpdate {
                 let lvlScore = ScoreStorage.shared.totalScore(for: level)
                 if lvlScore > 0 {
                     let lvlID = "pl.beling.ifunschool.totalLvl\(level.rawValue)"

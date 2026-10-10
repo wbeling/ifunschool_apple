@@ -263,7 +263,7 @@ class GameViewModel: ObservableObject {
         self.isNewStarsRecord = saveResult.isNewStarsRecord
 
         if earnedStars > 0 {
-            StreakTracker.shared.recordGameCompleted(stars: earnedStars) { [weak self] in
+            StreakTracker.shared.recordGameCompleted(stars: earnedStars, affectedLevel: level) { [weak self] in
                 guard let self = self else { return }
                 let totalGold = ScoreStorage.shared.totalGoldStars
                 let totalSilver = ScoreStorage.shared.totalSilverStars
@@ -272,7 +272,8 @@ class GameViewModel: ObservableObject {
                 let newUnlocks = AchievementService.shared.evaluateAndReport(
                     totalGoldStars: totalGold,
                     totalSilverStars: totalSilver,
-                    totalScore: totalScore
+                    totalScore: totalScore,
+                    affectedLevel: self.level
                 )
                 withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
                     self.newlyUnlockedAchievements = newUnlocks
@@ -286,7 +287,8 @@ class GameViewModel: ObservableObject {
             let newUnlocks = AchievementService.shared.evaluateAndReport(
                 totalGoldStars: totalGold,
                 totalSilverStars: totalSilver,
-                totalScore: totalScore
+                totalScore: totalScore,
+                affectedLevel: self.level
             )
             withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
                 self.newlyUnlockedAchievements = newUnlocks

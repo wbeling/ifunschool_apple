@@ -145,7 +145,7 @@ class StreakTracker: ObservableObject {
     }
 
     // MARK: - Record Game Completion (min 1 star)
-    func recordGameCompleted(stars: Int, playerID: String = ScoreStorage.shared.activePlayerID, completion: (() -> Void)? = nil) {
+    func recordGameCompleted(stars: Int, affectedLevel: GameLevel? = nil, playerID: String = ScoreStorage.shared.activePlayerID, completion: (() -> Void)? = nil) {
         guard stars > 0 else {
             completion?()
             return
@@ -190,6 +190,7 @@ class StreakTracker: ObservableObject {
                         totalGoldStars: totalGold,
                         totalSilverStars: totalSilver,
                         totalScore: totalScore,
+                        affectedLevel: affectedLevel,
                         playerID: playerID
                     )
 
