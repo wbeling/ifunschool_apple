@@ -10,6 +10,7 @@ struct ContentView: View {
     @State private var isShowingProgressGrid = false
     @State private var isShowingProfile = false
     @State private var isShowingStreak = false
+    @State private var isShowingHeaderActionSheet = false
     @State private var selectedProgressCategory: ProgressCategory = .addition
     @State private var activeGameItem: GameItem? = nil
 
@@ -73,75 +74,7 @@ struct ContentView: View {
     private var mainMenuContentView: some View {
         VStack(spacing: 0) {
             // App Navigation Header Bar
-            HStack {
-                HStack(spacing: 12) {
-                    Button(action: {
-                        isShowingSettings = true
-                    }) {
-                        Image(systemName: "gearshape.fill")
-                            .font(.title3)
-                            .foregroundColor(.blue)
-                    }
-                    .buttonStyle(FunHeaderButtonStyle())
-
-                    Button(action: {
-                        isShowingProgressGrid = true
-                    }) {
-                        HStack(spacing: 4) {
-                            Image(systemName: "book.fill")
-                                .font(.title3)
-                            //Text(LocalizedStringKey("nav_progress"))
-                            //    .font(.body.bold())
-                        }
-                        .foregroundColor(.green)
-                    }
-                    .buttonStyle(FunHeaderButtonStyle())
-                    .accessibilityIdentifier("btn_progress")
-                }
-
-                Spacer()
-
-                Text(LocalizedStringKey("nav_app_title"))
-                    .font(.title2.bold())
-
-                Spacer()
-
-                HStack(spacing: 10) {
-                    Button(action: {
-                        isShowingStreak = true
-                    }) {
-                        Image(systemName: "calendar.badge.clock")
-                            .font(.title2)
-                            .foregroundColor(.orange)
-                    }
-                    .buttonStyle(FunHeaderButtonStyle())
-                    .accessibilityIdentifier("btn_streak")
-
-                    Button(action: {
-                        isShowingProfile = true
-                    }) {
-                        Image(systemName: "person.crop.circle.fill")
-                            .font(.title2)
-                            .foregroundColor(.red)
-                    }
-                    .buttonStyle(FunHeaderButtonStyle())
-
-                    Button(action: {
-                        isShowingStore = true
-                    }) {
-                        HStack(spacing: 4) {
-                            Image(systemName: "cart.fill")
-                                .font(.title3)
-                            //Text(LocalizedStringKey("btn_shop"))
-                            //    .font(.body.bold())
-                        }
-                        .foregroundColor(FunColors.chalkboardGreen)
-                    }
-                    .buttonStyle(FunHeaderButtonStyle())
-                }
-            }
-            .padding(.horizontal, 20)
-            .padding(.vertical, 12)
+            appNavigationHeaderBar
 
             // Horizontal Level Selector Bar
             levelSelectorBar
@@ -204,6 +137,166 @@ struct ContentView: View {
                 .frame(minWidth: 1100, idealWidth: 1300, maxWidth: 1500, minHeight: 800, idealHeight: 900, maxHeight: 1000)
                 #endif
         }
+        .confirmationDialog(
+            Text(LocalizedStringKey("nav_app_title")),
+            isPresented: $isShowingHeaderActionSheet,
+            titleVisibility: .visible
+        ) {
+            Button {
+                isShowingProgressGrid = true
+            } label: {
+                Label(String(localized: "nav_progress"), systemImage: "book.fill")
+            }
+
+            Button {
+                isShowingStreak = true
+            } label: {
+                Label(String(localized: "nav_streak"), systemImage: "calendar.badge.clock")
+            }
+
+            Button {
+                isShowingProfile = true
+            } label: {
+                Label(String(localized: "nav_profile"), systemImage: "person.crop.circle.fill")
+            }
+
+            Button {
+                isShowingStore = true
+            } label: {
+                Label(String(localized: "nav_store"), systemImage: "cart.fill")
+            }
+
+            Button(role: .cancel) {
+            } label: {
+                Text(LocalizedStringKey("dialog_cancel"))
+            }
+        }
+    }
+
+    // MARK: - App Navigation Header Bar
+    private var appNavigationHeaderBar: some View {
+        GeometryReader { proxy in
+            let availableWidth = proxy.size.width
+            // In compact widths, right icons would encroach on the title.
+            // On iPhone portrait (width ~375-430pt), collapse right icons to a hamburger icon
+            // so the title is never squeezed or truncated.
+            let hasSpaceForFullBar = availableWidth >= 580
+
+            HStack(spacing: 8) {
+                // Left side: always settings (gear)
+                Button(action: {
+                    isShowingSettings = true
+                }) {
+                    Image(systemName: "gearshape.fill")
+                        .font(.title3)
+                        .foregroundColor(.blue)
+                }
+                .buttonStyle(FunHeaderButtonStyle())
+
+                if hasSpaceForFullBar {
+                    Button(action: {
+                        isShowingProgressGrid = true
+                    }) {
+                        Image(systemName: "book.fill")
+                            .font(.title3)
+                            .foregroundColor(.green)
+                    }
+                    .buttonStyle(FunHeaderButtonStyle())
+                    .accessibilityIdentifier("btn_progress")
+                }
+
+                Spacer(minLength: 4)
+
+                // Title: Always present and prioritized
+                Text(LocalizedStringKey("nav_app_title"))
+                    .font(.title2.bold())
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.8)
+                    .layoutPriority(1)
+
+                Spacer(minLength: 4)
+
+                // Right side: All icons if space permits, otherwise single hamburger menu
+                if hasSpaceForFullBar {
+                    HStack(spacing: 10) {
+                        Button(action: {
+                            isShowingStreak = true
+                        }) {
+                            Image(systemName: "calendar.badge.clock")
+                                .font(.title2)
+                                .foregroundColor(.orange)
+                        }
+                        .buttonStyle(FunHeaderButtonStyle())
+                        .accessibilityIdentifier("btn_streak")
+
+                        Button(action: {
+                            isShowingProfile = true
+                        }) {
+                            Image(systemName: "person.crop.circle.fill")
+                                .font(.title2)
+                                .foregroundColor(.red)
+                        }
+                        .buttonStyle(FunHeaderButtonStyle())
+
+                        Button(action: {
+                            isShowingStore = true
+                        }) {
+                            Image(systemName: "cart.fill")
+                                .font(.title3)
+                                .foregroundColor(FunColors.chalkboardGreen)
+                        }
+                        .buttonStyle(FunHeaderButtonStyle())
+                    }
+                } else {
+                    #if os(iOS) || os(macOS)
+                    Menu {
+                        Button {
+                            isShowingProgressGrid = true
+                        } label: {
+                            Label(String(localized: "nav_progress"), systemImage: "book.fill")
+                        }
+
+                        Button {
+                            isShowingStreak = true
+                        } label: {
+                            Label(String(localized: "nav_streak"), systemImage: "calendar.badge.clock")
+                        }
+
+                        Button {
+                            isShowingProfile = true
+                        } label: {
+                            Label(String(localized: "nav_profile"), systemImage: "person.crop.circle.fill")
+                        }
+
+                        Button {
+                            isShowingStore = true
+                        } label: {
+                            Label(String(localized: "nav_store"), systemImage: "cart.fill")
+                        }
+                    } label: {
+                        Image(systemName: "line.3.horizontal")
+                            .font(.title2.bold())
+                            .foregroundColor(.primary)
+                            .padding(6)
+                    }
+                    .accessibilityIdentifier("btn_hamburger_menu")
+                    #else
+                    Button(action: {
+                        isShowingHeaderActionSheet = true
+                    }) {
+                        Image(systemName: "line.3.horizontal")
+                            .font(.title2.bold())
+                            .foregroundColor(.primary)
+                    }
+                    .buttonStyle(FunHeaderButtonStyle())
+                    .accessibilityIdentifier("btn_hamburger_menu")
+                    #endif
+                }
+            }
+            .padding(.horizontal, 20)
+            .frame(width: availableWidth, height: proxy.size.height)
+        }
+        .frame(height: 52)
     }
 
     // MARK: - Level Selector Horizontal Bar
@@ -229,61 +322,15 @@ struct ContentView: View {
 
     // MARK: - Global Footer Bar
     private var globalFooterBar: some View {
-        HStack {
-            // Total Gold Stars
-            HStack(spacing: 6) {
-                Image(systemName: "star.circle.fill")
-                    .font(.title2)
-                    .foregroundColor(.yellow)
-                VStack(alignment: .leading, spacing: 2) {
-                    HStack(spacing: 4) {
-                        Text("\(viewModel.totalGoldStars)")
-                            .font(.headline)
-                            .foregroundColor(.primary)
+        ViewThatFits(in: .horizontal) {
+            // 1. Full Footer (with text labels) when enough horizontal space exists
+            footerContent(showLabels: true)
 
-                        if viewModel.isStarLimitReached {
-                            Image(systemName: "lock.fill")
-                                .font(.caption.bold())
-                                .foregroundColor(.orange)
-                        }
-                    }
-                    Text(LocalizedStringKey("footer_gold_stars"))
-                        .font(.caption2)
-                        .foregroundColor(.secondary)
-                }
-            }
-
-            Spacer()
-
-            // Total Silver / Cumulative Stars
-            HStack(spacing: 6) {
-                Image(systemName: "star.fill")
-                    .font(.title2)
-                    .foregroundColor(.gray)
-                VStack(alignment: .leading, spacing: 2) {
-                    Text("\(viewModel.totalSilverStars)")
-                        .font(.headline)
-                        .foregroundColor(.primary)
-                    Text(LocalizedStringKey("footer_silver_stars"))
-                        .font(.caption2)
-                        .foregroundColor(.secondary)
-                }
-            }
-
-            Spacer()
-
-            // Total Score Counter
-            VStack(alignment: .trailing, spacing: 2) {
-                Text("\(Int(viewModel.totalScore))")
-                    .font(.title3.bold())
-                    .foregroundColor(.blue)
-                Text(LocalizedStringKey("footer_total_score"))
-                    .font(.caption2)
-                    .foregroundColor(.secondary)
-            }
+            // 2. Compact Footer (stars + number, total points only) when space is constrained
+            footerContent(showLabels: false)
         }
         .padding(.horizontal, 20)
-        .padding(.vertical, 12)
+        .padding(.vertical, 10)
         .background(.ultraThinMaterial)
         .overlay(
             Rectangle()
@@ -291,6 +338,96 @@ struct ContentView: View {
                 .foregroundColor(Color.gray.opacity(0.2)),
             alignment: .top
         )
+    }
+
+    @ViewBuilder
+    private func footerContent(showLabels: Bool) -> some View {
+        HStack(spacing: showLabels ? 16 : 12) {
+            // Total Gold Stars
+            HStack(spacing: 6) {
+                Image(systemName: "star.circle.fill")
+                    .font(.title2)
+                    .foregroundColor(.yellow)
+
+                if showLabels {
+                    VStack(alignment: .leading, spacing: 2) {
+                        HStack(spacing: 4) {
+                            Text("\(viewModel.totalGoldStars)")
+                                .font(.headline)
+                                .foregroundColor(.primary)
+
+                            if viewModel.isStarLimitReached {
+                                Image(systemName: "lock.fill")
+                                    .font(.caption.bold())
+                                    .foregroundColor(.orange)
+                            }
+                        }
+                        Text(LocalizedStringKey("footer_gold_stars"))
+                            .font(.caption2)
+                            .foregroundColor(.secondary)
+                    }
+                } else {
+                    HStack(spacing: 3) {
+                        Text("\(viewModel.totalGoldStars)")
+                            .font(.headline)
+                            .foregroundColor(.primary)
+
+                        if viewModel.isStarLimitReached {
+                            Image(systemName: "lock.fill")
+                                .font(.caption2.bold())
+                                .foregroundColor(.orange)
+                        }
+                    }
+                }
+            }
+
+            Spacer(minLength: 8)
+
+            // Total Silver / Cumulative Stars
+            HStack(spacing: 6) {
+                Image(systemName: "star.fill")
+                    .font(.title2)
+                    .foregroundColor(.gray)
+
+                if showLabels {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("\(viewModel.totalSilverStars)")
+                            .font(.headline)
+                            .foregroundColor(.primary)
+                        Text(LocalizedStringKey("footer_silver_stars"))
+                            .font(.caption2)
+                            .foregroundColor(.secondary)
+                    }
+                } else {
+                    Text("\(viewModel.totalSilverStars)")
+                        .font(.headline)
+                        .foregroundColor(.primary)
+                }
+            }
+
+            Spacer(minLength: 8)
+
+            // Total Score Counter
+            if showLabels {
+                VStack(alignment: .trailing, spacing: 2) {
+                    Text("\(Int(viewModel.totalScore))")
+                        .font(.title3.bold())
+                        .foregroundColor(.blue)
+                    Text(LocalizedStringKey("footer_total_score"))
+                        .font(.caption2)
+                        .foregroundColor(.secondary)
+                }
+            } else {
+                HStack(spacing: 4) {
+                    Image(systemName: "trophy.fill")
+                        .font(.subheadline)
+                        .foregroundColor(.blue)
+                    Text("\(Int(viewModel.totalScore))")
+                        .font(.headline.bold())
+                        .foregroundColor(.blue)
+                }
+            }
+        }
     }
 
     private func categoryForGameType(_ gameType: GameType) -> ProgressCategory {
@@ -703,6 +840,16 @@ struct StatusPill: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        Group {
+            // Compact Phone preview (Hamburger menu & compact footer)
+            ContentView()
+                .previewDisplayName("Compact iPhone (Hamburger & Compact Footer)")
+                .previewLayout(.fixed(width: 393, height: 852))
+
+            // Wide iPad/Mac preview (Full bar & labeled footer)
+            ContentView()
+                .previewDisplayName("Wide Screen (Full Bar & Labeled Footer)")
+                .previewLayout(.fixed(width: 820, height: 1180))
+        }
     }
 }
