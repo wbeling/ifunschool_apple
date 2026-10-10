@@ -114,7 +114,7 @@ struct ProgressGridView: View {
                     Text(LocalizedStringKey("nav_done"))
                         .font(.headline)
                 }
-                .buttonStyle(.plain)
+                .buttonStyle(FunActionButtonStyle())
             }
             .padding(.horizontal, 24)
             .padding(.vertical, 16)
@@ -195,11 +195,7 @@ struct ProgressGridView: View {
                         .foregroundColor(selectedCategory == cat ? .white : .primary)
                         .cornerRadius(20)
                     }
-                    #if os(tvOS)
                     .buttonStyle(FunActionButtonStyle())
-                    #else
-                    .buttonStyle(.plain)
-                    #endif
                     .accessibilityIdentifier("progress_cat_\(cat.rawValue)")
                 }
             }

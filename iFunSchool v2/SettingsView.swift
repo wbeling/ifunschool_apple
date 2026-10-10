@@ -168,7 +168,7 @@ struct SettingsView: View {
                             .padding(.vertical, 14)
                             .contentShape(Rectangle())
                         }
-                        .buttonStyle(.plain)
+                        .buttonStyle(FunActionButtonStyle())
                     }
 
                     // Section 3: Game Center Integration
@@ -193,7 +193,7 @@ struct SettingsView: View {
                             .padding(.vertical, 14)
                             .contentShape(Rectangle())
                         }
-                        .buttonStyle(.plain)
+                        .buttonStyle(FunActionButtonStyle())
 
                         Divider().padding(.leading, 50)
 
@@ -217,7 +217,7 @@ struct SettingsView: View {
                             .padding(.vertical, 14)
                             .contentShape(Rectangle())
                         }
-                        .buttonStyle(.plain)
+                        .buttonStyle(FunActionButtonStyle())
                     }
 
                     // Section 4: Links & Support
@@ -322,7 +322,7 @@ struct SettingsView: View {
                             .padding(.vertical, 14)
                             .contentShape(Rectangle())
                         }
-                        .buttonStyle(.plain)
+                        .buttonStyle(FunActionButtonStyle())
 
                         Divider().padding(.leading, 50)
 
@@ -344,7 +344,7 @@ struct SettingsView: View {
                             .padding(.vertical, 14)
                             .contentShape(Rectangle())
                         }
-                        .buttonStyle(.plain)
+                        .buttonStyle(FunActionButtonStyle())
 
                         Divider().padding(.leading, 50)
 
@@ -366,7 +366,7 @@ struct SettingsView: View {
                             .padding(.vertical, 14)
                             .contentShape(Rectangle())
                         }
-                        .buttonStyle(.plain)
+                        .buttonStyle(FunActionButtonStyle())
                         #endif
                     }
                 }

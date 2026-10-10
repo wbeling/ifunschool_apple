@@ -58,7 +58,7 @@
     "_developerTeamID" : "SP4XNG9W4N",
     "_disableDialogs" : false,
     "_failTransactionsEnabled" : false,
-    "_lastSynchronizedDate" : 807778844.281811,
+    "_lastSynchronizedDate" : 813345624.55586398,
     "_locale" : "en_US",
     "_renewalBillingIssuesEnabled" : false,
     "_storefront" : "USA",
@@ -67,11 +67,23 @@
     ],
     "_timeRate" : 0
   },
+  "subscriptionBundleGroups" : [
+
+  ],
   "subscriptionGroups" : [
     {
       "id" : "22268686",
       "localizations" : [
-
+        {
+          "description" : "",
+          "displayName" : "Premium Pass",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "",
+          "displayName" : "Przepustka premium",
+          "locale" : "pl"
+        }
       ],
       "name" : "iFunSchool Premium Pass",
       "subscriptions" : [
@@ -82,8 +94,8 @@
           "billingPlans" : [
             {
               "billingPlanType" : "BILLED_UPFRONT",
-              "commitmentDisplayPrice" : "1.99",
-              "displayPrice" : "1.99",
+              "commitmentDisplayPrice" : "2.99",
+              "displayPrice" : "2.99",
               "internalID" : "6795275692_BILLED_UPFRONT",
               "isEnabled" : true
             }
@@ -91,41 +103,43 @@
           "codeOffers" : [
 
           ],
-          "displayPrice" : "1.99",
+          "displayPrice" : "2.99",
           "familyShareable" : false,
           "groupNumber" : 1,
           "internalID" : "6795275692",
-          "introductoryOffer" : {
-            "billingPlanType" : "BILLED_UPFRONT",
-            "internalID" : "0EC213DE",
-            "numberOfPeriods" : 1,
-            "paymentMode" : "free",
-            "subscriptionPeriod" : "P3D"
-          },
           "introductoryOffers" : [
-            {
-              "billingPlanType" : "BILLED_UPFRONT",
-              "internalID" : "0EC213DE",
-              "numberOfPeriods" : 1,
-              "paymentMode" : "free",
-              "subscriptionPeriod" : "P3D"
-            }
+
           ],
           "localizations" : [
             {
-              "description" : "Pełny miesięczny dostęp do wszystkich gier",
-              "displayName" : "Abonament Miesięczny",
+              "description" : "No star limit & Godlike mode for 1 month.",
+              "displayName" : "Monthly Premium Pass",
+              "locale" : "en_US"
+            },
+            {
+              "description" : "Sin límite de estrellas y nivel Divino por 1 mes",
+              "displayName" : "Pase Premium: 1 mes",
+              "locale" : "es_ES"
+            },
+            {
+              "description" : "Sans limite d'étoiles et niveau Divin pour 1 mois",
+              "displayName" : "Pass Premium : 1 mois",
+              "locale" : "fr"
+            },
+            {
+              "description" : "Brak limitu gwiazdek i poziom Boski na miesiąc",
+              "displayName" : "Premium Pass: 1 miesiąc",
               "locale" : "pl"
             },
             {
-              "description" : "Full monthly access to all games and Godlike difficulty",
-              "displayName" : "Monthly Pass",
-              "locale" : "en_US"
+              "description" : "Kein Sterne-Limit & Stufe Göttlich für 1 Monat",
+              "displayName" : "Premium-Pass: 1 Monat",
+              "locale" : "de"
             }
           ],
           "productID" : "pl.beling.ifunschool.sub.monthly",
           "recurringSubscriptionPeriod" : "P1M",
-          "referenceName" : "1-Month Pass",
+          "referenceName" : "Pass 1M",
           "subscriptionGroupID" : "22268686",
           "type" : "RecurringSubscription",
           "winbackOffers" : [
@@ -139,8 +153,8 @@
           "billingPlans" : [
             {
               "billingPlanType" : "BILLED_UPFRONT",
-              "commitmentDisplayPrice" : "14.99",
-              "displayPrice" : "14.99",
+              "commitmentDisplayPrice" : "9.99",
+              "displayPrice" : "9.99",
               "internalID" : "6795275921_BILLED_UPFRONT",
               "isEnabled" : true
             }
@@ -148,41 +162,115 @@
           "codeOffers" : [
 
           ],
-          "displayPrice" : "14.99",
+          "displayPrice" : "9.99",
           "familyShareable" : true,
           "groupNumber" : 1,
           "internalID" : "6795275921",
           "introductoryOffer" : {
             "billingPlanType" : "BILLED_UPFRONT",
-            "internalID" : "FE320F81",
+            "internalID" : "eyJzIjoiNjc5NTI3NTkyMSIsImQiOjE3OTE2MTU2MDAsImkiOiJVUyIsInQiOiIiLCJwIjoiMCJ9",
             "numberOfPeriods" : 1,
             "paymentMode" : "free",
-            "subscriptionPeriod" : "P3D"
+            "subscriptionPeriod" : "P1W"
           },
           "introductoryOffers" : [
             {
               "billingPlanType" : "BILLED_UPFRONT",
-              "internalID" : "FE320F81",
+              "internalID" : "eyJzIjoiNjc5NTI3NTkyMSIsImQiOjE3OTE2MTU2MDAsImkiOiJVUyIsInQiOiIiLCJwIjoiMCJ9",
               "numberOfPeriods" : 1,
               "paymentMode" : "free",
-              "subscriptionPeriod" : "P3D"
+              "subscriptionPeriod" : "P1W"
             }
           ],
           "localizations" : [
             {
-              "description" : "Pełny roczny dostęp bez ograniczeń do wszystkich gier",
-              "displayName" : "Abonament Roczny",
+              "description" : "No star limit & Godlike mode for 1 year.",
+              "displayName" : "Annual Premium Pass",
+              "locale" : "en_US"
+            },
+            {
+              "description" : "Sin límite de estrellas y nivel Divino por 1 año",
+              "displayName" : "Pase Premium: 1 año",
+              "locale" : "es_ES"
+            },
+            {
+              "description" : "Sans limite d'étoiles et niveau Divin pour 1 an.",
+              "displayName" : "Pass Premium : 1 an",
+              "locale" : "fr"
+            },
+            {
+              "description" : "Brak limitu gwiazdek i poziom Boski na cały rok",
+              "displayName" : "Premium Pass: 1 rok",
               "locale" : "pl"
             },
             {
-              "description" : "Full 1-year unlimited access to all games",
-              "displayName" : "Annual Pass",
-              "locale" : "en_US"
+              "description" : "Kein Sterne-Limit & Stufe Göttlich für 1 Jahr",
+              "displayName" : "Premium-Pass: 1 Jahr",
+              "locale" : "de"
             }
           ],
           "productID" : "pl.beling.ifunschool.sub.yearly",
           "recurringSubscriptionPeriod" : "P1Y",
-          "referenceName" : "Annual Pass",
+          "referenceName" : "Pass 1Y",
+          "subscriptionGroupID" : "22268686",
+          "type" : "RecurringSubscription",
+          "winbackOffers" : [
+
+          ]
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "billingPlans" : [
+            {
+              "billingPlanType" : "BILLED_UPFRONT",
+              "commitmentDisplayPrice" : "5.99",
+              "displayPrice" : "5.99",
+              "internalID" : "6821400151_BILLED_UPFRONT",
+              "isEnabled" : true
+            }
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "5.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "6821400151",
+          "introductoryOffers" : [
+
+          ],
+          "localizations" : [
+            {
+              "description" : "No star limit & Godlike mode for 3 months",
+              "displayName" : "3-Month Premium Pass",
+              "locale" : "en_US"
+            },
+            {
+              "description" : "Sin límite de estrellas y modo Divino por 3 meses",
+              "displayName" : "Pase Premium: 3 meses",
+              "locale" : "es_ES"
+            },
+            {
+              "description" : "Sans limite d'étoiles et niveau Divin pour 3 mois",
+              "displayName" : "Pass Premium : 3 mois",
+              "locale" : "fr"
+            },
+            {
+              "description" : "Brak limitu gwiazdek i poziom Boski na 3 miesiące",
+              "displayName" : "Premium Pass: 3 miesiące",
+              "locale" : "pl"
+            },
+            {
+              "description" : "Kein Sterne-Limit & Stufe Göttlich für 3 Monate",
+              "displayName" : "Premium-Pass: 3 Monate",
+              "locale" : "de"
+            }
+          ],
+          "productID" : "pl.beling.ifunschool.sub.3m",
+          "recurringSubscriptionPeriod" : "P3M",
+          "referenceName" : "Pass 3M",
           "subscriptionGroupID" : "22268686",
           "type" : "RecurringSubscription",
           "winbackOffers" : [
@@ -192,8 +280,11 @@
       ]
     }
   ],
+  "subscriptionSuiteGroups" : [
+
+  ],
   "version" : {
-    "major" : 5,
-    "minor" : 0
+    "major" : 6,
+    "minor" : 3
   }
 }

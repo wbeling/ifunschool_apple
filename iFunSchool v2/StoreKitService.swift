@@ -7,8 +7,14 @@ class StoreKitService: ObservableObject {
     static let shared = StoreKitService()
 
     static let subMonthlyID = "pl.beling.ifunschool.sub.monthly"
-    static let subQuarterlyID = "pl.beling.ifunschool.sub.quarterly"
+    static let sub3mID = "pl.beling.ifunschool.sub.3m"
     static let subYearlyID = "pl.beling.ifunschool.sub.yearly"
+
+    static let allSubscriptionIDs: Set<String> = [
+        subMonthlyID,
+        sub3mID,
+        subYearlyID
+    ]
 
     static let godlikeProductID = "pl.beling.ifunschool.godlike"
     static let unlockProductID = "pl.beling.ifunschool.unlock"
@@ -17,9 +23,9 @@ class StoreKitService: ObservableObject {
     private let starLimitLegacyKey = "is_star_limit_legacy_purchased"
 
     @Published var subscriptions: [Product] = []
+    @Published var introOfferEligibility: [String: Bool] = [:]
     @Published var godlikeProduct: Product? = nil
     @Published var unlockProduct: Product? = nil
-    @Published var allowLegacyPurchases: Bool = true
     @Published var isLoading: Bool = false
     @Published var purchaseError: String? = nil
 
@@ -75,47 +81,33 @@ class StoreKitService: ObservableObject {
         return 90
     }
 
-    var canBuyGodlike: Bool {
-        return allowLegacyPurchases && !isGodlikeLegacyPurchased
-    }
-
-    var canBuyStarLimit: Bool {
-        return allowLegacyPurchases && !isStarLimitLegacyPurchased
-    }
-
-    func isPurchaseAvailable(for productID: String) -> Bool {
-        guard allowLegacyPurchases else { return false }
-        switch productID {
-        case StoreKitService.godlikeProductID:
-            return !isGodlikeLegacyPurchased
-        case StoreKitService.unlockProductID:
-            return !isStarLimitLegacyPurchased
-        default:
-            return false
-        }
-    }
-
     // MARK: - Product Fetching & Duration Sorting
     func fetchProducts() async {
         isLoading = true
         purchaseError = nil
         do {
-            let fetchedProducts = try await Product.products(for: [
-                StoreKitService.subMonthlyID,
-                StoreKitService.subQuarterlyID,
-                StoreKitService.subYearlyID,
-                StoreKitService.godlikeProductID,
-                StoreKitService.unlockProductID
-            ])
+            var requestedIDs = StoreKitService.allSubscriptionIDs
+            requestedIDs.insert(StoreKitService.godlikeProductID)
+            requestedIDs.insert(StoreKitService.unlockProductID)
+
+            let fetchedProducts = try await Product.products(for: requestedIDs)
 
             self.godlikeProduct = fetchedProducts.first(where: { $0.id == StoreKitService.godlikeProductID })
             self.unlockProduct = fetchedProducts.first(where: { $0.id == StoreKitService.unlockProductID })
 
-            let subProducts = fetchedProducts.filter {
-                $0.id == StoreKitService.subMonthlyID ||
-                $0.id == StoreKitService.subQuarterlyID ||
-                $0.id == StoreKitService.subYearlyID
+            // Filter auto-renewable subscriptions returned by Apple as available for this user
+            let subProducts = fetchedProducts.filter { product in
+                product.subscription != nil && StoreKitService.allSubscriptionIDs.contains(product.id)
             }
+
+            // Check introductory offer eligibility dynamically from Apple
+            var eligibilities: [String: Bool] = [:]
+            for product in subProducts {
+                if let sub = product.subscription {
+                    eligibilities[product.id] = await sub.isEligibleForIntroOffer
+                }
+            }
+            self.introOfferEligibility = eligibilities
 
             // Sort products from shortest subscription duration to longest
             self.subscriptions = subProducts.sorted { [weak self] p1, p2 in
@@ -249,20 +241,19 @@ class StoreKitService: ObservableObject {
             guard case .verified(let transaction) = result else { continue }
 
             if transaction.revocationDate == nil {
-                switch transaction.productID {
-                case StoreKitService.subMonthlyID,
-                     StoreKitService.subQuarterlyID,
-                     StoreKitService.subYearlyID:
+                if StoreKitService.allSubscriptionIDs.contains(transaction.productID) {
                     hasActiveSub = true
+                } else {
+                    switch transaction.productID {
+                    case StoreKitService.godlikeProductID:
+                        hasGodlikeLegacy = true
 
-                case StoreKitService.godlikeProductID:
-                    hasGodlikeLegacy = true
+                    case StoreKitService.unlockProductID:
+                        hasStarLimitLegacy = true
 
-                case StoreKitService.unlockProductID:
-                    hasStarLimitLegacy = true
-
-                default:
-                    break
+                    default:
+                        break
+                    }
                 }
             }
         }
@@ -301,13 +292,13 @@ extension StoreKitService {
 
     func introOfferDetails(for product: Product) -> IntroOfferDetails? {
         guard let subscription = product.subscription,
-              let intro = subscription.introductoryOffer else {
+              let intro = subscription.introductoryOffer,
+              introOfferEligibility[product.id] ?? true else {
             return nil
         }
 
-        let isPolish = (Locale.current.languageCode == "pl")
-        let introDuration = formattedIntroDuration(for: intro, isPolish: isPolish)
-        let regularPeriod = formattedPeriod(for: subscription.subscriptionPeriod, isPolish: isPolish)
+        let introDuration = formattedIntroDuration(for: intro)
+        let regularPeriod = formattedPeriod(for: subscription.subscriptionPeriod)
         let isFreeTrial = (intro.paymentMode == .freeTrial)
 
         let fullNotice: String
@@ -336,64 +327,44 @@ extension StoreKitService {
         )
     }
 
-    private func formattedIntroDuration(for intro: Product.SubscriptionOffer, isPolish: Bool) -> String {
+    private func formattedIntroDuration(for intro: Product.SubscriptionOffer) -> String {
         let totalCount = intro.period.value * intro.periodCount
+        var dateComponents = DateComponents()
         switch intro.period.unit {
-        case .month:
-            if totalCount == 1 {
-                return isPolish ? "Pierwszy miesiąc" : "First month"
-            } else if isPolish {
-                return "Pierwsze \(totalCount) mies."
-            } else {
-                return "First \(totalCount) months"
-            }
-        case .year:
-            if totalCount == 1 {
-                return isPolish ? "Pierwszy rok" : "First year"
-            } else if isPolish {
-                return "Pierwsze \(totalCount) lata"
-            } else {
-                return "First \(totalCount) years"
-            }
-        case .week:
-            if totalCount == 1 {
-                return isPolish ? "Pierwszy tydzień" : "First week"
-            } else if isPolish {
-                return "Pierwsze \(totalCount) tyg."
-            } else {
-                return "First \(totalCount) weeks"
-            }
         case .day:
-            if totalCount == 1 {
-                return isPolish ? "Pierwszy dzień" : "First day"
-            } else if isPolish {
-                return "Pierwsze \(totalCount) dni"
-            } else {
-                return "First \(totalCount) days"
-            }
+            dateComponents.day = totalCount
+        case .week:
+            dateComponents.weekOfMonth = totalCount
+        case .month:
+            dateComponents.month = totalCount
+        case .year:
+            dateComponents.year = totalCount
         @unknown default:
-            return isPolish ? "Okres promocyjny" : "Intro period"
+            return "\(totalCount)"
         }
+        let formatter = DateComponentsFormatter()
+        formatter.maximumUnitCount = 1
+        formatter.unitsStyle = .full
+        return formatter.string(from: dateComponents) ?? "\(totalCount)"
     }
 
-    private func formattedPeriod(for period: Product.SubscriptionPeriod, isPolish: Bool) -> String {
+    private func formattedPeriod(for period: Product.SubscriptionPeriod) -> String {
+        var dateComponents = DateComponents()
         switch period.unit {
         case .day:
-            if period.value == 1 { return isPolish ? "dzień" : "day" }
-            return isPolish ? "\(period.value) dni" : "\(period.value) days"
+            dateComponents.day = period.value
         case .week:
-            if period.value == 1 { return isPolish ? "tydzień" : "week" }
-            return isPolish ? "\(period.value) tyg." : "\(period.value) weeks"
+            dateComponents.weekOfMonth = period.value
         case .month:
-            if period.value == 1 { return isPolish ? "miesiąc" : "month" }
-            if period.value == 3 { return isPolish ? "kwartał" : "quarter" }
-            if period.value == 12 { return isPolish ? "rok" : "year" }
-            return isPolish ? "\(period.value) mies." : "\(period.value) months"
+            dateComponents.month = period.value
         case .year:
-            if period.value == 1 { return isPolish ? "rok" : "year" }
-            return isPolish ? "\(period.value) lat" : "\(period.value) years"
+            dateComponents.year = period.value
         @unknown default:
-            return isPolish ? "okres" : "period"
+            return ""
         }
+        let formatter = DateComponentsFormatter()
+        formatter.maximumUnitCount = 1
+        formatter.unitsStyle = .full
+        return formatter.string(from: dateComponents) ?? "\(period.value)"
     }
 }

@@ -124,7 +124,7 @@ private struct FunActionButtonBody: View {
     var body: some View {
         configuration.label
             //.scaleEffect(isFocused ? 1.04 : (configuration.isPressed ? 0.96 : 1.0))
-            .shadow(color: isFocused ? Color.blue.opacity(0.6) : Color.black.opacity(0.1), radius: isFocused ? 8 : 2, y: isFocused ? 4 : 1)
+            //.shadow(color: isFocused ? Color.blue.opacity(0.6) : Color.black.opacity(0.1), radius: isFocused ? 8 : 2, y: isFocused ? 4 : 1)
             .overlay(
                 RoundedRectangle(cornerRadius: cornerRadius)
                     .stroke(borderColor, lineWidth: borderWidth)

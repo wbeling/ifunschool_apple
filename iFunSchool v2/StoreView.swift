@@ -19,7 +19,7 @@ struct StoreView: View {
                     Text(LocalizedStringKey("nav_done"))
                         .font(.headline)
                 }
-                .buttonStyle(.plain)
+                .buttonStyle(FunActionButtonStyle())
             }
             .padding(.horizontal, 20)
             .padding(.vertical, 14)
@@ -47,10 +47,10 @@ struct StoreView: View {
                     }
 
                     // Subscription Section (Subscriber Manage Card OR Purchase Options)
-                    // subscriptionSection
+                    subscriptionSection
 
-                    // Restored / Legacy Purchases Card
-                    if storeKitService.isGodlikeLegacyPurchased || storeKitService.isStarLimitLegacyPurchased || storeKitService.canBuyGodlike || storeKitService.canBuyStarLimit {
+                    // Restored / Legacy Purchases Card (Visible only when legacy items were restored)
+                    if storeKitService.isGodlikeLegacyPurchased || storeKitService.isStarLimitLegacyPurchased {
                         RestoredLegacyPurchasesCard()
                             .frame(maxWidth: .infinity)
                     }
@@ -84,6 +84,23 @@ struct StoreView: View {
         #else
         NavigationView {
             ScrollView {
+                HStack {
+                    Text(LocalizedStringKey("nav_store"))
+                        .font(.title2.bold())
+                    Spacer()
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Text(LocalizedStringKey("nav_done"))
+                            .font(.headline)
+                    }
+                    .buttonStyle(FunActionButtonStyle())
+                }
+                .padding(.horizontal, 20)
+                .padding(.vertical, 14)
+
+                Divider()
+                
                 VStack(spacing: 24) {
                     // Hero Header Card
                     heroHeader
@@ -103,10 +120,10 @@ struct StoreView: View {
                     }
 
                     // Subscription Section (Subscriber Manage Card OR Purchase Options)
-                    // subscriptionSection
+                    subscriptionSection
 
-                    // Restored / Legacy Purchases Card
-                    if storeKitService.isGodlikeLegacyPurchased || storeKitService.isStarLimitLegacyPurchased || storeKitService.canBuyGodlike || storeKitService.canBuyStarLimit {
+                    // Restored / Legacy Purchases Card (Visible only when legacy items were restored)
+                    if storeKitService.isGodlikeLegacyPurchased || storeKitService.isStarLimitLegacyPurchased {
                         RestoredLegacyPurchasesCard()
                     }
 
@@ -116,20 +133,9 @@ struct StoreView: View {
                 .padding(.horizontal, 16)
             }
             .background(FunColors.bgColor.ignoresSafeArea())
-            .navigationTitle(LocalizedStringKey("nav_store"))
             #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
             #endif
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        presentationMode.wrappedValue.dismiss()
-                    }) {
-                        Text(LocalizedStringKey("nav_done"))
-                            .font(.headline)
-                    }
-                }
-            }
             .onAppear {
                 Task {
                     await storeKitService.fetchProducts()
@@ -211,7 +217,7 @@ struct StoreView: View {
                     .background(Color.blue)
                     .cornerRadius(14)
                 }
-                .buttonStyle(.plain)
+                .buttonStyle(FunActionButtonStyle())
             }
         } else {
             // Subscription Tiers List (Sorted Shortest to Longest)
@@ -280,6 +286,7 @@ struct StoreView: View {
             .padding(.vertical, 6)
         }
         .disabled(storeKitService.isLoading)
+        // TODO: .buttonStyle(FunChipButtonStyle())
     }
 }
 
@@ -333,7 +340,7 @@ struct SubscriptionCardRow: View {
             HStack(alignment: .top) {
                 VStack(alignment: .leading, spacing: 4) {
                     HStack(spacing: 8) {
-                        Text(subscriptionTitle(for: product))
+                        Text(product.displayName)
                             .font(.headline.bold())
 
                         // Percentage Savings Badge (for longer tiers)
@@ -346,6 +353,13 @@ struct SubscriptionCardRow: View {
                                 .foregroundColor(.white)
                                 .cornerRadius(8)
                         }
+                    }
+
+                    if !product.description.isEmpty {
+                        Text(product.description)
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                            .fixedSize(horizontal: false, vertical: true)
                     }
 
                     if let equiv = monthlyEquiv, storeKitService.periodInMonths(for: product) > 1.0 {
@@ -427,19 +441,6 @@ struct SubscriptionCardRow: View {
         )
         .shadow(color: Color.black.opacity(0.04), radius: 6, x: 0, y: 3)
     }
-
-    private func subscriptionTitle(for product: Product) -> String {
-        switch product.id {
-        case StoreKitService.subMonthlyID:
-            return NSLocalizedString("store_period_monthly", comment: "Monthly")
-        case StoreKitService.subQuarterlyID:
-            return NSLocalizedString("store_period_quarterly", comment: "Quarterly")
-        case StoreKitService.subYearlyID:
-            return NSLocalizedString("store_period_yearly", comment: "Yearly")
-        default:
-            return product.displayName
-        }
-    }
 }
 
 // MARK: - Restored Legacy Purchases Card (Visible when items restored or available to buy)
@@ -450,8 +451,22 @@ struct RestoredLegacyPurchasesCard: View {
         storeKitService.godlikeProduct?.displayName ?? NSLocalizedString("store_legacy_godlike", comment: "")
     }
 
+    private var godlikeDescription: String {
+        if let desc = storeKitService.godlikeProduct?.description, !desc.isEmpty {
+            return desc
+        }
+        return NSLocalizedString("store_desc_godlike", comment: "")
+    }
+
     private var starLimitTitle: String {
         storeKitService.unlockProduct?.displayName ?? NSLocalizedString("store_legacy_limit", comment: "")
+    }
+
+    private var starLimitDescription: String {
+        if let desc = storeKitService.unlockProduct?.description, !desc.isEmpty {
+            return desc
+        }
+        return NSLocalizedString("store_desc_unlock_stars", comment: "")
     }
 
     var body: some View {
@@ -464,10 +479,15 @@ struct RestoredLegacyPurchasesCard: View {
 
             // Godlike Difficulty Item
             if storeKitService.isGodlikeLegacyPurchased {
-                HStack {
+                HStack(alignment: .center) {
                     Label {
-                        Text(godlikeTitle)
-                            .font(.subheadline)
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(godlikeTitle)
+                                .font(.subheadline.bold())
+                            Text(godlikeDescription)
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
                     } icon: {
                         Image(systemName: "bolt.shield.fill")
                             .foregroundColor(FunColors.chalkboardGreen)
@@ -479,67 +499,23 @@ struct RestoredLegacyPurchasesCard: View {
                         .font(.caption.bold())
                         .foregroundColor(.green)
                 }
-            } else if storeKitService.canBuyGodlike {
-                VStack(alignment: .leading, spacing: 10) {
-                    HStack(alignment: .top) {
-                        Label {
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text(godlikeTitle)
-                                    .font(.subheadline.bold())
-                                Text(LocalizedStringKey("store_desc_godlike"))
-                                    .font(.caption)
-                                    .foregroundColor(.secondary)
-                                    .fixedSize(horizontal: false, vertical: true)
-                            }
-                        } icon: {
-                            Image(systemName: "bolt.shield.fill")
-                                .foregroundColor(FunColors.chalkboardGreen)
-                        }
-
-                        Spacer()
-                    }
-
-                    if let product = storeKitService.godlikeProduct {
-                        Button(action: {
-                            Task {
-                                _ = await storeKitService.purchase(product)
-                            }
-                        }) {
-                            HStack {
-                                Spacer()
-                                if storeKitService.isLoading {
-                                    ProgressView()
-                                        .scaleEffect(0.8)
-                                        .tint(.white)
-                                } else {
-                                    let btnText = String(format: NSLocalizedString("store_buy_button_format", comment: "Kup (cena)"), product.displayPrice)
-                                    Text(btnText)
-                                        .font(.headline.bold())
-                                        .foregroundColor(.white)
-                                }
-                                Spacer()
-                            }
-                            .frame(minHeight: 44)
-                            .background(FunColors.chalkboardGreen)
-                            .cornerRadius(10)
-                        }
-                        .buttonStyle(FunActionButtonStyle(cornerRadius: 10))
-                        .disabled(storeKitService.isLoading)
-                    }
-                }
             }
 
-            if (storeKitService.isGodlikeLegacyPurchased || storeKitService.canBuyGodlike) &&
-               (storeKitService.isStarLimitLegacyPurchased || storeKitService.canBuyStarLimit) {
+            if storeKitService.isGodlikeLegacyPurchased && storeKitService.isStarLimitLegacyPurchased {
                 Divider()
             }
 
             // Star Limit Boost Item
             if storeKitService.isStarLimitLegacyPurchased {
-                HStack {
+                HStack(alignment: .center) {
                     Label {
-                        Text(starLimitTitle)
-                            .font(.subheadline)
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(starLimitTitle)
+                                .font(.subheadline.bold())
+                            Text(starLimitDescription)
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
                     } icon: {
                         Image(systemName: "star.fill")
                             .foregroundColor(.orange)
@@ -550,54 +526,6 @@ struct RestoredLegacyPurchasesCard: View {
                     Text(LocalizedStringKey("store_status_restored"))
                         .font(.caption.bold())
                         .foregroundColor(.green)
-                }
-            } else if storeKitService.canBuyStarLimit {
-                VStack(alignment: .leading, spacing: 10) {
-                    HStack(alignment: .top) {
-                        Label {
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text(starLimitTitle)
-                                    .font(.subheadline.bold())
-                                Text(LocalizedStringKey("store_desc_unlock_stars"))
-                                    .font(.caption)
-                                    .foregroundColor(.secondary)
-                                    .fixedSize(horizontal: false, vertical: true)
-                            }
-                        } icon: {
-                            Image(systemName: "star.fill")
-                                .foregroundColor(.orange)
-                        }
-
-                        Spacer()
-                    }
-
-                    if let product = storeKitService.unlockProduct {
-                        Button(action: {
-                            Task {
-                                _ = await storeKitService.purchase(product)
-                            }
-                        }) {
-                            HStack {
-                                Spacer()
-                                if storeKitService.isLoading {
-                                    ProgressView()
-                                        .scaleEffect(0.8)
-                                        .tint(.white)
-                                } else {
-                                    let btnText = String(format: NSLocalizedString("store_buy_button_format", comment: "Kup (cena)"), product.displayPrice)
-                                    Text(btnText)
-                                        .font(.headline.bold())
-                                        .foregroundColor(.white)
-                                }
-                                Spacer()
-                            }
-                            .frame(minHeight: 44)
-                            .background(Color.orange)
-                            .cornerRadius(10)
-                        }
-                        .buttonStyle(FunActionButtonStyle(cornerRadius: 10))
-                        .disabled(storeKitService.isLoading)
-                    }
                 }
             }
         }

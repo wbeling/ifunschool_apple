@@ -163,6 +163,8 @@
 		B7BAFB6B306C652D00656C7F /* iFunSchool_v2_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iFunSchool_v2_macOS.entitlements; sourceTree = "<group>"; };
 		B7BAFB6C306C652D00656C7F /* iFunSchool_v2_tvOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iFunSchool_v2_tvOS.entitlements; sourceTree = "<group>"; };
 		B7D191743017E942008DE2C2 /* iFunSchool.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = iFunSchool.storekit; sourceTree = "<group>"; };
+		B7FA33B5307AB6E400C0696D /* Fastfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Fastfile; sourceTree = "<group>"; };
+		B7FA33B6307AB6E400C0696D /* Snapfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Snapfile; sourceTree = "<group>"; };
 		B8747C001386B70100BC88D0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		B8747C061386BABF00BC88D0 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		B8C3EBAE1395638700999723 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -270,6 +272,8 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				B7FA33B5307AB6E400C0696D /* Fastfile */,
+				B7FA33B6307AB6E400C0696D /* Snapfile */,
 				B799087613A77AD200B2941C /* Resources */,
 				V20000000000000000000007 /* iFunSchool v2 */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -505,6 +509,14 @@
 					V2TARGETTVO00000000000 = {
 						DevelopmentTeam = SP4XNG9W4N;
 						ProvisioningStyle = Automatic;
+					};
+					V2TVOSUITESTTARGET000 = {
+						DevelopmentTeam = SP4XNG9W4N;
+						ProvisioningStyle = Automatic;
+						TestTargetID = V2TARGETTVO00000000000;
+					};
+					V2UITESTTARGET00000000000 = {
+						TestTargetID = V2000000000000000000000B;
 					};
 				};
 			};
@@ -748,7 +760,6 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "iFunSchool v2 tvOSUITests";
-				IPHONEOS_DEPLOYMENT_TARGET = "$(RECOMMENDED_IPHONEOS_DEPLOYMENT_TARGET)";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -756,11 +767,13 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = pl.beling.ifunschool.v2tvOSUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvsimulator;
+				SDKROOT = appletvos;
+				SUPPORTED_PLATFORMS = "appletvos appletvsimulator";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
+				TEST_TARGET_NAME = "iFunSchool v2 tvOS";
 				TVOS_DEPLOYMENT_TARGET = "$(RECOMMENDED_TVOS_DEPLOYMENT_TARGET)";
 			};
 			name = Debug;
@@ -777,7 +790,6 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "iFunSchool v2 tvOSUITests";
-				IPHONEOS_DEPLOYMENT_TARGET = "$(RECOMMENDED_IPHONEOS_DEPLOYMENT_TARGET)";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -785,11 +797,13 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = pl.beling.ifunschool.v2tvOSUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvsimulator;
+				SDKROOT = appletvos;
+				SUPPORTED_PLATFORMS = "appletvos appletvsimulator";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
+				TEST_TARGET_NAME = "iFunSchool v2 tvOS";
 				TVOS_DEPLOYMENT_TARGET = "$(RECOMMENDED_TVOS_DEPLOYMENT_TARGET)";
 			};
 			name = Release;
@@ -1214,10 +1228,13 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = pl.beling.ifunschool.v2UITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "iFunSchool v2 iOS";
 			};
 			name = Debug;
 		};
@@ -1239,10 +1256,13 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = pl.beling.ifunschool.v2UITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "iFunSchool v2 iOS";
 			};
 			name = Release;
 		};

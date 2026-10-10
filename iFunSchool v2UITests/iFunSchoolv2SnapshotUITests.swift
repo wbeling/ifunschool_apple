@@ -21,7 +21,7 @@ class iFunSchoolv2SnapshotUITests: XCTestCase {
         // -------------------------------------------------------------
         // 1. Main Menu / Game List Screen
         // -------------------------------------------------------------
-        let app1 = XCUIApplication(bundleIdentifier: "pl.beling.ifunschool")
+        let app1 = XCUIApplication()
         setupSnapshot(app1)
         app1.launch()
         sleep(8)
@@ -31,7 +31,7 @@ class iFunSchoolv2SnapshotUITests: XCTestCase {
         // -------------------------------------------------------------
         // 2. Streak Calendar Screen
         // -------------------------------------------------------------
-        let app2 = XCUIApplication(bundleIdentifier: "pl.beling.ifunschool")
+        let app2 = XCUIApplication()
         setupSnapshot(app2)
         app2.launchArguments.append("-UITestOpenStreak")
         app2.launch()
@@ -42,7 +42,7 @@ class iFunSchoolv2SnapshotUITests: XCTestCase {
         // -------------------------------------------------------------
         // 3. Visual Progress View with Flags Category Selected
         // -------------------------------------------------------------
-        let app3 = XCUIApplication(bundleIdentifier: "pl.beling.ifunschool")
+        let app3 = XCUIApplication()
         setupSnapshot(app3)
         app3.launchArguments.append("-UITestOpenProgressFlags")
         app3.launch()
@@ -53,7 +53,7 @@ class iFunSchoolv2SnapshotUITests: XCTestCase {
         // -------------------------------------------------------------
         // 4. Geography Flags Game View
         // -------------------------------------------------------------
-        let app4 = XCUIApplication(bundleIdentifier: "pl.beling.ifunschool")
+        let app4 = XCUIApplication()
         setupSnapshot(app4)
         app4.launchArguments.append("-UITestOpenFlagsGame")
         app4.launch()
@@ -64,7 +64,7 @@ class iFunSchoolv2SnapshotUITests: XCTestCase {
         // -------------------------------------------------------------
         // 5. Chemistry Elements Game View
         // -------------------------------------------------------------
-        let app5 = XCUIApplication(bundleIdentifier: "pl.beling.ifunschool")
+        let app5 = XCUIApplication()
         setupSnapshot(app5)
         app5.launchArguments.append("-UITestOpenElementsGame")
         app5.launch()
