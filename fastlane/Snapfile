@@ -27,11 +27,14 @@ output_directory("./fastlane/screenshots")
 # Clear previous screenshots before running
 clear_previous_screenshots(true)
 
-# Reinstall app between runs for clean state
-reinstall_app(true)
+# Reinstall app between runs for clean state (disabled to avoid slow reinstallations and simulator timeouts)
+reinstall_app(false)
 
 # Stop testing after first failure
 stop_after_first_error(false)
+
+# Prevent Xcode from hanging for 10 minutes trying to collect simulator diagnostics
+xcargs("-collect-test-diagnostics never")
 
 # Override status bar to display static time (9:41 AM), 100% battery, and full signal bars
 override_status_bar(true)

@@ -17,59 +17,50 @@ class iFunSchoolv2SnapshotUITests: XCTestCase {
     }
 
     @MainActor
+    private func captureSnapshot(named name: String, launchArgument: String? = nil) {
+        let app = XCUIApplication()
+        setupSnapshot(app)
+        if let arg = launchArgument {
+            app.launchArguments.append(arg)
+        }
+        app.launch()
+
+        // Wait for interactive buttons to exist, ensuring views are fully rendered and splash screen is bypassed
+        _ = app.buttons.firstMatch.waitForExistence(timeout: 10)
+        // Brief pause to allow SwiftUI transition animations to settle
+        Thread.sleep(forTimeInterval: 1.0)
+
+        snapshot(name)
+        app.terminate()
+        // Small pause after termination to let the tvOS simulator process clean up
+        Thread.sleep(forTimeInterval: 0.5)
+    }
+
+    @MainActor
     func testTakeAppStoreScreenshots() throws {
         // -------------------------------------------------------------
         // 1. Main Menu / Game List Screen
         // -------------------------------------------------------------
-        let app1 = XCUIApplication()
-        setupSnapshot(app1)
-        app1.launch()
-        sleep(8)
-        snapshot("01_MainScreen")
-        app1.terminate()
+        captureSnapshot(named: "01_MainScreen")
 
         // -------------------------------------------------------------
         // 2. Streak Calendar Screen
         // -------------------------------------------------------------
-        let app2 = XCUIApplication()
-        setupSnapshot(app2)
-        app2.launchArguments.append("-UITestOpenStreak")
-        app2.launch()
-        sleep(8)
-        snapshot("02_StreakScreen")
-        app2.terminate()
+        captureSnapshot(named: "02_StreakScreen", launchArgument: "-UITestOpenStreak")
 
         // -------------------------------------------------------------
         // 3. Visual Progress View with Flags Category Selected
         // -------------------------------------------------------------
-        let app3 = XCUIApplication()
-        setupSnapshot(app3)
-        app3.launchArguments.append("-UITestOpenProgressFlags")
-        app3.launch()
-        sleep(8)
-        snapshot("03_ProgressView_Flags")
-        app3.terminate()
+        captureSnapshot(named: "03_ProgressView_Flags", launchArgument: "-UITestOpenProgressFlags")
 
         // -------------------------------------------------------------
         // 4. Geography Flags Game View
         // -------------------------------------------------------------
-        let app4 = XCUIApplication()
-        setupSnapshot(app4)
-        app4.launchArguments.append("-UITestOpenFlagsGame")
-        app4.launch()
-        sleep(8)
-        snapshot("04_FlagsGame")
-        app4.terminate()
+        captureSnapshot(named: "04_FlagsGame", launchArgument: "-UITestOpenFlagsGame")
 
         // -------------------------------------------------------------
         // 5. Chemistry Elements Game View
         // -------------------------------------------------------------
-        let app5 = XCUIApplication()
-        setupSnapshot(app5)
-        app5.launchArguments.append("-UITestOpenElementsGame")
-        app5.launch()
-        sleep(8)
-        snapshot("05_ElementsGame")
-        app5.terminate()
+        captureSnapshot(named: "05_ElementsGame", launchArgument: "-UITestOpenElementsGame")
     }
 }

@@ -156,6 +156,7 @@
 		B72A51CB30188A050042546B /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 		B72A51CC30188A050042546D /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B733D2DA3018073600D648AE /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		B75FE5E7307BB7CE0030CF0F /* CONNECT.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONNECT.md; sourceTree = "<group>"; };
 		B774D12D132D394200622D38 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B775D6C51316EDFB00BDC76E /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		B775E4EE131C20B4000F37E7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -272,6 +273,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				B75FE5E7307BB7CE0030CF0F /* CONNECT.md */,
 				B7FA33B5307AB6E400C0696D /* Fastfile */,
 				B7FA33B6307AB6E400C0696D /* Snapfile */,
 				B799087613A77AD200B2941C /* Resources */,

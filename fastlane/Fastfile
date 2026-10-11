@@ -16,7 +16,13 @@ lane :tvos_screenshots do
     scheme: "iFunSchool v2 tvOSUITests",
     devices: ["Apple TV 4K (3rd generation)"],
     sdk: "appletvsimulator",
-    output_directory: "./fastlane/screenshots/tvos"
+    output_directory: "./fastlane/screenshots/tvos",
+    override_status_bar: false,
+    reinstall_app: false,
+    dark_mode: false,
+    only_testing: ["iFunSchool v2 tvOSUITests/iFunSchoolv2SnapshotUITests"],
+    xcargs: "-collect-test-diagnostics never",
+    launch_arguments: ["-UIUserInterfaceStyle Light", "-FASTLANE_SNAPSHOT YES", "-ui_testing"]
   )
 end
 

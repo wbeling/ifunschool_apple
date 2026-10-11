@@ -130,7 +130,7 @@ open class Snapshot: NSObject {
         }
 
         let path = cacheDirectory.appendingPathComponent("snapshot-launch_arguments.txt")
-        app.launchArguments += ["-FASTLANE_SNAPSHOT", "YES", "-ui_testing"]
+        app.launchArguments += ["-FASTLANE_SNAPSHOT", "YES", "-ui_testing", "-UIUserInterfaceStyle", "Light"]
 
         do {
             let launchArguments = try String(contentsOf: path, encoding: String.Encoding.utf8)

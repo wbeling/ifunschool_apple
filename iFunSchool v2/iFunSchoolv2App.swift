@@ -2,9 +2,15 @@ import SwiftUI
 
 @main
 struct iFunSchoolv2App: App {
-    @State private var isLoading = true
+    private let isTestingOrSnapshot: Bool
+    @State private var isLoading: Bool
 
     init() {
+        let args = ProcessInfo.processInfo.arguments
+        let testing = args.contains("-FASTLANE_SNAPSHOT") || args.contains("-ui_testing")
+        self.isTestingOrSnapshot = testing
+        _isLoading = State(initialValue: !testing)
+
         // Trigger Game Center authentication immediately on app launch
         AchievementService.shared.authenticateLocalPlayer()
     }
@@ -20,10 +26,13 @@ struct iFunSchoolv2App: App {
                         .transition(.opacity.animation(.easeInOut(duration: 0.4)))
                 }
             }
+            .preferredColorScheme(isTestingOrSnapshot ? .light : nil)
             .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
-                    withAnimation(.easeInOut(duration: 0.4)) {
-                        isLoading = false
+                if !isTestingOrSnapshot {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+                        withAnimation(.easeInOut(duration: 0.4)) {
+                            isLoading = false
+                        }
                     }
                 }
             }

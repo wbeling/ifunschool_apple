@@ -14,6 +14,40 @@ struct ContentView: View {
     @State private var selectedProgressCategory: ProgressCategory = .addition
     @State private var activeGameItem: GameItem? = nil
 
+    init() {
+        let args = ProcessInfo.processInfo.arguments
+        if args.contains("-UITestOpenStreak") {
+            _isShowingStreak = State(initialValue: true)
+        } else if args.contains("-UITestOpenProgressFlags") {
+            _selectedProgressCategory = State(initialValue: .flags)
+            _isShowingProgressGrid = State(initialValue: true)
+        } else if args.contains("-UITestOpenFlagsGame") {
+            _activeGameItem = State(initialValue: GameItem(
+                id: "15_1",
+                gameType: .flags,
+                level: .easy,
+                requiredGoldStars: 0,
+                requiredSilverStars: 0
+            ))
+        } else if args.contains("-UITestOpenElementsGame") {
+            _activeGameItem = State(initialValue: GameItem(
+                id: "14_1",
+                gameType: .chemNames,
+                level: .easy,
+                requiredGoldStars: 0,
+                requiredSilverStars: 0
+            ))
+        } else if args.contains("-UITestOpenMultiplicationGame") {
+            _activeGameItem = State(initialValue: GameItem(
+                id: "2_1",
+                gameType: .multiplication,
+                level: .easy,
+                requiredGoldStars: 0,
+                requiredSilverStars: 0
+            ))
+        }
+    }
+
     var body: some View {
         ZStack {
             if let game = activeGameItem {
