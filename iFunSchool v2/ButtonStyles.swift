@@ -48,7 +48,7 @@ private struct TVOSButtonBody: View {
 
 // MARK: - Filter Chip Button Style
 struct FunChipButtonStyle: ButtonStyle {
-    let isSelected: Bool
+    var isSelected: Bool = false
 
     func makeBody(configuration: Configuration) -> some View {
         FunChipButtonBody(configuration: configuration, isSelected: isSelected)
@@ -124,6 +124,50 @@ private struct FunActionButtonBody: View {
     var body: some View {
         configuration.label
             //.scaleEffect(isFocused ? 1.04 : (configuration.isPressed ? 0.96 : 1.0))
+            //.shadow(color: isFocused ? Color.blue.opacity(0.6) : Color.black.opacity(0.1), radius: isFocused ? 8 : 2, y: isFocused ? 4 : 1)
+            .overlay(
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .stroke(borderColor, lineWidth: borderWidth)
+            )
+            .animation(.easeInOut(duration: 0.15), value: isFocused)
+            .animation(.easeInOut(duration: 0.1), value: configuration.isPressed)
+    }
+}
+
+
+struct FunBuyButtonStyle: ButtonStyle {
+    var cornerRadius: CGFloat = 12
+
+    func makeBody(configuration: Configuration) -> some View {
+        FunBuyButtonBody(configuration: configuration, cornerRadius: cornerRadius)
+    }
+}
+
+private struct FunBuyButtonBody: View {
+    let configuration: ButtonStyle.Configuration
+    let cornerRadius: CGFloat
+    @Environment(\.isFocused) private var isFocused
+    @Environment(\.colorScheme) private var colorScheme
+
+    private var borderColor: Color {
+        #if os(tvOS)
+        return isFocused ? (colorScheme == .dark ? .white : .black) : Color.gray.opacity(0.35)
+        #else
+        return isFocused ? Color.white : Color.clear
+        #endif
+    }
+
+    private var borderWidth: CGFloat {
+        #if os(tvOS)
+        return 0.0
+        #else
+        return isFocused ? 2.5 : 0
+        #endif
+    }
+
+    var body: some View {
+        configuration.label
+            .scaleEffect(isFocused ? 1.00 : (configuration.isPressed ? 0.96 : 0.9))
             //.shadow(color: isFocused ? Color.blue.opacity(0.6) : Color.black.opacity(0.1), radius: isFocused ? 8 : 2, y: isFocused ? 4 : 1)
             .overlay(
                 RoundedRectangle(cornerRadius: cornerRadius)

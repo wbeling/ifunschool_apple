@@ -35,6 +35,7 @@ class StoreKitService: ObservableObject {
             NotificationCenter.default.post(name: NSNotification.Name("iFunSchoolScoreUpdated"), object: nil)
         }
     }
+    @Published var activeCommitmentProgress: String? = nil
 
     @Published var isGodlikeLegacyPurchased: Bool {
         didSet {
@@ -168,11 +169,20 @@ class StoreKitService: ObservableObject {
     }
 
     // MARK: - Purchase Flow
-    func purchase(_ product: Product) async -> Bool {
+    func purchase(_ product: Product, withCommitment: Bool = false) async -> Bool {
         isLoading = true
         purchaseError = nil
         do {
-            let result = try await product.purchase()
+            let result: Product.PurchaseResult
+            if withCommitment {
+                if #available(iOS 26.4, macOS 26.4, tvOS 26.4, watchOS 26.4, visionOS 26.4, *) {
+                    result = try await product.purchase(options: [.billingPlanType(.monthly)])
+                } else {
+                    result = try await product.purchase()
+                }
+            } else {
+                result = try await product.purchase()
+            }
             switch result {
             case .success(let verification):
                 let transaction = try checkVerified(verification)
@@ -234,6 +244,7 @@ class StoreKitService: ObservableObject {
 
     func updatePurchasedStateFromAppStore() async {
         var hasActiveSub = false
+        var commitmentProgress: String? = nil
         var hasGodlikeLegacy = UserDefaults.standard.bool(forKey: godlikeLegacyKey)
         var hasStarLimitLegacy = UserDefaults.standard.bool(forKey: starLimitLegacyKey)
 
@@ -243,6 +254,11 @@ class StoreKitService: ObservableObject {
             if transaction.revocationDate == nil {
                 if StoreKitService.allSubscriptionIDs.contains(transaction.productID) {
                     hasActiveSub = true
+                    if #available(iOS 26.4, macOS 26.4, tvOS 26.4, watchOS 26.4, visionOS 26.4, *) {
+                        if transaction.billingPlanType == .monthly, let commitment = transaction.commitmentInfo {
+                            commitmentProgress = "\(commitment.billingPeriodNumber)/\(commitment.totalBillingPeriods)"
+                        }
+                    }
                 } else {
                     switch transaction.productID {
                     case StoreKitService.godlikeProductID:
@@ -259,6 +275,7 @@ class StoreKitService: ObservableObject {
         }
 
         self.isSubscriptionActive = hasActiveSub
+        self.activeCommitmentProgress = commitmentProgress
         self.isGodlikeLegacyPurchased = hasGodlikeLegacy
         self.isStarLimitLegacyPurchased = hasStarLimitLegacy
     }
@@ -366,5 +383,44 @@ extension StoreKitService {
         formatter.maximumUnitCount = 1
         formatter.unitsStyle = .full
         return formatter.string(from: dateComponents) ?? "\(period.value)"
+    }
+}
+
+// MARK: - 12-Month Commitment Plan Models & Helpers
+struct CommitmentPlanDetails {
+    let monthlyPriceString: String
+    let totalCommitmentPriceString: String
+    let totalMonths: Int
+    let fullNoticeText: String
+    let subscribeButtonText: String
+}
+
+extension StoreKitService {
+    func commitmentPlanDetails(for product: Product) -> CommitmentPlanDetails? {
+        if #available(iOS 26.4, macOS 26.4, tvOS 26.4, watchOS 26.4, visionOS 26.4, *) {
+            if let subscription = product.subscription,
+               let commitmentTerm = subscription.pricingTerms.first(where: { $0.billingPlanType == .monthly }) {
+                let monthlyPrice = commitmentTerm.billingDisplayPrice
+                let totalPrice = commitmentTerm.commitmentInfo.displayPrice
+                let noticeFormat = NSLocalizedString("store_commitment_disclosure_format", comment: "Monthly commitment disclosure")
+                let fullNotice = String(format: noticeFormat, monthlyPrice, totalPrice)
+
+                let btnFormat = NSLocalizedString("store_subscribe_commitment_button_format", comment: "Subscribe with commitment")
+                let btnText = String(format: btnFormat, monthlyPrice)
+
+                return CommitmentPlanDetails(
+                    monthlyPriceString: monthlyPrice,
+                    totalCommitmentPriceString: totalPrice,
+                    totalMonths: 12,
+                    fullNoticeText: fullNotice,
+                    subscribeButtonText: btnText
+                )
+            }
+        }
+        return nil
+    }
+
+    func hasCommitmentPlan(for product: Product) -> Bool {
+        return commitmentPlanDetails(for: product) != nil
     }
 }

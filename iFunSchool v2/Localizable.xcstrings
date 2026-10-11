@@ -16923,6 +16923,111 @@
         }
       }
     },
+    "store_commitment_badge": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "12 Monate Bindung"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "12-Month Commitment"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compromiso de 12 meses"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Engagement de 12 mois"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zobowiązanie na 12 miesięcy"
+          }
+        }
+      }
+    },
+    "store_commitment_disclosure_format": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@/Monat für 12 Monate. Gesamtbindung: %2$@"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@/mo for 12 months. Total commitment: %2$@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@/mes durante 12 meses. Compromiso total: %2$@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@/mois pendant 12 mois. Engagement total : %2$@"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@/mies. przez 12 miesięcy. Całkowity koszt: %2$@"
+          }
+        }
+      }
+    },
+    "store_subscribe_commitment_button_format": {
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abonnieren (%@/Monat)"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Subscribe (%@/mo)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suscribirse (%@/mes)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "S'abonner (%@/mois)"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Subskrybuj (%@/mies.)"
+          }
+        }
+      }
+    },
     "store_desc_godlike": {
       "extractionState": "manual",
       "localizations": {
@@ -17058,7 +17163,7 @@
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Subskrypcja odnawia się automatycznie. Zakupy jednorazowe z poprzednich wersji aplikacji można przywrócić w dowolnym momencie."
+            "value": "Subskrypcja odnawia się automatycznie, chyba że zostanie anulowana co najmniej 24 godziny przed końcem okresu. Poprzednie zakupy można przywrócić w dowolnym momencie."
           }
         }
       }

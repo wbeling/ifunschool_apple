@@ -58,7 +58,7 @@
     "_developerTeamID" : "SP4XNG9W4N",
     "_disableDialogs" : false,
     "_failTransactionsEnabled" : false,
-    "_lastSynchronizedDate" : 813345624.55586398,
+    "_lastSynchronizedDate" : 813447742.57448697,
     "_locale" : "en_US",
     "_renewalBillingIssuesEnabled" : false,
     "_storefront" : "USA",
@@ -76,8 +76,23 @@
       "localizations" : [
         {
           "description" : "",
+          "displayName" : "Pase Premium",
+          "locale" : "es_ES"
+        },
+        {
+          "description" : "",
+          "displayName" : "Pass Premium",
+          "locale" : "fr"
+        },
+        {
+          "description" : "",
           "displayName" : "Premium Pass",
           "locale" : "en_US"
+        },
+        {
+          "description" : "",
+          "displayName" : "Premium-Pass",
+          "locale" : "de"
         },
         {
           "description" : "",

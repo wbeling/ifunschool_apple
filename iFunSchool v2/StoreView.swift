@@ -265,28 +265,41 @@ struct StoreView: View {
         #endif
     }
 
-    // MARK: - Standalone Restore Button
+    // MARK: - Standalone Restore Button & Auto-Renew Disclosure
     private var restoreButton: some View {
-        Button(action: {
-            Task {
-                await storeKitService.restorePurchases()
-            }
-        }) {
-            HStack(spacing: 6) {
-                if storeKitService.isLoading {
-                    ProgressView()
-                        .scaleEffect(0.8)
-                } else {
-                    Image(systemName: "arrow.clockwise.circle")
+        VStack(spacing: 8) {
+            Button(action: {
+                Task {
+                    await storeKitService.restorePurchases()
                 }
-                Text(LocalizedStringKey("store_restore_purchases"))
-                    .font(.subheadline.weight(.semibold))
+            }) {
+                HStack(spacing: 6) {
+                    if storeKitService.isLoading {
+                        ProgressView()
+                            .scaleEffect(0.8)
+                    } else {
+                        Image(systemName: "arrow.clockwise.circle")
+                    }
+                    Text(LocalizedStringKey("store_restore_purchases"))
+                        .font(.subheadline.weight(.semibold))
+                }
+                .foregroundColor(.blue)
+                .padding(.horizontal, 16)
+                .padding(.vertical, 8)
+                .background(FunColors.fillColor)
+                .cornerRadius(16)
             }
-            .foregroundColor(.blue)
-            .padding(.vertical, 6)
+            .buttonStyle(FunChipButtonStyle())
+            .disabled(storeKitService.isLoading)
+
+            // Auto-renewable subscription disclosure note
+            Text(LocalizedStringKey("store_footer_notice"))
+                .font(.caption2)
+                .foregroundColor(.secondary)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, 24)
+                .padding(.bottom, 24)
         }
-        .disabled(storeKitService.isLoading)
-        // TODO: .buttonStyle(FunChipButtonStyle())
     }
 }
 
@@ -325,6 +338,35 @@ struct IntroOfferBadge: View {
     }
 }
 
+// MARK: - 12-Month Commitment Plan Badge Subview
+struct CommitmentPlanBadge: View {
+    let details: CommitmentPlanDetails
+
+    var body: some View {
+        HStack(alignment: .top, spacing: 6) {
+            Image(systemName: "calendar.badge.clock")
+                .font(.subheadline)
+                .foregroundColor(.purple)
+
+            VStack(alignment: .leading, spacing: 2) {
+                Text(details.fullNoticeText)
+                    .font(.subheadline.weight(.semibold))
+                    .foregroundColor(.primary)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+        }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 8)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Color.purple.opacity(0.12))
+        .cornerRadius(10)
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(Color.purple.opacity(0.3), lineWidth: 1)
+        )
+    }
+}
+
 // MARK: - Subscription Card Component
 struct SubscriptionCardRow: View {
     let product: Product
@@ -335,6 +377,7 @@ struct SubscriptionCardRow: View {
         let savingsPercent = storeKitService.savingsPercentage(for: product)
         let monthlyEquiv = storeKitService.monthlyEquivalentPriceString(for: product)
         let introDetails = storeKitService.introOfferDetails(for: product)
+        let commitmentDetails = storeKitService.commitmentPlanDetails(for: product)
 
         VStack(alignment: .leading, spacing: 14) {
             HStack(alignment: .top) {
@@ -343,8 +386,17 @@ struct SubscriptionCardRow: View {
                         Text(product.displayName)
                             .font(.headline.bold())
 
-                        // Percentage Savings Badge (for longer tiers)
-                        if let savings = savingsPercent {
+                        // Commitment Plan Badge
+                        if commitmentDetails != nil {
+                            Text(LocalizedStringKey("store_commitment_badge"))
+                                .font(.caption2.bold())
+                                .padding(.horizontal, 8)
+                                .padding(.vertical, 3)
+                                .background(Color.purple)
+                                .foregroundColor(.white)
+                                .cornerRadius(8)
+                        } else if let savings = savingsPercent {
+                            // Percentage Savings Badge (for longer tiers)
                             Text(String(format: NSLocalizedString("store_save_percentage", comment: "Save %"), savings))
                                 .font(.caption2.bold())
                                 .padding(.horizontal, 8)
@@ -362,7 +414,7 @@ struct SubscriptionCardRow: View {
                             .fixedSize(horizontal: false, vertical: true)
                     }
 
-                    if let equiv = monthlyEquiv, storeKitService.periodInMonths(for: product) > 1.0 {
+                    if let equiv = monthlyEquiv, storeKitService.periodInMonths(for: product) > 1.0, commitmentDetails == nil {
                         Text(String(format: NSLocalizedString("store_monthly_equivalent_format", comment: "Monthly equiv"), equiv))
                             .font(.caption)
                             .foregroundColor(.secondary)
@@ -372,9 +424,19 @@ struct SubscriptionCardRow: View {
                 Spacer()
 
                 VStack(alignment: .trailing, spacing: 2) {
-                    Text(product.displayPrice)
-                        .font(.title3.bold())
-                        .foregroundColor(FunColors.chalkboardGreen)
+                    if let commitment = commitmentDetails {
+                        Text(commitment.monthlyPriceString)
+                            .font(.title3.bold())
+                            .foregroundColor(FunColors.chalkboardGreen)
+
+                        Text(commitment.totalCommitmentPriceString)
+                            .font(.caption2)
+                            .foregroundColor(.secondary)
+                    } else {
+                        Text(product.displayPrice)
+                            .font(.title3.bold())
+                            .foregroundColor(FunColors.chalkboardGreen)
+                    }
                     
                     if let details = introDetails {
                         Text("\(details.introDurationString): \(details.introPriceString)")
@@ -382,6 +444,11 @@ struct SubscriptionCardRow: View {
                             .foregroundColor(.orange)
                     }
                 }
+            }
+
+            // 12-Month Commitment Banner
+            if let commitment = commitmentDetails {
+                CommitmentPlanBadge(details: commitment)
             }
 
             // Introductory Offer Banner
@@ -408,7 +475,7 @@ struct SubscriptionCardRow: View {
             // Subscribe Button
             Button(action: {
                 Task {
-                    _ = await storeKitService.purchase(product)
+                    _ = await storeKitService.purchase(product, withCommitment: commitmentDetails != nil)
                 }
             }) {
                 HStack {
@@ -418,7 +485,15 @@ struct SubscriptionCardRow: View {
                             .scaleEffect(0.9)
                             .tint(.white)
                     } else {
-                        let btnLabel = introDetails?.subscribeButtonText ?? String(format: NSLocalizedString("store_subscribe_button", comment: "Subscribe"), product.displayPrice)
+                        let btnLabel: String = {
+                            if let details = introDetails {
+                                return details.subscribeButtonText
+                            } else if let commitment = commitmentDetails {
+                                return commitment.subscribeButtonText
+                            } else {
+                                return String(format: NSLocalizedString("store_subscribe_button", comment: "Subscribe"), product.displayPrice)
+                            }
+                        }()
                         Text(btnLabel)
                             .font(.headline.bold())
                             .foregroundColor(.white)
@@ -429,7 +504,7 @@ struct SubscriptionCardRow: View {
                 .background(isSubscribed ? Color.gray : FunColors.chalkboardGreen)
                 .cornerRadius(12)
             }
-            .buttonStyle(FunActionButtonStyle(cornerRadius: 12))
+            .buttonStyle(FunBuyButtonStyle(cornerRadius: 12))
             .disabled(storeKitService.isLoading)
         }
         .padding(18)
@@ -437,7 +512,12 @@ struct SubscriptionCardRow: View {
         .cornerRadius(16)
         .overlay(
             RoundedRectangle(cornerRadius: 16)
-                .stroke(introDetails != nil ? Color.orange.opacity(0.8) : (savingsPercent != nil ? Color.orange.opacity(0.6) : Color.clear), lineWidth: introDetails != nil ? 2 : 1.5)
+                .stroke(
+                    introDetails != nil ? Color.orange.opacity(0.8) :
+                    (commitmentDetails != nil ? Color.purple.opacity(0.7) :
+                    (savingsPercent != nil ? Color.orange.opacity(0.6) : Color.clear)),
+                    lineWidth: (introDetails != nil || commitmentDetails != nil) ? 2 : 1.5
+                )
         )
         .shadow(color: Color.black.opacity(0.04), radius: 6, x: 0, y: 3)
     }
