@@ -11,6 +11,11 @@
 
 ## 🇬🇧 English (EN)
 
+### Subtitle (28 / 30 znaków)
+```text
+Math, Flags & Chemistry Quiz
+```
+
 ### Promotional Text (131 / 170 znaków)
 ```text
 Supercharge your brain! 15 games in math, flags & chemistry with smart learning, daily streaks, and Godlike challenges. Start free!
@@ -21,7 +26,7 @@ Supercharge your brain! 15 games in math, flags & chemistry with smart learning,
 math,flags,chemistry,quiz,mental math,memory,brain training,multiplication,trivia,learning,school
 ```
 
-### Description (3491 / 4000 znaków)
+### Description (3346 / 4000 znaków)
 ```text
 Ready to sharpen your mind, master mental math, memorize world flags, and conquer chemistry? 
 
@@ -84,7 +89,15 @@ TRY FOR FREE & AFFORDABLE SUBSCRIPTION
   - Instant access to the elite GODLIKE level – no star requirements needed!
 
 Download iFunSchool today and unlock your brain's full potential!
+
+━━━━━━━━━━━━━━━━━━━━━
+📺 [Note: Required for Apple TV (tvOS) version]:
+Terms of Use (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Privacy Policy: https://ifunschool.beling.pl/en/privacy
 ```
+
+> 💡 **Adnotacja:** Fragment na końcu opisu z linkami do EULA i Privacy Policy jest wymagany przez Apple w szczególności dla wersji **Apple TV (tvOS)**.
+
 
 ### What's New in This Version (1490 / 4000 znaków)
 ```text
@@ -118,6 +131,11 @@ Enjoying iFunSchool? Please leave us a review on the App Store!
 
 ## 🇵🇱 Polski (PL)
 
+### Subtitle (26 / 30 znaków)
+```text
+Matematyka, Flagi i Chemia
+```
+
 ### Promotional Text (148 / 170 znaków)
 ```text
 Rozwijaj umysł z iFunSchool! 15 gier z matematyki, flag i chemii, inteligentna nauka na błędach, codzienny postęp i poziom Boski. Wypróbuj za darmo!
@@ -128,7 +146,7 @@ Rozwijaj umysł z iFunSchool! 15 gier z matematyki, flag i chemii, inteligentna 
 matematyka,flagi,chemia,nauka,mózg,quiz,tabliczka mnożenia,trening mózgu,edukacja,pamięć,logika
 ```
 
-### Description (3761 / 4000 znaków)
+### Description (3616 / 4000 znaków)
 ```text
 Chcesz wytrenować błyskawiczne liczenie w pamięci, poznać wszystkie flagi świata i opanować pierwiastki chemiczne?
 
@@ -197,7 +215,15 @@ GRAJ ZA DARMO I MEGA TANIA SUBSKRYPCJA
   - Zapewnia NATYCHMIASTOWY dostęp do elitarnego poziomu BOSKIEGO – bez konieczności zbierania gwiazdek!
 
 Pobierz iFunSchool już dziś i przekonaj się, na co stać Twój mózg!
+
+━━━━━━━━━━━━━━━━━━━━━
+📺 [Wymagane dla wersji Apple TV (tvOS)]:
+Terms of Use (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Privacy Policy: https://ifunschool.beling.pl/en/privacy
 ```
+
+> 💡 **Adnotacja:** Fragment na końcu opisu z linkami do EULA i Privacy Policy jest wymagany przez Apple w szczególności dla wersji **Apple TV (tvOS)**.
+
 
 ### What's New in This Version (1401 / 4000 znaków)
 ```text
@@ -230,6 +256,11 @@ Podoba Ci się nowa wersja? Zostaw swoją opinię w App Store!
 
 ## 🇩🇪 Deutsch (DE)
 
+### Subtitle (28 / 30 znaków)
+```text
+Mathe, Flaggen & Chemie Quiz
+```
+
 ### Promotional Text (151 / 170 znaków)
 ```text
 Trainiere dein Gehirn! 15 Spiele zu Mathe, Flaggen & Chemie mit intelligentem Fehlertraining, täglichem Fortschritt und Gottgleich-Modus. Jetzt testen!
@@ -240,7 +271,7 @@ Trainiere dein Gehirn! 15 Spiele zu Mathe, Flaggen & Chemie mit intelligentem Fe
 mathe,flaggen,chemie,quiz,kopfrechnen,gehirntraining,gedächtnis,einmaleins,schule,lernen,wissen
 ```
 
-### Description (3596 / 4000 znaków)
+### Description (3456 / 4000 znaków)
 ```text
 Möchtest du dein Kopfrechnen perfektionieren, alle Flaggen der Welt lernen und das Periodensystem der Elemente meistern?
 
@@ -309,7 +340,15 @@ KOSTENLOS TESTEN & GÜNSTIGES ABO
   - Sofortiger Zugriff auf den legendären GOTTGLEICH-Modus – ganz ohne Sterne-Voraussetzung!
 
 Lade iFunSchool heute herunter und bring dein Gehirn in Bestform!
+
+━━━━━━━━━━━━━━━━━━━━━
+📺 [Erforderlich für Apple TV (tvOS)-Version]:
+Terms of Use (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Privacy Policy: https://ifunschool.beling.pl/en/privacy
 ```
+
+> 💡 **Adnotacja:** Fragment na końcu opisu z linkami do EULA i Privacy Policy jest wymagany przez Apple w szczególności dla wersji **Apple TV (tvOS)**.
+
 
 ### What's New in This Version (1277 / 4000 znaków)
 ```text
@@ -342,6 +381,11 @@ Gefällt dir iFunSchool? Wir freuen uns über deine Bewertung im App Store!
 
 ## 🇫🇷 Français (FR)
 
+### Subtitle (29 / 30 znaków)
+```text
+Quiz Maths, Drapeaux & Chimie
+```
+
 ### Promotional Text (146 / 170 znaków)
 ```text
 Boostez votre cerveau ! 15 jeux de maths, drapeaux et chimie avec apprentissage intelligent, suivi quotidien et mode Divin. Essayez gratuitement !
@@ -352,7 +396,7 @@ Boostez votre cerveau ! 15 jeux de maths, drapeaux et chimie avec apprentissage 
 maths,drapeaux,chimie,quiz,calcul mental,entraînement cérébral,mémoire,multiplication,école,logique
 ```
 
-### Description (3727 / 4000 znaków)
+### Description (3586 / 4000 znaków)
 ```text
 Prêt à développer un calcul mental fulgurant, mémoriser tous les drapeaux du monde et maîtriser la chimie ?
 
@@ -421,7 +465,15 @@ ESSAI GRATUIT & ABONNEMENT ULTRA ACCESSIBLE
   - Accédez IMMÉDIATEMENT au mode DIVIN sans aucune condition d'étoiles !
 
 Téléchargez iFunSchool dès aujourd'hui et libérez tout votre potentiel intellectuel !
+
+━━━━━━━━━━━━━━━━━━━━━
+📺 [Requis pour la version Apple TV (tvOS)] :
+Terms of Use (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Privacy Policy: https://ifunschool.beling.pl/en/privacy
 ```
+
+> 💡 **Adnotacja:** Fragment na końcu opisu z linkami do EULA i Privacy Policy jest wymagany przez Apple w szczególności dla wersji **Apple TV (tvOS)**.
+
 
 ### What's New in This Version (1286 / 4000 znaków)
 ```text
@@ -454,6 +506,11 @@ Vous aimez iFunSchool ? Merci de laisser un avis sur l'App Store !
 
 ## 🇪🇸 Español (ES)
 
+### Subtitle (28 / 30 znaków)
+```text
+Matemáticas, Banderas y Quiz
+```
+
 ### Promotional Text (138 / 170 znaków)
 ```text
 ¡Entrena tu mente! 15 juegos de matemáticas, banderas y química con aprendizaje inteligente, racha diaria y modo Divino. ¡Pruébalo gratis!
@@ -464,7 +521,7 @@ Vous aimez iFunSchool ? Merci de laisser un avis sur l'App Store !
 matemáticas,banderas,química,quiz,cálculo mental,memoria,multiplicación,escuela,educación,cerebro
 ```
 
-### Description (3699 / 4000 znaków)
+### Description (3563 / 4000 znaków)
 ```text
 ¿Quieres dominar el cálculo mental rápido, aprenderte todas las banderas del mundo y conquistar la tabla periódica?
 
@@ -533,7 +590,15 @@ PRUÉBALO GRATIS Y SUSCRIPCIÓN ECONÓMICA
   - Acceso DIRECTO e instantáneo al nivel DIVINO, ¡sin necesidad de acumular estrellas!
 
 ¡Descarga iFunSchool hoy mismo y despierta todo el poder de tu mente!
+
+━━━━━━━━━━━━━━━━━━━━━
+📺 [Requerido para la versión de Apple TV (tvOS)]:
+Terms of Use (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Privacy Policy: https://ifunschool.beling.pl/en/privacy
 ```
+
+> 💡 **Adnotacja:** Fragment na końcu opisu z linkami do EULA i Privacy Policy jest wymagany przez Apple w szczególności dla wersji **Apple TV (tvOS)**.
+
 
 ### What's New in This Version (1324 / 4000 znaków)
 ```text

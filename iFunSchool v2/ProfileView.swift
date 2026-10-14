@@ -21,6 +21,10 @@ struct ProfileView: View {
                 }) {
                     Text(LocalizedStringKey("nav_done"))
                         .font(.headline)
+                        #if os(tvOS)
+                        .padding(.horizontal, 20)
+                        .padding(.vertical, 10)
+                        #endif
                 }
                 .buttonStyle(FunActionButtonStyle())
             }

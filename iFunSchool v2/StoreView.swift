@@ -1,14 +1,34 @@
 import SwiftUI
 import StoreKit
+import CoreImage
+import CoreImage.CIFilterBuiltins
 
 struct StoreView: View {
     @StateObject private var storeKitService = StoreKitService.shared
     @Environment(\.presentationMode) private var presentationMode
+    @State private var selectedLegalDocument: LegalDocument? = nil
 
     var body: some View {
-        #if os(macOS)
+        ZStack {
+            mainContent
+                .disabled(selectedLegalDocument != nil)
+                .accessibilityHidden(selectedLegalDocument != nil)
+
+            if let doc = selectedLegalDocument {
+                LegalDocumentQRCodePopup(document: doc) {
+                    selectedLegalDocument = nil
+                }
+                .transition(.opacity.combined(with: .scale(scale: 0.95)))
+            }
+        }
+        .animation(.easeInOut(duration: 0.2), value: selectedLegalDocument != nil)
+    }
+
+    @ViewBuilder
+    private var mainContent: some View {
+        #if os(macOS) || os(tvOS)
         VStack(spacing: 0) {
-            // macOS Window Header Bar
+            // macOS / tvOS Window Header Bar
             HStack {
                 Text(LocalizedStringKey("nav_store"))
                     .font(.title2.bold())
@@ -18,6 +38,10 @@ struct StoreView: View {
                 }) {
                     Text(LocalizedStringKey("nav_done"))
                         .font(.headline)
+                        #if os(tvOS)
+                        .padding(.horizontal, 20)
+                        .padding(.vertical, 10)
+                        #endif
                 }
                 .buttonStyle(FunActionButtonStyle())
             }
@@ -298,8 +322,70 @@ struct StoreView: View {
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 24)
+
+            // Legal Links (Terms of Use & Privacy Policy)
+            legalLinksSection
                 .padding(.bottom, 24)
         }
+    }
+
+    // MARK: - Legal Links Section (Terms & Privacy)
+    private var legalLinksSection: some View {
+        #if os(tvOS)
+        HStack(spacing: 24) {
+            Button(action: {
+                selectedLegalDocument = .termsOfUse
+            }) {
+                HStack(spacing: 8) {
+                    Image(systemName: "doc.text")
+                    Text(LocalizedStringKey("store_terms_of_use"))
+                }
+                .font(.footnote.weight(.medium))
+                .foregroundColor(.primary)
+                .padding(.horizontal, 16)
+                .padding(.vertical, 10)
+                .background(FunColors.fillColor)
+                .cornerRadius(14)
+            }
+            .buttonStyle(FunChipButtonStyle())
+
+            Button(action: {
+                selectedLegalDocument = .privacyPolicy
+            }) {
+                HStack(spacing: 8) {
+                    Image(systemName: "hand.raised")
+                    Text(LocalizedStringKey("store_privacy_policy"))
+                }
+                .font(.footnote.weight(.medium))
+                .foregroundColor(.primary)
+                .padding(.horizontal, 16)
+                .padding(.vertical, 10)
+                .background(FunColors.fillColor)
+                .cornerRadius(14)
+            }
+            .buttonStyle(FunChipButtonStyle())
+        }
+        .padding(.top, 4)
+        #else
+        HStack(spacing: 12) {
+            Link(destination: URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!) {
+                Text(LocalizedStringKey("store_terms_of_use"))
+                    .font(.caption2)
+                    .foregroundColor(.blue)
+            }
+
+            Text("•")
+                .font(.caption2)
+                .foregroundColor(.secondary)
+
+            Link(destination: URL(string: "https://ifunschool.beling.pl/en/privacy")!) {
+                Text(LocalizedStringKey("store_privacy_policy"))
+                    .font(.caption2)
+                    .foregroundColor(.blue)
+            }
+        }
+        .padding(.top, 4)
+        #endif
     }
 }
 
@@ -616,6 +702,167 @@ struct RestoredLegacyPurchasesCard: View {
             RoundedRectangle(cornerRadius: 16)
                 .stroke(Color.green.opacity(0.3), lineWidth: 1)
         )
+    }
+}
+
+// MARK: - Legal Documents Model
+enum LegalDocument: Identifiable {
+    case termsOfUse
+    case privacyPolicy
+
+    var id: String {
+        switch self {
+        case .termsOfUse: return "terms"
+        case .privacyPolicy: return "privacy"
+        }
+    }
+
+    var titleKey: LocalizedStringKey {
+        switch self {
+        case .termsOfUse: return "store_terms_of_use"
+        case .privacyPolicy: return "store_privacy_policy"
+        }
+    }
+
+    var urlString: String {
+        switch self {
+        case .termsOfUse: return "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/"
+        case .privacyPolicy: return "https://ifunschool.beling.pl/en/privacy"
+        }
+    }
+}
+
+// MARK: - CoreImage QR Code Generator
+private struct QRCodeGenerator {
+    static let shared = QRCodeGenerator()
+    private let context = CIContext()
+    private let filter = CIFilter.qrCodeGenerator()
+
+    func generateQRCode(from string: String) -> CGImage? {
+        filter.message = Data(string.utf8)
+        filter.correctionLevel = "M"
+
+        guard let outputImage = filter.outputImage else { return nil }
+        let transform = CGAffineTransform(scaleX: 10, y: 10)
+        let scaledImage = outputImage.transformed(by: transform)
+        return context.createCGImage(scaledImage, from: scaledImage.extent)
+    }
+}
+
+// MARK: - QR Code Image View
+private struct QRCodeImageView: View {
+    let urlString: String
+    let size: CGFloat
+
+    var body: some View {
+        if let cgImage = QRCodeGenerator.shared.generateQRCode(from: urlString) {
+            #if os(macOS)
+            let img = NSImage(cgImage: cgImage, size: NSSize(width: size, height: size))
+            Image(nsImage: img)
+                .interpolation(.none)
+                .resizable()
+                .scaledToFit()
+                .frame(width: size, height: size)
+            #else
+            let img = UIImage(cgImage: cgImage)
+            Image(uiImage: img)
+                .interpolation(.none)
+                .resizable()
+                .scaledToFit()
+                .frame(width: size, height: size)
+            #endif
+        } else {
+            Image(systemName: "qrcode")
+                .resizable()
+                .scaledToFit()
+                .frame(width: size, height: size)
+                .foregroundColor(.secondary)
+        }
+    }
+}
+
+// MARK: - tvOS Legal Document QR Code Modal Popup
+private struct LegalDocumentQRCodePopup: View {
+    let document: LegalDocument
+    let onDismiss: () -> Void
+
+    @FocusState private var isDoneFocused: Bool
+    @Namespace private var popupFocusScope
+
+    var body: some View {
+        ZStack {
+            // Fullscreen backdrop
+            Color.black.opacity(0.8)
+                .ignoresSafeArea()
+                .onTapGesture {
+                    onDismiss()
+                }
+
+            // Modal Card
+            VStack(spacing: 24) {
+                // Header (Title & instruction)
+                VStack(spacing: 10) {
+                    Text(document.titleKey)
+                        .font(.title2.bold())
+                        .foregroundColor(.primary)
+
+                    Text(LocalizedStringKey("store_qr_scan_instruction"))
+                        .font(.headline)
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 16)
+                }
+
+                // QR Code with solid white background padding
+                VStack(spacing: 12) {
+                    QRCodeImageView(urlString: document.urlString, size: 240)
+                        .padding(20)
+                        .background(Color.white)
+                        .cornerRadius(18)
+                        .shadow(color: Color.black.opacity(0.15), radius: 10, x: 0, y: 5)
+
+                    Text(document.urlString)
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.center)
+                        .lineLimit(2)
+                        .padding(.horizontal, 16)
+                }
+
+                // Dismiss Button
+                Button(action: onDismiss) {
+                    Text(LocalizedStringKey("nav_done"))
+                        .font(.headline.bold())
+                        .padding(.horizontal, 40)
+                        .padding(.vertical, 14)
+                }
+                .buttonStyle(FunActionButtonStyle())
+                .focused($isDoneFocused)
+            }
+            .padding(36)
+            .background(FunColors.bgColor2)
+            .cornerRadius(24)
+            .overlay(
+                RoundedRectangle(cornerRadius: 24)
+                    .stroke(Color.secondary.opacity(0.3), lineWidth: 1.5)
+            )
+            .shadow(color: Color.black.opacity(0.4), radius: 25, x: 0, y: 10)
+            .frame(maxWidth: 680)
+            #if os(macOS) || os(tvOS)
+            .focusScope(popupFocusScope)
+            .defaultFocus($isDoneFocused, true)
+            #endif
+        }
+        #if os(macOS) || os(tvOS)
+        .onExitCommand {
+            onDismiss()
+        }
+        #endif
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                isDoneFocused = true
+            }
+        }
     }
 }
 

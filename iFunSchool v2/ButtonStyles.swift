@@ -105,32 +105,50 @@ private struct FunActionButtonBody: View {
     @Environment(\.isFocused) private var isFocused
     @Environment(\.colorScheme) private var colorScheme
 
-    private var borderColor: Color {
-        #if os(tvOS)
-        return isFocused ? (colorScheme == .dark ? .white : .black) : Color.gray.opacity(0.35)
-        #else
-        return isFocused ? Color.white : Color.clear
-        #endif
+    #if os(tvOS)
+    private var tvOSBackgroundColor: Color {
+        if isFocused {
+            return colorScheme == .light ? Color(red: 24/255, green: 24/255, blue: 28/255) : Color.white
+        } else {
+            return colorScheme == .light ? Color.black.opacity(0.08) : Color.white.opacity(0.12)
+        }
     }
 
-    private var borderWidth: CGFloat {
-        #if os(tvOS)
-        return 1.0
-        #else
-        return isFocused ? 2.5 : 0
-        #endif
+    private var tvOSForegroundColor: Color {
+        if isFocused {
+            return colorScheme == .light ? Color.white : Color.black
+        } else {
+            return .primary
+        }
     }
+    #endif
 
     var body: some View {
+        #if os(tvOS)
         configuration.label
-            //.scaleEffect(isFocused ? 1.04 : (configuration.isPressed ? 0.96 : 1.0))
-            //.shadow(color: isFocused ? Color.blue.opacity(0.6) : Color.black.opacity(0.1), radius: isFocused ? 8 : 2, y: isFocused ? 4 : 1)
-            .overlay(
+            .foregroundColor(tvOSForegroundColor)
+            .environment(\.colorScheme, isFocused ? (colorScheme == .light ? .dark : .light) : colorScheme)
+            .background(
                 RoundedRectangle(cornerRadius: cornerRadius)
-                    .stroke(borderColor, lineWidth: borderWidth)
+                    .fill(tvOSBackgroundColor)
+            )
+            .scaleEffect(isFocused ? 1.05 : (configuration.isPressed ? 0.96 : 1.0))
+            .shadow(
+                color: isFocused ? (colorScheme == .light ? Color.black.opacity(0.35) : Color.white.opacity(0.25)) : Color.clear,
+                radius: isFocused ? 10 : 0,
+                y: isFocused ? 4 : 0
             )
             .animation(.easeInOut(duration: 0.15), value: isFocused)
             .animation(.easeInOut(duration: 0.1), value: configuration.isPressed)
+        #else
+        configuration.label
+            .overlay(
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .stroke(isFocused ? Color.white : Color.clear, lineWidth: isFocused ? 2.5 : 0)
+            )
+            .animation(.easeInOut(duration: 0.15), value: isFocused)
+            .animation(.easeInOut(duration: 0.1), value: configuration.isPressed)
+        #endif
     }
 }
 
@@ -275,29 +293,63 @@ private struct FunHeaderButtonBody: View {
     @Environment(\.isFocused) private var isFocused
     @Environment(\.colorScheme) private var colorScheme
 
-    private var borderColor: Color {
-        #if os(tvOS)
-        return isFocused ? (colorScheme == .dark ? .white : .black) : Color.gray.opacity(0.35)
-        #else
-        return Color.clear
-        #endif
+    #if os(tvOS)
+    private var tvOSBackgroundColor: Color {
+        if isFocused {
+            return colorScheme == .light ? Color(red: 24/255, green: 24/255, blue: 28/255) : Color.white
+        } else {
+            return Color.clear
+        }
     }
 
+    private var tvOSForegroundColor: Color {
+        if isFocused {
+            return colorScheme == .light ? Color.white : Color.black
+        } else {
+            return .primary
+        }
+    }
+
+    private var brightnessAdjustment: Double {
+        if isFocused {
+            return colorScheme == .light ? 1.0 : -1.0
+        } else {
+            return 0.0
+        }
+    }
+    #endif
+
     var body: some View {
+        #if os(tvOS)
+        configuration.label
+            .foregroundColor(tvOSForegroundColor)
+            .brightness(brightnessAdjustment)
+            .padding(.horizontal, 10)
+            .padding(.vertical, 8)
+            .background(
+                Capsule()
+                    .fill(tvOSBackgroundColor)
+            )
+            .contentShape(Capsule())
+            .scaleEffect(isFocused ? (configuration.isPressed ? 1.05 : 1.15) : (configuration.isPressed ? 0.92 : 1.0))
+            .shadow(
+                color: isFocused ? (colorScheme == .light ? Color.black.opacity(0.35) : Color.white.opacity(0.25)) : Color.clear,
+                radius: isFocused ? 8 : 0,
+                y: isFocused ? 4 : 0
+            )
+            .zIndex(isFocused ? 1 : 0)
+            .animation(.easeInOut(duration: 0.15), value: isFocused)
+            .animation(.easeInOut(duration: 0.1), value: configuration.isPressed)
+        #else
         configuration.label
             .padding(6)
             .background(
                 Circle()
                     .fill(isFocused ? FunColors.fillColor : Color.clear)
             )
-//            #if os(tvOS)
-//            .overlay(
-//                Circle()
-//                    .stroke(borderColor, lineWidth: 1.0)
-//            )
-//            #endif
-//            .scaleEffect(isFocused ? 1.15 : (configuration.isPressed ? 0.9 : 1.0))
             .animation(.easeInOut(duration: 0.15), value: isFocused)
             .animation(.easeInOut(duration: 0.1), value: configuration.isPressed)
+        #endif
     }
 }
+
