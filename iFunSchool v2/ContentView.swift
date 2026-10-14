@@ -14,6 +14,16 @@ struct ContentView: View {
     @State private var selectedProgressCategory: ProgressCategory = .addition
     @State private var activeGameItem: GameItem? = nil
 
+    private enum HeaderFocusItem: Hashable {
+        case settings
+        case progress
+        case streak
+        case profile
+        case store
+    }
+
+    @FocusState private var headerFocus: HeaderFocusItem?
+
     init() {
         let args = ProcessInfo.processInfo.arguments
         if args.contains("-UITestOpenStreak") {
@@ -67,6 +77,11 @@ struct ContentView: View {
         }
         .onAppear {
             handleUITestLaunchArguments()
+            #if os(tvOS)
+            if headerFocus == nil {
+                headerFocus = .settings
+            }
+            #endif
         }
     }
 
@@ -146,15 +161,9 @@ struct ContentView: View {
                 .padding(.top, 12)
                 .padding(.bottom, 24)
             }
-            #if os(tvOS)
-            .focusSection()
-            #endif
 
             // Global Footer Bar
             globalFooterBar
-                #if os(tvOS)
-                .focusSection()
-                #endif
         }
         .background(FunColors.bgColor.ignoresSafeArea())
         .sheet(isPresented: $isShowingSettings) {
@@ -215,80 +224,13 @@ struct ContentView: View {
 
     // MARK: - App Navigation Header Bar
     private var appNavigationHeaderBar: some View {
-        #if os(tvOS)
-        HStack(spacing: 8) {
-            // Left side: always settings (gear)
-            Button(action: {
-                isShowingSettings = true
-            }) {
-                Image(systemName: "gearshape.fill")
-                    .font(.title3)
-                    .foregroundColor(.blue)
-            }
-            .buttonStyle(FunHeaderButtonStyle())
-
-            Button(action: {
-                isShowingProgressGrid = true
-            }) {
-                Image(systemName: "book.fill")
-                    .font(.title3)
-                    .foregroundColor(.green)
-            }
-            .buttonStyle(FunHeaderButtonStyle())
-            .accessibilityIdentifier("btn_progress")
-
-            Spacer(minLength: 4)
-
-            // Title: Always present and prioritized
-            Text(LocalizedStringKey("nav_app_title"))
-                .font(.title2.bold())
-                .lineLimit(1)
-                .minimumScaleFactor(0.8)
-                .layoutPriority(1)
-
-            Spacer(minLength: 4)
-
-            // Right side: All icons
-            HStack(spacing: 10) {
-                Button(action: {
-                    isShowingStreak = true
-                }) {
-                    Image(systemName: "calendar.badge.clock")
-                        .font(.title2)
-                        .foregroundColor(.orange)
-                }
-                .buttonStyle(FunHeaderButtonStyle())
-                .accessibilityIdentifier("btn_streak")
-
-                Button(action: {
-                    isShowingProfile = true
-                }) {
-                    Image(systemName: "person.crop.circle.fill")
-                        .font(.title2)
-                        .foregroundColor(.red)
-                }
-                .buttonStyle(FunHeaderButtonStyle())
-
-                Button(action: {
-                    isShowingStore = true
-                }) {
-                    Image(systemName: "cart.fill")
-                        .font(.title3)
-                        .foregroundColor(FunColors.chalkboardGreen)
-                }
-                .buttonStyle(FunHeaderButtonStyle())
-            }
-        }
-        .padding(.horizontal, 20)
-        .frame(height: 52)
-        .focusSection()
-        #else
         GeometryReader { proxy in
             let availableWidth = proxy.size.width
-            // In compact widths, right icons would encroach on the title.
-            // On iPhone portrait (width ~375-430pt), collapse right icons to a hamburger icon
-            // so the title is never squeezed or truncated.
+            #if os(tvOS)
+            let hasSpaceForFullBar = true
+            #else
             let hasSpaceForFullBar = availableWidth >= 580
+            #endif
 
             HStack(spacing: 8) {
                 // Left side: always settings (gear)
@@ -300,6 +242,7 @@ struct ContentView: View {
                         .foregroundColor(.blue)
                 }
                 .buttonStyle(FunHeaderButtonStyle())
+                .focused($headerFocus, equals: .settings)
 
                 if hasSpaceForFullBar {
                     Button(action: {
@@ -311,6 +254,7 @@ struct ContentView: View {
                     }
                     .buttonStyle(FunHeaderButtonStyle())
                     .accessibilityIdentifier("btn_progress")
+                    .focused($headerFocus, equals: .progress)
                 }
 
                 Spacer(minLength: 4)
@@ -336,6 +280,7 @@ struct ContentView: View {
                         }
                         .buttonStyle(FunHeaderButtonStyle())
                         .accessibilityIdentifier("btn_streak")
+                        .focused($headerFocus, equals: .streak)
 
                         Button(action: {
                             isShowingProfile = true
@@ -345,6 +290,7 @@ struct ContentView: View {
                                 .foregroundColor(.red)
                         }
                         .buttonStyle(FunHeaderButtonStyle())
+                        .focused($headerFocus, equals: .profile)
 
                         Button(action: {
                             isShowingStore = true
@@ -354,6 +300,7 @@ struct ContentView: View {
                                 .foregroundColor(FunColors.chalkboardGreen)
                         }
                         .buttonStyle(FunHeaderButtonStyle())
+                        .focused($headerFocus, equals: .store)
                     }
                 } else {
                     #if os(iOS) || os(macOS)
@@ -405,7 +352,6 @@ struct ContentView: View {
             .frame(width: availableWidth, height: proxy.size.height)
         }
         .frame(height: 52)
-        #endif
     }
 
     // MARK: - Level Selector Horizontal Bar
@@ -427,9 +373,6 @@ struct ContentView: View {
             .padding(.horizontal, 20)
             .padding(.vertical, 8)
         }
-        #if os(tvOS)
-        .focusSection()
-        #endif
     }
 
     // MARK: - Global Footer Bar

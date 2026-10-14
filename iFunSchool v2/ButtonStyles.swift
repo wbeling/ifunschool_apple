@@ -326,18 +326,17 @@ private struct FunHeaderButtonBody: View {
             .brightness(brightnessAdjustment)
             .padding(.horizontal, 10)
             .padding(.vertical, 8)
+            .frame(minWidth: 44, minHeight: 44)
             .background(
                 Capsule()
                     .fill(tvOSBackgroundColor)
             )
-            .contentShape(Capsule())
             .scaleEffect(isFocused ? (configuration.isPressed ? 1.05 : 1.15) : (configuration.isPressed ? 0.92 : 1.0))
             .shadow(
                 color: isFocused ? (colorScheme == .light ? Color.black.opacity(0.35) : Color.white.opacity(0.25)) : Color.clear,
                 radius: isFocused ? 8 : 0,
                 y: isFocused ? 4 : 0
             )
-            .zIndex(isFocused ? 1 : 0)
             .animation(.easeInOut(duration: 0.15), value: isFocused)
             .animation(.easeInOut(duration: 0.1), value: configuration.isPressed)
         #else
