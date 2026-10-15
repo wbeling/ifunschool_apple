@@ -18,10 +18,6 @@
 		B701413C301D3E960079DFCF /* StreakTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA8A1012C12345600000001 /* StreakTracker.swift */; };
 		B701413D301D3E960079DFCF /* StreakView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA8A1032C12345600000002 /* StreakView.swift */; };
 		B701413E301D3E960079DFCF /* StreakTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA8A1012C12345600000001 /* StreakTracker.swift */; };
-		B7225D3E301A3F3A00BAB7C3 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = B7225D3D301A3F3A00BAB7C3 /* AppIcon.icon */; };
-		B7225D3F301A3F3A00BAB7C3 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = B7225D3D301A3F3A00BAB7C3 /* AppIcon.icon */; };
-		B7225D40301A3F3A00BAB7C3 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = B7225D3D301A3F3A00BAB7C3 /* AppIcon.icon */; };
-		B7225D41301A469D00BAB7C3 /* AppIcon-macOS.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = V2FILEAPPICONMAC000000 /* AppIcon-macOS.xcassets */; };
 		B72A51CC30188A050042546C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B72A51CC30188A050042546D /* LaunchScreen.storyboard */; };
 		B733D2DB3018073900D648AE /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B733D2DA3018073600D648AE /* Colors.swift */; };
 		B7D191753017E942008DE2C2 /* iFunSchool.storekit in Resources */ = {isa = PBXBuildFile; fileRef = B7D191743017E942008DE2C2 /* iFunSchool.storekit */; };
@@ -98,10 +94,6 @@
 		V2QGUNITTESTBUILD01 /* QuestionGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2QGUNITTESTFILE0001 /* QuestionGeneratorTests.swift */; };
 		V2QGUNITTESTBUILD02 /* QuestionGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2QGUNITTESTFILE0001 /* QuestionGeneratorTests.swift */; };
 		V2QGUNITTESTBUILD03 /* QuestionGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = V2QGUNITTESTFILE0001 /* QuestionGeneratorTests.swift */; };
-		V2RESAPPICONTV00000000 /* AppIcon-tvOS.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = V2FILEAPPICONTV0000000 /* AppIcon-tvOS.xcassets */; };
-		V2RESASSETSIOS00000000 /* AssetsV2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = V2FILEASSETSV20000000 /* AssetsV2.xcassets */; };
-		V2RESASSETSMAC00000000 /* AssetsV2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = V2FILEASSETSV20000000 /* AssetsV2.xcassets */; };
-		V2RESASSETSTV000000000 /* AssetsV2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = V2FILEASSETSV20000000 /* AssetsV2.xcassets */; };
 		V2RESLOCMAC00000000000 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000052 /* Localizable.xcstrings */; };
 		V2RESLOCTV000000000000 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000052 /* Localizable.xcstrings */; };
 		V2REVTESTBUILD01 /* ReviewPromptService.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000051 /* ReviewPromptService.swift */; };
@@ -152,18 +144,14 @@
 		B701413F301D3E960079DFCF /* iFunSchool v2 tvOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iFunSchool v2 tvOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7014140301D3E960079DFCF /* iFunSchool v2 macOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iFunSchool v2 macOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7014141301D3E960079DFCF /* iFunSchool v2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iFunSchool v2UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B7225D3D301A3F3A00BAB7C3 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		B72A51CB30188A050042546B /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 		B72A51CC30188A050042546D /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B733D2DA3018073600D648AE /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		B75FE5E7307BB7CE0030CF0F /* CONNECT.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONNECT.md; sourceTree = "<group>"; };
 		B774D12D132D394200622D38 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B775D6C51316EDFB00BDC76E /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		B775E4EE131C20B4000F37E7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		B7BAFB6A306C652D00656C7F /* iFunSchool_v2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iFunSchool_v2.entitlements; sourceTree = "<group>"; };
-		B7BAFB6B306C652D00656C7F /* iFunSchool_v2_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iFunSchool_v2_macOS.entitlements; sourceTree = "<group>"; };
-		B7BAFB6C306C652D00656C7F /* iFunSchool_v2_tvOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iFunSchool_v2_tvOS.entitlements; sourceTree = "<group>"; };
 		B7D191743017E942008DE2C2 /* iFunSchool.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = iFunSchool.storekit; sourceTree = "<group>"; };
+		B7E4D54830815B2700833CED /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B7FA33B5307AB6E400C0696D /* Fastfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Fastfile; sourceTree = "<group>"; };
 		B7FA33B6307AB6E400C0696D /* Snapfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Snapfile; sourceTree = "<group>"; };
 		B8747C001386B70100BC88D0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -175,7 +163,6 @@
 		V20000000000000000000001 /* iFunSchool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iFunSchool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		V20000000000000000000002 /* iFunSchoolv2App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iFunSchoolv2App.swift; sourceTree = "<group>"; };
 		V20000000000000000000003 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		V20000000000000000000004 /* iFunSchool_v2-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iFunSchool_v2-Info.plist"; sourceTree = "<group>"; };
 		V20000000000000000000010 /* GameModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 		V20000000000000000000011 /* GameListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameListViewModel.swift; sourceTree = "<group>"; };
 		V20000000000000000000020 /* QuestionGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionGenerator.swift; sourceTree = "<group>"; };
@@ -192,11 +179,6 @@
 		V20000000000000000000061 /* StoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreView.swift; sourceTree = "<group>"; };
 		V20000000000000000000070 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		V2BTNSTYLEFILE0000000 /* ButtonStyles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
-		V2FILEAPPICONMAC000000 /* AppIcon-macOS.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "AppIcon-macOS.xcassets"; sourceTree = "<group>"; };
-		V2FILEAPPICONTV0000000 /* AppIcon-tvOS.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "AppIcon-tvOS.xcassets"; sourceTree = "<group>"; };
-		V2FILEASSETSV20000000 /* AssetsV2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AssetsV2.xcassets; sourceTree = "<group>"; };
-		V2FILEINFOPLISTMAC0000 /* iFunSchool_v2_macOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iFunSchool_v2_macOS-Info.plist"; sourceTree = "<group>"; };
-		V2FILEINFOPLISTTV00000 /* iFunSchool_v2_tvOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iFunSchool_v2_tvOS-Info.plist"; sourceTree = "<group>"; };
 		V2PMFILE000000000000000 /* ProfileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
 		V2PRODUCTMAC0000000000 /* iFunSchool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iFunSchool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		V2PRODUCTTV00000000000 /* iFunSchool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iFunSchool.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -206,9 +188,64 @@
 		V2UITESTFILE00000000002 /* iFunSchoolv2SnapshotUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iFunSchoolv2SnapshotUITests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		B7E4D53E30815AF700833CED /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"AppIcon-macOS.xcassets",
+				"AppIcon-tvOS.xcassets",
+			);
+			target = V2000000000000000000000B /* iFunSchool v2 iOS */;
+		};
+		B7E4D53F30815AF700833CED /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"AppIcon-tvOS.xcassets",
+			);
+			target = V2TARGETMAC00000000000 /* iFunSchool v2 macOS */;
+		};
+		B7E4D54030815AF700833CED /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"AppIcon-macOS.xcassets",
+			);
+			target = V2TARGETTVO00000000000 /* iFunSchool v2 tvOS */;
+		};
+		B7E4D54230815B0000833CED /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"iFunSchool_v2_macOS-Info.plist",
+				"iFunSchool_v2_tvOS-Info.plist",
+				"iFunSchool_v2-Info.plist",
+			);
+			target = V2000000000000000000000B /* iFunSchool v2 iOS */;
+		};
+		B7E4D54330815B0000833CED /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"iFunSchool_v2_macOS-Info.plist",
+				"iFunSchool_v2_tvOS-Info.plist",
+				"iFunSchool_v2-Info.plist",
+			);
+			target = V2TARGETMAC00000000000 /* iFunSchool v2 macOS */;
+		};
+		B7E4D54430815B0000833CED /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"iFunSchool_v2_macOS-Info.plist",
+				"iFunSchool_v2_tvOS-Info.plist",
+				"iFunSchool_v2-Info.plist",
+			);
+			target = V2TARGETTVO00000000000 /* iFunSchool v2 tvOS */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		B76E1046306C5A1200EA0133 /* Sounds */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Sounds; sourceTree = "<group>"; };
-		B76E1047306C5A2400EA0133 /* Dane */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Dane; sourceTree = "<group>"; };
+		B7E4D53C30815A9700833CED /* Entitlements */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Entitlements; sourceTree = "<group>"; };
+		B7E4D53D30815AF000833CED /* Imagea */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (B7E4D53E30815AF700833CED /* PBXFileSystemSynchronizedBuildFileExceptionSet */, B7E4D53F30815AF700833CED /* PBXFileSystemSynchronizedBuildFileExceptionSet */, B7E4D54030815AF700833CED /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Imagea; sourceTree = "<group>"; };
+		B7E4D54130815AFF00833CED /* Infos */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (B7E4D54230815B0000833CED /* PBXFileSystemSynchronizedBuildFileExceptionSet */, B7E4D54330815B0000833CED /* PBXFileSystemSynchronizedBuildFileExceptionSet */, B7E4D54430815B0000833CED /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Infos; sourceTree = "<group>"; };
+		B7E4D54930815B3800833CED /* docs */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = docs; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -273,7 +310,8 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				B75FE5E7307BB7CE0030CF0F /* CONNECT.md */,
+				B7E4D54930815B3800833CED /* docs */,
+				B7E4D54830815B2700833CED /* README.md */,
 				B7FA33B5307AB6E400C0696D /* Fastfile */,
 				B7FA33B6307AB6E400C0696D /* Snapfile */,
 				B799087613A77AD200B2941C /* Resources */,
@@ -317,8 +355,14 @@
 		B799087613A77AD200B2941C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B7E4D53D30815AF000833CED /* Imagea */,
 				B76E1046306C5A1200EA0133 /* Sounds */,
-				B76E1047306C5A2400EA0133 /* Dane */,
+				B7E4D53C30815A9700833CED /* Entitlements */,
+				B7E4D54130815AFF00833CED /* Infos */,
+				B72A51CC30188A050042546D /* LaunchScreen.storyboard */,
+				V20000000000000000000052 /* Localizable.xcstrings */,
+				B7D191743017E942008DE2C2 /* iFunSchool.storekit */,
+				B7014114301D206E0079DFCF /* GameCenterResources.gamekit */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -326,22 +370,13 @@
 		V20000000000000000000007 /* iFunSchool v2 */ = {
 			isa = PBXGroup;
 			children = (
-				B7BAFB6A306C652D00656C7F /* iFunSchool_v2.entitlements */,
-				B7BAFB6B306C652D00656C7F /* iFunSchool_v2_macOS.entitlements */,
-				B7BAFB6C306C652D00656C7F /* iFunSchool_v2_tvOS.entitlements */,
 				FEA8A1032C12345600000002 /* StreakView.swift */,
 				FEA8A1012C12345600000001 /* StreakTracker.swift */,
 				V2PMFILE000000000000000 /* ProfileManager.swift */,
 				V2PVFILE000000000000000 /* ProfileView.swift */,
 				1672FE6893D74518BA6C8251 /* ItemProgressTracker.swift */,
 				057CDA05A77A48878BF4E4FC /* ProgressGridView.swift */,
-				B7225D3D301A3F3A00BAB7C3 /* AppIcon.icon */,
 				V2BTNSTYLEFILE0000000 /* ButtonStyles.swift */,
-				V2FILEASSETSV20000000 /* AssetsV2.xcassets */,
-				V2FILEAPPICONMAC000000 /* AppIcon-macOS.xcassets */,
-				V2FILEAPPICONTV0000000 /* AppIcon-tvOS.xcassets */,
-				V2FILEINFOPLISTMAC0000 /* iFunSchool_v2_macOS-Info.plist */,
-				V2FILEINFOPLISTTV00000 /* iFunSchool_v2_tvOS-Info.plist */,
 				V20000000000000000000002 /* iFunSchoolv2App.swift */,
 				B733D2DA3018073600D648AE /* Colors.swift */,
 				V20000000000000000000003 /* ContentView.swift */,
@@ -359,11 +394,6 @@
 				V20000000000000000000060 /* StoreKitService.swift */,
 				V20000000000000000000061 /* StoreView.swift */,
 				V20000000000000000000070 /* LoadingView.swift */,
-				B72A51CC30188A050042546D /* LaunchScreen.storyboard */,
-				V20000000000000000000052 /* Localizable.xcstrings */,
-				V20000000000000000000004 /* iFunSchool_v2-Info.plist */,
-				B7D191743017E942008DE2C2 /* iFunSchool.storekit */,
-				B7014114301D206E0079DFCF /* GameCenterResources.gamekit */,
 			);
 			path = "iFunSchool v2";
 			sourceTree = "<group>";
@@ -395,7 +425,9 @@
 			);
 			fileSystemSynchronizedGroups = (
 				B76E1046306C5A1200EA0133 /* Sounds */,
-				B76E1047306C5A2400EA0133 /* Dane */,
+				B7E4D53C30815A9700833CED /* Entitlements */,
+				B7E4D53D30815AF000833CED /* Imagea */,
+				B7E4D54130815AFF00833CED /* Infos */,
 			);
 			name = "iFunSchool v2 iOS";
 			productName = "iFunSchool v2";
@@ -432,6 +464,9 @@
 			);
 			fileSystemSynchronizedGroups = (
 				B76E1046306C5A1200EA0133 /* Sounds */,
+				B7E4D53C30815A9700833CED /* Entitlements */,
+				B7E4D53D30815AF000833CED /* Imagea */,
+				B7E4D54130815AFF00833CED /* Infos */,
 			);
 			name = "iFunSchool v2 macOS";
 			productName = "iFunSchool v2 macOS";
@@ -452,6 +487,9 @@
 			);
 			fileSystemSynchronizedGroups = (
 				B76E1046306C5A1200EA0133 /* Sounds */,
+				B7E4D53C30815A9700833CED /* Entitlements */,
+				B7E4D53D30815AF000833CED /* Imagea */,
+				B7E4D54130815AFF00833CED /* Infos */,
 			);
 			name = "iFunSchool v2 tvOS";
 			productName = "iFunSchool v2 tvOS";
@@ -554,9 +592,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				V2RESASSETSIOS00000000 /* AssetsV2.xcassets in Resources */,
 				B7014116301D206E0079DFCF /* GameCenterResources.gamekit in Resources */,
-				B7225D3E301A3F3A00BAB7C3 /* AppIcon.icon in Resources */,
 				B7D191753017E942008DE2C2 /* iFunSchool.storekit in Resources */,
 				B72A51CC30188A050042546C /* LaunchScreen.storyboard in Resources */,
 				V20000000000000000000057 /* Localizable.xcstrings in Resources */,
@@ -567,10 +603,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				V2RESASSETSMAC00000000 /* AssetsV2.xcassets in Resources */,
 				B7014117301D206E0079DFCF /* GameCenterResources.gamekit in Resources */,
-				B7225D40301A3F3A00BAB7C3 /* AppIcon.icon in Resources */,
-				B7225D41301A469D00BAB7C3 /* AppIcon-macOS.xcassets in Resources */,
 				V2RESLOCMAC00000000000 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -579,10 +612,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7225D3F301A3F3A00BAB7C3 /* AppIcon.icon in Resources */,
-				V2RESASSETSTV000000000 /* AssetsV2.xcassets in Resources */,
 				B7014115301D206E0079DFCF /* GameCenterResources.gamekit in Resources */,
-				V2RESAPPICONTV00000000 /* AppIcon-tvOS.xcassets in Resources */,
 				V2RESLOCTV000000000000 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -975,7 +1005,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_ENTITLEMENTS = "iFunSchool v2/iFunSchool_v2.entitlements";
+				CODE_SIGN_ENTITLEMENTS = Entitlements/iFunSchool_v2.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 109;
@@ -985,7 +1015,7 @@
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				ENABLE_PREVIEWS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "iFunSchool v2/iFunSchool_v2-Info.plist";
+				INFOPLIST_FILE = "Infos/iFunSchool_v2-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = "$(RECOMMENDED_IPHONEOS_DEPLOYMENT_TARGET)";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1014,7 +1044,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_ENTITLEMENTS = "iFunSchool v2/iFunSchool_v2.entitlements";
+				CODE_SIGN_ENTITLEMENTS = Entitlements/iFunSchool_v2.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 109;
@@ -1023,7 +1053,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "iFunSchool v2/iFunSchool_v2-Info.plist";
+				INFOPLIST_FILE = "Infos/iFunSchool_v2-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = "$(RECOMMENDED_IPHONEOS_DEPLOYMENT_TARGET)";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1052,7 +1082,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_ENTITLEMENTS = "iFunSchool v2/iFunSchool_v2_macOS.entitlements";
+				CODE_SIGN_ENTITLEMENTS = Entitlements/iFunSchool_v2_macOS.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1074,7 +1104,7 @@
 				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
 				ENABLE_RESOURCE_ACCESS_USB = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "iFunSchool v2/iFunSchool_v2_macOS-Info.plist";
+				INFOPLIST_FILE = "Infos/iFunSchool_v2_macOS-Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.educational-games";
 				IPHONEOS_DEPLOYMENT_TARGET = "$(RECOMMENDED_IPHONEOS_DEPLOYMENT_TARGET)";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1102,7 +1132,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_ENTITLEMENTS = "iFunSchool v2/iFunSchool_v2_macOS.entitlements";
+				CODE_SIGN_ENTITLEMENTS = Entitlements/iFunSchool_v2_macOS.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1123,7 +1153,7 @@
 				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
 				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
 				ENABLE_RESOURCE_ACCESS_USB = NO;
-				INFOPLIST_FILE = "iFunSchool v2/iFunSchool_v2_macOS-Info.plist";
+				INFOPLIST_FILE = "Infos/iFunSchool_v2_macOS-Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.educational-games";
 				IPHONEOS_DEPLOYMENT_TARGET = "$(RECOMMENDED_IPHONEOS_DEPLOYMENT_TARGET)";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1151,14 +1181,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "Brand Assets";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_ENTITLEMENTS = "iFunSchool v2/iFunSchool_v2_tvOS.entitlements";
+				CODE_SIGN_ENTITLEMENTS = Entitlements/iFunSchool_v2_tvOS.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 100;
 				DEVELOPMENT_TEAM = SP4XNG9W4N;
 				ENABLE_PREVIEWS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "iFunSchool v2/iFunSchool_v2_tvOS-Info.plist";
+				INFOPLIST_FILE = "Infos/iFunSchool_v2_tvOS-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = "$(RECOMMENDED_IPHONEOS_DEPLOYMENT_TARGET)";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1185,13 +1215,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "Brand Assets";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_ENTITLEMENTS = "iFunSchool v2/iFunSchool_v2_tvOS.entitlements";
+				CODE_SIGN_ENTITLEMENTS = Entitlements/iFunSchool_v2_tvOS.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 100;
 				DEVELOPMENT_TEAM = SP4XNG9W4N;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "iFunSchool v2/iFunSchool_v2_tvOS-Info.plist";
+				INFOPLIST_FILE = "Infos/iFunSchool_v2_tvOS-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = "$(RECOMMENDED_IPHONEOS_DEPLOYMENT_TARGET)";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

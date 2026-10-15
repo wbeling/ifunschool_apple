@@ -181,7 +181,15 @@ class StoreKitService: ObservableObject {
                     result = try await product.purchase()
                 }
             } else {
-                result = try await product.purchase()
+                if #available(iOS 26.4, macOS 26.4, tvOS 26.4, watchOS 26.4, visionOS 26.4, *) {
+                    if product.subscription?.pricingTerms.contains(where: { $0.billingPlanType == .upFront }) == true {
+                        result = try await product.purchase(options: [.billingPlanType(.upFront)])
+                    } else {
+                        result = try await product.purchase()
+                    }
+                } else {
+                    result = try await product.purchase()
+                }
             }
             switch result {
             case .success(let verification):
@@ -387,7 +395,7 @@ extension StoreKitService {
 }
 
 // MARK: - 12-Month Commitment Plan Models & Helpers
-struct CommitmentPlanDetails {
+struct CommitmentPlanDetails: Equatable {
     let monthlyPriceString: String
     let totalCommitmentPriceString: String
     let totalMonths: Int
@@ -395,7 +403,58 @@ struct CommitmentPlanDetails {
     let subscribeButtonText: String
 }
 
+// MARK: - Subscription Plan Item (Represents each selectable subscription option)
+struct SubscriptionPlanItem: Identifiable {
+    enum PlanType: Equatable {
+        case upfront
+        case commitment(CommitmentPlanDetails)
+    }
+
+    let id: String
+    let product: Product
+    let planType: PlanType
+
+    var isCommitment: Bool {
+        switch planType {
+        case .upfront: return false
+        case .commitment: return true
+        }
+    }
+
+    var commitmentDetails: CommitmentPlanDetails? {
+        switch planType {
+        case .upfront: return nil
+        case .commitment(let details): return details
+        }
+    }
+}
+
 extension StoreKitService {
+    var subscriptionPlanItems: [SubscriptionPlanItem] {
+        var items: [SubscriptionPlanItem] = []
+        for product in subscriptions {
+            let hasCommitment = hasCommitmentPlan(for: product)
+
+            // Standard upfront option (e.g. 1 month, 3 months, or 1 year paid upfront)
+            let upfrontId = hasCommitment ? "\(product.id).upfront" : product.id
+            items.append(SubscriptionPlanItem(
+                id: upfrontId,
+                product: product,
+                planType: .upfront
+            ))
+
+            // Commitment option (e.g. 12-month commitment billed monthly) if available
+            if let commitment = commitmentPlanDetails(for: product) {
+                items.append(SubscriptionPlanItem(
+                    id: "\(product.id).commitment",
+                    product: product,
+                    planType: .commitment(commitment)
+                ))
+            }
+        }
+        return items
+    }
+
     func commitmentPlanDetails(for product: Product) -> CommitmentPlanDetails? {
         if #available(iOS 26.4, macOS 26.4, tvOS 26.4, watchOS 26.4, visionOS 26.4, *) {
             if let subscription = product.subscription,

@@ -17,6 +17,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "V2TARGETTVO00000000000"
                BuildableName = "iFunSchool.app"
+               BlueprintName = "iFunSchool v2 tvOS"
                ReferencedContainer = "container:iFunSchool.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -58,6 +59,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "V2TARGETTVO00000000000"
             BuildableName = "iFunSchool.app"
+            BlueprintName = "iFunSchool v2 tvOS"
             ReferencedContainer = "container:iFunSchool.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -74,6 +76,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "V2TARGETTVO00000000000"
             BuildableName = "iFunSchool.app"
+            BlueprintName = "iFunSchool v2 tvOS"
             ReferencedContainer = "container:iFunSchool.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

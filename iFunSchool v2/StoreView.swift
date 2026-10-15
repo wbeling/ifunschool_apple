@@ -251,8 +251,8 @@ struct StoreView: View {
                     .foregroundColor(.secondary)
                     .padding(.horizontal, 4)
 
-                ForEach(storeKitService.subscriptions, id: \.id) { product in
-                    SubscriptionCardRow(product: product)
+                ForEach(storeKitService.subscriptionPlanItems) { item in
+                    SubscriptionCardRow(item: item)
                 }
             }
             .frame(maxWidth: .infinity)
@@ -455,15 +455,18 @@ struct CommitmentPlanBadge: View {
 
 // MARK: - Subscription Card Component
 struct SubscriptionCardRow: View {
-    let product: Product
+    let item: SubscriptionPlanItem
     @StateObject private var storeKitService = StoreKitService.shared
+
+    var product: Product { item.product }
 
     var body: some View {
         let isSubscribed = storeKitService.isSubscriptionActive
-        let savingsPercent = storeKitService.savingsPercentage(for: product)
-        let monthlyEquiv = storeKitService.monthlyEquivalentPriceString(for: product)
-        let introDetails = storeKitService.introOfferDetails(for: product)
-        let commitmentDetails = storeKitService.commitmentPlanDetails(for: product)
+        let isCommitment = item.isCommitment
+        let commitmentDetails = item.commitmentDetails
+        let savingsPercent = isCommitment ? nil : storeKitService.savingsPercentage(for: product)
+        let monthlyEquiv = isCommitment ? nil : storeKitService.monthlyEquivalentPriceString(for: product)
+        let introDetails = isCommitment ? nil : storeKitService.introOfferDetails(for: product)
 
         VStack(alignment: .leading, spacing: 14) {
             HStack(alignment: .top) {
@@ -472,8 +475,8 @@ struct SubscriptionCardRow: View {
                         Text(product.displayName)
                             .font(.headline.bold())
 
-                        // Commitment Plan Badge
-                        if commitmentDetails != nil {
+                        // Commitment Plan Badge vs Upfront & Savings Badges
+                        if isCommitment {
                             Text(LocalizedStringKey("store_commitment_badge"))
                                 .font(.caption2.bold())
                                 .padding(.horizontal, 8)
@@ -481,15 +484,27 @@ struct SubscriptionCardRow: View {
                                 .background(Color.purple)
                                 .foregroundColor(.white)
                                 .cornerRadius(8)
-                        } else if let savings = savingsPercent {
-                            // Percentage Savings Badge (for longer tiers)
-                            Text(String(format: NSLocalizedString("store_save_percentage", comment: "Save %"), savings))
-                                .font(.caption2.bold())
-                                .padding(.horizontal, 8)
-                                .padding(.vertical, 3)
-                                .background(Color.orange)
-                                .foregroundColor(.white)
-                                .cornerRadius(8)
+                        } else {
+                            if storeKitService.hasCommitmentPlan(for: product) {
+                                Text(LocalizedStringKey("store_plan_upfront_badge"))
+                                    .font(.caption2.bold())
+                                    .padding(.horizontal, 8)
+                                    .padding(.vertical, 3)
+                                    .background(FunColors.chalkboardGreen)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(8)
+                            }
+
+                            if let savings = savingsPercent {
+                                // Percentage Savings Badge (for longer tiers)
+                                Text(String(format: NSLocalizedString("store_save_percentage", comment: "Save %"), savings))
+                                    .font(.caption2.bold())
+                                    .padding(.horizontal, 8)
+                                    .padding(.vertical, 3)
+                                    .background(Color.orange)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(8)
+                            }
                         }
                     }
 
@@ -500,7 +515,7 @@ struct SubscriptionCardRow: View {
                             .fixedSize(horizontal: false, vertical: true)
                     }
 
-                    if let equiv = monthlyEquiv, storeKitService.periodInMonths(for: product) > 1.0, commitmentDetails == nil {
+                    if let equiv = monthlyEquiv, storeKitService.periodInMonths(for: product) > 1.0 {
                         Text(String(format: NSLocalizedString("store_monthly_equivalent_format", comment: "Monthly equiv"), equiv))
                             .font(.caption)
                             .foregroundColor(.secondary)
@@ -532,12 +547,12 @@ struct SubscriptionCardRow: View {
                 }
             }
 
-            // 12-Month Commitment Banner
+            // 12-Month Commitment Banner (shown only on commitment plan card)
             if let commitment = commitmentDetails {
                 CommitmentPlanBadge(details: commitment)
             }
 
-            // Introductory Offer Banner
+            // Introductory Offer Banner (shown only on upfront plan card)
             if let details = introDetails {
                 IntroOfferBadge(details: details)
             }
@@ -561,7 +576,7 @@ struct SubscriptionCardRow: View {
             // Subscribe Button
             Button(action: {
                 Task {
-                    _ = await storeKitService.purchase(product, withCommitment: commitmentDetails != nil)
+                    _ = await storeKitService.purchase(product, withCommitment: isCommitment)
                 }
             }) {
                 HStack {
@@ -600,9 +615,9 @@ struct SubscriptionCardRow: View {
             RoundedRectangle(cornerRadius: 16)
                 .stroke(
                     introDetails != nil ? Color.orange.opacity(0.8) :
-                    (commitmentDetails != nil ? Color.purple.opacity(0.7) :
+                    (isCommitment ? Color.purple.opacity(0.7) :
                     (savingsPercent != nil ? Color.orange.opacity(0.6) : Color.clear)),
-                    lineWidth: (introDetails != nil || commitmentDetails != nil) ? 2 : 1.5
+                    lineWidth: (introDetails != nil || isCommitment) ? 2 : 1.5
                 )
         )
         .shadow(color: Color.black.opacity(0.04), radius: 6, x: 0, y: 3)
