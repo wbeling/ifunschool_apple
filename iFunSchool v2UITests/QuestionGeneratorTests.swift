@@ -179,4 +179,37 @@ final class QuestionGeneratorTests: XCTestCase {
             }
         }
     }
+
+    // MARK: - 7. Distractor Diversity & Anti-Meta-Gaming Test
+    func testDistractorDiversityAndMultiStrategyPools() throws {
+        var sawSameLastDigitInMult = false
+        var sawSameLastDigitInAdd = false
+
+        for qIdx in 0..<30 {
+            let qMult = QuestionGenerator.shared.generateQuestion(gameType: .multiplication, level: .godlike, questionIndex: qIdx % 15)
+            let correctMultStr = qMult.options[qMult.correctIndex]
+            if let correctLast = correctMultStr.last {
+                for (idx, opt) in qMult.options.enumerated() where idx != qMult.correctIndex {
+                    if opt.last == correctLast {
+                        sawSameLastDigitInMult = true
+                        break
+                    }
+                }
+            }
+
+            let qAdd = QuestionGenerator.shared.generateQuestion(gameType: .addition, level: .godlike, questionIndex: qIdx % 15)
+            let correctAddStr = qAdd.options[qAdd.correctIndex]
+            if let correctLast = correctAddStr.last {
+                for (idx, opt) in qAdd.options.enumerated() where idx != qAdd.correctIndex {
+                    if opt.last == correctLast {
+                        sawSameLastDigitInAdd = true
+                        break
+                    }
+                }
+            }
+        }
+
+        XCTAssertTrue(sawSameLastDigitInMult, "Multi-strategy generator should produce same-last-digit distractors in multiplication to prevent last-digit exploit")
+        XCTAssertTrue(sawSameLastDigitInAdd, "Multi-strategy generator should produce same-last-digit distractors in addition to prevent last-digit exploit")
+    }
 }

@@ -274,20 +274,88 @@ class QuestionGenerator {
         ["Bahrain", "Qatar", "United Arab Emirates", "Kuwait"]
     ]
 
+    // Regional geographic clusters
+    private let regionalCountryPools: [[String]] = [
+        ["Estonia", "Latvia", "Lithuania"],
+        ["Croatia", "Serbia", "Bosnia and Herzegovina", "Montenegro", "Macedonia", "Albania", "Bulgaria", "Greece", "Slovenia"],
+        ["Tuvalu", "Fiji", "Kiribati", "Nauru", "Palau", "Marshall Islands", "Solomon Islands", "Vanuatu", "Samoa", "Tonga", "Federated States of Micronesia"],
+        ["Kazakhstan", "Uzbekistan", "Kyrgyzstan", "Tajikistan", "Turkmenistan"],
+        ["Nigeria", "Ghana", "Senegal", "Mali", "Guinea", "Guinea-Bissau", "Benin", "Togo", "Burkina Faso", "Sierra Leone", "Liberia"],
+        ["Guatemala", "Honduras", "El Salvador", "Nicaragua", "Costa Rica", "Panama", "Belize"],
+        ["Brazil", "Argentina", "Colombia", "Chile", "Peru", "Venezuela", "Ecuador", "Bolivia", "Paraguay", "Uruguay"],
+        ["Cuba", "Jamaica", "Haiti", "Dominican Republic", "Bahamas", "Barbados", "Saint Lucia", "Trinidad and Tobago"],
+        ["Kenya", "Tanzania", "Uganda", "Rwanda", "Burundi", "Ethiopia", "Somalia"],
+        ["Austria", "Germany", "Switzerland", "Liechtenstein", "Luxembourg", "Belgium", "Netherlands"]
+    ]
+
+    // Similar name traps
+    private let similarNameClusters: [[String]] = [
+        ["Slovakia", "Slovenia"],
+        ["Niger", "Nigeria"],
+        ["Guinea", "Guinea-Bissau", "Equatorial Guinea"],
+        ["Republic of the Congo", "Democratic Republic of the Congo"],
+        ["Dominica", "Dominican Republic"],
+        ["Sudan", "South Sudan"],
+        ["Austria", "Australia"]
+    ]
+
     private func pickCountryDistractors(targetCountry: String, level: GameLevel) -> [String] {
         var choicesSet = Set<String>([targetCountry])
-        if level >= .hard {
-            for cluster in confusingCountryClusters {
-                if cluster.contains(targetCountry) {
-                    for partner in cluster.shuffled() {
-                        if allCountries.contains(partner) {
-                            choicesSet.insert(partner)
-                        }
-                        if choicesSet.count >= 4 { break }
-                    }
+
+        var visualCandidates: [String] = []
+        for cluster in confusingCountryClusters {
+            if cluster.contains(targetCountry) {
+                visualCandidates.append(contentsOf: cluster.filter { $0 != targetCountry && allCountries.contains($0) })
+            }
+        }
+
+        var regionalCandidates: [String] = []
+        for pool in regionalCountryPools {
+            if pool.contains(targetCountry) {
+                regionalCandidates.append(contentsOf: pool.filter { $0 != targetCountry && allCountries.contains($0) })
+            }
+        }
+
+        var nameCandidates: [String] = []
+        for cluster in similarNameClusters {
+            if cluster.contains(targetCountry) {
+                nameCandidates.append(contentsOf: cluster.filter { $0 != targetCountry && allCountries.contains($0) })
+            }
+        }
+
+        let total = allCountries.count
+        let tierCountries: [String]
+        switch level {
+        case .beginner: tierCountries = Array(allCountries.prefix(min(35, total)))
+        case .easy: tierCountries = Array(allCountries.prefix(min(60, total)))
+        case .medium: tierCountries = Array(allCountries[min(20, total - 1)..<min(85, total)])
+        case .hard: tierCountries = Array(allCountries[min(40, total - 1)..<min(125, total)])
+        case .ultimate: tierCountries = Array(allCountries[min(60, total - 1)..<min(160, total)])
+        case .godlike: tierCountries = Array(allCountries[min(80, total - 1)..<total])
+        }
+
+        var candidatePools: [[String]] = [
+            visualCandidates.shuffled(),
+            regionalCandidates.shuffled(),
+            nameCandidates.shuffled(),
+            tierCountries.filter { $0 != targetCountry }.shuffled()
+        ].shuffled()
+
+        // Round-robin selection across different strategy pools
+        for pool in candidatePools {
+            if choicesSet.count >= 4 { break }
+            for country in pool {
+                if !choicesSet.contains(country) {
+                    choicesSet.insert(country)
                     break
                 }
             }
+        }
+
+        // Fallback to reach 4 items
+        for c in tierCountries.shuffled() {
+            if choicesSet.count >= 4 { break }
+            choicesSet.insert(c)
         }
         while choicesSet.count < 4 {
             if let rand = allCountries.randomElement() {
@@ -297,15 +365,100 @@ class QuestionGenerator {
         return Array(choicesSet).shuffled()
     }
 
+    // Chemical group / family clusters
+    private let chemicalGroupClusters: [[String]] = [
+        ["Li", "Na", "K", "Rb", "Cs", "Fr"],
+        ["Be", "Mg", "Ca", "Sr", "Ba", "Ra"],
+        ["F", "Cl", "Br", "I", "At", "Ts"],
+        ["He", "Ne", "Ar", "Kr", "Xe", "Rn", "Og"],
+        ["Cu", "Ag", "Au", "Pt", "Pd"],
+        ["Fe", "Co", "Ni", "Zn", "Mn", "Cr"],
+        ["Al", "Ga", "In", "Sn", "Tl", "Pb", "Bi"],
+        ["B", "Si", "Ge", "As", "Sb", "Te"]
+    ]
+
+    // Common symbol & phonetic confusion clusters
+    private let chemicalConfusionClusters: [[String]] = [
+        ["Na", "N", "Ni", "Ne", "Nb"],
+        ["K", "P", "Pb", "Pt", "Po"],
+        ["Ag", "Au", "Al", "Ar", "As"],
+        ["Cu", "Co", "Cr", "C", "Ca", "Cl"],
+        ["Fe", "F", "Fr", "Fm"],
+        ["Mg", "Mn", "Mo"],
+        ["S", "Si", "Sn", "Sb", "Sc", "Se"],
+        ["Hg", "H", "He", "Hf", "Hs"],
+        ["Ba", "Be", "Bi", "Bk", "Bh", "B"],
+        ["Ta", "Tl", "Ti", "Tb", "Te", "Tc"]
+    ]
+
     private func pickChemSymbolDistractors(targetElem: ElementInfo, level: GameLevel) -> [String] {
         var choicesSet = Set<String>([targetElem.name])
-        if level >= .hard {
-            let firstLetter = String(targetElem.symbol.prefix(1))
-            let similar = allElements.filter { $0.symbol.hasPrefix(firstLetter) && $0.symbol != targetElem.symbol }
-            for elem in similar.shuffled() {
-                choicesSet.insert(elem.name)
-                if choicesSet.count >= 4 { break }
+
+        // 1. Group candidates
+        var groupCandidates: [String] = []
+        for cluster in chemicalGroupClusters {
+            if cluster.contains(targetElem.symbol) {
+                let partnerSymbols = cluster.filter { $0 != targetElem.symbol }
+                for sym in partnerSymbols {
+                    if let elem = allElements.first(where: { $0.symbol == sym }) {
+                        groupCandidates.append(elem.name)
+                    }
+                }
+                break
             }
+        }
+
+        // 2. Confusion cluster candidates
+        var confusionCandidates: [String] = []
+        for cluster in chemicalConfusionClusters {
+            if cluster.contains(targetElem.symbol) {
+                let partnerSymbols = cluster.filter { $0 != targetElem.symbol }
+                for sym in partnerSymbols {
+                    if let elem = allElements.first(where: { $0.symbol == sym }) {
+                        confusionCandidates.append(elem.name)
+                    }
+                }
+                break
+            }
+        }
+
+        // 3. Same first letter candidates
+        let firstLetter = String(targetElem.symbol.prefix(1))
+        let letterCandidates = allElements.filter { $0.symbol.hasPrefix(firstLetter) && $0.symbol != targetElem.symbol }.map { $0.name }
+
+        // 4. Same tier candidates
+        let total = allElements.count
+        let tierRange: Range<Int>
+        switch level {
+        case .beginner: tierRange = 0..<min(25, total)
+        case .easy: tierRange = 0..<min(50, total)
+        case .medium: tierRange = min(20, total - 1)..<min(70, total)
+        case .hard: tierRange = min(40, total - 1)..<min(95, total)
+        case .ultimate: tierRange = min(60, total - 1)..<min(105, total)
+        case .godlike: tierRange = min(70, total - 1)..<total
+        }
+        let tierCandidates = Array(allElements[tierRange]).filter { $0.symbol != targetElem.symbol }.map { $0.name }
+
+        var candidatePools: [[String]] = [
+            groupCandidates.shuffled(),
+            confusionCandidates.shuffled(),
+            letterCandidates.shuffled(),
+            tierCandidates.shuffled()
+        ].shuffled()
+
+        for pool in candidatePools {
+            if choicesSet.count >= 4 { break }
+            for cand in pool {
+                if !choicesSet.contains(cand) {
+                    choicesSet.insert(cand)
+                    break
+                }
+            }
+        }
+
+        for cand in tierCandidates.shuffled() {
+            if choicesSet.count >= 4 { break }
+            choicesSet.insert(cand)
         }
         while choicesSet.count < 4 {
             if let rand = allElements.randomElement() {
@@ -317,13 +470,64 @@ class QuestionGenerator {
 
     private func pickChemNameDistractors(targetElem: ElementInfo, level: GameLevel) -> [String] {
         var choicesSet = Set<String>([targetElem.symbol])
-        if level >= .hard {
-            let firstLetter = String(targetElem.symbol.prefix(1))
-            let similar = allElements.filter { $0.symbol.hasPrefix(firstLetter) && $0.symbol != targetElem.symbol }
-            for elem in similar.shuffled() {
-                choicesSet.insert(elem.symbol)
-                if choicesSet.count >= 4 { break }
+
+        // 1. Group candidates
+        var groupCandidates: [String] = []
+        for cluster in chemicalGroupClusters {
+            if cluster.contains(targetElem.symbol) {
+                let partnerSymbols = cluster.filter { $0 != targetElem.symbol }
+                groupCandidates.append(contentsOf: partnerSymbols)
+                break
             }
+        }
+
+        // 2. Confusion cluster candidates
+        var confusionCandidates: [String] = []
+        for cluster in chemicalConfusionClusters {
+            if cluster.contains(targetElem.symbol) {
+                let partnerSymbols = cluster.filter { $0 != targetElem.symbol }
+                confusionCandidates.append(contentsOf: partnerSymbols)
+                break
+            }
+        }
+
+        // 3. Same first letter candidates
+        let firstLetter = String(targetElem.symbol.prefix(1))
+        let letterCandidates = allElements.filter { $0.symbol.hasPrefix(firstLetter) && $0.symbol != targetElem.symbol }.map { $0.symbol }
+
+        // 4. Same tier candidates
+        let total = allElements.count
+        let tierRange: Range<Int>
+        switch level {
+        case .beginner: tierRange = 0..<min(25, total)
+        case .easy: tierRange = 0..<min(50, total)
+        case .medium: tierRange = min(20, total - 1)..<min(70, total)
+        case .hard: tierRange = min(40, total - 1)..<min(95, total)
+        case .ultimate: tierRange = min(60, total - 1)..<min(105, total)
+        case .godlike: tierRange = min(70, total - 1)..<total
+        }
+        let tierCandidates = Array(allElements[tierRange]).filter { $0.symbol != targetElem.symbol }.map { $0.symbol }
+
+        var candidatePools: [[String]] = [
+            groupCandidates.shuffled(),
+            confusionCandidates.shuffled(),
+            letterCandidates.shuffled(),
+            tierCandidates.shuffled()
+        ].shuffled()
+
+        for pool in candidatePools {
+            if choicesSet.count >= 4 { break }
+            for cand in pool {
+                if !choicesSet.contains(cand) {
+                    choicesSet.insert(cand)
+                    break
+                }
+            }
+        }
+
+        for cand in tierCandidates.shuffled() {
+            if choicesSet.count >= 4 { break }
+            choicesSet.insert(cand)
         }
         while choicesSet.count < 4 {
             if let rand = allElements.randomElement() {
@@ -338,6 +542,7 @@ class QuestionGenerator {
         let text: String
         let correct: Int
         let range: Int
+        var distractorCandidates: [Int] = []
 
         switch level {
         case .beginner:
@@ -346,12 +551,14 @@ class QuestionGenerator {
             correct = r1 + r2
             text = "\(r1) + \(r2)"
             range = 10
+            distractorCandidates = [correct + 1, correct - 1, correct + 2, correct - 2, r1 * r2]
         case .easy:
             let r1 = Int.random(in: 1...19)
             let r2 = Int.random(in: 2...18)
             correct = r1 + r2
             text = "\(r1) + \(r2)"
             range = 10
+            distractorCandidates = [correct + 10, correct - 10, correct + 1, correct - 1, correct + 9, correct + 11]
         case .medium:
             let total = Int.random(in: 20...100)
             let r1 = Int.random(in: 10...(total - 10))
@@ -359,6 +566,7 @@ class QuestionGenerator {
             correct = total
             text = "\(r1) + \(r2)"
             range = 15
+            distractorCandidates = [correct + 10, correct - 10, correct + 20, correct - 20, correct + 1, correct - 1, correct + 9]
         case .hard:
             let total = Int.random(in: 100...500)
             let r1 = Int.random(in: 40...(total - 40))
@@ -366,6 +574,7 @@ class QuestionGenerator {
             correct = total
             text = "\(r1) + \(r2)"
             range = 25
+            distractorCandidates = [correct + 10, correct - 10, correct + 100, correct - 100, correct + 20, correct - 20, correct + 1, correct - 1]
         case .ultimate:
             let r1 = Int.random(in: 50...300)
             let r2 = Int.random(in: 50...300)
@@ -373,6 +582,7 @@ class QuestionGenerator {
             correct = r1 + r2 + r3
             text = "\(r1) + \(r2) + \(r3)"
             range = 30
+            distractorCandidates = [r1 + r2, r1 + r3, r2 + r3, r1 + r2 - r3, correct + 10, correct - 10, correct + 20, correct + 100, correct - 100]
         case .godlike:
             if questionIndex < 7 {
                 let r1 = Int.random(in: 200...800)
@@ -380,6 +590,7 @@ class QuestionGenerator {
                 let r3 = Int.random(in: 200...800)
                 correct = r1 + r2 + r3
                 text = "\(r1) + \(r2) + \(r3)"
+                distractorCandidates = [r1 + r2, r1 + r2 - r3, correct + 10, correct - 10, correct + 20, correct - 20, correct + 100, correct - 100, correct + 200]
             } else {
                 let r1 = Int.random(in: 150...600)
                 let r2 = Int.random(in: 150...600)
@@ -387,11 +598,12 @@ class QuestionGenerator {
                 let r4 = Int.random(in: 150...600)
                 correct = r1 + r2 + r3 + r4
                 text = "\(r1) + \(r2) + \(r3) + \(r4)"
+                distractorCandidates = [r1 + r2 + r3, r1 + r2 + r3 - r4, correct + 10, correct - 10, correct + 20, correct - 20, correct + 100, correct - 100]
             }
             range = 40
         }
 
-        let options = makeNumericOptions(correct: correct, range: range)
+        let options = makeNumericOptions(correct: correct, range: range, contextCandidates: distractorCandidates)
         let correctIdx = options.firstIndex(of: "\(correct)") ?? 0
 
         return Question(text: text, subtext: NSLocalizedString("prompt_calc_sum", comment: "Calculate sum"), options: options, correctIndex: correctIdx, maxTime: maxTime, flagImageName: nil, memorySteps: nil, memoryGridItems: nil, memoryPreviewSeconds: nil)
@@ -402,6 +614,7 @@ class QuestionGenerator {
         let text: String
         let correct: Int
         let range: Int
+        var distractorCandidates: [Int] = []
 
         switch level {
         case .beginner:
@@ -411,6 +624,7 @@ class QuestionGenerator {
             correct = diff
             text = "\(r1) - \(r2)"
             range = 10
+            distractorCandidates = [diff + 1, diff - 1, diff + 2, r1, r2]
         case .easy:
             let r2 = Int.random(in: 10...30)
             let diff = Int.random(in: 1...20)
@@ -418,6 +632,7 @@ class QuestionGenerator {
             correct = diff
             text = "\(r1) - \(r2)"
             range = 12
+            distractorCandidates = [diff + 10, diff - 10, diff + 1, diff - 1, r1 - r2 + 2]
         case .medium:
             let r2 = Int.random(in: 10...50)
             let diff = Int.random(in: 15...50)
@@ -425,6 +640,7 @@ class QuestionGenerator {
             correct = diff
             text = "\(r1) - \(r2)"
             range = 15
+            distractorCandidates = [diff + 10, diff - 10, diff + 1, diff - 1, diff + 9, diff - 9, diff + 20]
         case .hard:
             let r2 = Int.random(in: 50...250)
             let diff = Int.random(in: 40...200)
@@ -432,6 +648,7 @@ class QuestionGenerator {
             correct = diff
             text = "\(r1) - \(r2)"
             range = 25
+            distractorCandidates = [diff + 10, diff - 10, diff + 100, diff - 100, diff + 20, diff - 20, diff + 1, diff - 1]
         case .ultimate:
             let r2 = Int.random(in: 40...180)
             let r3 = Int.random(in: 40...180)
@@ -440,6 +657,7 @@ class QuestionGenerator {
             correct = diff
             text = "\(r1) - \(r2) - \(r3)"
             range = 35
+            distractorCandidates = [r1 - r2, r1 - r2 + r3, diff + 10, diff - 10, diff + 20, diff - 20, diff + 100]
         case .godlike:
             if questionIndex < 7 {
                 let r2 = Int.random(in: 1200...4500)
@@ -447,6 +665,7 @@ class QuestionGenerator {
                 let r1 = r2 + diff
                 correct = diff
                 text = "\(r1) - \(r2)"
+                distractorCandidates = [diff + 10, diff - 10, diff + 100, diff - 100, diff + 20, diff - 20, diff + 200, diff - 200]
             } else {
                 let r2 = Int.random(in: 400...1500)
                 let r3 = Int.random(in: 400...1500)
@@ -454,11 +673,12 @@ class QuestionGenerator {
                 let r1 = r2 + r3 + diff
                 correct = diff
                 text = "\(r1) - \(r2) - \(r3)"
+                distractorCandidates = [r1 - r2, r1 - r2 + r3, diff + 10, diff - 10, diff + 100, diff - 100, diff + 20, diff - 20]
             }
             range = 50
         }
 
-        let options = makeNumericOptions(correct: correct, range: range)
+        let options = makeNumericOptions(correct: correct, range: range, contextCandidates: distractorCandidates)
         let correctIdx = options.firstIndex(of: "\(correct)") ?? 0
 
         return Question(text: text, subtext: NSLocalizedString("prompt_calc_diff", comment: "Calculate difference"), options: options, correctIndex: correctIdx, maxTime: maxTime, flagImageName: nil, memorySteps: nil, memoryGridItems: nil, memoryPreviewSeconds: nil)
@@ -469,6 +689,7 @@ class QuestionGenerator {
         let text: String
         let correct: Int
         let range: Int
+        var distractorCandidates: [Int] = []
 
         switch level {
         case .beginner:
@@ -477,24 +698,28 @@ class QuestionGenerator {
             correct = r1 * r2
             text = "\(r1) × \(r2)"
             range = 15
+            distractorCandidates = [(r1 + 1) * r2, r1 * (r2 - 1), (r1 - 1) * r2, correct + 10, correct - 10, r1 + r2]
         case .easy:
             let r1 = Int.random(in: 3...9)
             let r2 = Int.random(in: 11...19)
             correct = r1 * r2
             text = "\(r1) × \(r2)"
             range = 20
+            distractorCandidates = [(r1 + 1) * r2, r1 * (r2 + 1), (r1 - 1) * r2, correct + 10, correct - 10, correct + 20]
         case .medium:
             let r1 = Int.random(in: 11...25)
             let r2 = Int.random(in: 11...25)
             correct = r1 * r2
             text = "\(r1) × \(r2)"
             range = 30
+            distractorCandidates = [(r1 + 1) * r2, r1 * (r2 - 1), correct + 10, correct - 10, correct + 20, correct - 20, correct + 100]
         case .hard:
             let r1 = Int.random(in: 20...50)
             let r2 = Int.random(in: 15...35)
             correct = r1 * r2
             text = "\(r1) × \(r2)"
             range = 50
+            distractorCandidates = [(r1 + 1) * r2, r1 * (r2 - 1), correct + 10, correct - 10, correct + 20, correct - 20, correct + 100, correct - 100]
         case .ultimate:
             let r1 = Int.random(in: 4...9)
             let r2 = Int.random(in: 6...12)
@@ -502,6 +727,7 @@ class QuestionGenerator {
             correct = r1 * r2 * r3
             text = "\(r1) × \(r2) × \(r3)"
             range = 80
+            distractorCandidates = [r1 * r2, (r1 * r2) + r3, (r1 + 1) * r2 * r3, correct + 10, correct - 10, correct + 20, correct - 20, correct + 50, correct - 50]
         case .godlike:
             if questionIndex < 7 {
                 let r1 = Int.random(in: 11...16)
@@ -509,16 +735,18 @@ class QuestionGenerator {
                 let r3 = Int.random(in: 11...15)
                 correct = r1 * r2 * r3
                 text = "\(r1) × \(r2) × \(r3)"
+                distractorCandidates = [r1 * r2, (r1 * r2) + r3, (r1 + 1) * r2 * r3, r1 * (r2 - 1) * r3, correct + 10, correct - 10, correct + 20, correct - 20, correct + 100, correct - 100]
             } else {
                 let r1 = Int.random(in: 120...350)
                 let r2 = Int.random(in: 15...45)
                 correct = r1 * r2
                 text = "\(r1) × \(r2)"
+                distractorCandidates = [(r1 + 1) * r2, r1 * (r2 - 1), correct + 10, correct - 10, correct + 20, correct - 20, correct + 50, correct - 50, correct + 100, correct - 100]
             }
             range = 150
         }
 
-        let options = makeNumericOptions(correct: correct, range: range)
+        let options = makeNumericOptions(correct: correct, range: range, contextCandidates: distractorCandidates)
         let correctIdx = options.firstIndex(of: "\(correct)") ?? 0
 
         return Question(text: text, subtext: NSLocalizedString("prompt_calc_product", comment: "Calculate product"), options: options, correctIndex: correctIdx, maxTime: maxTime, flagImageName: nil, memorySteps: nil, memoryGridItems: nil, memoryPreviewSeconds: nil)
@@ -529,6 +757,7 @@ class QuestionGenerator {
         let text: String
         let correct: Int
         let range: Int
+        var distractorCandidates: [Int] = []
 
         switch level {
         case .beginner:
@@ -538,6 +767,7 @@ class QuestionGenerator {
             correct = quotient
             text = "\(dividend) ÷ \(divisor)"
             range = 8
+            distractorCandidates = [quotient + 1, quotient - 1, quotient + 2, quotient - 2, divisor]
         case .easy:
             let divisor = Int.random(in: 3...10)
             let quotient = Int.random(in: 10...20)
@@ -545,6 +775,7 @@ class QuestionGenerator {
             correct = quotient
             text = "\(dividend) ÷ \(divisor)"
             range = 10
+            distractorCandidates = [quotient + 1, quotient - 1, quotient + 2, quotient - 2, quotient + 10, quotient - 10]
         case .medium:
             let divisor = Int.random(in: 10...30)
             let quotient = Int.random(in: 10...25)
@@ -552,6 +783,7 @@ class QuestionGenerator {
             correct = quotient
             text = "\(dividend) ÷ \(divisor)"
             range = 15
+            distractorCandidates = [quotient + 1, quotient - 1, quotient + 2, quotient - 2, quotient + 10, quotient - 10, quotient + 5]
         case .hard:
             let divisor = Int.random(in: 15...40)
             let quotient = Int.random(in: 20...45)
@@ -559,6 +791,7 @@ class QuestionGenerator {
             correct = quotient
             text = "\(dividend) ÷ \(divisor)"
             range = 20
+            distractorCandidates = [quotient + 1, quotient - 1, quotient + 2, quotient - 2, quotient + 10, quotient - 10, quotient + 5, quotient - 5]
         case .ultimate:
             let divisor = Int.random(in: 25...75)
             let quotient = Int.random(in: 30...85)
@@ -566,6 +799,7 @@ class QuestionGenerator {
             correct = quotient
             text = "\(dividend) ÷ \(divisor)"
             range = 25
+            distractorCandidates = [quotient + 1, quotient - 1, quotient + 2, quotient - 2, quotient + 10, quotient - 10, quotient + 20, quotient - 20]
         case .godlike:
             if questionIndex < 7 {
                 let divisor = Int.random(in: 35...95)
@@ -573,6 +807,7 @@ class QuestionGenerator {
                 let dividend = divisor * quotient
                 correct = quotient
                 text = "\(dividend) ÷ \(divisor)"
+                distractorCandidates = [quotient + 1, quotient - 1, quotient + 2, quotient - 2, quotient + 10, quotient - 10, quotient + 20, quotient - 20]
             } else {
                 let factor1 = Int.random(in: 4...15)
                 let factor2 = Int.random(in: 5...25)
@@ -580,11 +815,12 @@ class QuestionGenerator {
                 let bVal = factor2 * div
                 correct = factor1 * factor2
                 text = "(\(factor1) × \(bVal)) ÷ \(div)"
+                distractorCandidates = [factor1 * bVal, (factor1 * bVal) - div, correct + 1, correct - 1, correct + 10, correct - 10, correct + 5, correct - 5]
             }
             range = 30
         }
 
-        let options = makeNumericOptions(correct: correct, range: range)
+        let options = makeNumericOptions(correct: correct, range: range, minVal: 1, contextCandidates: distractorCandidates)
         let correctIdx = options.firstIndex(of: "\(correct)") ?? 0
 
         return Question(text: text, subtext: NSLocalizedString("prompt_calc_quotient", comment: "Calculate quotient"), options: options, correctIndex: correctIdx, maxTime: maxTime, flagImageName: nil, memorySteps: nil, memoryGridItems: nil, memoryPreviewSeconds: nil)
@@ -595,6 +831,7 @@ class QuestionGenerator {
         let text: String
         let correct: Int
         let range: Int
+        var distractorCandidates: [Int] = []
 
         switch level {
         case .beginner:
@@ -604,9 +841,11 @@ class QuestionGenerator {
             if Bool.random() {
                 text = "\(r1) + \(r2) × \(r3)"
                 correct = r1 + (r2 * r3)
+                distractorCandidates = [(r1 + r2) * r3, (r2 * r3), correct + 1, correct - 1, correct + 10]
             } else {
                 text = "\(r2) × \(r3) + \(r1)"
                 correct = (r2 * r3) + r1
+                distractorCandidates = [r2 * (r3 + r1), (r2 * r3), correct + 1, correct - 1, correct + 10]
             }
             range = 10
         case .easy:
@@ -616,12 +855,14 @@ class QuestionGenerator {
                 let r3 = Int.random(in: 2...min(15, r1 * r2 - 2))
                 text = "\(r1) × \(r2) - \(r3)"
                 correct = (r1 * r2) - r3
+                distractorCandidates = [r1 * (r2 - r3), (r1 * r2), correct + 1, correct - 1, correct + 10]
             } else {
                 let r1 = Int.random(in: 2...8)
                 let r2 = Int.random(in: 2...8)
                 let r3 = Int.random(in: 2...6)
                 text = "(\(r1) + \(r2)) × \(r3)"
                 correct = (r1 + r2) * r3
+                distractorCandidates = [r1 + (r2 * r3), r1 + r2, correct + 1, correct - 1, correct + 10]
             }
             range = 12
         case .medium:
@@ -634,6 +875,7 @@ class QuestionGenerator {
                 let r4 = Int.random(in: 2...7)
                 text = "\(r1) × \(r2) + \(r3) × \(r4)"
                 correct = (r1 * r2) + (r3 * r4)
+                distractorCandidates = [((r1 * r2) + r3) * r4, (r1 * r2) + r3, r1 * (r2 + r3) * r4, correct + 10, correct - 10, correct + 1]
             case 1:
                 let r1 = Int.random(in: 2...8)
                 let r2 = Int.random(in: 2...8)
@@ -642,6 +884,7 @@ class QuestionGenerator {
                 let r3 = r4 + diff
                 text = "(\(r1) + \(r2)) × (\(r3) - \(r4))"
                 correct = (r1 + r2) * diff
+                distractorCandidates = [r1 + r2 * diff, (r1 + r2) * r3 - r4, correct + 10, correct - 10, correct + 1]
             default:
                 let r1 = Int.random(in: 2...10)
                 let r2 = Int.random(in: 3...8)
@@ -649,6 +892,7 @@ class QuestionGenerator {
                 let r4 = Int.random(in: 2...min(15, r2 * r3))
                 text = "\(r1) + \(r2) × \(r3) - \(r4)"
                 correct = r1 + (r2 * r3) - r4
+                distractorCandidates = [(r1 + r2) * r3 - r4, (r1 + r2) * (r3 - r4), r1 + (r2 * (r3 - r4)), correct + 10, correct - 10]
             }
             range = 15
         case .hard:
@@ -660,6 +904,7 @@ class QuestionGenerator {
             let r3 = Int.random(in: 2...10)
             text = "\(r1) × \(r2) + \(dividend) ÷ \(divisor) - \(r3)"
             correct = (r1 * r2) + quotient - r3
+            distractorCandidates = [(r1 * r2) + dividend - r3, (r1 * r2) + quotient, (r1 * r2) + quotient + r3, correct + 10, correct - 10, correct + 1, correct - 1]
             range = 20
         case .ultimate:
             if Bool.random() {
@@ -669,6 +914,7 @@ class QuestionGenerator {
                 let d = Int.random(in: 2...15)
                 text = "\(a)² + \(b) × \(c) - \(d)"
                 correct = (a * a) + (b * c) - d
+                distractorCandidates = [(a + b) * (a + b) * c - d, (a * a + b) * c - d, (a * a) + (b * (c - d)), correct + 10, correct - 10, correct + 1]
             } else {
                 let a = Int.random(in: 2...10)
                 let b = Int.random(in: 2...5)
@@ -676,6 +922,7 @@ class QuestionGenerator {
                 let d = Int.random(in: 2...15)
                 text = "(\(a) + \(b)²) × \(c) - \(d)"
                 correct = (a + b * b) * c - d
+                distractorCandidates = [a + (b * b * c) - d, ((a + b) * (a + b)) * c - d, (a + b * b) * (c - d), correct + 10, correct - 10]
             }
             range = 25
         case .godlike:
@@ -690,10 +937,11 @@ class QuestionGenerator {
             let f = Int.random(in: 2...8)
             text = "[(\(a) × \(b) - \(c)) ÷ \(d)]² + \(e) × \(f)"
             correct = (innerResult * innerResult) + (e * f)
+            distractorCandidates = [innerResult + (e * f), (innerResult * innerResult) + e + f, targetInner + (e * f), correct + 10, correct - 10, correct + 20, correct - 20]
             range = 30
         }
 
-        let options = makeNumericOptions(correct: correct, range: range)
+        let options = makeNumericOptions(correct: correct, range: range, contextCandidates: distractorCandidates)
         let correctIdx = options.firstIndex(of: "\(correct)") ?? 0
 
         return Question(text: text, subtext: NSLocalizedString("prompt_operator_precedence", comment: "Operator precedence"), options: options, correctIndex: correctIdx, maxTime: maxTime, flagImageName: nil, memorySteps: nil, memoryGridItems: nil, memoryPreviewSeconds: nil)
@@ -786,6 +1034,21 @@ class QuestionGenerator {
         }
 
         let correct = seq[missingPos]
+        var distractorCandidates: [Int] = [
+            correct + 1, correct - 1, correct + 2, correct - 2,
+            correct + 10, correct - 10
+        ]
+        if missingPos > 0 {
+            distractorCandidates.append(seq[missingPos - 1])
+        }
+        if missingPos + 1 < seq.count {
+            distractorCandidates.append(seq[missingPos + 1])
+        }
+        if seq.count >= 2 {
+            let diff = abs(seq[1] - seq[0])
+            distractorCandidates.append(contentsOf: [correct + diff, correct - diff, correct + 2 * diff])
+        }
+
         var textParts: [String] = []
         for i in 0..<seq.count {
             if i == missingPos {
@@ -796,7 +1059,7 @@ class QuestionGenerator {
         }
 
         let text = textParts.joined(separator: ", ")
-        let options = makeNumericOptions(correct: correct, range: 12)
+        let options = makeNumericOptions(correct: correct, range: 12, contextCandidates: distractorCandidates)
         let correctIdx = options.firstIndex(of: "\(correct)") ?? 0
 
         return Question(text: text, subtext: NSLocalizedString("prompt_missing_seq", comment: "Missing sequence number"), options: options, correctIndex: correctIdx, maxTime: maxTime, flagImageName: nil, memorySteps: nil, memoryGridItems: nil, memoryPreviewSeconds: nil)
@@ -807,6 +1070,7 @@ class QuestionGenerator {
         let text: String
         let correctX: Int
         let range: Int
+        var distractorCandidates: [Int] = []
 
         switch level {
         case .beginner:
@@ -821,6 +1085,7 @@ class QuestionGenerator {
             }
             correctX = x
             range = 8
+            distractorCandidates = [correctX + a, correctX - a, a, correctX + 1, correctX - 1]
         case .easy:
             let a = Int.random(in: 2...6)
             let x = Int.random(in: 2...9)
@@ -829,6 +1094,7 @@ class QuestionGenerator {
             text = "\(a)x + \(b) = \(c)"
             correctX = x
             range = 8
+            distractorCandidates = [c - b, (c + b) / max(1, a), a, b, correctX + 1, correctX - 1]
         case .medium:
             let a = Int.random(in: 2...8)
             let b = Int.random(in: 2...6)
@@ -836,6 +1102,7 @@ class QuestionGenerator {
             correctX = (b * a) + c
             text = "y = \(a);  x = \(b)y + \(c)"
             range = 10
+            distractorCandidates = [a, b * a, (b + c) * a, correctX + 1, correctX - 1, correctX + 10]
         case .hard:
             let x = Int.random(in: 6...25)
             let y = Int.random(in: 2...min(20, x - 1))
@@ -844,6 +1111,7 @@ class QuestionGenerator {
             text = "x + y = \(sum);  x - y = \(diff)"
             correctX = x
             range = 10
+            distractorCandidates = [y, sum, diff, (sum + diff), correctX + 1, correctX - 1]
         case .ultimate:
             let x = Int.random(in: 4...20)
             let y = Int.random(in: 2...15)
@@ -852,6 +1120,7 @@ class QuestionGenerator {
             text = "2x + y = \(c1);  x - y = \(c2)"
             correctX = x
             range = 10
+            distractorCandidates = [y, c1 - c2, c1, c2, correctX + 1, correctX - 1, correctX + 2]
         case .godlike:
             if Bool.random() {
                 let z = Int.random(in: 2...6)
@@ -860,6 +1129,7 @@ class QuestionGenerator {
                 let y = (2 * z) + d
                 correctX = y + (2 * z) + e
                 text = "z = \(z);  y = 2z + \(d);  x = y + 2z + \(e)"
+                distractorCandidates = [y, z, correctX - e, correctX - d, correctX + 1, correctX - 1, correctX + 10]
             } else {
                 let r1 = Int.random(in: 2...6)
                 let r2 = Int.random(in: 7...12)
@@ -867,11 +1137,12 @@ class QuestionGenerator {
                 let q = r1 * r2
                 text = "x² - \(p)x + \(q) = 0   (x > \(r1))"
                 correctX = r2
+                distractorCandidates = [r1, p, q, r2 + 1, r2 - 1, p - r1]
             }
             range = 10
         }
 
-        let options = makeNumericOptions(correct: correctX, range: range)
+        let options = makeNumericOptions(correct: correctX, range: range, contextCandidates: distractorCandidates)
         let correctIdx = options.firstIndex(of: "\(correctX)") ?? 0
 
         return Question(text: text, subtext: NSLocalizedString("prompt_find_x", comment: "Find value of x"), options: options, correctIndex: correctIdx, maxTime: maxTime, flagImageName: nil, memorySteps: nil, memoryGridItems: nil, memoryPreviewSeconds: nil)
@@ -899,6 +1170,7 @@ class QuestionGenerator {
         var steps = ["\(first)"]
         var currentSum = first
         var lastAddedVal: Int? = nil
+        var history = [first]
 
         for _ in 1..<stepCount {
             var nextVal = Int.random(in: 2...10)
@@ -907,10 +1179,14 @@ class QuestionGenerator {
             }
             lastAddedVal = nextVal
             currentSum += nextVal
+            history.append(currentSum)
             steps.append("+\(nextVal)")
         }
 
-        let options = makeNumericOptions(correct: currentSum, range: 10)
+        let penultimate = history.count >= 2 ? history[history.count - 2] : currentSum - 2
+        let antepenultimate = history.count >= 3 ? history[history.count - 3] : currentSum + 2
+        let distractorCandidates = [penultimate, antepenultimate, currentSum + 1, currentSum - 1, currentSum + 2, currentSum - 2, currentSum + 10, currentSum - 10]
+        let options = makeNumericOptions(correct: currentSum, range: 10, contextCandidates: distractorCandidates)
         let correctIdx = options.firstIndex(of: "\(currentSum)") ?? 0
 
         return Question(
@@ -948,6 +1224,7 @@ class QuestionGenerator {
         var steps = ["\(first)"]
         var currentVal = first
         var lastStepString: String? = nil
+        var history = [first]
 
         for _ in 1..<stepCount {
             let isAdd: Bool
@@ -993,10 +1270,14 @@ class QuestionGenerator {
             }
 
             lastStepString = stepString
+            history.append(currentVal)
             steps.append(stepString)
         }
 
-        let options = makeNumericOptions(correct: currentVal, range: 10)
+        let penultimate = history.count >= 2 ? history[history.count - 2] : currentVal - 2
+        let antepenultimate = history.count >= 3 ? history[history.count - 3] : currentVal + 2
+        let distractorCandidates = [penultimate, antepenultimate, currentVal + 1, currentVal - 1, currentVal + 2, currentVal - 2, currentVal + 10, currentVal - 10]
+        let options = makeNumericOptions(correct: currentVal, range: 10, contextCandidates: distractorCandidates)
         let correctIdx = options.firstIndex(of: "\(currentVal)") ?? 0
 
         return Question(
@@ -1034,6 +1315,7 @@ class QuestionGenerator {
         var steps = ["\(first)"]
         var currentVal = first
         var lastStepString: String? = nil
+        var history = [first]
 
         for i in 1..<stepCount {
             var opString = ""
@@ -1090,10 +1372,14 @@ class QuestionGenerator {
             }
 
             lastStepString = opString
+            history.append(currentVal)
             steps.append(opString)
         }
 
-        let options = makeNumericOptions(correct: currentVal, range: 12)
+        let penultimate = history.count >= 2 ? history[history.count - 2] : currentVal - 2
+        let antepenultimate = history.count >= 3 ? history[history.count - 3] : currentVal + 2
+        let distractorCandidates = [penultimate, antepenultimate, currentVal + 1, currentVal - 1, currentVal + 2, currentVal - 2, currentVal + 10, currentVal - 10]
+        let options = makeNumericOptions(correct: currentVal, range: 12, contextCandidates: distractorCandidates)
         let correctIdx = options.firstIndex(of: "\(currentVal)") ?? 0
 
         return Question(
@@ -1149,7 +1435,18 @@ class QuestionGenerator {
         default: shapeNameKey = "shape_stars"
         }
 
-        let options = makeNumericOptions(correct: targetCount, range: 4, minVal: 0, maxVal: gridCount)
+        var shapeCounts: [String: Int] = [:]
+        for item in items {
+            shapeCounts[item.shapeSymbol, default: 0] += 1
+        }
+        let otherShapeCounts = shapeCounts.filter { $0.key != targetShape }.map { $0.value }
+        let distractorCandidates = otherShapeCounts + [
+            gridCount - targetCount,
+            targetCount + 1, targetCount - 1,
+            targetCount + 2, targetCount - 2
+        ]
+
+        let options = makeNumericOptions(correct: targetCount, range: 4, minVal: 0, maxVal: gridCount, contextCandidates: distractorCandidates)
         let correctIdx = options.firstIndex(of: "\(targetCount)") ?? 0
 
         let localizedShapeName = NSLocalizedString(shapeNameKey, comment: "Shape name")
@@ -1199,7 +1496,18 @@ class QuestionGenerator {
             }
         }
 
-        let options = makeNumericOptions(correct: targetCount, range: 4, minVal: 0, maxVal: gridCount)
+        var colorCounts: [String: Int] = [:]
+        for item in items {
+            colorCounts[item.colorName, default: 0] += 1
+        }
+        let otherColorCounts = colorCounts.filter { $0.key != targetColor }.map { $0.value }
+        let distractorCandidates = otherColorCounts + [
+            gridCount - targetCount,
+            targetCount + 1, targetCount - 1,
+            targetCount + 2, targetCount - 2
+        ]
+
+        let options = makeNumericOptions(correct: targetCount, range: 4, minVal: 0, maxVal: gridCount, contextCandidates: distractorCandidates)
         let correctIdx = options.firstIndex(of: "\(targetCount)") ?? 0
 
         let colorKey: String
@@ -1327,41 +1635,114 @@ class QuestionGenerator {
         )
     }
 
-    // Helper: generate 4 unique numeric choices
-    private func makeNumericOptions(correct: Int, range: Int, minVal: Int = 0, maxVal: Int? = nil) -> [String] {
+    // Helper: generate 4 unique numeric choices using multiple anti-meta-gaming strategies
+    private func makeNumericOptions(
+        correct: Int,
+        range: Int = 10,
+        minVal: Int = 0,
+        maxVal: Int? = nil,
+        contextCandidates: [Int] = [],
+        allowNegative: Bool = false
+    ) -> [String] {
         var set = Set<Int>([correct])
-        
-        if let upper = maxVal {
-            var candidates = Array(minVal...upper).filter { $0 != correct }
-            candidates.sort { c1, c2 in
-                let d1 = abs(c1 - correct)
-                let d2 = abs(c2 - correct)
-                if d1 == d2 {
-                    return Bool.random()
-                }
-                return d1 < d2
-            }
-            for val in candidates {
-                if set.count >= 4 { break }
-                set.insert(val)
-            }
-            var extra = 1
-            while set.count < 4 {
-                let val = upper + extra
-                set.insert(val)
-                extra += 1
-            }
-        } else {
-            var delta = 1
-            while set.count < 4 {
-                let offset = (Bool.random() ? 1 : -1) * (delta + Int.random(in: 0...2))
-                let val = max(minVal, correct + offset)
-                if val != correct {
-                    set.insert(val)
-                }
-                delta += 2
+
+        // 1. Context candidates (domain-specific errors: intermediate results, wrong operator, other variable, etc.)
+        let validContextCandidates = contextCandidates.filter { cand in
+            cand != correct &&
+            (allowNegative || cand >= minVal) &&
+            (maxVal == nil || cand <= (maxVal ?? Int.max))
+        }.shuffled()
+
+        // Take 1 to 2 context candidates randomly to ensure different questions get different combinations
+        if !validContextCandidates.isEmpty {
+            let numToTake = Int.random(in: 1...min(2, validContextCandidates.count))
+            for cand in validContextCandidates.prefix(numToTake) {
+                set.insert(cand)
             }
         }
+
+        // 2. Multi-Strategy Candidate Pools:
+        // Strategy A: Same Last Digit (neutralizes the "last digit exploit" for math games)
+        let step10 = max(10, (abs(correct) >= 100 ? 10 : (abs(correct) >= 20 ? 10 : 5)))
+        var sameLastDigit: [Int] = []
+        for mul in [1, -1, 2, -2, 10, -10] {
+            let val = correct + (mul * step10)
+            if val != correct && (allowNegative || val >= minVal) && (maxVal == nil || val <= (maxVal ?? Int.max)) {
+                sameLastDigit.append(val)
+            }
+        }
+
+        // Strategy B: Carry / Borrow / Small offset errors
+        var carryErrors: [Int] = []
+        for off in [1, -1, 2, -2, 9, -9, 11, -11] {
+            let val = correct + off
+            if val != correct && (allowNegative || val >= minVal) && (maxVal == nil || val <= (maxVal ?? Int.max)) {
+                carryErrors.append(val)
+            }
+        }
+
+        // Strategy C: Proportional scale offset
+        let scale = max(1, abs(correct) / 10)
+        var scaleErrors: [Int] = []
+        for mul in [1, -1, 2, -2, 3, -3] {
+            let val = correct + (mul * scale)
+            if val != correct && (allowNegative || val >= minVal) && (maxVal == nil || val <= (maxVal ?? Int.max)) {
+                scaleErrors.append(val)
+            }
+        }
+
+        // Strategy D: Digit transposition
+        var transpositionErrors: [Int] = []
+        let absStr = "\(abs(correct))"
+        if absStr.count >= 2 {
+            var chars = Array(absStr)
+            chars.swapAt(chars.count - 1, chars.count - 2)
+            if let val = Int(String(chars)), val != abs(correct) {
+                let signedVal = correct < 0 ? -val : val
+                if (allowNegative || signedVal >= minVal) && (maxVal == nil || signedVal <= (maxVal ?? Int.max)) {
+                    transpositionErrors.append(signedVal)
+                }
+            }
+        }
+
+        // Shuffle strategy pools to guarantee varied mixes on each question
+        var strategyPools: [[Int]] = [
+            sameLastDigit.shuffled(),
+            carryErrors.shuffled(),
+            scaleErrors.shuffled(),
+            transpositionErrors.shuffled(),
+            Array(validContextCandidates.dropFirst(2)).shuffled()
+        ].shuffled()
+
+        // Round-robin selection across different strategy pools
+        for pool in strategyPools {
+            if set.count >= 4 { break }
+            for cand in pool {
+                if !set.contains(cand) {
+                    set.insert(cand)
+                    break
+                }
+            }
+        }
+
+        // 3. Fallback to guarantee exactly 4 unique choices
+        var delta = 1
+        while set.count < 4 {
+            let offset = (Bool.random() ? 1 : -1) * (delta + Int.random(in: 0...2))
+            let val = correct + offset
+            if (allowNegative || val >= minVal) && (maxVal == nil || val <= (maxVal ?? Int.max)) && val != correct {
+                set.insert(val)
+            }
+            delta += 2
+            if delta > 200 && maxVal != nil {
+                for v in minVal...maxVal! {
+                    if v != correct { set.insert(v) }
+                    if set.count >= 4 { break }
+                }
+                break
+            }
+        }
+
         return set.map { "\($0)" }.shuffled()
     }
 

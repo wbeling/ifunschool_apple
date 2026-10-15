@@ -3,7 +3,8 @@
 Niniejszy dokument zawiera:
 1. Pierwotną diagnozę kodu źródłowego dotyczącą 15 gier i 6 poziomów trudności (`GameLevel`).
 2. Szczegółowy raport ze zrealizowanych zmian w kodzie (`QuestionGenerator.swift`), które sprawiły, że poziomy **Ultimate** i **Godlike** stały się faktycznie najtrudniejsze, przy zachowaniu mechaniki premiowania czasem i punktami.
-3. Wyniki testów automatycznych weryfikujących poprawność generatora.
+3. Szczegółowy opis systemu generowania odpowiedzi i dystraktorów opartych na wielu zmiennych strategiach (ochrona przed meta-gamingiem).
+4. Wyniki testów automatycznych weryfikujących poprawność generatora.
 
 ---
 
@@ -167,9 +168,6 @@ Wszystkie poniższe zmiany zostały wdrożone w pliku `iFunSchool v2/QuestionGen
   * **Hard:** 70 trudniejszych pierwiastków (indeksy 35–104).
   * **Ultimate:** 60 rzadkich pierwiastków (indeksy 50–109: lantanowce i aktynowce).
   * **Godlike:** 45 najtrudniejszych pierwiastków (indeksy 73–117: od tantalu i wolframu aż po oganesson).
-* **Inteligentne dystraktory (błędne odpowiedzi):**
-  * Na poziomach **Ultimate** i **Godlike** fałszywe opcje nie są już losowane chaotycznie z całej tablicy.
-  * Generator wyszukuje pierwiastki o tej samej pierwszej literze symbolu (np. dla **Ta** dobiera **Tl, Ti, Tb**), co uniemożliwia zgadywanie po pierwszej literze i wymaga precyzyjnej wiedzy.
 
 #### 15. Flagi państw (`GameType.flags`)
 * **Korekta anomalii puli państw:**
@@ -179,17 +177,67 @@ Wszystkie poniższe zmiany zostały wdrożone w pliku `iFunSchool v2/QuestionGen
   * **Hard:** 75 państw (indeksy 40–114).
   * **Ultimate:** 85 państw (indeksy 60–144) — *naprawiono błąd, gdzie pula była mniejsza niż na Hard*.
   * **Godlike:** Pełna pula 143 najtrudniejszych i najrzadszych państw/terytoriów (indeksy 60–202: Tuvalu, Nauru, Kiribati itp.).
-* **Inteligentne grupy mylących flag (`confusingCountryClusters`):**
-  * Na poziomach **Ultimate** i **Godlike** generator w pierwszej kolejności dobiera błędne odpowiedzi z predefiniowanych klastrów wizualnych:
-    * Flagi trójkolorowe o identycznych barwach (np. **Czad / Rumunia**, **Mali / Gwinea**, **Irlandia / WKS**).
-    * Flagi dwukolorowe (np. **Monako / Indonezja / Polska**).
-    * Flagi z krzyżem skandynawskim (np. **Norwegia / Islandia / Wyspy Owcze**).
-    * Flagi z gwiazdą i półksiężycem (np. **Turcja / Tunezja / Algieria**).
-    * Flagi pansłowiańskie (np. **Słowacja / Słowenia / Rosja**).
 
 ---
 
-## CZĘŚĆ 3: Weryfikacja i Testy Automatyczne
+## CZĘŚĆ 3: System Generowania Odpowiedzi (Dystraktory i Anti-Meta-Gaming)
+
+Aby uniemożliwić graczowi zgadywanie poprawnej odpowiedzi bez pełnego rozwiązania zadania, wdrożono **zaawansowany silnik generowania fałszywych opcji (dystraktorów)** oparty na wielu zróżnicowanych archetypach błędów.
+
+### 3.1. Zasada Anti-Meta-Gaming (Brak powtarzalnych wzorców)
+Jeśli gra stosowałaby sztywną, powtarzalną regułę (np. w grze 7 zawsze podawałaby opcję z przeciwnym znakiem $-x$), gracz mógłby stosować tzw. *meta-gaming* – szukać pary liczb o przeciwnych znakach i wybierać bardziej prawdopodobną, całkowicie ignorując treść równania.
+
+**Rozwiązanie w kodzie:**
+* Każde pytanie generuje szeroki zbiór potencjalnych dystraktorów (pool) z **kilku niezależnych strategii**.
+* Zbiór ten jest losowo tasowany, a 3 fałszywe opcje są dobierane metodą round-robin z różnych archetypów.
+* W rezultacie **każde pytanie w grze ma unikalną, nieprzewidywalną kompozycję odpowiedzi błędnych**.
+
+---
+
+### 3.2. Strategie dystraktorów w grach liczbowych (`makeNumericOptions`)
+
+Dla gier 1–12 generator łączy 5 niezależnych źródeł błędnych opcji:
+
+1. **Strategia A: Błędy specyficzne dla zadania (Context Candidates):**
+   * **Dodawanie:** suma częściowa (pominięcie ostatniego składnika), odjęcie jednego składnika zamiast dodania.
+   * **Odejmowanie:** dodanie ostatniego składnika ($A - B + C$), odwrócenie kolejności odjemnych.
+   * **Mnożenie:** iloczyn tylko pierwszych 2 czynników w $A \times B \times C$, dodanie trzeciego czynnika zamiast pomnożenia, mnożenie przez czynnik przesunięty o 1.
+   * **Dzielenie:** iloczyn zamiast ilorazu w zadaniach łączonych $(A \times B) \div C$, dzielnik pominięty lub przesunięty.
+   * **Kolejność działań:** wynik obliczeń od lewej do prawej (zignorowanie pierwszeństwa operacji), błąd potęgowania przed dodawaniem, opuszczenie nawiasu.
+   * **Równania:** wartość drugiej niewiadomej ($y$ lub $z$ zamiast $x$), drugi pierwiastek równania kwadratowego, suma lub iloczyn współczynników.
+   * **Pamięć liczbowa (8, 9, 10):** **wynik przedostatniego kroku** (krok $N-1$) – podchwytliwe dla graczy, którzy zgubili ostatnią operację; odwrócenie znaku ostatniego kroku.
+   * **Pamięć kształtów i kolorów (11, 12):** **liczba wystąpień innej figury / innego koloru** z tej samej planszy (np. na planszy było 5 kół i 4 kwadraty $\to$ opcja 4 jest aktywnym dystraktorem!).
+2. **Strategia B: Ochrona przed exploitem „ostatniej cyfry” (Same Last Digit):**
+   * Przy dużych liczbach (np. $130 \times 25 = 3250$) gracz mógłby wytypować poprawną opcję tylko po cyfrze jedności ($0$).
+   * Generator celowo tworzy opcje kończące się na **tę samą cyfrę**: $correct \pm 10, correct \pm 20, correct \pm 100$.
+3. **Strategia C: Błędy przeniesienia i pożyczania (Carry / Borrow):**
+   * $correct \pm 1$, $correct \pm 9$, $correct \pm 11$, $correct \pm 2$ – symulujące błąd pamięci podręcznej w dodawaniu pisemnym.
+4. **Strategia D: Proporcjonalne przesunięcie skali (Scale Offset):**
+   * Przesunięcie o wielokrotności $10\%$ wartości wyniku, co uniemożliwia szacowanie rzędu wielkości.
+5. **Strategia E: Czeski błąd (Transpozycja cyfr):**
+   * Zamiana miejscami dwóch ostatnich cyfr (np. $542 \to 524$), symulująca błąd ludzkiej percepcji.
+
+---
+
+### 3.3. Dystraktory w Chemii i Flagach (Gry 13, 14, 15)
+
+#### Chemia (Gry 13 i 14):
+Zamiast losować przypadkowe pierwiastki z całej tablicy, generator korzysta z 4 pul:
+1. **Pula grupowa (`chemicalGroupClusters`):** pierwiastki z tej samej grupy chemicznej (np. litowce: Li, Na, K, Rb, Cs; fluorowce: F, Cl, Br, I).
+2. **Pula mylących symboli (`chemicalConfusionClusters`):** symbole powszechnie mylone fonetycznie lub literowo (np. Na / N / Ni / Ne; K / P / Pb / Pt; Ag / Au / Al; Cu / Co / Cr).
+3. **Pula pierwszej litery:** pierwiastki o tym samym inicjale symbolu (np. dla $Ta$: $Tl, Ti, Tb$).
+4. **Pula poziomu:** pierwiastki o zbliżonym stopniu rzadkości.
+
+#### Flagi państw (Gra 15):
+Dystraktory dobierane są z 4 niezależnych wymiarów:
+1. **Klastry wizualne (`confusingCountryClusters`):** flagi trójkolorowe o identycznych barwach (Czad/Rumunia, Mali/Gwinea, Irlandia/WKS), dwukolorowe (Monako/Indonezja/Polska), krzyże skandynawskie, półksiężyce, gwiazdy.
+2. **Klastry geograficzno-regionalne (`regionalCountryPools`):** kraje z tego samego regionu świata (kraje bałtyckie, Bałkany, państwa wyspiarskie Pacyfiku/Oceanii, kraje Azji Środkowej, Afryki Zachodniej, Ameryki Środkowej).
+3. **Klastry językowe (`similarNameClusters`):** mylące pary nazw (Słowacja / Słowenia, Niger / Nigeria, Gwinea / Gwinea-Bissau, Dominika / Dominikana).
+4. **Pula poziomu trudności:** kraje o zbliżonej rozpoznawalności.
+
+---
+
+## CZĘŚĆ 4: Weryfikacja i Testy Automatyczne
 
 Do projektu dołączono dedykowany zestaw testów jednostkowych w pliku `iFunSchool v2UITests/QuestionGeneratorTests.swift`.
 
@@ -197,13 +245,20 @@ Do projektu dołączono dedykowany zestaw testów jednostkowych w pliku `iFunSch
 1. `testAll15GamesGenerateValidQuestionsForAll6Levels`:
    * Przetestowano wszystkie 15 gier $\times$ wszystkie 6 poziomów trudności ($15 \times 6 = 90$ kombinacji).
    * Zweryfikowano: brak pustych pól tekstowych, dokładnie 4 unikalne opcje odpowiedzi na pytanie, poprawność indeksu `correctIndex` ($0\dots 3$).
-2. `testGodlikeMemoryProgressionFrom8To23Steps`:
+2. `testDistractorDiversityAndMultiStrategyPools`:
+   * Zweryfikowano generowanie dystraktorów o tej samej ostatniej cyfrze w mnożeniu i dodawaniu (ochrona przed exploitem ostatniej cyfry).
+   * Zweryfikowano brak stałych, deterministycznych szablonów fałszywych opcji.
+3. `testGodlikeMemoryProgressionFrom8To23Steps`:
    * Przetestowano gry pamięciowe 8, 9 i 10 na poziomie Godlike dla wszystkich 15 pytań ($index = 0\dots 14$).
    * Zweryfikowano: pytanie 1 zaczyna się dokładnie od **8 kroków**, a pytanie 15 kończy się dokładnie na **23 krokach**.
-3. `testFullGameQuestionsGenerationFor15Questions`:
+4. `testFullGameQuestionsGenerationFor15Questions`:
    * Zweryfikowano generowanie pełnej 15-pytaniowej sesji dla gier matematycznych, pamięciowych oraz wiedzy ogólnej.
-4. `testExistingQuestionGeneratorTests`:
-   * Wszystkie dotychczasowe testy regresji zachowały 100% zgodności.
+5. `testMemoryAddNoConsecutiveDuplicates`:
+   * Zweryfikowano brak powtarzających się bezpośrednio po sobie operacji.
+6. `testMemoryAddSubNoDuplicatesAndNoBelowZero`:
+   * Zweryfikowano, że wyniki cząstkowe nigdy nie spadają poniżej zera.
+7. `testMemoryAddSubMultNoDuplicatesAndNoBelowZero`:
+   * Zweryfikowano poprawne obliczenia przy operacjach mnożenia, dodawania i odejmowania w pamięci.
 
 ### Wynik polecenia testowego:
 ```bash
@@ -211,7 +266,7 @@ xcodebuild test -project iFunSchool.xcodeproj -scheme "iFunSchool v2UITests" \
   -destination 'platform=iOS Simulator,name=iPhone 17' \
   -only-testing:"iFunSchool v2UITests/QuestionGeneratorTests"
 ```
-**Status: ** `** TEST SUCCEEDED **` (6 testów wykonanych, 0 błędów).
+**Status: ** `** TEST SUCCEEDED **` (**7 testów wykonanych, 0 błędów**).
 Kompilacja na platformy iOS oraz macOS przeszła bez żadnych ostrzeżeń ani błędów (`** BUILD SUCCEEDED **`).
 
 ---
@@ -221,4 +276,4 @@ Dzięki wprowadzonym modyfikacjom:
 * Poziomy **Ultimate** i **Godlike** są teraz niekwestionowanie najtrudniejszymi poziomami w grze.
 * Zachowano w pełni mechanikę bicia rekordów punktowych (więcej czasu na pytanie $\times$ wyższy mnożnik punktowy).
 * W grach pamięciowych zrealizowano dynamiczny wzrost wyzwania w trakcie samej sesji (od 8 do 23 kroków).
-* W grach wiedzowych wyeliminowano łatwe eliminowanie opcji dzięki inteligentnemu doborowi dystraktorów.
+* Odpowiedzi błędne są **inteligentne, podchwytliwe i generowane wielo-strategijnie**, co całkowicie uniemożliwia zgadywanie odpowiedzi za pomocą trików (np. sprawdzania ostatniej cyfry lub par ze zmienionym znakiem).
