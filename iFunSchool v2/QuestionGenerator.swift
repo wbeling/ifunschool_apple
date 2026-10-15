@@ -334,7 +334,7 @@ class QuestionGenerator {
         case .godlike: tierCountries = Array(allCountries[min(80, total - 1)..<total])
         }
 
-        var candidatePools: [[String]] = [
+        let candidatePools: [[String]] = [
             visualCandidates.shuffled(),
             regionalCandidates.shuffled(),
             nameCandidates.shuffled(),
@@ -439,7 +439,7 @@ class QuestionGenerator {
         }
         let tierCandidates = Array(allElements[tierRange]).filter { $0.symbol != targetElem.symbol }.map { $0.name }
 
-        var candidatePools: [[String]] = [
+        let candidatePools: [[String]] = [
             groupCandidates.shuffled(),
             confusionCandidates.shuffled(),
             letterCandidates.shuffled(),
@@ -508,7 +508,7 @@ class QuestionGenerator {
         }
         let tierCandidates = Array(allElements[tierRange]).filter { $0.symbol != targetElem.symbol }.map { $0.symbol }
 
-        var candidatePools: [[String]] = [
+        let candidatePools: [[String]] = [
             groupCandidates.shuffled(),
             confusionCandidates.shuffled(),
             letterCandidates.shuffled(),
@@ -1706,7 +1706,7 @@ class QuestionGenerator {
         }
 
         // Shuffle strategy pools to guarantee varied mixes on each question
-        var strategyPools: [[Int]] = [
+        let strategyPools: [[Int]] = [
             sameLastDigit.shuffled(),
             carryErrors.shuffled(),
             scaleErrors.shuffled(),
