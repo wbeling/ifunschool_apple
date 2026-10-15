@@ -77,11 +77,19 @@ struct SettingsCardSection<Content: View>: View {
     }
 }
 
+struct SettingsQRCodeItem: Identifiable {
+    var id: String { urlString }
+    let titleKey: LocalizedStringKey
+    let urlString: String
+}
+
 struct SettingsView: View {
     @ObservedObject private var audioService = AudioService.shared
     @Environment(\.presentationMode) private var presentationMode
+    @Environment(\.openURL) private var openURL
     @State private var activeGameCenterSheet: GameCenterSheetType? = nil
     @State private var isShowingStore: Bool = false
+    @State private var activeQRCodeItem: SettingsQRCodeItem? = nil
 
     private let appStoreReviewURL = URL(string: "https://apps.apple.com/app/id422855012?action=write-review")!
     private let websiteURL = URL(string: "https://beling.pl")!
@@ -89,6 +97,48 @@ struct SettingsView: View {
 
     var body: some View {
         #if os(macOS) || os(tvOS)
+        macOSTVOSBody
+        #else
+        iOSBody
+        #endif
+    }
+
+    #if os(macOS) || os(tvOS)
+    private var macOSTVOSBody: some View {
+        ZStack {
+            settingsMainContent
+                .disabled(activeQRCodeItem != nil)
+                .accessibilityHidden(activeQRCodeItem != nil)
+
+            if let item = activeQRCodeItem {
+                QRCodeModalPopup(titleKey: item.titleKey, urlString: item.urlString) {
+                    activeQRCodeItem = nil
+                }
+                .transition(.opacity.combined(with: .scale(scale: 0.95)))
+            }
+        }
+        .animation(.easeInOut(duration: 0.2), value: activeQRCodeItem != nil)
+        .background(FunColors.bgColor.ignoresSafeArea())
+        #if os(macOS)
+        .frame(minWidth: 640, idealWidth: 700, minHeight: 700, idealHeight: 780)
+        #elseif os(tvOS)
+        .frame(minWidth: 1100, idealWidth: 1300, maxWidth: 1500, minHeight: 800, idealHeight: 900, maxHeight: 1000)
+        #endif
+        .sheet(item: $activeGameCenterSheet) { sheetType in
+            GameCenterView(state: sheetType.gcState)
+        }
+        .sheet(isPresented: $isShowingStore) {
+            StoreView()
+                #if os(macOS)
+                .frame(minWidth: 640, idealWidth: 700, minHeight: 700, idealHeight: 780)
+                #elseif os(tvOS)
+                .frame(minWidth: 1100, idealWidth: 1300, maxWidth: 1500, minHeight: 800, idealHeight: 900, maxHeight: 1000)
+                #endif
+        }
+    }
+
+    @ViewBuilder
+    private var settingsMainContent: some View {
         VStack(spacing: 0) {
             // Header Bar
             HStack {
@@ -172,7 +222,7 @@ struct SettingsView: View {
                             .padding(.vertical, 14)
                             .contentShape(Rectangle())
                         }
-                        .buttonStyle(FunActionButtonStyle())
+                        .buttonStyle(FunActionButtonStyle(cornerRadius: 12, scaleOnFocus: false))
                     }
 
                     // Section 3: Game Center Integration
@@ -197,7 +247,7 @@ struct SettingsView: View {
                             .padding(.vertical, 14)
                             .contentShape(Rectangle())
                         }
-                        .buttonStyle(FunActionButtonStyle())
+                        .buttonStyle(FunActionButtonStyle(cornerRadius: 12, scaleOnFocus: false))
 
                         Divider().padding(.leading, 50)
 
@@ -221,13 +271,15 @@ struct SettingsView: View {
                             .padding(.vertical, 14)
                             .contentShape(Rectangle())
                         }
-                        .buttonStyle(FunActionButtonStyle())
+                        .buttonStyle(FunActionButtonStyle(cornerRadius: 12, scaleOnFocus: false))
                     }
 
                     // Section 4: Links & Support
                     SettingsCardSection(titleKey: "settings_header_links", iconName: "link", iconColor: .blue, footerKey: "settings_footer_links") {
                         #if os(tvOS)
-                        Button(action: {}) {
+                        Button(action: {
+                            openURL(appStoreReviewURL)
+                        }) {
                             HStack {
                                 Image(systemName: "star.bubble.fill")
                                     .foregroundColor(.yellow)
@@ -242,16 +294,24 @@ struct SettingsView: View {
                                         .foregroundColor(.secondary)
                                 }
                                 Spacer()
+                                Image(systemName: "arrow.up.right.square")
+                                    .font(.subheadline)
+                                    .foregroundColor(.secondary)
                             }
                             .padding(.horizontal, 18)
                             .padding(.vertical, 14)
                             .contentShape(Rectangle())
                         }
-                        .buttonStyle(FunActionButtonStyle())
+                        .buttonStyle(FunActionButtonStyle(cornerRadius: 12, scaleOnFocus: false))
 
                         Divider().padding(.leading, 50)
 
-                        Button(action: {}) {
+                        Button(action: {
+                            activeQRCodeItem = SettingsQRCodeItem(
+                                titleKey: "settings_visit_website",
+                                urlString: "https://beling.pl"
+                            )
+                        }) {
                             HStack {
                                 Image(systemName: "safari.fill")
                                     .foregroundColor(.blue)
@@ -266,19 +326,29 @@ struct SettingsView: View {
                                         .foregroundColor(.secondary)
                                 }
                                 Spacer()
-                                Text("beling.pl")
-                                    .font(.callout.bold())
-                                    .foregroundColor(.blue)
+                                HStack(spacing: 8) {
+                                    Text("beling.pl")
+                                        .font(.callout.bold())
+                                        .foregroundColor(.blue)
+                                    Image(systemName: "qrcode")
+                                        .font(.subheadline)
+                                        .foregroundColor(.secondary)
+                                }
                             }
                             .padding(.horizontal, 18)
                             .padding(.vertical, 14)
                             .contentShape(Rectangle())
                         }
-                        .buttonStyle(FunActionButtonStyle())
+                        .buttonStyle(FunActionButtonStyle(cornerRadius: 12, scaleOnFocus: false))
 
                         Divider().padding(.leading, 50)
 
-                        Button(action: {}) {
+                        Button(action: {
+                            activeQRCodeItem = SettingsQRCodeItem(
+                                titleKey: "settings_facebook_page",
+                                urlString: "https://facebook.com/pl.beling"
+                            )
+                        }) {
                             HStack {
                                 Image(systemName: "hand.thumbsup.fill")
                                     .foregroundColor(.blue)
@@ -293,15 +363,20 @@ struct SettingsView: View {
                                         .foregroundColor(.secondary)
                                 }
                                 Spacer()
-                                Text("facebook.com/pl.beling")
-                                    .font(.callout.bold())
-                                    .foregroundColor(.blue)
+                                HStack(spacing: 8) {
+                                    Text("facebook.com/pl.beling")
+                                        .font(.callout.bold())
+                                        .foregroundColor(.blue)
+                                    Image(systemName: "qrcode")
+                                        .font(.subheadline)
+                                        .foregroundColor(.secondary)
+                                }
                             }
                             .padding(.horizontal, 18)
                             .padding(.vertical, 14)
                             .contentShape(Rectangle())
                         }
-                        .buttonStyle(FunActionButtonStyle())
+                        .buttonStyle(FunActionButtonStyle(cornerRadius: 12, scaleOnFocus: false))
                         #else
                         Link(destination: appStoreReviewURL) {
                             HStack {
@@ -326,7 +401,7 @@ struct SettingsView: View {
                             .padding(.vertical, 14)
                             .contentShape(Rectangle())
                         }
-                        .buttonStyle(FunActionButtonStyle())
+                        .buttonStyle(FunActionButtonStyle(cornerRadius: 12, scaleOnFocus: false))
 
                         Divider().padding(.leading, 50)
 
@@ -348,7 +423,7 @@ struct SettingsView: View {
                             .padding(.vertical, 14)
                             .contentShape(Rectangle())
                         }
-                        .buttonStyle(FunActionButtonStyle())
+                        .buttonStyle(FunActionButtonStyle(cornerRadius: 12, scaleOnFocus: false))
 
                         Divider().padding(.leading, 50)
 
@@ -370,7 +445,7 @@ struct SettingsView: View {
                             .padding(.vertical, 14)
                             .contentShape(Rectangle())
                         }
-                        .buttonStyle(FunActionButtonStyle())
+                        .buttonStyle(FunActionButtonStyle(cornerRadius: 12, scaleOnFocus: false))
                         #endif
                     }
                 }
@@ -385,24 +460,9 @@ struct SettingsView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .background(FunColors.bgColor.ignoresSafeArea())
-        #if os(macOS)
-        .frame(minWidth: 640, idealWidth: 700, minHeight: 700, idealHeight: 780)
-        #elseif os(tvOS)
-        .frame(minWidth: 1100, idealWidth: 1300, maxWidth: 1500, minHeight: 800, idealHeight: 900, maxHeight: 1000)
-        #endif
-        .sheet(item: $activeGameCenterSheet) { sheetType in
-            GameCenterView(state: sheetType.gcState)
-        }
-        .sheet(isPresented: $isShowingStore) {
-            StoreView()
-                #if os(macOS)
-                .frame(minWidth: 640, idealWidth: 700, minHeight: 700, idealHeight: 780)
-                #elseif os(tvOS)
-                .frame(minWidth: 1100, idealWidth: 1300, maxWidth: 1500, minHeight: 800, idealHeight: 900, maxHeight: 1000)
-                #endif
-        }
-        #else
+    }
+    #else
+    private var iOSBody: some View {
         NavigationView {
             Form {
                 // Section 1: Audio & Sound
@@ -580,8 +640,8 @@ struct SettingsView: View {
                 StoreView()
             }
         }
-        #endif
     }
+    #endif
 }
 
 // MARK: - GameCenter Representable Wrapper (iOS/tvOS/macOS)

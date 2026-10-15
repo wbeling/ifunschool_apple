@@ -15,7 +15,7 @@ struct StoreView: View {
                 .accessibilityHidden(selectedLegalDocument != nil)
 
             if let doc = selectedLegalDocument {
-                LegalDocumentQRCodePopup(document: doc) {
+                QRCodeModalPopup(titleKey: doc.titleKey, urlString: doc.urlString) {
                     selectedLegalDocument = nil
                 }
                 .transition(.opacity.combined(with: .scale(scale: 0.95)))
@@ -733,7 +733,7 @@ enum LegalDocument: Identifiable {
 }
 
 // MARK: - CoreImage QR Code Generator
-private struct QRCodeGenerator {
+struct QRCodeGenerator {
     static let shared = QRCodeGenerator()
     private let context = CIContext()
     private let filter = CIFilter.qrCodeGenerator()
@@ -750,7 +750,7 @@ private struct QRCodeGenerator {
 }
 
 // MARK: - QR Code Image View
-private struct QRCodeImageView: View {
+struct QRCodeImageView: View {
     let urlString: String
     let size: CGFloat
 
@@ -781,9 +781,10 @@ private struct QRCodeImageView: View {
     }
 }
 
-// MARK: - tvOS Legal Document QR Code Modal Popup
-private struct LegalDocumentQRCodePopup: View {
-    let document: LegalDocument
+// MARK: - tvOS Legal Document / Web Link QR Code Modal Popup
+struct QRCodeModalPopup: View {
+    let titleKey: LocalizedStringKey
+    let urlString: String
     let onDismiss: () -> Void
 
     @FocusState private var isDoneFocused: Bool
@@ -802,7 +803,7 @@ private struct LegalDocumentQRCodePopup: View {
             VStack(spacing: 24) {
                 // Header (Title & instruction)
                 VStack(spacing: 10) {
-                    Text(document.titleKey)
+                    Text(titleKey)
                         .font(.title2.bold())
                         .foregroundColor(.primary)
 
@@ -815,13 +816,13 @@ private struct LegalDocumentQRCodePopup: View {
 
                 // QR Code with solid white background padding
                 VStack(spacing: 12) {
-                    QRCodeImageView(urlString: document.urlString, size: 240)
+                    QRCodeImageView(urlString: urlString, size: 240)
                         .padding(20)
                         .background(Color.white)
                         .cornerRadius(18)
                         .shadow(color: Color.black.opacity(0.15), radius: 10, x: 0, y: 5)
 
-                    Text(document.urlString)
+                    Text(urlString)
                         .font(.caption)
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)

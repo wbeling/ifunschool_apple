@@ -200,34 +200,34 @@ class QuestionGenerator {
         }
     }
 
-    func generateQuestion(gameType: GameType, level: GameLevel) -> Question {
+    func generateQuestion(gameType: GameType, level: GameLevel, questionIndex: Int = 0) -> Question {
         let time = getMaxTime(for: level)
 
         switch gameType {
         case .addition:
-            return generateAddition(level: level, maxTime: time)
+            return generateAddition(level: level, maxTime: time, questionIndex: questionIndex)
         case .subtraction:
-            return generateSubtraction(level: level, maxTime: time)
+            return generateSubtraction(level: level, maxTime: time, questionIndex: questionIndex)
         case .multiplication:
-            return generateMultiplication(level: level, maxTime: time)
+            return generateMultiplication(level: level, maxTime: time, questionIndex: questionIndex)
         case .division:
-            return generateDivision(level: level, maxTime: time)
+            return generateDivision(level: level, maxTime: time, questionIndex: questionIndex)
         case .order:
-            return generateOrderOfOperations(level: level, maxTime: time)
+            return generateOrderOfOperations(level: level, maxTime: time, questionIndex: questionIndex)
         case .sequences:
-            return generateSequences(level: level, maxTime: time)
+            return generateSequences(level: level, maxTime: time, questionIndex: questionIndex)
         case .equations:
-            return generateEquations(level: level, maxTime: time)
+            return generateEquations(level: level, maxTime: time, questionIndex: questionIndex)
         case .memoryAdd:
-            return generateMemoryAdd(level: level, maxTime: time)
+            return generateMemoryAdd(level: level, maxTime: time, questionIndex: questionIndex)
         case .memoryAddSub:
-            return generateMemoryAddSub(level: level, maxTime: time)
+            return generateMemoryAddSub(level: level, maxTime: time, questionIndex: questionIndex)
         case .memoryAddSubMult:
-            return generateMemoryAddSubMult(level: level, maxTime: time)
+            return generateMemoryAddSubMult(level: level, maxTime: time, questionIndex: questionIndex)
         case .memoryShapes:
-            return generateMemoryShapes(level: level, maxTime: time)
+            return generateMemoryShapes(level: level, maxTime: time, questionIndex: questionIndex)
         case .memoryColors:
-            return generateMemoryColors(level: level, maxTime: time)
+            return generateMemoryColors(level: level, maxTime: time, questionIndex: questionIndex)
         case .chemSymbols:
             return generateChemSymbols(level: level, maxTime: time)
         case .chemNames:
@@ -237,7 +237,7 @@ class QuestionGenerator {
         }
     }
 
-    // Helper for chemical elements range index selection matching MathGenerator.m
+    // Helper for chemical elements range index selection matching periodic table progression
     private func selectElementIndex(level: GameLevel) -> Int {
         let total = allElements.count
         guard total > 0 else { return 0 }
@@ -250,168 +250,544 @@ class QuestionGenerator {
         case .medium:
             return Int.random(in: min(20, total - 1)..<min(70, total))
         case .hard:
-            return Int.random(in: min(40, total - 1)..<min(90, total))
+            return Int.random(in: min(40, total - 1)..<min(95, total))
         case .ultimate:
-            return Int.random(in: min(60, total - 1)..<min(110, total))
+            return Int.random(in: min(60, total - 1)..<min(105, total))
         case .godlike:
-            return Int.random(in: min(65, total - 1)..<total)
+            return Int.random(in: min(70, total - 1)..<total)
         }
     }
 
+    // Clusters of visually confusing flags for realistic distractors on high levels
+    private let confusingCountryClusters: [[String]] = [
+        ["Chad", "Romania", "Moldova", "Andorra"],
+        ["Monaco", "Indonesia", "Poland", "Singapore"],
+        ["Australia", "New Zealand", "Tuvalu", "Fiji"],
+        ["Ireland", "Cote d'Ivoire", "Italy", "India"],
+        ["Mali", "Guinea", "Senegal", "Cameroon", "Ghana"],
+        ["Netherlands", "Luxembourg", "France", "Russia"],
+        ["Slovakia", "Slovenia", "Russia", "Serbia", "Croatia"],
+        ["Norway", "Sweden", "Finland", "Iceland", "Denmark"],
+        ["Egypt", "Syria", "Iraq", "Yemen", "Jordan", "Sudan"],
+        ["Venezuela", "Colombia", "Ecuador"],
+        ["El Salvador", "Honduras", "Nicaragua", "Guatemala", "Argentina"],
+        ["Bahrain", "Qatar", "United Arab Emirates", "Kuwait"]
+    ]
+
+    private func pickCountryDistractors(targetCountry: String, level: GameLevel) -> [String] {
+        var choicesSet = Set<String>([targetCountry])
+        if level >= .hard {
+            for cluster in confusingCountryClusters {
+                if cluster.contains(targetCountry) {
+                    for partner in cluster.shuffled() {
+                        if allCountries.contains(partner) {
+                            choicesSet.insert(partner)
+                        }
+                        if choicesSet.count >= 4 { break }
+                    }
+                    break
+                }
+            }
+        }
+        while choicesSet.count < 4 {
+            if let rand = allCountries.randomElement() {
+                choicesSet.insert(rand)
+            }
+        }
+        return Array(choicesSet).shuffled()
+    }
+
+    private func pickChemSymbolDistractors(targetElem: ElementInfo, level: GameLevel) -> [String] {
+        var choicesSet = Set<String>([targetElem.name])
+        if level >= .hard {
+            let firstLetter = String(targetElem.symbol.prefix(1))
+            let similar = allElements.filter { $0.symbol.hasPrefix(firstLetter) && $0.symbol != targetElem.symbol }
+            for elem in similar.shuffled() {
+                choicesSet.insert(elem.name)
+                if choicesSet.count >= 4 { break }
+            }
+        }
+        while choicesSet.count < 4 {
+            if let rand = allElements.randomElement() {
+                choicesSet.insert(rand.name)
+            }
+        }
+        return Array(choicesSet).shuffled()
+    }
+
+    private func pickChemNameDistractors(targetElem: ElementInfo, level: GameLevel) -> [String] {
+        var choicesSet = Set<String>([targetElem.symbol])
+        if level >= .hard {
+            let firstLetter = String(targetElem.symbol.prefix(1))
+            let similar = allElements.filter { $0.symbol.hasPrefix(firstLetter) && $0.symbol != targetElem.symbol }
+            for elem in similar.shuffled() {
+                choicesSet.insert(elem.symbol)
+                if choicesSet.count >= 4 { break }
+            }
+        }
+        while choicesSet.count < 4 {
+            if let rand = allElements.randomElement() {
+                choicesSet.insert(rand.symbol)
+            }
+        }
+        return Array(choicesSet).shuffled()
+    }
+
     // MARK: - 1. Addition
-    private func generateAddition(level: GameLevel, maxTime: Double) -> Question {
-        let (r1, r2): (Int, Int)
+    private func generateAddition(level: GameLevel, maxTime: Double, questionIndex: Int = 0) -> Question {
+        let text: String
+        let correct: Int
+        let range: Int
+
         switch level {
         case .beginner:
-            r1 = Int.random(in: 1...9)
-            r2 = Int.random(in: 2...9)
+            let r1 = Int.random(in: 1...9)
+            let r2 = Int.random(in: 2...9)
+            correct = r1 + r2
+            text = "\(r1) + \(r2)"
+            range = 10
         case .easy:
-            r1 = Int.random(in: 1...19)
-            r2 = Int.random(in: 2...18)
+            let r1 = Int.random(in: 1...19)
+            let r2 = Int.random(in: 2...18)
+            correct = r1 + r2
+            text = "\(r1) + \(r2)"
+            range = 10
         case .medium:
             let total = Int.random(in: 20...100)
-            r1 = Int.random(in: 10...(total - 10))
-            r2 = total - r1
+            let r1 = Int.random(in: 10...(total - 10))
+            let r2 = total - r1
+            correct = total
+            text = "\(r1) + \(r2)"
+            range = 15
         case .hard:
-            let total = Int.random(in: 100...200)
-            r1 = Int.random(in: 50...(total - 50))
-            r2 = total - r1
-        default:
-            let total = Int.random(in: 200...1000)
-            r1 = Int.random(in: 100...(total - 100))
-            r2 = total - r1
+            let total = Int.random(in: 100...500)
+            let r1 = Int.random(in: 40...(total - 40))
+            let r2 = total - r1
+            correct = total
+            text = "\(r1) + \(r2)"
+            range = 25
+        case .ultimate:
+            let r1 = Int.random(in: 50...300)
+            let r2 = Int.random(in: 50...300)
+            let r3 = Int.random(in: 50...300)
+            correct = r1 + r2 + r3
+            text = "\(r1) + \(r2) + \(r3)"
+            range = 30
+        case .godlike:
+            if questionIndex < 7 {
+                let r1 = Int.random(in: 200...800)
+                let r2 = Int.random(in: 200...800)
+                let r3 = Int.random(in: 200...800)
+                correct = r1 + r2 + r3
+                text = "\(r1) + \(r2) + \(r3)"
+            } else {
+                let r1 = Int.random(in: 150...600)
+                let r2 = Int.random(in: 150...600)
+                let r3 = Int.random(in: 150...600)
+                let r4 = Int.random(in: 150...600)
+                correct = r1 + r2 + r3 + r4
+                text = "\(r1) + \(r2) + \(r3) + \(r4)"
+            }
+            range = 40
         }
 
-        let correct = r1 + r2
-        let text = "\(r1) + \(r2)"
-        let options = makeNumericOptions(correct: correct, range: 10)
+        let options = makeNumericOptions(correct: correct, range: range)
         let correctIdx = options.firstIndex(of: "\(correct)") ?? 0
 
         return Question(text: text, subtext: NSLocalizedString("prompt_calc_sum", comment: "Calculate sum"), options: options, correctIndex: correctIdx, maxTime: maxTime, flagImageName: nil, memorySteps: nil, memoryGridItems: nil, memoryPreviewSeconds: nil)
     }
 
     // MARK: - 2. Subtraction
-    private func generateSubtraction(level: GameLevel, maxTime: Double) -> Question {
-        let (r1, r2): (Int, Int)
+    private func generateSubtraction(level: GameLevel, maxTime: Double, questionIndex: Int = 0) -> Question {
+        let text: String
+        let correct: Int
+        let range: Int
+
         switch level {
         case .beginner:
-            r2 = Int.random(in: 1...10)
+            let r2 = Int.random(in: 1...10)
             let diff = Int.random(in: 1...10)
-            r1 = r2 + diff
+            let r1 = r2 + diff
+            correct = diff
+            text = "\(r1) - \(r2)"
+            range = 10
         case .easy:
-            r2 = Int.random(in: 10...30)
+            let r2 = Int.random(in: 10...30)
             let diff = Int.random(in: 1...20)
-            r1 = r2 + diff
+            let r1 = r2 + diff
+            correct = diff
+            text = "\(r1) - \(r2)"
+            range = 12
         case .medium:
-            r2 = Int.random(in: 10...40)
-            let diff = Int.random(in: 10...40)
-            r1 = r2 + diff
-        default:
-            r2 = Int.random(in: 50...150)
-            let diff = Int.random(in: 20...100)
-            r1 = r2 + diff
+            let r2 = Int.random(in: 10...50)
+            let diff = Int.random(in: 15...50)
+            let r1 = r2 + diff
+            correct = diff
+            text = "\(r1) - \(r2)"
+            range = 15
+        case .hard:
+            let r2 = Int.random(in: 50...250)
+            let diff = Int.random(in: 40...200)
+            let r1 = r2 + diff
+            correct = diff
+            text = "\(r1) - \(r2)"
+            range = 25
+        case .ultimate:
+            let r2 = Int.random(in: 40...180)
+            let r3 = Int.random(in: 40...180)
+            let diff = Int.random(in: 50...250)
+            let r1 = r2 + r3 + diff
+            correct = diff
+            text = "\(r1) - \(r2) - \(r3)"
+            range = 35
+        case .godlike:
+            if questionIndex < 7 {
+                let r2 = Int.random(in: 1200...4500)
+                let diff = Int.random(in: 800...3500)
+                let r1 = r2 + diff
+                correct = diff
+                text = "\(r1) - \(r2)"
+            } else {
+                let r2 = Int.random(in: 400...1500)
+                let r3 = Int.random(in: 400...1500)
+                let diff = Int.random(in: 500...2000)
+                let r1 = r2 + r3 + diff
+                correct = diff
+                text = "\(r1) - \(r2) - \(r3)"
+            }
+            range = 50
         }
 
-        let correct = r1 - r2
-        let text = "\(r1) - \(r2)"
-        let options = makeNumericOptions(correct: correct, range: 12)
+        let options = makeNumericOptions(correct: correct, range: range)
         let correctIdx = options.firstIndex(of: "\(correct)") ?? 0
 
         return Question(text: text, subtext: NSLocalizedString("prompt_calc_diff", comment: "Calculate difference"), options: options, correctIndex: correctIdx, maxTime: maxTime, flagImageName: nil, memorySteps: nil, memoryGridItems: nil, memoryPreviewSeconds: nil)
     }
 
     // MARK: - 3. Multiplication
-    private func generateMultiplication(level: GameLevel, maxTime: Double) -> Question {
-        let (r1, r2): (Int, Int)
+    private func generateMultiplication(level: GameLevel, maxTime: Double, questionIndex: Int = 0) -> Question {
+        let text: String
+        let correct: Int
+        let range: Int
+
         switch level {
         case .beginner:
-            r1 = Int.random(in: 2...9)
-            r2 = Int.random(in: 2...9)
+            let r1 = Int.random(in: 2...9)
+            let r2 = Int.random(in: 2...9)
+            correct = r1 * r2
+            text = "\(r1) × \(r2)"
+            range = 15
         case .easy:
-            r1 = Int.random(in: 3...9)
-            r2 = Int.random(in: 11...19)
+            let r1 = Int.random(in: 3...9)
+            let r2 = Int.random(in: 11...19)
+            correct = r1 * r2
+            text = "\(r1) × \(r2)"
+            range = 20
         case .medium:
-            r1 = Int.random(in: 11...25)
-            r2 = Int.random(in: 11...25)
-        default:
-            r1 = Int.random(in: 20...50)
-            r2 = Int.random(in: 15...30)
+            let r1 = Int.random(in: 11...25)
+            let r2 = Int.random(in: 11...25)
+            correct = r1 * r2
+            text = "\(r1) × \(r2)"
+            range = 30
+        case .hard:
+            let r1 = Int.random(in: 20...50)
+            let r2 = Int.random(in: 15...35)
+            correct = r1 * r2
+            text = "\(r1) × \(r2)"
+            range = 50
+        case .ultimate:
+            let r1 = Int.random(in: 4...9)
+            let r2 = Int.random(in: 6...12)
+            let r3 = Int.random(in: 8...15)
+            correct = r1 * r2 * r3
+            text = "\(r1) × \(r2) × \(r3)"
+            range = 80
+        case .godlike:
+            if questionIndex < 7 {
+                let r1 = Int.random(in: 11...16)
+                let r2 = Int.random(in: 11...16)
+                let r3 = Int.random(in: 11...15)
+                correct = r1 * r2 * r3
+                text = "\(r1) × \(r2) × \(r3)"
+            } else {
+                let r1 = Int.random(in: 120...350)
+                let r2 = Int.random(in: 15...45)
+                correct = r1 * r2
+                text = "\(r1) × \(r2)"
+            }
+            range = 150
         }
 
-        let correct = r1 * r2
-        let text = "\(r1) × \(r2)"
-        let options = makeNumericOptions(correct: correct, range: 15)
+        let options = makeNumericOptions(correct: correct, range: range)
         let correctIdx = options.firstIndex(of: "\(correct)") ?? 0
 
         return Question(text: text, subtext: NSLocalizedString("prompt_calc_product", comment: "Calculate product"), options: options, correctIndex: correctIdx, maxTime: maxTime, flagImageName: nil, memorySteps: nil, memoryGridItems: nil, memoryPreviewSeconds: nil)
     }
 
     // MARK: - 4. Division
-    private func generateDivision(level: GameLevel, maxTime: Double) -> Question {
-        let (divisor, quotient): (Int, Int)
+    private func generateDivision(level: GameLevel, maxTime: Double, questionIndex: Int = 0) -> Question {
+        let text: String
+        let correct: Int
+        let range: Int
+
         switch level {
         case .beginner:
-            divisor = Int.random(in: 2...9)
-            quotient = Int.random(in: 1...10)
+            let divisor = Int.random(in: 2...9)
+            let quotient = Int.random(in: 1...10)
+            let dividend = divisor * quotient
+            correct = quotient
+            text = "\(dividend) ÷ \(divisor)"
+            range = 8
         case .easy:
-            divisor = Int.random(in: 3...10)
-            quotient = Int.random(in: 10...20)
+            let divisor = Int.random(in: 3...10)
+            let quotient = Int.random(in: 10...20)
+            let dividend = divisor * quotient
+            correct = quotient
+            text = "\(dividend) ÷ \(divisor)"
+            range = 10
         case .medium:
-            divisor = Int.random(in: 10...30)
-            quotient = Int.random(in: 10...25)
-        default:
-            divisor = Int.random(in: 15...40)
-            quotient = Int.random(in: 15...35)
+            let divisor = Int.random(in: 10...30)
+            let quotient = Int.random(in: 10...25)
+            let dividend = divisor * quotient
+            correct = quotient
+            text = "\(dividend) ÷ \(divisor)"
+            range = 15
+        case .hard:
+            let divisor = Int.random(in: 15...40)
+            let quotient = Int.random(in: 20...45)
+            let dividend = divisor * quotient
+            correct = quotient
+            text = "\(dividend) ÷ \(divisor)"
+            range = 20
+        case .ultimate:
+            let divisor = Int.random(in: 25...75)
+            let quotient = Int.random(in: 30...85)
+            let dividend = divisor * quotient
+            correct = quotient
+            text = "\(dividend) ÷ \(divisor)"
+            range = 25
+        case .godlike:
+            if questionIndex < 7 {
+                let divisor = Int.random(in: 35...95)
+                let quotient = Int.random(in: 55...130)
+                let dividend = divisor * quotient
+                correct = quotient
+                text = "\(dividend) ÷ \(divisor)"
+            } else {
+                let factor1 = Int.random(in: 4...15)
+                let factor2 = Int.random(in: 5...25)
+                let div = Int.random(in: 2...6)
+                let bVal = factor2 * div
+                correct = factor1 * factor2
+                text = "(\(factor1) × \(bVal)) ÷ \(div)"
+            }
+            range = 30
         }
 
-        let dividend = divisor * quotient
-        let text = "\(dividend) ÷ \(divisor)"
-        let options = makeNumericOptions(correct: quotient, range: 8)
-        let correctIdx = options.firstIndex(of: "\(quotient)") ?? 0
+        let options = makeNumericOptions(correct: correct, range: range)
+        let correctIdx = options.firstIndex(of: "\(correct)") ?? 0
 
         return Question(text: text, subtext: NSLocalizedString("prompt_calc_quotient", comment: "Calculate quotient"), options: options, correctIndex: correctIdx, maxTime: maxTime, flagImageName: nil, memorySteps: nil, memoryGridItems: nil, memoryPreviewSeconds: nil)
     }
 
     // MARK: - 5. Order of Operations
-    private func generateOrderOfOperations(level: GameLevel, maxTime: Double) -> Question {
-        let r1 = Int.random(in: 2...10)
-        let r2 = Int.random(in: 2...8)
-        let r3 = Int.random(in: 2...8)
-
-        let variant = Int.random(in: 0...2)
+    private func generateOrderOfOperations(level: GameLevel, maxTime: Double, questionIndex: Int = 0) -> Question {
         let text: String
         let correct: Int
+        let range: Int
 
-        switch variant {
-        case 0:
-            text = "\(r1) + \(r2) × \(r3)"
-            correct = r1 + (r2 * r3)
-        case 1:
-            text = "\(r2) × \(r3) + \(r1)"
-            correct = (r2 * r3) + r1
-        default:
-            let r4 = Int.random(in: 2...10)
-            text = "\(r1) + \(r2) × \(r3) + \(r4)"
-            correct = r1 + (r2 * r3) + r4
+        switch level {
+        case .beginner:
+            let r1 = Int.random(in: 2...10)
+            let r2 = Int.random(in: 2...8)
+            let r3 = Int.random(in: 2...8)
+            if Bool.random() {
+                text = "\(r1) + \(r2) × \(r3)"
+                correct = r1 + (r2 * r3)
+            } else {
+                text = "\(r2) × \(r3) + \(r1)"
+                correct = (r2 * r3) + r1
+            }
+            range = 10
+        case .easy:
+            if Bool.random() {
+                let r1 = Int.random(in: 3...9)
+                let r2 = Int.random(in: 4...9)
+                let r3 = Int.random(in: 2...min(15, r1 * r2 - 2))
+                text = "\(r1) × \(r2) - \(r3)"
+                correct = (r1 * r2) - r3
+            } else {
+                let r1 = Int.random(in: 2...8)
+                let r2 = Int.random(in: 2...8)
+                let r3 = Int.random(in: 2...6)
+                text = "(\(r1) + \(r2)) × \(r3)"
+                correct = (r1 + r2) * r3
+            }
+            range = 12
+        case .medium:
+            let variant = Int.random(in: 0...2)
+            switch variant {
+            case 0:
+                let r1 = Int.random(in: 3...8)
+                let r2 = Int.random(in: 2...7)
+                let r3 = Int.random(in: 3...8)
+                let r4 = Int.random(in: 2...7)
+                text = "\(r1) × \(r2) + \(r3) × \(r4)"
+                correct = (r1 * r2) + (r3 * r4)
+            case 1:
+                let r1 = Int.random(in: 2...8)
+                let r2 = Int.random(in: 2...8)
+                let r4 = Int.random(in: 2...6)
+                let diff = Int.random(in: 2...6)
+                let r3 = r4 + diff
+                text = "(\(r1) + \(r2)) × (\(r3) - \(r4))"
+                correct = (r1 + r2) * diff
+            default:
+                let r1 = Int.random(in: 2...10)
+                let r2 = Int.random(in: 3...8)
+                let r3 = Int.random(in: 3...8)
+                let r4 = Int.random(in: 2...min(15, r2 * r3))
+                text = "\(r1) + \(r2) × \(r3) - \(r4)"
+                correct = r1 + (r2 * r3) - r4
+            }
+            range = 15
+        case .hard:
+            let divisor = Int.random(in: 2...6)
+            let quotient = Int.random(in: 3...12)
+            let dividend = divisor * quotient
+            let r1 = Int.random(in: 4...12)
+            let r2 = Int.random(in: 3...9)
+            let r3 = Int.random(in: 2...10)
+            text = "\(r1) × \(r2) + \(dividend) ÷ \(divisor) - \(r3)"
+            correct = (r1 * r2) + quotient - r3
+            range = 20
+        case .ultimate:
+            if Bool.random() {
+                let a = Int.random(in: 3...7)
+                let b = Int.random(in: 3...8)
+                let c = Int.random(in: 2...8)
+                let d = Int.random(in: 2...15)
+                text = "\(a)² + \(b) × \(c) - \(d)"
+                correct = (a * a) + (b * c) - d
+            } else {
+                let a = Int.random(in: 2...10)
+                let b = Int.random(in: 2...5)
+                let c = Int.random(in: 2...6)
+                let d = Int.random(in: 2...15)
+                text = "(\(a) + \(b)²) × \(c) - \(d)"
+                correct = (a + b * b) * c - d
+            }
+            range = 25
+        case .godlike:
+            let d = Int.random(in: 2...6)
+            let innerResult = Int.random(in: 3...8)
+            let targetInner = d * innerResult
+            let a = Int.random(in: 4...9)
+            let minB = (targetInner / a) + 1
+            let b = Int.random(in: max(4, minB)...max(minB + 2, 9))
+            let c = (a * b) - targetInner
+            let e = Int.random(in: 2...8)
+            let f = Int.random(in: 2...8)
+            text = "[(\(a) × \(b) - \(c)) ÷ \(d)]² + \(e) × \(f)"
+            correct = (innerResult * innerResult) + (e * f)
+            range = 30
         }
 
-        let options = makeNumericOptions(correct: correct, range: 12)
+        let options = makeNumericOptions(correct: correct, range: range)
         let correctIdx = options.firstIndex(of: "\(correct)") ?? 0
 
         return Question(text: text, subtext: NSLocalizedString("prompt_operator_precedence", comment: "Operator precedence"), options: options, correctIndex: correctIdx, maxTime: maxTime, flagImageName: nil, memorySteps: nil, memoryGridItems: nil, memoryPreviewSeconds: nil)
     }
 
     // MARK: - 6. Sequences
-    private func generateSequences(level: GameLevel, maxTime: Double) -> Question {
-        let start = Int.random(in: 2...20)
-        let step = Int.random(in: 2...8)
-        let missingPos = Int.random(in: 0...3)
+    private func generateSequences(level: GameLevel, maxTime: Double, questionIndex: Int = 0) -> Question {
+        let seq: [Int]
+        let missingPos: Int
 
-        let seq = [start, start + step, start + (step * 2), start + (step * 3)]
+        switch level {
+        case .beginner:
+            let start = Int.random(in: 1...10)
+            let step = Int.random(in: 1...3)
+            seq = [start, start + step, start + 2 * step, start + 3 * step]
+            missingPos = Int.random(in: 0...3)
+        case .easy:
+            let start = Int.random(in: 15...40)
+            let step = Int.random(in: 4...9)
+            if Bool.random() {
+                seq = [start, start + step, start + 2 * step, start + 3 * step]
+            } else {
+                seq = [start, start - step, start - 2 * step, start - 3 * step]
+            }
+            missingPos = Int.random(in: 0...3)
+        case .medium:
+            if Bool.random() {
+                let start = Int.random(in: 2...5)
+                let ratio = Int.random(in: 2...3)
+                seq = [start, start * ratio, start * ratio * ratio, start * ratio * ratio * ratio]
+            } else {
+                let base = Int.random(in: 2...6)
+                seq = [base * base, (base + 1) * (base + 1), (base + 2) * (base + 2), (base + 3) * (base + 3)]
+            }
+            missingPos = Int.random(in: 0...3)
+        case .hard:
+            if Bool.random() {
+                let a1 = Int.random(in: 2...5)
+                let a2 = Int.random(in: 3...7)
+                let a3 = a1 + a2
+                let a4 = a2 + a3
+                let a5 = a3 + a4
+                seq = [a1, a2, a3, a4, a5]
+                missingPos = Int.random(in: 2...4)
+            } else {
+                let start = Int.random(in: 10...30)
+                let stepAdd = Int.random(in: 5...10)
+                let stepSub = Int.random(in: 2...4)
+                let s0 = start
+                let s1 = s0 + stepAdd
+                let s2 = s1 - stepSub
+                let s3 = s2 + stepAdd
+                let s4 = s3 - stepSub
+                seq = [s0, s1, s2, s3, s4]
+                missingPos = Int.random(in: 1...4)
+            }
+        case .ultimate:
+            let start = Int.random(in: 2...12)
+            let diffStart = Int.random(in: 2...4)
+            let diffStep = Int.random(in: 2...3)
+            let e0 = start
+            let e1 = e0 + diffStart
+            let e2 = e1 + (diffStart + diffStep)
+            let e3 = e2 + (diffStart + 2 * diffStep)
+            let e4 = e3 + (diffStart + 3 * diffStep)
+            seq = [e0, e1, e2, e3, e4]
+            missingPos = Int.random(in: 1...4)
+        case .godlike:
+            if Bool.random() {
+                let startA = Int.random(in: 2...10)
+                let stepA = Int.random(in: 2...5)
+                let startB = Int.random(in: 40...70)
+                let stepB = Int.random(in: 3...6)
+                seq = [
+                    startA, startB,
+                    startA + stepA, startB - stepB,
+                    startA + 2 * stepA, startB - 2 * stepB
+                ]
+                missingPos = [3, 4, 5].randomElement() ?? 5
+            } else {
+                let s = Int.random(in: 2...5)
+                let e0 = s
+                let e1 = 2 * e0 - 1
+                let e2 = 2 * e1 - 1
+                let e3 = 2 * e2 - 1
+                let e4 = 2 * e3 - 1
+                seq = [e0, e1, e2, e3, e4]
+                missingPos = Int.random(in: 2...4)
+            }
+        }
+
         let correct = seq[missingPos]
-
         var textParts: [String] = []
-        for i in 0..<4 {
+        for i in 0..<seq.count {
             if i == missingPos {
                 textParts.append("?")
             } else {
@@ -420,36 +796,103 @@ class QuestionGenerator {
         }
 
         let text = textParts.joined(separator: ", ")
-        let options = makeNumericOptions(correct: correct, range: step * 2)
+        let options = makeNumericOptions(correct: correct, range: 12)
         let correctIdx = options.firstIndex(of: "\(correct)") ?? 0
 
         return Question(text: text, subtext: NSLocalizedString("prompt_missing_seq", comment: "Missing sequence number"), options: options, correctIndex: correctIdx, maxTime: maxTime, flagImageName: nil, memorySteps: nil, memoryGridItems: nil, memoryPreviewSeconds: nil)
     }
 
     // MARK: - 7. Equations
-    private func generateEquations(level: GameLevel, maxTime: Double) -> Question {
-        let a = Int.random(in: 2...8)
-        let b = Int.random(in: 2...6)
-        let c = Int.random(in: 2...10)
-        
-        let correctX = b * a + c
-        let text = "y = \(a);  x = \(b)y + \(c)"
+    private func generateEquations(level: GameLevel, maxTime: Double, questionIndex: Int = 0) -> Question {
+        let text: String
+        let correctX: Int
+        let range: Int
 
-        let options = makeNumericOptions(correct: correctX, range: 10)
+        switch level {
+        case .beginner:
+            let a = Int.random(in: 3...12)
+            let x = Int.random(in: 4...20)
+            if Bool.random() {
+                let b = x + a
+                text = "x + \(a) = \(b)"
+            } else {
+                let b = x - a
+                text = "x - \(a) = \(b)"
+            }
+            correctX = x
+            range = 8
+        case .easy:
+            let a = Int.random(in: 2...6)
+            let x = Int.random(in: 2...9)
+            let b = Int.random(in: 2...15)
+            let c = (a * x) + b
+            text = "\(a)x + \(b) = \(c)"
+            correctX = x
+            range = 8
+        case .medium:
+            let a = Int.random(in: 2...8)
+            let b = Int.random(in: 2...6)
+            let c = Int.random(in: 2...10)
+            correctX = (b * a) + c
+            text = "y = \(a);  x = \(b)y + \(c)"
+            range = 10
+        case .hard:
+            let x = Int.random(in: 6...25)
+            let y = Int.random(in: 2...min(20, x - 1))
+            let sum = x + y
+            let diff = x - y
+            text = "x + y = \(sum);  x - y = \(diff)"
+            correctX = x
+            range = 10
+        case .ultimate:
+            let x = Int.random(in: 4...20)
+            let y = Int.random(in: 2...15)
+            let c1 = (2 * x) + y
+            let c2 = x - y
+            text = "2x + y = \(c1);  x - y = \(c2)"
+            correctX = x
+            range = 10
+        case .godlike:
+            if Bool.random() {
+                let z = Int.random(in: 2...6)
+                let d = Int.random(in: 2...8)
+                let e = Int.random(in: 2...10)
+                let y = (2 * z) + d
+                correctX = y + (2 * z) + e
+                text = "z = \(z);  y = 2z + \(d);  x = y + 2z + \(e)"
+            } else {
+                let r1 = Int.random(in: 2...6)
+                let r2 = Int.random(in: 7...12)
+                let p = r1 + r2
+                let q = r1 * r2
+                text = "x² - \(p)x + \(q) = 0   (x > \(r1))"
+                correctX = r2
+            }
+            range = 10
+        }
+
+        let options = makeNumericOptions(correct: correctX, range: range)
         let correctIdx = options.firstIndex(of: "\(correctX)") ?? 0
 
         return Question(text: text, subtext: NSLocalizedString("prompt_find_x", comment: "Find value of x"), options: options, correctIndex: correctIdx, maxTime: maxTime, flagImageName: nil, memorySteps: nil, memoryGridItems: nil, memoryPreviewSeconds: nil)
     }
 
     // MARK: - 8. Memory Addition
-    private func generateMemoryAdd(level: GameLevel, maxTime: Double) -> Question {
+    private func generateMemoryAdd(level: GameLevel, maxTime: Double, questionIndex: Int = 0) -> Question {
         let stepCount: Int
         switch level {
-        case .beginner: stepCount = 3
-        case .easy: stepCount = 4
-        case .medium: stepCount = 5
-        case .hard: stepCount = 6
-        default: stepCount = 7
+        case .beginner:
+            stepCount = 3
+        case .easy:
+            stepCount = (questionIndex < 8) ? 4 : 5
+        case .medium:
+            stepCount = 5 + (questionIndex / 5)
+        case .hard:
+            stepCount = 7 + (questionIndex / 5)
+        case .ultimate:
+            stepCount = 10 + Int(Double(questionIndex) * 5.0 / 14.0)
+        case .godlike:
+            stepCount = 8 + Int(round(Double(questionIndex) * 15.0 / 14.0)) // 8..23!
         }
 
         let first = Int.random(in: 2...12)
@@ -484,14 +927,21 @@ class QuestionGenerator {
     }
 
     // MARK: - 9. Memory Add & Subtract
-    private func generateMemoryAddSub(level: GameLevel, maxTime: Double) -> Question {
+    private func generateMemoryAddSub(level: GameLevel, maxTime: Double, questionIndex: Int = 0) -> Question {
         let stepCount: Int
         switch level {
-        case .beginner: stepCount = 3
-        case .easy: stepCount = 4
-        case .medium: stepCount = 5
-        case .hard: stepCount = 6
-        default: stepCount = 7
+        case .beginner:
+            stepCount = 3
+        case .easy:
+            stepCount = (questionIndex < 8) ? 4 : 5
+        case .medium:
+            stepCount = 5 + (questionIndex / 5)
+        case .hard:
+            stepCount = 7 + (questionIndex / 5)
+        case .ultimate:
+            stepCount = 10 + Int(Double(questionIndex) * 5.0 / 14.0)
+        case .godlike:
+            stepCount = 8 + Int(round(Double(questionIndex) * 15.0 / 14.0)) // 8..23!
         }
 
         let first = Int.random(in: 10...25)
@@ -563,14 +1013,21 @@ class QuestionGenerator {
     }
 
     // MARK: - 10. Memory Math Operations
-    private func generateMemoryAddSubMult(level: GameLevel, maxTime: Double) -> Question {
+    private func generateMemoryAddSubMult(level: GameLevel, maxTime: Double, questionIndex: Int = 0) -> Question {
         let stepCount: Int
         switch level {
-        case .beginner: stepCount = 3
-        case .easy: stepCount = 4
-        case .medium: stepCount = 5
-        case .hard: stepCount = 6
-        default: stepCount = 7
+        case .beginner:
+            stepCount = 3
+        case .easy:
+            stepCount = (questionIndex < 8) ? 4 : 5
+        case .medium:
+            stepCount = 5 + (questionIndex / 5)
+        case .hard:
+            stepCount = 7 + (questionIndex / 5)
+        case .ultimate:
+            stepCount = 10 + Int(Double(questionIndex) * 5.0 / 14.0)
+        case .godlike:
+            stepCount = 8 + Int(round(Double(questionIndex) * 15.0 / 14.0)) // 8..23!
         }
 
         let first = Int.random(in: 2...8)
@@ -653,7 +1110,7 @@ class QuestionGenerator {
     }
 
     // MARK: - 11. Memory Shapes (ALL figures in SAME uniform color)
-    private func generateMemoryShapes(level: GameLevel, maxTime: Double) -> Question {
+    private func generateMemoryShapes(level: GameLevel, maxTime: Double, questionIndex: Int = 0) -> Question {
         let shapes = ["square.fill", "circle.fill", "triangle.fill", "diamond.fill", "star.fill"]
         let targetShape = shapes.randomElement() ?? "circle.fill"
         
@@ -665,8 +1122,11 @@ class QuestionGenerator {
         case .beginner: gridCount = 6; previewSecs = 6.0
         case .easy: gridCount = 8; previewSecs = 7.0
         case .medium: gridCount = 10; previewSecs = 8.0
-        case .hard: gridCount = 12; previewSecs = 9.0
-        default: gridCount = 15; previewSecs = 10.0
+        case .hard: gridCount = 14; previewSecs = 8.0
+        case .ultimate: gridCount = 18; previewSecs = 7.5
+        case .godlike:
+            gridCount = 20 + min(4, questionIndex / 3) // 20..24
+            previewSecs = 6.5
         }
 
         var items: [MemoryGridItem] = []
@@ -710,7 +1170,7 @@ class QuestionGenerator {
     }
 
     // MARK: - 12. Memory Colors (Figures in DIFFERENT vibrant colors)
-    private func generateMemoryColors(level: GameLevel, maxTime: Double) -> Question {
+    private func generateMemoryColors(level: GameLevel, maxTime: Double, questionIndex: Int = 0) -> Question {
         let colors = ["RED", "BLUE", "GREEN", "YELLOW", "PURPLE", "ORANGE"]
         let targetColor = colors.randomElement() ?? "RED"
         let shapes = ["square.fill", "circle.fill", "triangle.fill", "star.fill"]
@@ -721,8 +1181,11 @@ class QuestionGenerator {
         case .beginner: gridCount = 6; previewSecs = 6.0
         case .easy: gridCount = 8; previewSecs = 7.0
         case .medium: gridCount = 10; previewSecs = 8.0
-        case .hard: gridCount = 12; previewSecs = 9.0
-        default: gridCount = 15; previewSecs = 10.0
+        case .hard: gridCount = 14; previewSecs = 8.0
+        case .ultimate: gridCount = 18; previewSecs = 7.5
+        case .godlike:
+            gridCount = 20 + min(4, questionIndex / 3) // 20..24
+            previewSecs = 6.5
         }
 
         var items: [MemoryGridItem] = []
@@ -771,15 +1234,7 @@ class QuestionGenerator {
     private func generateChemSymbols(level: GameLevel, maxTime: Double) -> Question {
         let idx = selectElementIndex(level: level)
         let targetElem = allElements[idx]
-
-        var choicesSet = Set<String>([targetElem.name])
-        while choicesSet.count < 4 {
-            if let rand = allElements.randomElement() {
-                choicesSet.insert(rand.name)
-            }
-        }
-
-        let rawOptions = Array(choicesSet).shuffled()
+        let rawOptions = pickChemSymbolDistractors(targetElem: targetElem, level: level)
         let localizedTarget = localizedElementName(for: targetElem.name)
         let localizedOptions = rawOptions.map { localizedElementName(for: $0) }
         let correctIdx = localizedOptions.firstIndex(of: localizedTarget) ?? 0
@@ -801,15 +1256,7 @@ class QuestionGenerator {
     private func generateChemNames(level: GameLevel, maxTime: Double) -> Question {
         let idx = selectElementIndex(level: level)
         let targetElem = allElements[idx]
-
-        var choicesSet = Set<String>([targetElem.symbol])
-        while choicesSet.count < 4 {
-            if let rand = allElements.randomElement() {
-                choicesSet.insert(rand.symbol)
-            }
-        }
-
-        let options = Array(choicesSet).shuffled()
+        let options = pickChemNameDistractors(targetElem: targetElem, level: level)
         let correctIdx = options.firstIndex(of: targetElem.symbol) ?? 0
         let localizedTargetName = localizedElementName(for: targetElem.name)
 
@@ -849,28 +1296,20 @@ class QuestionGenerator {
         case .beginner:
             countryIndex = Int.random(in: 0..<min(25, totalCount))
         case .easy:
-            countryIndex = Int.random(in: 0..<min(50, totalCount))
+            countryIndex = Int.random(in: 0..<min(55, totalCount))
         case .medium:
-            countryIndex = Int.random(in: min(20, totalCount - 1)..<min(70, totalCount))
+            countryIndex = Int.random(in: min(25, totalCount - 1)..<min(80, totalCount))
         case .hard:
-            countryIndex = Int.random(in: min(40, totalCount - 1)..<min(120, totalCount))
+            countryIndex = Int.random(in: min(50, totalCount - 1)..<min(120, totalCount))
         case .ultimate:
-            countryIndex = Int.random(in: min(60, totalCount - 1)..<min(110, totalCount))
+            countryIndex = Int.random(in: min(80, totalCount - 1)..<min(160, totalCount))
         case .godlike:
-            countryIndex = Int.random(in: min(60, totalCount - 1)..<totalCount)
+            countryIndex = Int.random(in: min(100, totalCount - 1)..<totalCount)
         }
 
         let rawTargetCountry = allCountries[countryIndex]
         let flagAssetName = rawTargetCountry.replacingOccurrences(of: " ", with: "_")
-
-        var choicesSet = Set<String>([rawTargetCountry])
-        while choicesSet.count < 4 {
-            if let randomCountry = allCountries.randomElement() {
-                choicesSet.insert(randomCountry)
-            }
-        }
-
-        let rawOptions = Array(choicesSet).shuffled()
+        let rawOptions = pickCountryDistractors(targetCountry: rawTargetCountry, level: level)
         let localizedTarget = localizedCountryName(for: rawTargetCountry)
         let localizedOptions = rawOptions.map { localizedCountryName(for: $0) }
         let correctIdx = localizedOptions.firstIndex(of: localizedTarget) ?? 0
@@ -935,11 +1374,11 @@ class QuestionGenerator {
             let range: Range<Int>
             switch level {
             case .beginner: range = 0..<min(25, totalCount)
-            case .easy: range = 0..<min(50, totalCount)
-            case .medium: range = min(20, totalCount - 1)..<min(70, totalCount)
-            case .hard: range = min(40, totalCount - 1)..<min(120, totalCount)
-            case .ultimate: range = min(60, totalCount - 1)..<min(110, totalCount)
-            case .godlike: range = min(60, totalCount - 1)..<totalCount
+            case .easy: range = 0..<min(55, totalCount)
+            case .medium: range = min(25, totalCount - 1)..<min(80, totalCount)
+            case .hard: range = min(50, totalCount - 1)..<min(120, totalCount)
+            case .ultimate: range = min(80, totalCount - 1)..<min(160, totalCount)
+            case .godlike: range = min(100, totalCount - 1)..<totalCount
             }
             return range.map { "country_\(allCountries[$0])" }
         } else if gameType == .chemSymbols || gameType == .chemNames {
@@ -950,9 +1389,9 @@ class QuestionGenerator {
             case .beginner: range = 0..<min(25, total)
             case .easy: range = 0..<min(50, total)
             case .medium: range = min(20, total - 1)..<min(70, total)
-            case .hard: range = min(40, total - 1)..<min(90, total)
-            case .ultimate: range = min(60, total - 1)..<min(110, total)
-            case .godlike: range = min(65, total - 1)..<total
+            case .hard: range = min(40, total - 1)..<min(95, total)
+            case .ultimate: range = min(60, total - 1)..<min(105, total)
+            case .godlike: range = min(70, total - 1)..<total
             }
             return range.map { "chem_\(allElements[$0].symbol)" }
         } else if gameType == .addition {
@@ -1063,11 +1502,11 @@ class QuestionGenerator {
         let availableIndices: [Int]
         switch level {
         case .beginner: availableIndices = Array(0..<min(25, totalCount))
-        case .easy: availableIndices = Array(0..<min(50, totalCount))
-        case .medium: availableIndices = Array(min(20, totalCount - 1)..<min(70, totalCount))
-        case .hard: availableIndices = Array(min(40, totalCount - 1)..<min(120, totalCount))
-        case .ultimate: availableIndices = Array(min(60, totalCount - 1)..<min(110, totalCount))
-        case .godlike: availableIndices = Array(min(60, totalCount - 1)..<totalCount)
+        case .easy: availableIndices = Array(0..<min(55, totalCount))
+        case .medium: availableIndices = Array(min(25, totalCount - 1)..<min(80, totalCount))
+        case .hard: availableIndices = Array(min(50, totalCount - 1)..<min(120, totalCount))
+        case .ultimate: availableIndices = Array(min(80, totalCount - 1)..<min(160, totalCount))
+        case .godlike: availableIndices = Array(min(100, totalCount - 1)..<totalCount)
         }
 
         var priority1: [Int] = []
@@ -1105,13 +1544,7 @@ class QuestionGenerator {
             let rawTargetCountry = allCountries[idx]
             let itemKey = "country_\(rawTargetCountry)"
             let flagAssetName = rawTargetCountry.replacingOccurrences(of: " ", with: "_")
-            var choicesSet = Set<String>([rawTargetCountry])
-            while choicesSet.count < 4 {
-                if let rand = allCountries.randomElement() {
-                    choicesSet.insert(rand)
-                }
-            }
-            let rawOptions = Array(choicesSet).shuffled()
+            let rawOptions = pickCountryDistractors(targetCountry: rawTargetCountry, level: level)
             let localizedTarget = localizedCountryName(for: rawTargetCountry)
             let localizedOptions = rawOptions.map { localizedCountryName(for: $0) }
             let correctIdx = localizedOptions.firstIndex(of: localizedTarget) ?? 0
@@ -1137,9 +1570,9 @@ class QuestionGenerator {
         case .beginner: indices = Array(0..<min(25, total))
         case .easy: indices = Array(0..<min(50, total))
         case .medium: indices = Array(min(20, total - 1)..<min(70, total))
-        case .hard: indices = Array(min(40, total - 1)..<min(90, total))
-        case .ultimate: indices = Array(min(60, total - 1)..<min(110, total))
-        case .godlike: indices = Array(min(65, total - 1)..<total)
+        case .hard: indices = Array(min(40, total - 1)..<min(95, total))
+        case .ultimate: indices = Array(min(60, total - 1)..<min(105, total))
+        case .godlike: indices = Array(min(70, total - 1)..<total)
         }
 
         var priority1: [Int] = []
@@ -1182,13 +1615,7 @@ class QuestionGenerator {
         return selectedIndices.map { idx in
             let targetElem = allElements[idx]
             let itemKey = "chem_\(targetElem.symbol)"
-            var choicesSet = Set<String>([targetElem.name])
-            while choicesSet.count < 4 {
-                if let rand = allElements.randomElement() {
-                    choicesSet.insert(rand.name)
-                }
-            }
-            let rawOptions = Array(choicesSet).shuffled()
+            let rawOptions = pickChemSymbolDistractors(targetElem: targetElem, level: level)
             let localizedTarget = localizedElementName(for: targetElem.name)
             let localizedOptions = rawOptions.map { localizedElementName(for: $0) }
             let correctIdx = localizedOptions.firstIndex(of: localizedTarget) ?? 0
@@ -1213,9 +1640,9 @@ class QuestionGenerator {
         case .beginner: indices = Array(0..<min(25, total))
         case .easy: indices = Array(0..<min(50, total))
         case .medium: indices = Array(min(20, total - 1)..<min(70, total))
-        case .hard: indices = Array(min(40, total - 1)..<min(90, total))
-        case .ultimate: indices = Array(min(60, total - 1)..<min(110, total))
-        case .godlike: indices = Array(min(65, total - 1)..<total)
+        case .hard: indices = Array(min(40, total - 1)..<min(95, total))
+        case .ultimate: indices = Array(min(60, total - 1)..<min(105, total))
+        case .godlike: indices = Array(min(70, total - 1)..<total)
         }
 
         var priority1: [Int] = []
@@ -1258,13 +1685,7 @@ class QuestionGenerator {
         return selectedIndices.map { idx in
             let targetElem = allElements[idx]
             let itemKey = "chem_\(targetElem.symbol)"
-            var choicesSet = Set<String>([targetElem.symbol])
-            while choicesSet.count < 4 {
-                if let rand = allElements.randomElement() {
-                    choicesSet.insert(rand.symbol)
-                }
-            }
-            let options = Array(choicesSet).shuffled()
+            let options = pickChemNameDistractors(targetElem: targetElem, level: level)
             let correctIdx = options.firstIndex(of: targetElem.symbol) ?? 0
             let localizedTargetName = localizedElementName(for: targetElem.name)
 
@@ -1286,7 +1707,7 @@ class QuestionGenerator {
         var attempts = 0
         while questions.count < count && attempts < 500 {
             attempts += 1
-            let q = generateQuestion(gameType: gameType, level: level)
+            let q = generateQuestion(gameType: gameType, level: level, questionIndex: questions.count)
 
             let signature: String
             if let steps = q.memorySteps {
@@ -1319,7 +1740,7 @@ class QuestionGenerator {
 
         // Fallback: If unique signatures produced fewer than count questions, fill up to count (15)
         while questions.count < count {
-            let q = generateQuestion(gameType: gameType, level: level)
+            let q = generateQuestion(gameType: gameType, level: level, questionIndex: questions.count)
             let itemKey = "math_\(gameType.rawValue)_\(questions.count)_\(q.text)"
             let questionWithKey = Question(
                 itemKey: itemKey,

@@ -93,15 +93,17 @@ private struct FunChipButtonBody: View {
 // MARK: - Action Button Style (Start Game, Play Again, Unlock in Shop)
 struct FunActionButtonStyle: ButtonStyle {
     var cornerRadius: CGFloat = 12
+    var scaleOnFocus: Bool = true
 
     func makeBody(configuration: Configuration) -> some View {
-        FunActionButtonBody(configuration: configuration, cornerRadius: cornerRadius)
+        FunActionButtonBody(configuration: configuration, cornerRadius: cornerRadius, scaleOnFocus: scaleOnFocus)
     }
 }
 
 private struct FunActionButtonBody: View {
     let configuration: ButtonStyle.Configuration
     let cornerRadius: CGFloat
+    var scaleOnFocus: Bool = true
     @Environment(\.isFocused) private var isFocused
     @Environment(\.colorScheme) private var colorScheme
 
@@ -110,7 +112,7 @@ private struct FunActionButtonBody: View {
         if isFocused {
             return colorScheme == .light ? Color(red: 24/255, green: 24/255, blue: 28/255) : Color.white
         } else {
-            return colorScheme == .light ? Color.black.opacity(0.08) : Color.white.opacity(0.12)
+            return scaleOnFocus ? (colorScheme == .light ? Color.black.opacity(0.08) : Color.white.opacity(0.12)) : Color.clear
         }
     }
 
@@ -132,11 +134,11 @@ private struct FunActionButtonBody: View {
                 RoundedRectangle(cornerRadius: cornerRadius)
                     .fill(tvOSBackgroundColor)
             )
-            .scaleEffect(isFocused ? 1.05 : (configuration.isPressed ? 0.96 : 1.0))
+            .scaleEffect((isFocused && scaleOnFocus) ? 1.05 : (configuration.isPressed ? 0.96 : 1.0))
             .shadow(
-                color: isFocused ? (colorScheme == .light ? Color.black.opacity(0.35) : Color.white.opacity(0.25)) : Color.clear,
-                radius: isFocused ? 10 : 0,
-                y: isFocused ? 4 : 0
+                color: (isFocused && scaleOnFocus) ? (colorScheme == .light ? Color.black.opacity(0.35) : Color.white.opacity(0.25)) : Color.clear,
+                radius: (isFocused && scaleOnFocus) ? 10 : 0,
+                y: (isFocused && scaleOnFocus) ? 4 : 0
             )
             .animation(.easeInOut(duration: 0.15), value: isFocused)
             .animation(.easeInOut(duration: 0.1), value: configuration.isPressed)

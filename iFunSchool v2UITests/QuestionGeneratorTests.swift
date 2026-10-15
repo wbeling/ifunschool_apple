@@ -131,4 +131,52 @@ final class QuestionGeneratorTests: XCTestCase {
             }
         }
     }
+
+    // MARK: - 4. All 15 Games × 6 Levels Smoke & Correctness Test
+    func testAll15GamesGenerateValidQuestionsForAll6Levels() throws {
+        for gameType in GameType.allCases {
+            for level in GameLevel.allCases {
+                for qIndex in [0, 7, 14] {
+                    let q = QuestionGenerator.shared.generateQuestion(gameType: gameType, level: level, questionIndex: qIndex)
+                    XCTAssertFalse(q.text.isEmpty, "Question text empty for \(gameType) level \(level)")
+                    XCTAssertEqual(q.options.count, 4, "Options count should be 4 for \(gameType) level \(level)")
+                    XCTAssertTrue(q.correctIndex >= 0 && q.correctIndex < 4, "Invalid correctIndex for \(gameType) level \(level)")
+                    XCTAssertGreaterThan(q.maxTime, 0, "Invalid maxTime for \(gameType) level \(level)")
+
+                    let uniqueOptions = Set(q.options)
+                    XCTAssertEqual(uniqueOptions.count, 4, "Duplicate options generated in \(gameType) level \(level): \(q.options)")
+                }
+            }
+        }
+    }
+
+    // MARK: - 5. Godlike Memory Escalation (8 steps at q1 -> 23 steps at q15)
+    func testGodlikeMemoryProgressionFrom8To23Steps() throws {
+        let memoryGames: [GameType] = [.memoryAdd, .memoryAddSub, .memoryAddSubMult]
+        for game in memoryGames {
+            let qFirst = QuestionGenerator.shared.generateQuestion(gameType: game, level: .godlike, questionIndex: 0)
+            XCTAssertEqual(qFirst.memorySteps?.count, 8, "\(game) at Godlike question 0 must have exactly 8 steps")
+
+            let qMid = QuestionGenerator.shared.generateQuestion(gameType: game, level: .godlike, questionIndex: 7)
+            XCTAssertEqual(qMid.memorySteps?.count, 16, "\(game) at Godlike question 7 must have 16 steps")
+
+            let qLast = QuestionGenerator.shared.generateQuestion(gameType: game, level: .godlike, questionIndex: 14)
+            XCTAssertEqual(qLast.memorySteps?.count, 23, "\(game) at Godlike question 14 must have exactly 23 steps")
+        }
+    }
+
+    // MARK: - 6. Full Game Session Question Generation Test
+    func testFullGameQuestionsGenerationFor15Questions() throws {
+        for game in GameType.allCases {
+            for level in [GameLevel.beginner, GameLevel.hard, GameLevel.godlike] {
+                let questions = QuestionGenerator.shared.generateGameQuestions(
+                    gameType: game,
+                    level: level,
+                    playerID: "test_player",
+                    count: 15
+                )
+                XCTAssertEqual(questions.count, 15, "Expected 15 questions for \(game) at \(level)")
+            }
+        }
+    }
 }

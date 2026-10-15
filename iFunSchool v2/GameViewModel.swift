@@ -44,7 +44,7 @@ class GameViewModel: ObservableObject {
         currentQuestionIndex: Int = 1,
         timeRemaining: Double = 15.0,
         gameScore: Double = 0.0,
-        autoStart: Bool = true
+        autoStart: Bool = false
     ) {
         self.gameType = gameType
         self.level = level
@@ -83,6 +83,7 @@ class GameViewModel: ObservableObject {
     }
 
     func loadNextQuestion() {
+        guard !isGameOver else { return }
         stopTimer()
         stopMemoryTimer()
         selectedAnswerIndex = nil
@@ -115,6 +116,7 @@ class GameViewModel: ObservableObject {
     }
 
     private func startMemoryStepsPhase(stepsCount: Int) {
+        guard !isGameOver else { return }
         isMemoryPhase = true
         currentMemoryStepIndex = 0
         stopMemoryTimer()
@@ -123,7 +125,7 @@ class GameViewModel: ObservableObject {
         memoryTimerSubscription = Timer.publish(every: stepDuration, on: .main, in: .common)
             .autoconnect()
             .sink { [weak self] _ in
-                guard let self = self else { return }
+                guard let self = self, !self.isGameOver else { return }
                 if self.currentMemoryStepIndex < stepsCount - 1 {
                     self.currentMemoryStepIndex += 1
                     HapticService.shared.playSelection()
@@ -137,6 +139,7 @@ class GameViewModel: ObservableObject {
     }
 
     private func startMemoryGridPhase(seconds: Double) {
+        guard !isGameOver else { return }
         isMemoryPhase = true
         memoryPreviewCountdown = seconds
         stopMemoryTimer()
@@ -144,7 +147,7 @@ class GameViewModel: ObservableObject {
         memoryTimerSubscription = Timer.publish(every: 0.1, on: .main, in: .common)
             .autoconnect()
             .sink { [weak self] _ in
-                guard let self = self else { return }
+                guard let self = self, !self.isGameOver else { return }
                 if self.memoryPreviewCountdown > 0.1 {
                     self.memoryPreviewCountdown -= 0.1
                 } else {
@@ -163,6 +166,7 @@ class GameViewModel: ObservableObject {
 
     private func startTimer() {
         stopTimer()
+        guard !isGameOver else { return }
         timerSubscription = Timer.publish(every: 0.05, on: .main, in: .common)
             .autoconnect()
             .sink { [weak self] _ in
@@ -185,7 +189,7 @@ class GameViewModel: ObservableObject {
     }
 
     func selectAnswer(index: Int) {
-        guard !isMemoryPhase, !isFeedbackShowing, selectedAnswerIndex == nil, let question = currentQuestion else { return }
+        guard !isGameOver, !isMemoryPhase, !isFeedbackShowing, selectedAnswerIndex == nil, let question = currentQuestion else { return }
 
         stopTimer()
         selectedAnswerIndex = index
@@ -207,11 +211,13 @@ class GameViewModel: ObservableObject {
 
         // Transition to next question after 1 second feedback delay
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
-            self?.loadNextQuestion()
+            guard let self = self, !self.isGameOver else { return }
+            self.loadNextQuestion()
         }
     }
 
     private func handleTimeExpired() {
+        guard !isGameOver else { return }
         stopTimer()
         if let question = currentQuestion {
             ItemProgressTracker.shared.updateStatus(itemKey: question.itemKey, isCorrect: false, playerID: ScoreStorage.shared.activePlayerID)
@@ -223,11 +229,13 @@ class GameViewModel: ObservableObject {
         HapticService.shared.playError()
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
-            self?.loadNextQuestion()
+            guard let self = self, !self.isGameOver else { return }
+            self.loadNextQuestion()
         }
     }
 
     private func finishGame() {
+        isGameOver = true
         stopTimer()
         stopMemoryTimer()
         
@@ -297,15 +305,13 @@ class GameViewModel: ObservableObject {
 
         // 3. Record Game Completed and check App Store Review Prompt metrics
         ReviewPromptService.shared.recordGameCompletedAndCheckReview()
-
-        isGameOver = true
     }
 
     func abortGame() {
+        isGameOver = true
         stopTimer()
         stopMemoryTimer()
         AudioService.shared.stopMusic()
-        isGameOver = false
     }
 
     deinit {

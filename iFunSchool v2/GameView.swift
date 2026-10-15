@@ -12,7 +12,8 @@ struct GameView: View {
     }
 
     init(gameType: GameType, level: GameLevel, onDismiss: (() -> Void)? = nil) {
-        self.init(viewModel: GameViewModel(gameType: gameType, level: level), onDismiss: onDismiss)
+        _viewModel = StateObject(wrappedValue: GameViewModel(gameType: gameType, level: level, autoStart: false))
+        self.onDismiss = onDismiss
     }
 
     var body: some View {
@@ -27,6 +28,14 @@ struct GameView: View {
         #if os(iOS) || os(tvOS)
         .navigationBarHidden(true)
         #endif
+        .onAppear {
+            if viewModel.currentQuestion == nil && !viewModel.isGameOver {
+                viewModel.startNewGame()
+            }
+        }
+        .onDisappear {
+            viewModel.abortGame()
+        }
         .alert(
             NSLocalizedString("alert_quit_title", comment: "Quit Title"),
             isPresented: $showAbortAlert
