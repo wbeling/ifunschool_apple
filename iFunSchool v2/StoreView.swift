@@ -470,40 +470,44 @@ struct SubscriptionCardRow: View {
 
         VStack(alignment: .leading, spacing: 14) {
             HStack(alignment: .top) {
-                VStack(alignment: .leading, spacing: 4) {
-                    HStack(spacing: 8) {
-                        Text(product.displayName)
-                            .font(.headline.bold())
+                VStack(alignment: .leading, spacing: 6) {
+                    Text(product.displayName)
+                        .font(.headline.bold())
+                        .fixedSize(horizontal: false, vertical: true)
 
-                        // Commitment Plan Badge vs Upfront & Savings Badges
-                        if isCommitment {
-                            Text(LocalizedStringKey("store_commitment_badge"))
-                                .font(.caption2.bold())
-                                .padding(.horizontal, 8)
-                                .padding(.vertical, 3)
-                                .background(Color.purple)
-                                .foregroundColor(.white)
-                                .cornerRadius(8)
-                        } else {
-                            if storeKitService.hasCommitmentPlan(for: product) {
-                                Text(LocalizedStringKey("store_plan_upfront_badge"))
+                    // Commitment Plan Badge vs Upfront & Savings Badges (rendered below title if present)
+                    let hasUpfrontBadge = !isCommitment && storeKitService.hasCommitmentPlan(for: product)
+                    if isCommitment || hasUpfrontBadge || savingsPercent != nil {
+                        HStack(spacing: 6) {
+                            if isCommitment {
+                                Text(LocalizedStringKey("store_commitment_badge"))
                                     .font(.caption2.bold())
                                     .padding(.horizontal, 8)
                                     .padding(.vertical, 3)
-                                    .background(FunColors.chalkboardGreen)
+                                    .background(Color.purple)
                                     .foregroundColor(.white)
                                     .cornerRadius(8)
-                            }
+                            } else {
+                                if hasUpfrontBadge {
+                                    Text(LocalizedStringKey("store_plan_upfront_badge"))
+                                        .font(.caption2.bold())
+                                        .padding(.horizontal, 8)
+                                        .padding(.vertical, 3)
+                                        .background(FunColors.chalkboardGreen)
+                                        .foregroundColor(.white)
+                                        .cornerRadius(8)
+                                }
 
-                            if let savings = savingsPercent {
-                                // Percentage Savings Badge (for longer tiers)
-                                Text(String(format: NSLocalizedString("store_save_percentage", comment: "Save %"), savings))
-                                    .font(.caption2.bold())
-                                    .padding(.horizontal, 8)
-                                    .padding(.vertical, 3)
-                                    .background(Color.orange)
-                                    .foregroundColor(.white)
-                                    .cornerRadius(8)
+                                if let savings = savingsPercent {
+                                    // Percentage Savings Badge (for longer tiers)
+                                    Text(String(format: NSLocalizedString("store_save_percentage", comment: "Save %"), savings))
+                                        .font(.caption2.bold())
+                                        .padding(.horizontal, 8)
+                                        .padding(.vertical, 3)
+                                        .background(Color.orange)
+                                        .foregroundColor(.white)
+                                        .cornerRadius(8)
+                                }
                             }
                         }
                     }

@@ -95,8 +95,8 @@ struct GameView: View {
 
     // MARK: - Header Bar
     private var headerBar: some View {
-        ZStack {
-            HStack {
+        VStack(spacing: 4) {
+            HStack(alignment: .center) {
                 Button(action: {
                     showAbortAlert = true
                 }) {
@@ -111,23 +111,25 @@ struct GameView: View {
                 .buttonStyle(FunHeaderButtonStyle())
 
                 Spacer()
-            }
 
-            VStack(spacing: 2) {
-                Text(viewModel.gameType.title)
-                    .font(headerTitleFont)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.7)
                 Text(viewModel.level.title)
                     .font(headerLevelFont)
                     .lineLimit(1)
                     .minimumScaleFactor(0.7)
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 2)
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 4)
                     .background(viewModel.level == .godlike ? Color.black : Color.secondary.opacity(0.15))
                     .foregroundColor(viewModel.level == .godlike ? Color.white : Color.secondary)
-                    .cornerRadius(6)
+                    .cornerRadius(8)
             }
+
+            Text(viewModel.gameType.title)
+                .font(headerTitleFont)
+                .lineLimit(2)
+                .minimumScaleFactor(0.75)
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity)
+                .padding(.horizontal, 8)
         }
         .padding(.vertical, 8)
     }
