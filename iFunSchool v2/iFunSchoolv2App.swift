@@ -12,6 +12,7 @@ struct iFunSchoolv2App: App {
         _isLoading = State(initialValue: !testing)
 
         // Trigger Game Center authentication immediately on app launch
+        print("[AppLaunch][tvOS/All] App initializing. Triggering AchievementService.shared.authenticateLocalPlayer()...")
         AchievementService.shared.authenticateLocalPlayer()
     }
 

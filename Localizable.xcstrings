@@ -8033,6 +8033,41 @@
         }
       }
     },
+    "dialog_ok" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aceptar"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        }
+      }
+    },
     "element_Actinium" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -12375,6 +12410,9 @@
         }
       }
     },
+    "game_capitals" : {
+      "comment" : "Countries - Cities"
+    },
     "game_chem_names" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -13071,6 +13109,76 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Zapamiętaj układy:"
+          }
+        }
+      }
+    },
+    "gamecenter_not_authenticated_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du bist nicht im Game Center angemeldet. Bitte melde dich in den Einstellungen an, um Erfolge und Ranglisten zu sehen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You are not signed in to Game Center. Please sign in in device Settings to view achievements and leaderboards."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No has iniciado sesión en Game Center. Inicia sesión en Ajustes para ver los logros y las clasificaciones."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous n'êtes pas connecté à Game Center. Veuillez vous connecter dans les Réglages pour consulter les succès et les classements."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nie jesteś zalogowany do Game Center. Zaloguj się w Ustawieniach urządzenia, aby przeglądać osiągnięcia i rankingi."
+          }
+        }
+      }
+    },
+    "gamecenter_not_authenticated_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Game Center"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Game Center"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Game Center"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Game Center"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Game Center"
           }
         }
       }
@@ -14591,6 +14699,9 @@
         }
       }
     },
+    "progress_cat_capitals" : {
+      "comment" : "Capitals"
+    },
     "progress_cat_division" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -15081,6 +15192,9 @@
         }
       }
     },
+    "prompt_capital_to_country" : {
+      "comment" : "Which country is this the capital of?"
+    },
     "prompt_chem_name" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -15150,6 +15264,9 @@
           }
         }
       }
+    },
+    "prompt_country_to_capital" : {
+      "comment" : "What is the capital of this country?"
     },
     "prompt_find_x" : {
       "extractionState" : "manual",
@@ -16936,41 +17053,6 @@
         }
       }
     },
-    "store_plan_upfront_badge" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Einmalzahlung"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pay Upfront"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pago por adelantado"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Paiement comptant"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Płatność z góry"
-          }
-        }
-      }
-    },
     "store_commitment_badge" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -17597,6 +17679,41 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Abonament Roczny"
+          }
+        }
+      }
+    },
+    "store_plan_upfront_badge" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einmalzahlung"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pay Upfront"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pago por adelantado"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paiement comptant"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Płatność z góry"
           }
         }
       }

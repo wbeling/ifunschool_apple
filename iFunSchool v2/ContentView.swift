@@ -492,6 +492,7 @@ struct ContentView: View {
         case .multiplication: return .multiplication
         case .division: return .division
         case .flags: return .flags
+        case .capitals: return .capitals
         case .chemSymbols, .chemNames: return .elements
         default: return .addition
         }
@@ -582,7 +583,7 @@ struct GameRowView: View {
                 HStack(spacing: 14) {
                     // Icon
                     ZStack {
-                        RoundedRectangle(cornerRadius: 12)
+                        RoundedRectangle(cornerRadius: iconCornerRadius)
                             .fill(iconBackgroundColor)
                             .frame(width: 48, height: 48)
                         
@@ -798,6 +799,14 @@ struct GameRowView: View {
         }
     }
 
+    private var iconCornerRadius: CGFloat {
+        #if os(tvOS)
+        return 6
+        #else
+        return 12
+        #endif
+    }
+
     private var iconBackgroundColor: Color {
         switch game.gameType {
         case .addition, .subtraction, .multiplication, .division, .order, .sequences, .equations:
@@ -806,7 +815,7 @@ struct GameRowView: View {
             return .purple
         case .chemSymbols, .chemNames:
             return .green
-        case .flags:
+        case .flags, .capitals:
             return .orange
         }
     }

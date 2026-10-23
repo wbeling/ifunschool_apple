@@ -1,4 +1,7 @@
 import SwiftUI
+#if canImport(GameKit)
+import GameKit
+#endif
 
 struct GameView: View {
     @StateObject private var viewModel: GameViewModel
@@ -29,11 +32,19 @@ struct GameView: View {
         .navigationBarHidden(true)
         #endif
         .onAppear {
+            #if os(tvOS)
+            GKAccessPoint.shared.isActive = false
+            #endif
             if viewModel.currentQuestion == nil && !viewModel.isGameOver {
                 viewModel.startNewGame()
             }
         }
         .onDisappear {
+            #if os(tvOS)
+            if GKLocalPlayer.local.isAuthenticated {
+                GKAccessPoint.shared.isActive = true
+            }
+            #endif
             viewModel.abortGame()
         }
         .alert(

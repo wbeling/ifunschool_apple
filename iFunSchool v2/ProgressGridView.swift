@@ -6,6 +6,7 @@ enum ProgressCategory: String, CaseIterable, Identifiable {
     case multiplication = "Mnożenie"
     case division = "Dzielenie"
     case flags = "Flagi"
+    case capitals = "Stolice"
     case elements = "Pierwiastki"
 
     var id: String { rawValue }
@@ -17,6 +18,7 @@ enum ProgressCategory: String, CaseIterable, Identifiable {
         case .multiplication: return NSLocalizedString("progress_cat_multiplication", comment: "Multiplication")
         case .division: return NSLocalizedString("progress_cat_division", comment: "Division")
         case .flags: return NSLocalizedString("progress_cat_flags", comment: "Flags")
+        case .capitals: return NSLocalizedString("progress_cat_capitals", comment: "Capitals")
         case .elements: return NSLocalizedString("progress_cat_elements", comment: "Elements")
         }
     }
@@ -150,6 +152,10 @@ struct ProgressGridView: View {
                         ForEach(filteredFlagsItems, id: \.country) { item in
                             flagGridCell(item: item)
                         }
+                    } else if selectedCategory == .capitals {
+                        ForEach(filteredCapitalsItems, id: \.country) { item in
+                            capitalGridCell(item: item)
+                        }
                     } else if selectedCategory == .elements {
                         ForEach(filteredElementsItems, id: \.element.symbol) { item in
                             elementGridCell(item: item)
@@ -214,6 +220,7 @@ struct ProgressGridView: View {
         case .multiplication: return "multiply.circle.fill"
         case .division: return "divide.circle.fill"
         case .flags: return "flag.fill"
+        case .capitals: return "building.2.fill"
         case .elements: return "atom"
         }
     }
@@ -223,6 +230,13 @@ struct ProgressGridView: View {
         let country: String
         let localizedName: String
         let flagAssetName: String
+        let status: ItemStatus
+    }
+
+    struct CapitalProgressItem {
+        let country: String
+        let localizedCountryName: String
+        let localizedCapitalName: String
         let status: ItemStatus
     }
 
@@ -257,6 +271,32 @@ struct ProgressGridView: View {
         case .correct: return allFlagsItems.filter { $0.status == .correct }
         case .incorrect: return allFlagsItems.filter { $0.status == .incorrect }
         case .notAsked: return allFlagsItems.filter { $0.status == .notAsked }
+        }
+    }
+
+    private var allCapitalsItems: [CapitalProgressItem] {
+        _ = refreshTrigger
+        return generator.allCountries.map { rawCountry in
+            let capital = generator.capitalCity(for: rawCountry)
+            let itemKey = "city_\(capital)"
+            let status = ItemProgressTracker.shared.getStatus(for: itemKey)
+            let localizedCountry = generator.localizedCountryName(for: rawCountry)
+            let localizedCapital = generator.localizedCityName(for: capital)
+            return CapitalProgressItem(
+                country: rawCountry,
+                localizedCountryName: localizedCountry,
+                localizedCapitalName: localizedCapital,
+                status: status
+            )
+        }
+    }
+
+    private var filteredCapitalsItems: [CapitalProgressItem] {
+        switch selectedFilter {
+        case .all: return allCapitalsItems
+        case .correct: return allCapitalsItems.filter { $0.status == .correct }
+        case .incorrect: return allCapitalsItems.filter { $0.status == .incorrect }
+        case .notAsked: return allCapitalsItems.filter { $0.status == .notAsked }
         }
     }
 
@@ -348,6 +388,11 @@ struct ProgressGridView: View {
             correctCount = allFlagsItems.filter { $0.status == .correct }.count
             wrongCount = allFlagsItems.filter { $0.status == .incorrect }.count
             notAskedCount = allFlagsItems.filter { $0.status == .notAsked }.count
+        } else if selectedCategory == .capitals {
+            total = allCapitalsItems.count
+            correctCount = allCapitalsItems.filter { $0.status == .correct }.count
+            wrongCount = allCapitalsItems.filter { $0.status == .incorrect }.count
+            notAskedCount = allCapitalsItems.filter { $0.status == .notAsked }.count
         } else if selectedCategory == .elements {
             total = allElementsItems.count
             correctCount = allElementsItems.filter { $0.status == .correct }.count
@@ -425,6 +470,38 @@ struct ProgressGridView: View {
                     .multilineTextAlignment(.center)
                     .foregroundColor(.primary)
                     .frame(height: 32)
+            }
+            .padding(10)
+            .background(cardBackgroundColor(for: item.status))
+            .cornerRadius(12)
+        }
+        .buttonStyle(ProgressGridCellButtonStyle(status: item.status))
+    }
+
+    // MARK: - Capital Grid Cell
+    private func capitalGridCell(item: CapitalProgressItem) -> some View {
+        Button(action: {}) {
+            VStack(spacing: 4) {
+                HStack {
+                    Image(systemName: "building.2.fill")
+                        .font(.caption2)
+                        .foregroundColor(.orange)
+                    Spacer()
+                    statusIndicator(status: item.status)
+                }
+
+                Text(item.localizedCapitalName)
+                    .font(.subheadline.bold())
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.75)
+                    .foregroundColor(.primary)
+
+                Text(item.localizedCountryName)
+                    .font(.caption2.weight(.medium))
+                    .lineLimit(2)
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(.secondary)
+                    .frame(height: 28)
             }
             .padding(10)
             .background(cardBackgroundColor(for: item.status))

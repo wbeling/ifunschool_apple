@@ -1021,7 +1021,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 10.0;
+				MARKETING_VERSION = 10.1;
 				PRODUCT_BUNDLE_IDENTIFIER = pl.beling.ifunschool;
 				PRODUCT_NAME = iFunSchool;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1059,7 +1059,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 10.0;
+				MARKETING_VERSION = 10.1;
 				PRODUCT_BUNDLE_IDENTIFIER = pl.beling.ifunschool;
 				PRODUCT_NAME = iFunSchool;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1112,7 +1112,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
-				MARKETING_VERSION = 10.0;
+				MARKETING_VERSION = 10.1;
 				PRODUCT_BUNDLE_IDENTIFIER = pl.beling.ifunschool;
 				PRODUCT_NAME = iFunSchool;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1161,7 +1161,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
-				MARKETING_VERSION = 10.0;
+				MARKETING_VERSION = 10.1;
 				PRODUCT_BUNDLE_IDENTIFIER = pl.beling.ifunschool;
 				PRODUCT_NAME = iFunSchool;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1194,7 +1194,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 10.0;
+				MARKETING_VERSION = 10.1;
 				PRODUCT_BUNDLE_IDENTIFIER = pl.beling.ifunschool;
 				PRODUCT_NAME = iFunSchool;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1227,7 +1227,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 10.0;
+				MARKETING_VERSION = 10.1;
 				PRODUCT_BUNDLE_IDENTIFIER = pl.beling.ifunschool;
 				PRODUCT_NAME = iFunSchool;
 				PROVISIONING_PROFILE_SPECIFIER = "";

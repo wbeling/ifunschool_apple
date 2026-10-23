@@ -186,13 +186,13 @@ class ScoreStorage {
         if StoreKitService.shared.isStarLimitUnlocked {
             return raw
         } else {
-            return min(raw, 15)
+            return min(raw, 16)
         }
     }
 
     @MainActor
     var isStarLimitReached: Bool {
-        return !StoreKitService.shared.isStarLimitUnlocked && totalGoldStars >= 15
+        return !StoreKitService.shared.isStarLimitUnlocked && totalGoldStars >= 16
     }
 
     var totalSilverStars: Int {

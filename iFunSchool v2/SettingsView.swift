@@ -85,6 +85,7 @@ struct SettingsQRCodeItem: Identifiable {
 
 struct SettingsView: View {
     @ObservedObject private var audioService = AudioService.shared
+    @ObservedObject private var gcPresenter = GameCenterPresenter.shared
     @Environment(\.presentationMode) private var presentationMode
     @Environment(\.openURL) private var openURL
     @State private var activeGameCenterSheet: GameCenterSheetType? = nil
@@ -96,11 +97,20 @@ struct SettingsView: View {
     private let facebookURL = URL(string: "https://facebook.com/pl.beling")!
 
     var body: some View {
-        #if os(macOS) || os(tvOS)
-        macOSTVOSBody
-        #else
-        iOSBody
-        #endif
+        Group {
+            #if os(macOS) || os(tvOS)
+            macOSTVOSBody
+            #else
+            iOSBody
+            #endif
+        }
+        .alert(isPresented: $gcPresenter.showAuthenticationAlert) {
+            Alert(
+                title: Text(LocalizedStringKey("gamecenter_not_authenticated_title")),
+                message: Text(LocalizedStringKey("gamecenter_not_authenticated_message")),
+                dismissButton: .default(Text(LocalizedStringKey("dialog_ok")))
+            )
+        }
     }
 
     #if os(macOS) || os(tvOS)
@@ -124,9 +134,6 @@ struct SettingsView: View {
         #elseif os(tvOS)
         .frame(minWidth: 1100, idealWidth: 1300, maxWidth: 1500, minHeight: 800, idealHeight: 900, maxHeight: 1000)
         #endif
-        .sheet(item: $activeGameCenterSheet) { sheetType in
-            GameCenterView(state: sheetType.gcState)
-        }
         .sheet(isPresented: $isShowingStore) {
             StoreView()
                 #if os(macOS)
@@ -228,7 +235,11 @@ struct SettingsView: View {
                     // Section 3: Game Center Integration
                     SettingsCardSection(titleKey: "settings_header_gamecenter", iconName: "gamecontroller.fill", iconColor: .green, footerKey: "settings_footer_gamecenter") {
                         Button(action: {
-                            activeGameCenterSheet = .achievements
+                            #if os(tvOS)
+                            print("[SettingsView][tvOS] Achievements button tapped! Dismissing Settings sheet and presenting Game Center...")
+                            presentationMode.wrappedValue.dismiss()
+                            #endif
+                            GameCenterPresenter.shared.show(state: .achievements)
                         }) {
                             HStack {
                                 Image(systemName: "trophy.fill")
@@ -252,7 +263,11 @@ struct SettingsView: View {
                         Divider().padding(.leading, 50)
 
                         Button(action: {
-                            activeGameCenterSheet = .leaderboards
+                            #if os(tvOS)
+                            print("[SettingsView][tvOS] Leaderboards button tapped! Dismissing Settings sheet and presenting Game Center...")
+                            presentationMode.wrappedValue.dismiss()
+                            #endif
+                            GameCenterPresenter.shared.show(state: .leaderboards)
                         }) {
                             HStack {
                                 Image(systemName: "list.number")
@@ -527,7 +542,11 @@ struct SettingsView: View {
                 // Section 3: Game Center Integration
                 Section(header: Text(LocalizedStringKey("settings_header_gamecenter")), footer: Text(LocalizedStringKey("settings_footer_gamecenter"))) {
                     Button(action: {
-                        activeGameCenterSheet = .achievements
+                        if GKLocalPlayer.local.isAuthenticated {
+                            activeGameCenterSheet = .achievements
+                        } else {
+                            gcPresenter.showAuthenticationAlert = true
+                        }
                     }) {
                         Label {
                             HStack {
@@ -545,7 +564,11 @@ struct SettingsView: View {
                     }
 
                     Button(action: {
-                        activeGameCenterSheet = .leaderboards
+                        if GKLocalPlayer.local.isAuthenticated {
+                            activeGameCenterSheet = .leaderboards
+                        } else {
+                            gcPresenter.showAuthenticationAlert = true
+                        }
                     }) {
                         Label {
                             HStack {

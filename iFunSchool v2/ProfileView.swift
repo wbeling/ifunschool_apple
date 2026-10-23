@@ -4,6 +4,7 @@ import GameKit
 struct ProfileView: View {
     @Environment(\.presentationMode) private var presentationMode
     @StateObject private var profileManager = ProfileManager.shared
+    @ObservedObject private var gcPresenter = GameCenterPresenter.shared
     private let scoreStorage = ScoreStorage.shared
 
     @State private var selectedLeaderboardID: String? = nil
@@ -66,14 +67,23 @@ struct ProfileView: View {
             }
         }
         .background(FunColors.bgColor.ignoresSafeArea())
+        #if !os(macOS) && !os(tvOS)
         .sheet(isPresented: $isShowingLeaderboard) {
             GameCenterView(state: .leaderboards, leaderboardID: selectedLeaderboardID)
         }
+        #endif
         #if os(macOS)
         .frame(minWidth: 500, idealWidth: 600, minHeight: 450, idealHeight: 550)
         #elseif os(tvOS)
         .frame(minWidth: 900, idealWidth: 1000, minHeight: 650, idealHeight: 750)
         #endif
+        .alert(isPresented: $gcPresenter.showAuthenticationAlert) {
+            Alert(
+                title: Text(LocalizedStringKey("gamecenter_not_authenticated_title")),
+                message: Text(LocalizedStringKey("gamecenter_not_authenticated_message")),
+                dismissButton: .default(Text(LocalizedStringKey("dialog_ok")))
+            )
+        }
     }
 
     private var activeProfileCard: some View {
@@ -142,8 +152,20 @@ struct ProfileView: View {
                             Spacer()
 
                             Button(action: {
-                                selectedLeaderboardID = leaderID
-                                isShowingLeaderboard = true
+                                #if os(tvOS)
+                                print("[ProfileView][tvOS] Leaderboard button tapped for level=\(level.rawValue), leaderID=\(leaderID). Dismissing Profile sheet and presenting Game Center...")
+                                presentationMode.wrappedValue.dismiss()
+                                #endif
+                                #if os(macOS) || os(tvOS)
+                                GameCenterPresenter.shared.show(state: .leaderboards, leaderboardID: leaderID)
+                                #else
+                                if GKLocalPlayer.local.isAuthenticated {
+                                    selectedLeaderboardID = leaderID
+                                    isShowingLeaderboard = true
+                                } else {
+                                    gcPresenter.showAuthenticationAlert = true
+                                }
+                                #endif
                             }) {
                                 HStack(spacing: 4) {
                                     Text("\(pts) pts")
