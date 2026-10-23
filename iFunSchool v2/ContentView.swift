@@ -13,6 +13,7 @@ struct ContentView: View {
     @State private var isShowingHeaderActionSheet = false
     @State private var selectedProgressCategory: ProgressCategory = .addition
     @State private var activeGameItem: GameItem? = nil
+    @State private var scrollToGameId: String? = nil
 
     private enum HeaderFocusItem: Hashable {
         case settings
@@ -60,19 +61,33 @@ struct ContentView: View {
 
     var body: some View {
         ZStack {
+            mainMenuContentView
+                .disabled(activeGameItem != nil)
+                .accessibilityHidden(activeGameItem != nil)
+
             if let game = activeGameItem {
                 GameView(
                     gameType: game.gameType,
                     level: game.level,
                     onDismiss: {
+                        let playedId = activeGameItem?.id
+                        let playedLevel = activeGameItem?.level
                         withAnimation(.easeInOut(duration: 0.25)) {
                             activeGameItem = nil
+                        }
+                        if let selLevel = viewModel.selectedLevel, let playedLevel = playedLevel, selLevel != playedLevel {
+                            viewModel.selectedLevel = playedLevel
+                        }
+                        if let playedId = playedId {
+                            viewModel.expandedGameId = playedId
+                            DispatchQueue.main.async {
+                                scrollToGameId = playedId
+                            }
                         }
                     }
                 )
                 .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .trailing)))
-            } else {
-                mainMenuContentView
+                .zIndex(1)
             }
         }
         .onAppear {
@@ -129,37 +144,48 @@ struct ContentView: View {
             levelSelectorBar
 
             // Games List
-            ScrollView {
-                LazyVStack(spacing: 12) {
-                    ForEach(viewModel.filteredGames) { game in
-                        GameRowView(
-                            game: game,
-                            isExpanded: viewModel.expandedGameId == game.id,
-                            rawGoldStars: viewModel.totalGoldStars,
-                            onTap: {
-                                withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
-                                    viewModel.toggleExpand(gameId: game.id)
-                                }
-                            },
-                            onPlay: {
-                                if game.isUnlocked {
-                                    withAnimation(.easeInOut(duration: 0.25)) {
-                                        activeGameItem = game
+            ScrollViewReader { scrollProxy in
+                ScrollView {
+                    LazyVStack(spacing: 12) {
+                        ForEach(viewModel.filteredGames) { game in
+                            GameRowView(
+                                game: game,
+                                isExpanded: viewModel.expandedGameId == game.id,
+                                rawGoldStars: viewModel.totalGoldStars,
+                                onTap: {
+                                    withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
+                                        viewModel.toggleExpand(gameId: game.id)
                                     }
-                                } else if game.level >= .medium || game.level == .godlike || game.lockReason == .requiresPurchase {
-                                    isShowingStore = true
+                                },
+                                onPlay: {
+                                    if game.isUnlocked {
+                                        withAnimation(.easeInOut(duration: 0.25)) {
+                                            activeGameItem = game
+                                        }
+                                    } else if game.level >= .medium || game.level == .godlike || game.lockReason == .requiresPurchase {
+                                        isShowingStore = true
+                                    }
+                                },
+                                onShowProgressGrid: {
+                                    selectedProgressCategory = categoryForGameType(game.gameType)
+                                    isShowingProgressGrid = true
                                 }
-                            },
-                            onShowProgressGrid: {
-                                selectedProgressCategory = categoryForGameType(game.gameType)
-                                isShowingProgressGrid = true
-                            }
-                        )
+                            )
+                            .id(game.id)
+                        }
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.top, 12)
+                    .padding(.bottom, 24)
+                }
+                .onScrollTargetChange(of: scrollToGameId) { targetId in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        withAnimation(.easeInOut(duration: 0.3)) {
+                            scrollProxy.scrollTo(targetId, anchor: .center)
+                        }
+                        scrollToGameId = nil
                     }
                 }
-                .padding(.horizontal, 16)
-                .padding(.top, 12)
-                .padding(.bottom, 24)
             }
 
             // Global Footer Bar
@@ -549,6 +575,25 @@ struct StatusPill: View {
         .padding(.vertical, 6)
         .background(color.opacity(0.12))
         .cornerRadius(8)
+    }
+}
+
+fileprivate extension View {
+    @ViewBuilder
+    func onScrollTargetChange(of id: String?, action: @escaping (String) -> Void) -> some View {
+        if #available(iOS 17.0, macOS 14.0, tvOS 17.0, *) {
+            self.onChange(of: id) { _, newId in
+                if let newId = newId {
+                    action(newId)
+                }
+            }
+        } else {
+            self.onChange(of: id) { newId in
+                if let newId = newId {
+                    action(newId)
+                }
+            }
+        }
     }
 }
 
