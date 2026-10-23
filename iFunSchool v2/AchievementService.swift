@@ -23,11 +23,23 @@ class AchievementService: ObservableObject {
     private let goldThresholds = [1, 5, 10, 15, 20, 25, 30, 40, 50]
     private let starThresholds = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 120, 140, 160, 180, 200]
 
+    private var isRunningForPreviews: Bool {
+        ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
+    }
+
     init() {
+        guard !isRunningForPreviews else {
+            print("[GameCenter] Skipping Game Center authentication in Xcode Previews.")
+            return
+        }
         authenticateLocalPlayer()
     }
 
     func authenticateLocalPlayer() {
+        guard !isRunningForPreviews else {
+            print("[GameCenter] Skipping Game Center authentication in Xcode Previews.")
+            return
+        }
         print("[GameCenter][tvOS/All] authenticateLocalPlayer() invoked. hasConfiguredAuthHandler=\(hasConfiguredAuthHandler)")
         guard !hasConfiguredAuthHandler else {
             print("[GameCenter][tvOS/All] Auth handler already configured, skipping duplicate registration.")
@@ -51,6 +63,10 @@ class AchievementService: ObservableObject {
                 print("[GameCenter][tvOS/All]   - GKLocalPlayer.local.displayName: '\(GKLocalPlayer.local.displayName)'")
 
                 if let vc = viewController {
+                    guard !(self?.isRunningForPreviews ?? false) else {
+                        print("[GameCenter] Suppressing auth UI presentation in Xcode Previews.")
+                        return
+                    }
                     print("[GameCenter][tvOS/All] System returned authentication UI viewController: \(vc). Preparing presentation...")
                     self?.currentAuthViewController = vc
                     #if os(macOS)
@@ -105,6 +121,7 @@ class AchievementService: ObservableObject {
 
     #if os(iOS) || os(tvOS)
     private func presentAuthViewController(_ vc: UIViewController, retryCount: Int = 0) {
+        guard !isRunningForPreviews else { return }
         let scenes = UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }
         let windowScene = scenes.first { $0.activationState == .foregroundActive } ?? scenes.first
         print("[GameCenter][tvOS/iOS] presentAuthViewController(retryCount=\(retryCount)): totalScenes=\(scenes.count), activeScene=\(String(describing: windowScene))")

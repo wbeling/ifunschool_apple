@@ -232,6 +232,6 @@ struct ProfileView: View {
                     .stroke(isSelected ? Color.green.opacity(0.4) : Color.clear, lineWidth: 1.5)
             )
         }
-        .buttonStyle(FunActionButtonStyle())
+        .buttonStyle(FunActionButtonStyle(scaleOnFocus: false)) //  
     }
 }

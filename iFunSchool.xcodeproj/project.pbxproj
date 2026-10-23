@@ -20,6 +20,9 @@
 		B701413E301D3E960079DFCF /* StreakTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA8A1012C12345600000001 /* StreakTracker.swift */; };
 		B72A51CC30188A050042546C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B72A51CC30188A050042546D /* LaunchScreen.storyboard */; };
 		B733D2DB3018073900D648AE /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B733D2DA3018073600D648AE /* Colors.swift */; };
+		B789F510308B5C9300C4C7B8 /* GameRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B789F50F308B5C9200C4C7B8 /* GameRowView.swift */; };
+		B789F511308B5C9300C4C7B8 /* GameRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B789F50F308B5C9200C4C7B8 /* GameRowView.swift */; };
+		B789F512308B5C9300C4C7B8 /* GameRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B789F50F308B5C9200C4C7B8 /* GameRowView.swift */; };
 		B7D191753017E942008DE2C2 /* iFunSchool.storekit in Resources */ = {isa = PBXBuildFile; fileRef = B7D191743017E942008DE2C2 /* iFunSchool.storekit */; };
 		B7DAFAEE301A59D9001AC1F6 /* ItemProgressTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1672FE6893D74518BA6C8251 /* ItemProgressTracker.swift */; };
 		B7DAFAEF301A59D9001AC1F6 /* ProgressGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057CDA05A77A48878BF4E4FC /* ProgressGridView.swift */; };
@@ -150,6 +153,7 @@
 		B774D12D132D394200622D38 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B775D6C51316EDFB00BDC76E /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		B775E4EE131C20B4000F37E7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		B789F50F308B5C9200C4C7B8 /* GameRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRowView.swift; sourceTree = "<group>"; };
 		B7D191743017E942008DE2C2 /* iFunSchool.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = iFunSchool.storekit; sourceTree = "<group>"; };
 		B7E4D54830815B2700833CED /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B7FA33B5307AB6E400C0696D /* Fastfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Fastfile; sourceTree = "<group>"; };
@@ -380,6 +384,7 @@
 				V20000000000000000000002 /* iFunSchoolv2App.swift */,
 				B733D2DA3018073600D648AE /* Colors.swift */,
 				V20000000000000000000003 /* ContentView.swift */,
+				B789F50F308B5C9200C4C7B8 /* GameRowView.swift */,
 				V20000000000000000000010 /* GameModel.swift */,
 				V20000000000000000000011 /* GameListViewModel.swift */,
 				V20000000000000000000020 /* QuestionGenerator.swift */,
@@ -626,6 +631,7 @@
 			files = (
 				B7014139301D3E960079DFCF /* StreakView.swift in Sources */,
 				B701413A301D3E960079DFCF /* StreakTracker.swift in Sources */,
+				B789F512308B5C9300C4C7B8 /* GameRowView.swift in Sources */,
 				V2PMIOSBUILD0000000000 /* ProfileManager.swift in Sources */,
 				V2PVIOSBUILD0000000000 /* ProfileView.swift in Sources */,
 				EDBB57AD65C04FE5AB83E645 /* ItemProgressTracker.swift in Sources */,
@@ -678,6 +684,7 @@
 			files = (
 				B701413B301D3E960079DFCF /* StreakView.swift in Sources */,
 				B701413C301D3E960079DFCF /* StreakTracker.swift in Sources */,
+				B789F511308B5C9300C4C7B8 /* GameRowView.swift in Sources */,
 				V2PMMACBUILD0000000000 /* ProfileManager.swift in Sources */,
 				V2PVMACBUILD0000000000 /* ProfileView.swift in Sources */,
 				DFA226F7E768431297566099 /* ItemProgressTracker.swift in Sources */,
@@ -709,6 +716,7 @@
 			files = (
 				B701413D301D3E960079DFCF /* StreakView.swift in Sources */,
 				B701413E301D3E960079DFCF /* StreakTracker.swift in Sources */,
+				B789F510308B5C9300C4C7B8 /* GameRowView.swift in Sources */,
 				V2PMTVOBUILD0000000000 /* ProfileManager.swift in Sources */,
 				V2PVTVOBUILD0000000000 /* ProfileView.swift in Sources */,
 				B7DAFAEE301A59D9001AC1F6 /* ItemProgressTracker.swift in Sources */,
