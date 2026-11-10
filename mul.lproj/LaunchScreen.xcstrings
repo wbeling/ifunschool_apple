@@ -1,0 +1,18 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "lbl-title.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"iFunSchool\"; ObjectID = \"lbl-title\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "iFunSchool"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.3"
+}

@@ -1,0 +1,7 @@
+Max 4000 characters:
+/docs/{version}/description/{language}.txt
+/docs/{version}/whatsnew/{language}.txt
+Max 170 characters:
+/docs/{version}/promotext/{language}.txt
+Max 100 characters (no spaces, divided by ','):
+/docs/{version}/keywords/{language}.txt

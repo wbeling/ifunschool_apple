@@ -1,0 +1,4 @@
+Nouveau mode de jeu : Capitales - vous pouvez suivre votre progression, la limite gratuite vous permet de jouer sur les deux niveaux de difficulté inférieurs
+Corrections multiplateformes de Game Center (tvOS, macOS, iOS)
+Améliorations des flux de l'application - terminer une partie fait défiler la liste jusqu'à l'endroit correspondant
+Améliorations des traductions

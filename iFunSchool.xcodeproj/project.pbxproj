@@ -18,8 +18,9 @@
 		B701413C301D3E960079DFCF /* StreakTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA8A1012C12345600000001 /* StreakTracker.swift */; };
 		B701413D301D3E960079DFCF /* StreakView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA8A1032C12345600000002 /* StreakView.swift */; };
 		B701413E301D3E960079DFCF /* StreakTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA8A1012C12345600000001 /* StreakTracker.swift */; };
-		B72A51CC30188A050042546C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B72A51CC30188A050042546D /* LaunchScreen.storyboard */; };
 		B733D2DB3018073900D648AE /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B733D2DA3018073600D648AE /* Colors.swift */; };
+		B786322430A3504F00DD308C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B786322330A3504F00DD308C /* LaunchScreen.storyboard */; };
+		B786322730A3504F00DD308C /* iFunSchool_v2-InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = B786322630A3504F00DD308C /* iFunSchool_v2-InfoPlist.xcstrings */; };
 		B789F510308B5C9300C4C7B8 /* GameRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B789F50F308B5C9200C4C7B8 /* GameRowView.swift */; };
 		B789F511308B5C9300C4C7B8 /* GameRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B789F50F308B5C9200C4C7B8 /* GameRowView.swift */; };
 		B789F512308B5C9300C4C7B8 /* GameRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B789F50F308B5C9200C4C7B8 /* GameRowView.swift */; };
@@ -148,11 +149,13 @@
 		B7014140301D3E960079DFCF /* iFunSchool v2 macOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iFunSchool v2 macOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7014141301D3E960079DFCF /* iFunSchool v2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iFunSchool v2UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B72A51CB30188A050042546B /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
-		B72A51CC30188A050042546D /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B733D2DA3018073600D648AE /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		B774D12D132D394200622D38 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B775D6C51316EDFB00BDC76E /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		B775E4EE131C20B4000F37E7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		B786322230A3504F00DD308C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B786322530A3504F00DD308C /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/LaunchScreen.xcstrings; sourceTree = "<group>"; };
+		B786322630A3504F00DD308C /* iFunSchool_v2-InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = "iFunSchool_v2-InfoPlist.xcstrings"; sourceTree = "<group>"; };
 		B789F50F308B5C9200C4C7B8 /* GameRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRowView.swift; sourceTree = "<group>"; };
 		B7D191743017E942008DE2C2 /* iFunSchool.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = iFunSchool.storekit; sourceTree = "<group>"; };
 		B7E4D54830815B2700833CED /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -198,6 +201,8 @@
 			membershipExceptions = (
 				"AppIcon-macOS.xcassets",
 				"AppIcon-tvOS.xcassets",
+				"iFunSchool_v2_macOS-InfoPlist.xcstrings",
+				"iFunSchool_v2_tvOS-InfoPlist.xcstrings",
 			);
 			target = V2000000000000000000000B /* iFunSchool v2 iOS */;
 		};
@@ -205,6 +210,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				"AppIcon-tvOS.xcassets",
+				"iFunSchool_v2_tvOS-InfoPlist.xcstrings",
 			);
 			target = V2TARGETMAC00000000000 /* iFunSchool v2 macOS */;
 		};
@@ -212,6 +218,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				"AppIcon-macOS.xcassets",
+				"iFunSchool_v2_macOS-InfoPlist.xcstrings",
 			);
 			target = V2TARGETTVO00000000000 /* iFunSchool v2 tvOS */;
 		};
@@ -332,6 +339,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				B786322630A3504F00DD308C /* iFunSchool_v2-InfoPlist.xcstrings */,
 				8D1107310486CEB800E47090 /* iFunSchool-Info.plist */,
 			);
 			name = "Other Sources";
@@ -363,7 +371,7 @@
 				B76E1046306C5A1200EA0133 /* Sounds */,
 				B7E4D53C30815A9700833CED /* Entitlements */,
 				B7E4D54130815AFF00833CED /* Infos */,
-				B72A51CC30188A050042546D /* LaunchScreen.storyboard */,
+				B786322330A3504F00DD308C /* LaunchScreen.storyboard */,
 				V20000000000000000000052 /* Localizable.xcstrings */,
 				B7D191743017E942008DE2C2 /* iFunSchool.storekit */,
 				B7014114301D206E0079DFCF /* GameCenterResources.gamekit */,
@@ -576,6 +584,7 @@
 				fr,
 				de,
 				es,
+				he,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			productRefGroup = 19C28FACFE9D520D11CA2CBB /* Products */;
@@ -597,9 +606,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B786322730A3504F00DD308C /* iFunSchool_v2-InfoPlist.xcstrings in Resources */,
 				B7014116301D206E0079DFCF /* GameCenterResources.gamekit in Resources */,
 				B7D191753017E942008DE2C2 /* iFunSchool.storekit in Resources */,
-				B72A51CC30188A050042546C /* LaunchScreen.storyboard in Resources */,
+				B786322430A3504F00DD308C /* LaunchScreen.storyboard in Resources */,
 				V20000000000000000000057 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -785,6 +795,18 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		B786322330A3504F00DD308C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B786322230A3504F00DD308C /* Base */,
+				B786322530A3504F00DD308C /* mul */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		B7014142301D3E960079DFCF /* Debug */ = {

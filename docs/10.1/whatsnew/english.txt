@@ -1,0 +1,4 @@
+New Game Mode: Capitals - you can track progress, the free limit allows you to play on two lower difficulties
+Game Center Multiplatform fixes (tvOS, macOS, iOS)
+App flows improvements - finishing game will scroll you back to the correct place on the list
+Translations improvements
