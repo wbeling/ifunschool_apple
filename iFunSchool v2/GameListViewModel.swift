@@ -5,6 +5,7 @@ import Combine
 class GameListViewModel: ObservableObject {
     @Published var games: [GameItem] = []
     @Published var expandedGameId: String? = nil
+    @Published var expandedGameType: GameType? = nil
     @Published var selectedLevel: GameLevel? = nil
     
     @Published var rawGoldStars: Int = 0
@@ -163,10 +164,27 @@ class GameListViewModel: ObservableObject {
         }
     }
 
+    func toggleGridExpand(gameType: GameType) {
+        if expandedGameType == gameType {
+            expandedGameType = nil
+        } else {
+            expandedGameType = gameType
+        }
+    }
+
     var filteredGames: [GameItem] {
         if let level = selectedLevel {
             return games.filter { $0.level == level }
         }
         return games
+    }
+
+    var gameGroups: [GameGroup] {
+        let grouped = Dictionary(grouping: games, by: \.gameType)
+        return GameType.allCases.compactMap { gameType in
+            guard let items = grouped[gameType], !items.isEmpty else { return nil }
+            let sortedLevels = items.sorted { $0.level < $1.level }
+            return GameGroup(gameType: gameType, levels: sortedLevels)
+        }
     }
 }

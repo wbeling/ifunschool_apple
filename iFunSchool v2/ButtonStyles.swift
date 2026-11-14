@@ -354,3 +354,78 @@ private struct FunHeaderButtonBody: View {
     }
 }
 
+// MARK: - Grid Tile Button Style
+struct FunGridTileButtonStyle: ButtonStyle {
+    var isSelected: Bool = false
+    var accentColor: Color = .blue
+    var cornerRadius: CGFloat = 16
+
+    func makeBody(configuration: Configuration) -> some View {
+        FunGridTileButtonBody(
+            configuration: configuration,
+            isSelected: isSelected,
+            accentColor: accentColor,
+            cornerRadius: cornerRadius
+        )
+    }
+}
+
+private struct FunGridTileButtonBody: View {
+    let configuration: ButtonStyle.Configuration
+    let isSelected: Bool
+    let accentColor: Color
+    let cornerRadius: CGFloat
+
+    @Environment(\.isFocused) private var isFocused
+    @Environment(\.colorScheme) private var colorScheme
+
+    private var borderColor: Color {
+        #if os(tvOS)
+        if isFocused {
+            return colorScheme == .dark ? .white : .black
+        } else if isSelected {
+            return accentColor
+        } else {
+            return Color.gray.opacity(0.3)
+        }
+        #else
+        if isSelected {
+            return accentColor
+        } else if isFocused {
+            return accentColor.opacity(0.8)
+        } else {
+            return Color.primary.opacity(0.08)
+        }
+        #endif
+    }
+
+    private var borderWidth: CGFloat {
+        #if os(tvOS)
+        return isFocused ? 3.0 : (isSelected ? 2.5 : 1.0)
+        #else
+        return (isSelected || isFocused) ? 2.0 : 1.0
+        #endif
+    }
+
+    var body: some View {
+        configuration.label
+            .background(
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .fill(isSelected ? accentColor.opacity(0.10) : FunColors.bgColor2)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .stroke(borderColor, lineWidth: borderWidth)
+            )
+            .scaleEffect(isFocused ? 1.04 : (configuration.isPressed ? 0.96 : 1.0))
+            .shadow(
+                color: isFocused ? accentColor.opacity(0.35) : (isSelected ? accentColor.opacity(0.18) : Color.black.opacity(0.04)),
+                radius: isFocused ? 8 : 4,
+                y: isFocused ? 4 : 2
+            )
+            .animation(.easeInOut(duration: 0.15), value: isFocused)
+            .animation(.easeInOut(duration: 0.1), value: configuration.isPressed)
+    }
+}
+
+

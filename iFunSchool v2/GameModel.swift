@@ -62,6 +62,32 @@ enum GameType: Int, CaseIterable, Identifiable {
         case .capitals: return "building.2.fill"
         }
     }
+
+    var categoryColor: Color {
+        switch self {
+        case .addition, .subtraction, .multiplication, .division, .order, .sequences, .equations:
+            return .blue
+        case .memoryAdd, .memoryAddSub, .memoryAddSubMult, .memoryShapes, .memoryColors:
+            return .purple
+        case .chemSymbols, .chemNames:
+            return .green
+        case .flags, .capitals:
+            return .orange
+        }
+    }
+
+    var progressCategory: ProgressCategory? {
+        switch self {
+        case .addition: return .addition
+        case .subtraction: return .subtraction
+        case .multiplication: return .multiplication
+        case .division: return .division
+        case .flags: return .flags
+        case .capitals: return .capitals
+        case .chemSymbols, .chemNames: return .elements
+        default: return nil
+        }
+    }
 }
 
 enum GameLevel: Int, CaseIterable, Identifiable, Comparable {
@@ -160,5 +186,33 @@ struct GameItem: Identifiable {
     var levelStars: Int {
         get { topStars }
         set { topStars = newValue }
+    }
+}
+
+struct GameGroup: Identifiable {
+    let gameType: GameType
+    let levels: [GameItem] // Ordered from .beginner to .godlike
+
+    var id: GameType { gameType }
+
+    /// Highest difficulty unlocked via stars (excluding IAP-gated Godlike).
+    var highestStarUnlockedLevel: GameLevel {
+        levels
+            .filter { $0.level != .godlike && $0.isUnlocked }
+            .map { $0.level }
+            .max() ?? .beginner
+    }
+
+    /// Whether the Store-gated Godlike difficulty is unlocked.
+    var isGodlikeUnlocked: Bool {
+        levels.first(where: { $0.level == .godlike })?.isUnlocked ?? false
+    }
+
+    /// Highest unlocked difficulty overall.
+    var highestUnlockedLevel: GameLevel {
+        levels
+            .filter { $0.isUnlocked }
+            .map { $0.level }
+            .max() ?? .beginner
     }
 }

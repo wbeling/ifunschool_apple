@@ -42,14 +42,31 @@ class AudioService: ObservableObject {
     }
 
     private func configureAudioSession() {
+        #if !os(macOS)
+        let session = AVAudioSession.sharedInstance()
         do {
-            #if(!os(macOS))
-            try AVAudioSession.sharedInstance().setCategory(.ambient, mode: .default)
-            try AVAudioSession.sharedInstance().setActive(true)
-            #endif
+            try session.setCategory(.ambient, mode: .default)
+            if #available(iOS 27.0, tvOS 27.0, *) {
+                Task {
+                    do {
+                        _ = try await AVAudioSession.sharedInstance().activate()
+                    } catch {
+                        print("AudioSession setup error: \(error.localizedDescription)")
+                    }
+                }
+            } else {
+                Task.detached(priority: .userInitiated) {
+                    do {
+                        try AVAudioSession.sharedInstance().setActive(true)
+                    } catch {
+                        print("AudioSession setup error: \(error.localizedDescription)")
+                    }
+                }
+            }
         } catch {
             print("AudioSession setup error: \(error.localizedDescription)")
         }
+        #endif
     }
 
     // MARK: - Sound Effects

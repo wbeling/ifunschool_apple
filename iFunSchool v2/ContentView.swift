@@ -14,9 +14,17 @@ struct ContentView: View {
     @State private var selectedProgressCategory: ProgressCategory = .addition
     @State private var activeGameItem: GameItem? = nil
     @State private var scrollToGameId: String? = nil
+    @State private var scrollToGameType: GameType? = nil
+    @AppStorage("gameMenuDisplayMode") private var displayMode: GameMenuDisplayMode = .grid
+
+    private enum GameMenuDisplayMode: String {
+        case grid
+        case list
+    }
 
     private enum HeaderFocusItem: Hashable {
         case settings
+        case viewMode
         case progress
         case streak
         case profile
@@ -71,17 +79,27 @@ struct ContentView: View {
                     level: game.level,
                     onDismiss: {
                         let playedId = activeGameItem?.id
+                        let playedType = activeGameItem?.gameType
                         let playedLevel = activeGameItem?.level
                         withAnimation(.easeInOut(duration: 0.25)) {
                             activeGameItem = nil
                         }
-                        if let selLevel = viewModel.selectedLevel, let playedLevel = playedLevel, selLevel != playedLevel {
-                            viewModel.selectedLevel = playedLevel
-                        }
-                        if let playedId = playedId {
-                            viewModel.expandedGameId = playedId
-                            DispatchQueue.main.async {
-                                scrollToGameId = playedId
+                        if displayMode == .grid {
+                            if let playedType = playedType {
+                                viewModel.expandedGameType = playedType
+                                DispatchQueue.main.async {
+                                    scrollToGameType = playedType
+                                }
+                            }
+                        } else {
+                            if let selLevel = viewModel.selectedLevel, let playedLevel = playedLevel, selLevel != playedLevel {
+                                viewModel.selectedLevel = playedLevel
+                            }
+                            if let playedId = playedId {
+                                viewModel.expandedGameId = playedId
+                                DispatchQueue.main.async {
+                                    scrollToGameId = playedId
+                                }
                             }
                         }
                     }
@@ -140,50 +158,79 @@ struct ContentView: View {
             // App Navigation Header Bar
             appNavigationHeaderBar
 
-            // Horizontal Level Selector Bar
-            levelSelectorBar
-
-            // Games List
-            ScrollViewReader { scrollProxy in
-                ScrollView {
-                    LazyVStack(spacing: 12) {
-                        ForEach(viewModel.filteredGames) { game in
-                            GameRowView(
-                                game: game,
-                                isExpanded: viewModel.expandedGameId == game.id,
-                                rawGoldStars: viewModel.totalGoldStars,
-                                onTap: {
-                                    withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
-                                        viewModel.toggleExpand(gameId: game.id)
-                                    }
-                                },
-                                onPlay: {
-                                    if game.isUnlocked {
-                                        withAnimation(.easeInOut(duration: 0.25)) {
-                                            activeGameItem = game
-                                        }
-                                    } else if game.level >= .medium || game.level == .godlike || game.lockReason == .requiresPurchase {
-                                        isShowingStore = true
-                                    }
-                                },
-                                onShowProgressGrid: {
-                                    selectedProgressCategory = categoryForGameType(game.gameType)
-                                    isShowingProgressGrid = true
-                                }
-                            )
-                            .id(game.id)
+            if displayMode == .grid {
+                // Icon Grid Mode
+                GameGridView(
+                    groups: viewModel.gameGroups,
+                    expandedGameType: viewModel.expandedGameType,
+                    totalGoldStars: viewModel.totalGoldStars,
+                    scrollToGameType: $scrollToGameType,
+                    onToggleExpand: { gameType in
+                        viewModel.toggleGridExpand(gameType: gameType)
+                    },
+                    onPlay: { game in
+                        if game.isUnlocked {
+                            withAnimation(.easeInOut(duration: 0.25)) {
+                                activeGameItem = game
+                            }
+                        } else if game.level >= .medium || game.level == .godlike || game.lockReason == .requiresPurchase {
+                            isShowingStore = true
                         }
+                    },
+                    onOpenStore: {
+                        isShowingStore = true
+                    },
+                    onShowProgressGrid: { category in
+                        selectedProgressCategory = category
+                        isShowingProgressGrid = true
                     }
-                    .padding(.horizontal, 16)
-                    .padding(.top, 12)
-                    .padding(.bottom, 24)
-                }
-                .onScrollTargetChange(of: scrollToGameId) { targetId in
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                        withAnimation(.easeInOut(duration: 0.3)) {
-                            scrollProxy.scrollTo(targetId, anchor: .center)
+                )
+            } else {
+                // Horizontal Level Selector Bar
+                levelSelectorBar
+
+                // Games List
+                ScrollViewReader { scrollProxy in
+                    ScrollView {
+                        LazyVStack(spacing: 12) {
+                            ForEach(viewModel.filteredGames) { game in
+                                GameRowView(
+                                    game: game,
+                                    isExpanded: viewModel.expandedGameId == game.id,
+                                    rawGoldStars: viewModel.totalGoldStars,
+                                    onTap: {
+                                        withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
+                                            viewModel.toggleExpand(gameId: game.id)
+                                        }
+                                    },
+                                    onPlay: {
+                                        if game.isUnlocked {
+                                            withAnimation(.easeInOut(duration: 0.25)) {
+                                                activeGameItem = game
+                                            }
+                                        } else if game.level >= .medium || game.level == .godlike || game.lockReason == .requiresPurchase {
+                                            isShowingStore = true
+                                        }
+                                    },
+                                    onShowProgressGrid: {
+                                        selectedProgressCategory = categoryForGameType(game.gameType)
+                                        isShowingProgressGrid = true
+                                    }
+                                )
+                                .id(game.id)
+                            }
                         }
-                        scrollToGameId = nil
+                        .padding(.horizontal, 16)
+                        .padding(.top, 12)
+                        .padding(.bottom, 24)
+                    }
+                    .onScrollTargetChange(of: scrollToGameId) { targetId in
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            withAnimation(.easeInOut(duration: 0.3)) {
+                                scrollProxy.scrollTo(targetId, anchor: .center)
+                            }
+                            scrollToGameId = nil
+                        }
                     }
                 }
             }
@@ -259,7 +306,7 @@ struct ContentView: View {
             #endif
 
             HStack(spacing: 8) {
-                // Left side: always settings (gear)
+                // Left side: always settings (gear) + grid/list toggle
                 Button(action: {
                     isShowingSettings = true
                 }) {
@@ -269,6 +316,24 @@ struct ContentView: View {
                 }
                 .buttonStyle(FunHeaderButtonStyle())
                 .focused($headerFocus, equals: .settings)
+
+                Button(action: {
+                    withAnimation(.easeInOut(duration: 0.25)) {
+                        displayMode = (displayMode == .grid) ? .list : .grid
+                    }
+                }) {
+                    Image(systemName: displayMode == .grid ? "list.bullet" : "square.grid.2x2.fill")
+                        .font(.title3)
+                        .foregroundColor(.purple)
+                }
+                .buttonStyle(FunHeaderButtonStyle())
+                .accessibilityLabel(
+                    displayMode == .grid
+                        ? LocalizedStringKey("view_mode_list")
+                        : LocalizedStringKey("view_mode_grid")
+                )
+                .accessibilityIdentifier("btn_toggle_view_mode")
+                .focused($headerFocus, equals: .viewMode)
 
                 if hasSpaceForFullBar {
                     Button(action: {

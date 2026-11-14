@@ -27,6 +27,9 @@
 		B7D191753017E942008DE2C2 /* iFunSchool.storekit in Resources */ = {isa = PBXBuildFile; fileRef = B7D191743017E942008DE2C2 /* iFunSchool.storekit */; };
 		B7DAFAEE301A59D9001AC1F6 /* ItemProgressTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1672FE6893D74518BA6C8251 /* ItemProgressTracker.swift */; };
 		B7DAFAEF301A59D9001AC1F6 /* ProgressGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057CDA05A77A48878BF4E4FC /* ProgressGridView.swift */; };
+		B7E9884E30A8E2EE00F20DAF /* GameGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E9884D30A8E2EE00F20DAF /* GameGridView.swift */; };
+		B7E9884F30A8E2EE00F20DAF /* GameGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E9884D30A8E2EE00F20DAF /* GameGridView.swift */; };
+		B7E9885030A8E2EE00F20DAF /* GameGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E9884D30A8E2EE00F20DAF /* GameGridView.swift */; };
 		DFA226F7E768431297566099 /* ItemProgressTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1672FE6893D74518BA6C8251 /* ItemProgressTracker.swift */; };
 		EDBB57AD65C04FE5AB83E645 /* ItemProgressTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1672FE6893D74518BA6C8251 /* ItemProgressTracker.swift */; };
 		V20000000000000000000005 /* iFunSchoolv2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = V20000000000000000000002 /* iFunSchoolv2App.swift */; };
@@ -159,6 +162,7 @@
 		B789F50F308B5C9200C4C7B8 /* GameRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRowView.swift; sourceTree = "<group>"; };
 		B7D191743017E942008DE2C2 /* iFunSchool.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = iFunSchool.storekit; sourceTree = "<group>"; };
 		B7E4D54830815B2700833CED /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		B7E9884D30A8E2EE00F20DAF /* GameGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameGridView.swift; sourceTree = "<group>"; };
 		B7FA33B5307AB6E400C0696D /* Fastfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Fastfile; sourceTree = "<group>"; };
 		B7FA33B6307AB6E400C0696D /* Snapfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Snapfile; sourceTree = "<group>"; };
 		B8747C001386B70100BC88D0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -407,6 +411,7 @@
 				V20000000000000000000060 /* StoreKitService.swift */,
 				V20000000000000000000061 /* StoreView.swift */,
 				V20000000000000000000070 /* LoadingView.swift */,
+				B7E9884D30A8E2EE00F20DAF /* GameGridView.swift */,
 			);
 			path = "iFunSchool v2";
 			sourceTree = "<group>";
@@ -549,7 +554,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1600;
-				LastUpgradeCheck = 2700;
+				LastUpgradeCheck = 2730;
 				ORGANIZATIONNAME = Beling.pl;
 				TargetAttributes = {
 					V2000000000000000000000B = {
@@ -647,6 +652,7 @@
 				EDBB57AD65C04FE5AB83E645 /* ItemProgressTracker.swift in Sources */,
 				2B2280F97217447DB40D0090 /* ProgressGridView.swift in Sources */,
 				V2BTNSTYLEIOS00000000 /* ButtonStyles.swift in Sources */,
+				B7E9884F30A8E2EE00F20DAF /* GameGridView.swift in Sources */,
 				V20000000000000000000005 /* iFunSchoolv2App.swift in Sources */,
 				V20000000000000000000006 /* ContentView.swift in Sources */,
 				V20000000000000000000012 /* GameModel.swift in Sources */,
@@ -700,6 +706,7 @@
 				DFA226F7E768431297566099 /* ItemProgressTracker.swift in Sources */,
 				8823F3677D024D8AA8A004EE /* ProgressGridView.swift in Sources */,
 				V2BTNSTYLEMAC00000000 /* ButtonStyles.swift in Sources */,
+				B7E9885030A8E2EE00F20DAF /* GameGridView.swift in Sources */,
 				V2MSRC000000000000000000 /* iFunSchoolv2App.swift in Sources */,
 				V2MSRC000000000000000001 /* Colors.swift in Sources */,
 				V2MSRC000000000000000002 /* ContentView.swift in Sources */,
@@ -732,6 +739,7 @@
 				B7DAFAEE301A59D9001AC1F6 /* ItemProgressTracker.swift in Sources */,
 				B7DAFAEF301A59D9001AC1F6 /* ProgressGridView.swift in Sources */,
 				V2BTNSTYLETVO00000000 /* ButtonStyles.swift in Sources */,
+				B7E9884E30A8E2EE00F20DAF /* GameGridView.swift in Sources */,
 				V2TSRC000000000000000000 /* iFunSchoolv2App.swift in Sources */,
 				V2TSRC000000000000000001 /* Colors.swift in Sources */,
 				V2TSRC000000000000000002 /* ContentView.swift in Sources */,
@@ -822,6 +830,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "iFunSchool v2 tvOSUITests";
+				IPHONEOS_DEPLOYMENT_TARGET = "$(RECOMMENDED_IPHONEOS_DEPLOYMENT_TARGET)";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -852,6 +861,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "iFunSchool v2 tvOSUITests";
+				IPHONEOS_DEPLOYMENT_TARGET = "$(RECOMMENDED_IPHONEOS_DEPLOYMENT_TARGET)";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1051,7 +1061,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 10.1;
+				MARKETING_VERSION = 10.2;
 				PRODUCT_BUNDLE_IDENTIFIER = pl.beling.ifunschool;
 				PRODUCT_NAME = iFunSchool;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1089,7 +1099,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 10.1;
+				MARKETING_VERSION = 10.2;
 				PRODUCT_BUNDLE_IDENTIFIER = pl.beling.ifunschool;
 				PRODUCT_NAME = iFunSchool;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1142,7 +1152,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
-				MARKETING_VERSION = 10.1;
+				MARKETING_VERSION = 10.2;
 				PRODUCT_BUNDLE_IDENTIFIER = pl.beling.ifunschool;
 				PRODUCT_NAME = iFunSchool;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1191,7 +1201,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
-				MARKETING_VERSION = 10.1;
+				MARKETING_VERSION = 10.2;
 				PRODUCT_BUNDLE_IDENTIFIER = pl.beling.ifunschool;
 				PRODUCT_NAME = iFunSchool;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1224,7 +1234,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 10.1;
+				MARKETING_VERSION = 10.2;
 				PRODUCT_BUNDLE_IDENTIFIER = pl.beling.ifunschool;
 				PRODUCT_NAME = iFunSchool;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1257,7 +1267,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 10.1;
+				MARKETING_VERSION = 10.2;
 				PRODUCT_BUNDLE_IDENTIFIER = pl.beling.ifunschool;
 				PRODUCT_NAME = iFunSchool;
 				PROVISIONING_PROFILE_SPECIFIER = "";

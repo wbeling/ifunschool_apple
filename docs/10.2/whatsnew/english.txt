@@ -1,1 +1,1 @@
-TODO: new home screen with icons
+- new home screen view with icons (the list is still available if you want to use it)
