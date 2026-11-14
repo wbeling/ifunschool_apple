@@ -212,4 +212,67 @@ final class QuestionGeneratorTests: XCTestCase {
         XCTAssertTrue(sawSameLastDigitInMult, "Multi-strategy generator should produce same-last-digit distractors in multiplication to prevent last-digit exploit")
         XCTAssertTrue(sawSameLastDigitInAdd, "Multi-strategy generator should produce same-last-digit distractors in addition to prevent last-digit exploit")
     }
+
+    // MARK: - 8. Capitals (Państwa - miasta) Tests
+    func testCapitalsAllCountriesCoveredAndPoolsCorrect() throws {
+        let gen = QuestionGenerator.shared
+        XCTAssertEqual(gen.allCountries.count, 203, "Expected 203 total countries")
+
+        var seenCapitals = Set<String>()
+        for country in gen.allCountries {
+            let capital = gen.capitalCity(for: country)
+            XCTAssertFalse(capital.isEmpty, "Missing capital for country \(country)")
+            XCTAssertFalse(seenCapitals.contains(capital), "Duplicate capital \(capital) for country \(country)")
+            seenCapitals.insert(capital)
+
+            let cities = gen.cities(for: country)
+            XCTAssertGreaterThanOrEqual(cities.count, 1, "Country \(country) must have at least 1 city")
+            XCTAssertEqual(cities[0], capital, "First city for \(country) must be its capital")
+            for city in cities {
+                let localized = gen.localizedCityName(for: city)
+                XCTAssertFalse(localized.isEmpty, "Localized name for city \(city) should not be empty")
+                XCTAssertFalse(localized.hasPrefix("city_"), "City \(city) is missing translation in Localizable.xcstrings (got \(localized))")
+            }
+        }
+
+        // Verify level pools
+        XCTAssertEqual(gen.capitalsPool(for: .beginner).count, 46, "Beginner (Europe) should have 46 countries")
+        XCTAssertTrue(gen.capitalsPool(for: .beginner).contains("Poland"))
+        XCTAssertEqual(gen.capitalsPool(for: .easy).count, 35, "Easy (Americas) should have 35 countries")
+        XCTAssertTrue(gen.capitalsPool(for: .easy).contains("United States"))
+        XCTAssertEqual(gen.capitalsPool(for: .medium).count, 48, "Medium (Asia) should have 48 countries")
+        XCTAssertTrue(gen.capitalsPool(for: .medium).contains("Japan"))
+        XCTAssertEqual(gen.capitalsPool(for: .hard).count, 54, "Hard (Africa) should have 54 countries")
+        XCTAssertTrue(gen.capitalsPool(for: .hard).contains("Egypt"))
+        XCTAssertEqual(gen.capitalsPool(for: .ultimate).count, 64, "Ultimate (World Hard) should have 64 countries")
+        XCTAssertTrue(gen.capitalsPool(for: .ultimate).contains("Australia"))
+        XCTAssertEqual(gen.capitalsPool(for: .godlike), gen.allCountries)
+
+        // Verify both directions and same-country distractors for Poland
+        let qAskCapital = gen.makeCapitalQuestion(
+            targetCountry: "Poland",
+            level: .beginner,
+            maxTime: 10.0,
+            askForCapital: true
+        )
+        XCTAssertEqual(qAskCapital.itemKey, "city_Warsaw")
+        XCTAssertEqual(qAskCapital.options.count, 4)
+        XCTAssertEqual(Set(qAskCapital.options).count, 4)
+        XCTAssertEqual(qAskCapital.options[qAskCapital.correctIndex], gen.localizedCityName(for: "Warsaw"))
+        // Since Poland has 4 cities (Warsaw, Krakow, Lodz, Wroclaw), all 3 distractors should be Polish cities
+        let expectedPolishCities = Set(["Warsaw", "Krakow", "Lodz", "Wroclaw"].map { gen.localizedCityName(for: $0) })
+        XCTAssertEqual(Set(qAskCapital.options), expectedPolishCities, "When a country has 4 cities, asking for its capital should use its 3 other largest cities as distractors")
+
+        let qAskCountry = gen.makeCapitalQuestion(
+            targetCountry: "Poland",
+            level: .beginner,
+            maxTime: 10.0,
+            askForCapital: false
+        )
+        XCTAssertEqual(qAskCountry.itemKey, "city_Warsaw")
+        XCTAssertEqual(qAskCountry.options.count, 4)
+        XCTAssertEqual(Set(qAskCountry.options).count, 4)
+        XCTAssertEqual(qAskCountry.options[qAskCountry.correctIndex], gen.localizedCountryName(for: "Poland"))
+    }
 }
+

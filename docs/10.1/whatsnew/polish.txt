@@ -1,0 +1,4 @@
+Nowy tryb gry: Stolice - możesz śledzić postępy, darmowy limit pozwala na grę na dwóch niższych poziomach trudności
+Poprawki wieloplatformowe Game Center (tvOS, macOS, iOS)
+Usprawnienia działania aplikacji - zakończenie gry przewija z powrotem do właściwego miejsca na liście
+Poprawki tłumaczeń

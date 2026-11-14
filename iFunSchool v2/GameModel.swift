@@ -17,6 +17,7 @@ enum GameType: Int, CaseIterable, Identifiable {
     case chemSymbols = 13
     case chemNames = 14
     case flags = 15
+    case capitals = 16
 
     var id: Int { rawValue }
 
@@ -37,6 +38,7 @@ enum GameType: Int, CaseIterable, Identifiable {
         case .chemSymbols: return NSLocalizedString("game_chem_symbols", comment: "Chemical Symbols")
         case .chemNames: return NSLocalizedString("game_chem_names", comment: "Chemical Names")
         case .flags: return NSLocalizedString("game_flags", comment: "Country Flags")
+        case .capitals: return NSLocalizedString("game_capitals", comment: "Countries - Cities")
         }
     }
 
@@ -57,6 +59,7 @@ enum GameType: Int, CaseIterable, Identifiable {
         case .chemSymbols: return "atom"
         case .chemNames: return "flask.fill"
         case .flags: return "flag.fill"
+        case .capitals: return "building.2.fill"
         }
     }
 }

@@ -161,6 +161,321 @@ class QuestionGenerator {
         return englishName
     }
 
+    func localizedCityName(for englishName: String) -> String {
+        let key = "city_\(englishName)"
+        let localized = NSLocalizedString(key, comment: "")
+        if localized != key {
+            return localized
+        }
+        return englishName
+    }
+
+    // Complete 203-country cities mapping: first element is ALWAYS the capital,
+    // subsequent elements (up to 3 additional) are largest non-capital cities in that country.
+    private(set) var countryCities: [String: [String]] = [
+        // --- EUROPE (46) ---
+        "Poland": ["Warsaw", "Krakow", "Lodz", "Wroclaw"],
+        "Germany": ["Berlin", "Hamburg", "Munich", "Cologne"],
+        "France": ["Paris", "Marseille", "Lyon", "Toulouse"],
+        "United Kingdom": ["London", "Birmingham", "Manchester", "Glasgow"],
+        "Italy": ["Rome", "Milan", "Naples", "Turin"],
+        "Spain": ["Madrid", "Barcelona", "Valencia", "Seville"],
+        "Russia": ["Moscow", "Saint Petersburg", "Novosibirsk", "Yekaterinburg"],
+        "Ukraine": ["Kyiv", "Kharkiv", "Odesa", "Dnipro"],
+        "Austria": ["Vienna", "Graz", "Linz", "Salzburg"],
+        "Belgium": ["Brussels", "Antwerp", "Ghent", "Charleroi"],
+        "Netherlands": ["Amsterdam", "Rotterdam", "The Hague", "Utrecht"],
+        "Switzerland": ["Bern", "Zurich", "Geneva", "Basel"],
+        "Sweden": ["Stockholm", "Gothenburg", "Malmo", "Uppsala"],
+        "Norway": ["Oslo", "Bergen", "Trondheim", "Stavanger"],
+        "Denmark": ["Copenhagen", "Aarhus", "Odense", "Aalborg"],
+        "Finland": ["Helsinki", "Espoo", "Tampere", "Turku"],
+        "Portugal": ["Lisbon", "Porto", "Braga", "Coimbra"],
+        "Greece": ["Athens", "Thessaloniki", "Patras", "Heraklion"],
+        "Czech Republic": ["Prague", "Brno", "Ostrava", "Plzen"],
+        "Hungary": ["Budapest", "Debrecen", "Szeged", "Miskolc"],
+        "Romania": ["Bucharest", "Cluj-Napoca", "Timisoara", "Iasi"],
+        "Bulgaria": ["Sofia", "Plovdiv", "Varna", "Burgas"],
+        "Croatia": ["Zagreb", "Split", "Rijeka", "Osijek"],
+        "Serbia": ["Belgrade", "Novi Sad", "Nis", "Kragujevac"],
+        "Slovakia": ["Bratislava", "Kosice", "Presov", "Zilina"],
+        "Slovenia": ["Ljubljana", "Maribor", "Celje", "Kranj"],
+        "Ireland": ["Dublin", "Cork", "Limerick", "Galway"],
+        "Belarus": ["Minsk", "Gomel", "Mogilev", "Vitebsk"],
+        "Lithuania": ["Vilnius", "Kaunas", "Klaipeda", "Siauliai"],
+        "Latvia": ["Riga", "Daugavpils", "Liepaja", "Jelgava"],
+        "Estonia": ["Tallinn", "Tartu", "Narva", "Parnu"],
+        "Bosnia and Herzegovina": ["Sarajevo", "Banja Luka", "Tuzla", "Zenica"],
+        "Albania": ["Tirana", "Durres", "Vlore", "Shkoder"],
+        "Macedonia": ["Skopje", "Bitola", "Kumanovo", "Prilep"],
+        "Moldova": ["Chisinau"],
+        "Montenegro": ["Podgorica"],
+        "Kosovo": ["Pristina"],
+        "Iceland": ["Reykjavik"],
+        "Luxembourg": ["Luxembourg City"],
+        "Cyprus": ["Nicosia"],
+        "Malta": ["Valletta"],
+        "Andorra": ["Andorra la Vella"],
+        "Liechtenstein": ["Vaduz"],
+        "Monaco": ["Monaco"],
+        "San Marino": ["San Marino"],
+        "Vatican City": ["Vatican City"],
+
+        // --- AMERICAS (35) ---
+        "United States": ["Washington", "New York", "Los Angeles", "Chicago"],
+        "Canada": ["Ottawa", "Toronto", "Montreal", "Vancouver"],
+        "Mexico": ["Mexico City", "Guadalajara", "Monterrey", "Puebla"],
+        "Brazil": ["Brasilia", "Sao Paulo", "Rio de Janeiro", "Salvador"],
+        "Argentina": ["Buenos Aires", "Cordoba", "Rosario", "Mendoza"],
+        "Colombia": ["Bogota", "Medellin", "Cali", "Barranquilla"],
+        "Chile": ["Santiago", "Valparaiso", "Concepcion", "Antofagasta"],
+        "Peru": ["Lima", "Arequipa", "Trujillo", "Cusco"],
+        "Venezuela": ["Caracas", "Maracaibo", "Valencia (Venezuela)", "Barquisimeto"],
+        "Ecuador": ["Quito", "Guayaquil", "Cuenca", "Santo Domingo (Ecuador)"],
+        "Bolivia": ["Sucre", "La Paz", "Santa Cruz de la Sierra", "Cochabamba"],
+        "Cuba": ["Havana", "Santiago de Cuba", "Camaguey", "Holguin"],
+        "Uruguay": ["Montevideo"],
+        "Paraguay": ["Asuncion"],
+        "Costa Rica": ["San Jose"],
+        "Panama": ["Panama City"],
+        "Dominican Republic": ["Santo Domingo"],
+        "Guatemala": ["Guatemala City"],
+        "Honduras": ["Tegucigalpa"],
+        "El Salvador": ["San Salvador"],
+        "Nicaragua": ["Managua"],
+        "Jamaica": ["Kingston"],
+        "Haiti": ["Port-au-Prince"],
+        "Trinidad and Tobago": ["Port of Spain"],
+        "Bahamas": ["Nassau"],
+        "Barbados": ["Bridgetown"],
+        "Belize": ["Belmopan", "Belize City", "San Ignacio", "Orange Walk"],
+        "Guyana": ["Georgetown"],
+        "Suriname": ["Paramaribo"],
+        "Antigua and Barbuda": ["Saint John's"],
+        "Dominica": ["Roseau"],
+        "Grenada": ["Saint George's"],
+        "Saint Kitts and Nevis": ["Basseterre"],
+        "Saint Lucia": ["Castries"],
+        "Saint Vincent and the Grenadines": ["Kingstown"],
+
+        // --- ASIA (48) ---
+        "People's Republic of China": ["Beijing", "Shanghai", "Guangzhou", "Shenzhen"],
+        "India": ["New Delhi", "Mumbai", "Bengaluru", "Kolkata"],
+        "Japan": ["Tokyo", "Yokohama", "Osaka", "Nagoya"],
+        "South Korea": ["Seoul", "Busan", "Incheon", "Daegu"],
+        "Indonesia": ["Jakarta", "Surabaya", "Bandung", "Medan"],
+        "Pakistan": ["Islamabad", "Karachi", "Lahore", "Faisalabad"],
+        "Philippines": ["Manila", "Quezon City", "Davao", "Cebu City"],
+        "Vietnam": ["Hanoi", "Ho Chi Minh City", "Da Nang", "Haiphong"],
+        "Turkey": ["Ankara", "Istanbul", "Izmir", "Bursa"],
+        "Iran": ["Tehran", "Mashhad", "Isfahan", "Tabriz"],
+        "Thailand": ["Bangkok", "Chiang Mai", "Phuket", "Pattaya"],
+        "Saudi Arabia": ["Riyadh", "Jeddah", "Mecca", "Medina"],
+        "United Arab Emirates": ["Abu Dhabi", "Dubai", "Sharjah", "Al Ain"],
+        "Israel": ["Jerusalem", "Tel Aviv", "Haifa", "Rishon LeZion"],
+        "Iraq": ["Baghdad", "Basra", "Mosul", "Erbil"],
+        "Malaysia": ["Kuala Lumpur", "George Town", "Ipoh", "Johor Bahru"],
+        "Kazakhstan": ["Astana", "Almaty", "Shymkent", "Karaganda"],
+        "Republic of China": ["Taipei", "Kaohsiung", "Taichung", "Tainan"],
+        "Bangladesh": ["Dhaka", "Chittagong", "Khulna", "Rajshahi"],
+        "Myanmar": ["Naypyidaw", "Yangon", "Mandalay", "Mawlamyine"],
+        "Sri Lanka": ["Sri Jayawardenepura Kotte", "Colombo", "Kandy", "Galle"],
+        "Syria": ["Damascus", "Aleppo", "Homs", "Latakia"],
+        "Uzbekistan": ["Tashkent", "Samarkand", "Bukhara", "Namangan"],
+        "Afghanistan": ["Kabul"],
+        "Armenia": ["Yerevan"],
+        "Azerbaijan": ["Baku"],
+        "Bahrain": ["Manama"],
+        "Bhutan": ["Thimphu"],
+        "Brunei": ["Bandar Seri Begawan"],
+        "Cambodia": ["Phnom Penh"],
+        "East Timor": ["Dili"],
+        "Georgia": ["Tbilisi"],
+        "Jordan": ["Amman"],
+        "Kuwait": ["Kuwait City"],
+        "Kyrgyzstan": ["Bishkek"],
+        "Laos": ["Vientiane"],
+        "Lebanon": ["Beirut"],
+        "Maldives": ["Male"],
+        "Mongolia": ["Ulaanbaatar"],
+        "Nepal": ["Kathmandu"],
+        "North Korea": ["Pyongyang"],
+        "Oman": ["Muscat"],
+        "Palestine": ["Ramallah"],
+        "Qatar": ["Doha"],
+        "Singapore": ["Singapore"],
+        "Tajikistan": ["Dushanbe"],
+        "Turkmenistan": ["Ashgabat"],
+        "Yemen": ["Sanaa"],
+
+        // --- AFRICA (54) ---
+        "Nigeria": ["Abuja", "Lagos", "Kano", "Ibadan"],
+        "Egypt": ["Cairo", "Alexandria", "Giza", "Luxor"],
+        "South Africa": ["Pretoria", "Johannesburg", "Cape Town", "Durban"],
+        "Morocco": ["Rabat", "Casablanca", "Marrakesh", "Fes"],
+        "Algeria": ["Algiers", "Oran", "Constantine", "Annaba"],
+        "Ethiopia": ["Addis Ababa", "Dire Dawa", "Mekelle", "Gondar"],
+        "Kenya": ["Nairobi", "Mombasa", "Kisumu", "Nakuru"],
+        "Tanzania": ["Dodoma", "Dar es Salaam", "Mwanza", "Arusha"],
+        "Cote d'Ivoire": ["Yamoussoukro", "Abidjan", "Bouake", "Daloa"],
+        "Cameroon": ["Yaounde", "Douala", "Garoua", "Bamenda"],
+        "Ghana": ["Accra", "Kumasi", "Tamale", "Takoradi"],
+        "Senegal": ["Dakar"],
+        "Tunisia": ["Tunis"],
+        "Uganda": ["Kampala"],
+        "Zimbabwe": ["Harare"],
+        "Sudan": ["Khartoum"],
+        "Angola": ["Luanda"],
+        "Benin": ["Porto-Novo", "Cotonou", "Parakou", "Djougou"],
+        "Botswana": ["Gaborone"],
+        "Burkina Faso": ["Ouagadougou"],
+        "Burundi": ["Gitega", "Bujumbura", "Ngozi", "Rumonge"],
+        "Cape Verde": ["Praia"],
+        "Central African Republic": ["Bangui"],
+        "Chad": ["N'Djamena"],
+        "Comoros": ["Moroni"],
+        "Democratic Republic of the Congo": ["Kinshasa"],
+        "Djibouti": ["Djibouti City"],
+        "Equatorial Guinea": ["Malabo", "Bata", "Ebebiyin", "Aconibe"],
+        "Eritrea": ["Asmara"],
+        "Gabon": ["Libreville"],
+        "Gambia": ["Banjul"],
+        "Guinea": ["Conakry"],
+        "Guinea-Bissau": ["Bissau"],
+        "Lesotho": ["Maseru"],
+        "Liberia": ["Monrovia"],
+        "Libya": ["Tripoli"],
+        "Madagascar": ["Antananarivo"],
+        "Malawi": ["Lilongwe"],
+        "Mali": ["Bamako"],
+        "Mauritania": ["Nouakchott"],
+        "Mauritius": ["Port Louis"],
+        "Mozambique": ["Maputo"],
+        "Namibia": ["Windhoek"],
+        "Niger": ["Niamey"],
+        "Republic of the Congo": ["Brazzaville"],
+        "Rwanda": ["Kigali"],
+        "Sao Tome and Principe": ["Sao Tome"],
+        "Seychelles": ["Victoria"],
+        "Sierra Leone": ["Freetown"],
+        "Somalia": ["Mogadishu"],
+        "Swaziland": ["Mbabane"],
+        "Togo": ["Lome"],
+        "Western Sahara": ["Laayoune"],
+        "Zambia": ["Lusaka"],
+
+        // --- OCEANIA & SPECIAL TERRITORIES (20) ---
+        "Australia": ["Canberra", "Sydney", "Melbourne", "Brisbane"],
+        "New Zealand": ["Wellington", "Auckland", "Christchurch", "Hamilton"],
+        "Papua New Guinea": ["Port Moresby"],
+        "Fiji": ["Suva"],
+        "Solomon Islands": ["Honiara"],
+        "Vanuatu": ["Port Vila"],
+        "Samoa": ["Apia"],
+        "Tonga": ["Nuku'alofa"],
+        "Kiribati": ["South Tarawa"],
+        "Federated States of Micronesia": ["Palikir"],
+        "Marshall Islands": ["Majuro"],
+        "Palau": ["Ngerulmud"],
+        "Nauru": ["Yaren"],
+        "Tuvalu": ["Funafuti"],
+        "Abkhazia": ["Sukhumi"],
+        "Nagorno-Karabakh": ["Stepanakert"],
+        "Somaliland": ["Hargeisa"],
+        "South Ossetia": ["Tskhinvali"],
+        "Transnistria": ["Tiraspol"],
+        "Turkish Republic of Northern Cyprus": ["North Nicosia"]
+    ]
+
+    // Level 0 (Beginner): Europe
+    private let europeanCountries: [String] = [
+        "Poland", "Germany", "France", "United Kingdom", "Italy", "Spain", "Russia", "Ukraine",
+        "Austria", "Belgium", "Netherlands", "Switzerland", "Sweden", "Norway", "Denmark", "Finland",
+        "Portugal", "Greece", "Czech Republic", "Hungary", "Romania", "Bulgaria", "Croatia", "Serbia",
+        "Slovakia", "Slovenia", "Ireland", "Belarus", "Lithuania", "Latvia", "Estonia",
+        "Bosnia and Herzegovina", "Albania", "Macedonia", "Moldova", "Montenegro", "Kosovo",
+        "Iceland", "Luxembourg", "Cyprus", "Malta", "Andorra", "Liechtenstein", "Monaco",
+        "San Marino", "Vatican City"
+    ]
+
+    // Level 1 (Easy): Americas
+    private let americanCountries: [String] = [
+        "United States", "Canada", "Mexico", "Brazil", "Argentina", "Colombia", "Chile", "Peru",
+        "Venezuela", "Ecuador", "Bolivia", "Cuba", "Uruguay", "Paraguay", "Costa Rica", "Panama",
+        "Dominican Republic", "Guatemala", "Honduras", "El Salvador", "Nicaragua", "Jamaica",
+        "Haiti", "Trinidad and Tobago", "Bahamas", "Barbados", "Belize", "Guyana", "Suriname",
+        "Antigua and Barbuda", "Dominica", "Grenada", "Saint Kitts and Nevis", "Saint Lucia",
+        "Saint Vincent and the Grenadines"
+    ]
+
+    // Level 2 (Medium): Asia
+    private let asianCountries: [String] = [
+        "People's Republic of China", "India", "Japan", "South Korea", "Indonesia", "Pakistan",
+        "Philippines", "Vietnam", "Turkey", "Iran", "Thailand", "Saudi Arabia",
+        "United Arab Emirates", "Israel", "Iraq", "Malaysia", "Kazakhstan", "Republic of China",
+        "Bangladesh", "Myanmar", "Sri Lanka", "Syria", "Uzbekistan", "Afghanistan", "Armenia",
+        "Azerbaijan", "Bahrain", "Bhutan", "Brunei", "Cambodia", "East Timor", "Georgia",
+        "Jordan", "Kuwait", "Kyrgyzstan", "Laos", "Lebanon", "Maldives", "Mongolia", "Nepal",
+        "North Korea", "Oman", "Palestine", "Qatar", "Singapore", "Tajikistan", "Turkmenistan", "Yemen"
+    ]
+
+    // Level 3 (Hard): Africa
+    private let africanCountries: [String] = [
+        "Nigeria", "Egypt", "South Africa", "Morocco", "Algeria", "Ethiopia", "Kenya", "Tanzania",
+        "Cote d'Ivoire", "Cameroon", "Ghana", "Senegal", "Tunisia", "Uganda", "Zimbabwe", "Sudan",
+        "Angola", "Benin", "Botswana", "Burkina Faso", "Burundi", "Cape Verde",
+        "Central African Republic", "Chad", "Comoros", "Democratic Republic of the Congo",
+        "Djibouti", "Equatorial Guinea", "Eritrea", "Gabon", "Gambia", "Guinea", "Guinea-Bissau",
+        "Lesotho", "Liberia", "Libya", "Madagascar", "Malawi", "Mali", "Mauritania", "Mauritius",
+        "Mozambique", "Namibia", "Niger", "Republic of the Congo", "Rwanda",
+        "Sao Tome and Principe", "Seychelles", "Sierra Leone", "Somalia", "Swaziland", "Togo",
+        "Western Sahara", "Zambia"
+    ]
+
+    // Level 4 (Ultimate): Selected hard countries from around the world
+    private let worldHardCountries: [String] = [
+        // Oceania & Pacific
+        "Australia", "New Zealand", "Papua New Guinea", "Fiji", "Solomon Islands", "Vanuatu",
+        "Samoa", "Tonga", "Kiribati", "Federated States of Micronesia", "Marshall Islands",
+        "Palau", "Nauru", "Tuvalu",
+        // De facto / Partially recognized territories
+        "Abkhazia", "Nagorno-Karabakh", "Somaliland", "South Ossetia", "Transnistria",
+        "Turkish Republic of Northern Cyprus", "Western Sahara", "Kosovo",
+        // Tricky / non-largest-city capitals & difficult countries globally
+        "Sri Lanka", "Myanmar", "Tanzania", "Cote d'Ivoire", "Burundi", "Belize", "Bolivia",
+        "Benin", "Equatorial Guinea", "Swaziland", "Nigeria", "Kazakhstan", "Bhutan", "Brunei",
+        "East Timor", "Turkmenistan", "Tajikistan", "Kyrgyzstan", "Suriname", "Guyana",
+        "Antigua and Barbuda", "Saint Kitts and Nevis", "Saint Vincent and the Grenadines",
+        "Dominica", "Grenada", "Saint Lucia", "Comoros", "Cape Verde", "Sao Tome and Principe",
+        "Gambia", "Guinea-Bissau", "Eritrea", "Lesotho", "Malawi", "Mauritania", "Chad",
+        "Central African Republic", "Gabon", "Togo", "Sierra Leone", "Liechtenstein", "Andorra"
+    ]
+
+    func capitalCity(for country: String) -> String {
+        return countryCities[country]?.first ?? country
+    }
+
+    func cities(for country: String) -> [String] {
+        return countryCities[country] ?? [country]
+    }
+
+    func capitalsPool(for level: GameLevel) -> [String] {
+        switch level {
+        case .beginner:
+            return europeanCountries
+        case .easy:
+            return americanCountries
+        case .medium:
+            return asianCountries
+        case .hard:
+            return africanCountries
+        case .ultimate:
+            return worldHardCountries
+        case .godlike:
+            return allCountries
+        }
+    }
+
     private func loadPanstwaFromFile() {
         if let path = Bundle.main.path(forResource: "panstwa", ofType: "dat"),
            let content = try? String(contentsOfFile: path, encoding: .utf8) {
@@ -234,6 +549,8 @@ class QuestionGenerator {
             return generateChemNames(level: level, maxTime: time)
         case .flags:
             return generateFlags(level: level, maxTime: time)
+        case .capitals:
+            return generateCapitals(level: level, maxTime: time)
         }
     }
 
@@ -1635,6 +1952,170 @@ class QuestionGenerator {
         )
     }
 
+    // MARK: - 16. Capitals (Countries - Cities)
+    private func generateCapitals(level: GameLevel, maxTime: Double) -> Question {
+        let pool = capitalsPool(for: level)
+        let targetCountry = pool.randomElement() ?? "Poland"
+        return makeCapitalQuestion(
+            targetCountry: targetCountry,
+            level: level,
+            maxTime: maxTime,
+            askForCapital: Bool.random()
+        )
+    }
+
+    func makeCapitalQuestion(
+        targetCountry: String,
+        level: GameLevel,
+        maxTime: Double,
+        askForCapital: Bool
+    ) -> Question {
+        let capital = capitalCity(for: targetCountry)
+        let itemKey = "city_\(capital)"
+
+        if askForCapital {
+            // Direction A: Ask for the capital of the country (Options = 4 cities)
+            let rawCityOptions = pickCityDistractors(targetCountry: targetCountry, level: level)
+            let localizedTargetCity = localizedCityName(for: capital)
+            let localizedOptions = rawCityOptions.map { localizedCityName(for: $0) }
+            let correctIdx = localizedOptions.firstIndex(of: localizedTargetCity) ?? 0
+
+            return Question(
+                itemKey: itemKey,
+                text: localizedCountryName(for: targetCountry),
+                subtext: NSLocalizedString("prompt_country_to_capital", comment: "What is the capital of this country?"),
+                options: localizedOptions,
+                correctIndex: correctIdx,
+                maxTime: maxTime
+            )
+        } else {
+            // Direction B: Ask which country has this capital (Options = 4 countries)
+            let rawCountryOptions = pickCapitalCountryDistractors(targetCountry: targetCountry, level: level)
+            let localizedTargetCountry = localizedCountryName(for: targetCountry)
+            let localizedOptions = rawCountryOptions.map { localizedCountryName(for: $0) }
+            let correctIdx = localizedOptions.firstIndex(of: localizedTargetCountry) ?? 0
+
+            return Question(
+                itemKey: itemKey,
+                text: localizedCityName(for: capital),
+                subtext: NSLocalizedString("prompt_capital_to_country", comment: "Which country is this the capital of?"),
+                options: localizedOptions,
+                correctIndex: correctIdx,
+                maxTime: maxTime
+            )
+        }
+    }
+
+    private func pickCityDistractors(targetCountry: String, level: GameLevel) -> [String] {
+        let countryCityList = cities(for: targetCountry)
+        let capital = countryCityList.first ?? targetCountry
+        var choices: [String] = [capital]
+        var usedLocalized = Set<String>([localizedCityName(for: capital)])
+
+        func tryAddCity(_ city: String) -> Bool {
+            let loc = localizedCityName(for: city)
+            guard !choices.contains(city) && !usedLocalized.contains(loc) else { return false }
+            choices.append(city)
+            usedLocalized.insert(loc)
+            return true
+        }
+
+        // 1. Primary distractors: non-capital largest cities from the SAME country (up to 3 additional cities)
+        let sameCountryNonCapitals = Array(countryCityList.dropFirst()).shuffled()
+        for city in sameCountryNonCapitals {
+            if choices.count >= 4 { break }
+            _ = tryAddCity(city)
+        }
+
+        // 2. If fewer than 4 choices, fill from regional clusters & level pool capitals/cities
+        if choices.count < 4 {
+            var regionalCities: [String] = []
+            for pool in regionalCountryPools {
+                if pool.contains(targetCountry) {
+                    for partner in pool where partner != targetCountry {
+                        regionalCities.append(contentsOf: cities(for: partner))
+                    }
+                }
+            }
+            for city in regionalCities.shuffled() {
+                if choices.count >= 4 { break }
+                _ = tryAddCity(city)
+            }
+        }
+
+        if choices.count < 4 {
+            let levelCountries = capitalsPool(for: level).filter { $0 != targetCountry }.shuffled()
+            for country in levelCountries {
+                if choices.count >= 4 { break }
+                _ = tryAddCity(capitalCity(for: country))
+            }
+        }
+
+        while choices.count < 4 {
+            if let randCountry = allCountries.randomElement() {
+                _ = tryAddCity(capitalCity(for: randCountry))
+            }
+        }
+
+        return choices.shuffled()
+    }
+
+    private func pickCapitalCountryDistractors(targetCountry: String, level: GameLevel) -> [String] {
+        var choices: [String] = [targetCountry]
+        var usedLocalized = Set<String>([localizedCountryName(for: targetCountry)])
+
+        func tryAddCountry(_ country: String) -> Bool {
+            let loc = localizedCountryName(for: country)
+            guard !choices.contains(country) && !usedLocalized.contains(loc) else { return false }
+            choices.append(country)
+            usedLocalized.insert(loc)
+            return true
+        }
+
+        var regionalCandidates: [String] = []
+        for pool in regionalCountryPools {
+            if pool.contains(targetCountry) {
+                regionalCandidates.append(contentsOf: pool.filter { $0 != targetCountry && allCountries.contains($0) })
+            }
+        }
+
+        var nameCandidates: [String] = []
+        for cluster in similarNameClusters {
+            if cluster.contains(targetCountry) {
+                nameCandidates.append(contentsOf: cluster.filter { $0 != targetCountry && allCountries.contains($0) })
+            }
+        }
+
+        let levelCountries = capitalsPool(for: level).filter { $0 != targetCountry }
+
+        let candidatePools: [[String]] = [
+            regionalCandidates.shuffled(),
+            nameCandidates.shuffled(),
+            levelCountries.shuffled()
+        ].shuffled()
+
+        for pool in candidatePools {
+            if choices.count >= 4 { break }
+            for country in pool {
+                if tryAddCountry(country) {
+                    break
+                }
+            }
+        }
+
+        for country in levelCountries.shuffled() {
+            if choices.count >= 4 { break }
+            _ = tryAddCountry(country)
+        }
+
+        for country in allCountries.shuffled() {
+            if choices.count >= 4 { break }
+            _ = tryAddCountry(country)
+        }
+
+        return choices.shuffled()
+    }
+
     // Helper: generate 4 unique numeric choices using multiple anti-meta-gaming strategies
     private func makeNumericOptions(
         correct: Int,
@@ -1762,6 +2243,8 @@ class QuestionGenerator {
             case .godlike: range = min(100, totalCount - 1)..<totalCount
             }
             return range.map { "country_\(allCountries[$0])" }
+        } else if gameType == .capitals {
+            return capitalsPool(for: level).map { "city_\(capitalCity(for: $0))" }
         } else if gameType == .chemSymbols || gameType == .chemNames {
             let total = allElements.count
             guard total > 0 else { return [] }
@@ -1861,6 +2344,8 @@ class QuestionGenerator {
         switch gameType {
         case .flags:
             return generateFlagsQuestions(level: level, playerID: playerID, count: count, maxTime: maxTime)
+        case .capitals:
+            return generateCapitalsQuestions(level: level, playerID: playerID, count: count, maxTime: maxTime)
         case .chemSymbols:
             return generateChemSymbolsQuestions(level: level, playerID: playerID, count: count, maxTime: maxTime)
         case .chemNames:
@@ -1873,6 +2358,57 @@ class QuestionGenerator {
             }
         default:
             return generateGenericQuestions(gameType: gameType, level: level, playerID: playerID, count: count, maxTime: maxTime)
+        }
+    }
+
+    private func generateCapitalsQuestions(level: GameLevel, playerID: String, count: Int, maxTime: Double) -> [Question] {
+        let availableCountries = capitalsPool(for: level)
+        guard !availableCountries.isEmpty else { return [] }
+
+        var priority1: [String] = []
+        var priority2: [String] = []
+
+        for country in availableCountries {
+            let capital = capitalCity(for: country)
+            let key = "city_\(capital)"
+            let status = ItemProgressTracker.shared.getStatus(for: key, playerID: playerID)
+            if status == .correct {
+                priority2.append(country)
+            } else {
+                priority1.append(country)
+            }
+        }
+
+        priority1.shuffle()
+        priority2.shuffle()
+
+        var selectedCountries: [String] = []
+        selectedCountries.append(contentsOf: priority1.prefix(count))
+        if selectedCountries.count < count {
+            let needed = count - selectedCountries.count
+            selectedCountries.append(contentsOf: priority2.prefix(needed))
+        }
+
+        if selectedCountries.count < count {
+            let remaining = availableCountries.filter { !selectedCountries.contains($0) }.shuffled()
+            selectedCountries.append(contentsOf: remaining.prefix(count - selectedCountries.count))
+        }
+
+        while selectedCountries.count < count {
+            if let rand = availableCountries.randomElement() {
+                selectedCountries.append(rand)
+            }
+        }
+
+        selectedCountries.shuffle()
+
+        return selectedCountries.map { country in
+            makeCapitalQuestion(
+                targetCountry: country,
+                level: level,
+                maxTime: maxTime,
+                askForCapital: Bool.random()
+            )
         }
     }
 

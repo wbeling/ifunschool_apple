@@ -53,6 +53,7 @@ class ProfileManager: ObservableObject {
     }
 
     func updateGameCenterPlayer(id: String, displayName: String) {
+        print("[ProfileManager] updateGameCenterPlayer() called: id=\(id), displayName=\(displayName)")
         guard !id.isEmpty else { return }
 
         let cleanName = displayName.isEmpty ? NSLocalizedString("profile_gc_user", comment: "Game Center Player") : displayName

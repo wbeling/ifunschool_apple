@@ -1,0 +1,4 @@
+Neuer Spielmodus: Hauptstädte - du kannst deinen Fortschritt verfolgen, das kostenlose Limit ermöglicht das Spielen auf den zwei niedrigeren Schwierigkeitsgraden
+Plattformübergreifende Game Center-Korrekturen (tvOS, macOS, iOS)
+Verbesserungen im App-Ablauf - nach Beenden eines Spiels wird automatisch zur richtigen Stelle in der Liste gescrollt
+Verbesserungen der Übersetzungen

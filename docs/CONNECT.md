@@ -1,11 +1,196 @@
 # App Store Connect Metadata (iFunSchool)
 
 > **Zestawienie tekstów dla App Store Connect w 5 językach:**
+> - 🚀 [**What's New (iOS – Aktualizacja po latach)**](#-whats-new-ios--aktualizacja-po-latach)
 > 1. [🇬🇧 English](#-english-en)
 > 2. [🇵🇱 Polski](#-polski-pl)
 > 3. [🇩🇪 Deutsch](#-deutsch-de)
 > 4. [🇫🇷 Français](#-français-fr)
 > 5. [🇪🇸 Español](#-español-es)
+
+---
+
+## 🚀 What's New (iOS – Aktualizacja po latach)
+
+> **Oficjalne teksty do pola „What's New in This Version” w App Store Connect.**  
+> Przygotowane z okazji wielkiego powrotu iFunSchool na iOS po kilku latach przerwy.  
+> **Kluczowe nowości ujęte w opisach:**
+> - 🎨 **Nowy wygląd:** Nowoczesny interfejs zaprojektowany od podstaw w SwiftUI dla nowoczesnych modeli iPhone'a i iPada.
+> - 💎 **Tania subskrypcja zamiast zakupów:** Jedna, niezwykle przystępna subskrypcja odblokowująca wszystkie 15 gier i poziomy (w tym natychmiastowy dostęp do poziomu Boskiego / Godlike) zamiast skomplikowanych zakupów jednorazowych.
+> - 🔥 **Liczenie dni i seria (Streak):** Nowy licznik kolejnych dni regularnego treningu i budowania trwałego nawyku nauki.
+> - 📊 **Szczegółowy postęp dla wybranych gier:** Wizualny ekran postępu (flagi świata, stolice, pierwiastki chemiczne, działania matematyczne) z inteligentną nauką na błędach.
+
+### Spis wersji językowych:
+- [🇬🇧 English (EN)](#whats-new-en)
+- [🇵🇱 Polski (PL)](#whats-new-pl)
+- [🇩🇪 Deutsch (DE)](#whats-new-de)
+- [🇫🇷 Français (FR)](#whats-new-fr)
+- [🇪🇸 Español (ES)](#whats-new-es)
+
+---
+
+<a id="whats-new-en"></a>
+### 🇬🇧 English (EN) (1727 / 4000 znaków)
+```text
+After several years, iFunSchool is back with our biggest update ever! We’ve completely rebuilt the app from the ground up for iOS, making your daily brain training and learning more enjoyable, engaging, and rewarding.
+
+HERE’S WHAT’S NEW:
+
+ALL-NEW MODERN DESIGN
+• Completely refreshed, sleek, and intuitive interface designed specifically for modern iPhones and iPads.
+• Crisp visuals, beautiful typography, and buttery-smooth animations that make learning a pure joy.
+
+AFFORDABLE ALL-IN-ONE SUBSCRIPTION
+• No more confusing one-off purchases! We’ve replaced individual IAPs with a single, super-affordable subscription.
+• Unlocks full access to all 15 games and all difficulty levels — including instant access to the legendary Godlike mode.
+• You can still try and play for free before subscribing!
+
+DAY COUNTER & DAILY STREAKS
+• Build a lasting brain training habit with our new daily streak tracker.
+• Count your consecutive days of practice, track your daily activity, and watch your skills sharpen day after day.
+
+DETAILED PROGRESS TRACKER FOR KEY GAMES
+• Visual progress tracking is now live for select games: World Flags, Capitals, Chemical Elements, and arithmetic operations (Multiplication, Division, Addition, Subtraction).
+• See at a glance which items you have mastered, which ones need practice, and which ones are yet to be discovered.
+• Smart repetition automatically reintroduces questions you missed, helping you turn weaknesses into strengths.
+
+⚡ PERFORMANCE & POLISH
+• Lightning-fast loading, optimized for the latest iOS versions, and overall stability improvements.
+
+Thank you for your patience and for learning with iFunSchool! If you enjoy the new update, please leave a review on the App Store.
+```
+
+---
+
+<a id="whats-new-pl"></a>
+### 🇵🇱 Polski (PL) (1846 / 4000 znaków)
+```text
+Po kilku latach przerwy iFunSchool powraca z największą aktualizacją w historii! Całkowicie przebudowaliśmy aplikację na iOS, aby codzienny trening umysłu i nauka były jeszcze przyjemniejsze, bardziej motywujące i skuteczne.
+
+OTO CO NOWEGO:
+
+CAŁKOWICIE NOWY WYGLĄD
+• Nowoczesny, świeży i przejrzysty interfejs zaprojektowany od nowa z myślą o współczesnych iPhone’ach i iPadach.
+• Piękna oprawa graficzna, dopracowana typografia i płynne animacje, które umilają każdą sesję nauki.
+
+JEDNA, TANIA SUBSKRYPCJA ZAMIAST WIELU ZAKUPÓW
+• Koniec ze skomplikowanymi zakupami jednorazowymi! Zastąpiliśmy je jedną, niezwykle tanią i przystępną subskrypcją.
+• Zapewnia pełen dostęp do wszystkich 15 gier oraz wszystkich poziomów trudności — w tym natychmiastowy wstęp do elitarnego poziomu Boskiego.
+• Wersja próbna pozostaje w pełni bezpłatna — możesz wypróbować grę bez żadnych opłat!
+
+LICZENIE DNI I CODZIENNA SERIA (STREAK)
+• Buduj zdrowy nawyk regularnego treningu dzięki nowemu licznikowi codziennej aktywności.
+• Licz dni z rzędu, utrzymaj swoją serię i obserwuj, jak Twoja sprawność umysłowa i refleks rosną każdego dnia.
+
+SZCZEGÓŁOWY EKRAN POSTĘPU DLA WYBRANYCH GIER
+• Dedykowany podgląd postępów dla kluczowych gier: Flagi państw świata, Stolice, Pierwiastki chemiczne oraz podstawowe operacje matematyczne (Mnożenie, Dzielenie, Dodawanie, Odejmowanie).
+• Przejrzysta siatka pokazuje dokładnie, które elementy masz już opanowane, a które wymagają powtórki.
+• Inteligentny algorytm nauki częściej przypomina pytania, w których zdarzyła się pomyłka, pomagając szybko wyeliminować błędy.
+
+SZYBKOŚĆ I OPTYMALIZACJA
+• Błyskawiczne uruchamianie, pełne dopasowanie do najnowszych wydań iOS oraz liczne ulepszenia stabilności.
+
+Dziękujemy za cierpliwość i wspólne trenowanie umysłu! Jeśli podoba Ci się nowe iFunSchool, zostaw opinię w App Store!
+```
+
+---
+
+<a id="whats-new-de"></a>
+### 🇩🇪 Deutsch (DE) (1882 / 4000 znaków)
+```text
+Nach mehreren Jahren Pause meldet sich iFunSchool mit dem bisher größten Update zurück! Wir haben die App für iOS von Grund auf neu entwickelt, damit Gehirntraining und tägliches Lernen noch effektiver sind und mehr Spaß machen.
+
+DAS IST NEU:
+
+BRANDNEUES MODERNES DESIGN
+• Frischer, eleganter und übersichtlicher Look, maßgeschneidert für moderne iPhones und iPads.
+• Gestochen scharfe Grafiken, saubere Typografie und flüssige Animationen für ein rundum begeisterndes Lernerlebnis.
+
+GÜNSTIGES ALL-IN-ONE-ABO STATT EINZELKÄUFE
+• Schluss mit unübersichtlichen Einzelkäufen: Wir haben die alten In-App-Käufe durch ein einziges, besonders günstiges Abonnement ersetzt.
+• Voller Zugriff auf alle 15 Spiele und sämtliche Schwierigkeitsstufen — inklusive sofortiger Freischaltung des ultimativen Gottgleich-Modus.
+• Kostenloser Schnupperbereich bleibt erhalten — probiere das Spiel risikofrei aus!
+
+TAGESZÄHLER & TRAININGS-SERIEN (STREAKS)
+• Etabliere eine tägliche Lernroutine mit dem neuen Aktivitätszähler.
+• Zähle deine aufeinanderfolgenden Trainingstage, halte deine Serie aktiv und verfolge deine geistigen Fortschritte von Tag zu Tag.
+
+DETAILLIERTER FORTSCHRITT FÜR AUSGEWÄHLTE SPIELE
+• Neue visuelle Fortschrittsanzeige für ausgewählte Wissensgebiete: Flaggen der Welt, Hauptstädte, Chemische Elemente sowie Grundrechenarten (Multiplikation, Division, Addition, Subtraktion).
+• Erkenne auf einen Blick, welche Aufgaben du bereits meisterst, wo noch Übungsbedarf besteht und was noch unentdeckt ist.
+• Die intelligente Fehlerkorrektur stellt dir verpasste Fragen gezielt erneut, bis du sie fehlerfrei beherrschst.
+
+SCHNELLER & STABILER
+• Blitzschnelle Ladezeiten, vollständige Optimierung für aktuelle iOS-Versionen und spürbare Performance-Verbesserungen.
+
+Vielen Dank für deine Treue! Wenn dir die neue Version gefällt, freuen wir uns über deine Bewertung im App Store!
+```
+
+---
+
+<a id="whats-new-fr"></a>
+### 🇫🇷 Français (FR) (1967 / 4000 znaków)
+```text
+Après plusieurs années d’absence, iFunSchool fait son grand retour avec sa plus importante mise à jour ! Nous avons entièrement reconstruit l’application pour iOS afin de rendre votre entraînement cérébral quotidien plus motivant, intuitif et enrichissant.
+
+VOICI LES NOUVEAUTÉS :
+
+UN TOUT NOUVEAU DESIGN ÉPURÉ
+• Interface moderne, élégante et claire, repensée sur mesure pour les iPhone et iPad actuels.
+• Graphismes soignés, typographie nette et animations parfaitement fluides pour un confort d’apprentissage idéal.
+
+UN ABONNEMENT ULTRA ACCESSIBLE AU LIEU DES ACHATS MULTIPLES
+• Fini les achats ponctuels fastidieux : nous les avons remplacés par un abonnement unique à tout petit prix.
+• Débloquez l’accès illimité à l’ensemble des 15 jeux et à tous les niveaux de difficulté — avec un accès immédiat au légendaire mode Divin.
+• Vous pouvez toujours tester le jeu gratuitement avant de vous abonner !
+
+COMPTEUR DE JOURS & SÉRIES ACTIVES (STREAKS)
+• Ancrez une habitude d’apprentissage solide grâce au nouveau suivi de pratique quotidienne.
+• Comptez vos jours d’entraînement consécutifs, maintenez votre série active et observez votre mémoire et votre rapidité s’améliorer chaque jour.
+
+SUIVI DÉTAILLÉ DE PROGRESSION SUR CERTAINS JEUX
+• Grille de progression visuelle désormais disponible pour les catégories phares : Drapeaux du monde, Capitales, Éléments chimiques et calculs fondamentaux (Multiplication, Division, Addition, Soustraction).
+• Visualisez d’un simple coup d’œil les notions maîtrisées, celles nécessitant une révision et celles restant à découvrir.
+• L’algorithme intelligent répète automatiquement les questions manquées jusqu’à assimilation complète.
+
+PERFORMANCE ET STABILITÉ
+• Chargements instantanés, parfaite compatibilité avec les dernières versions d’iOS et corrections de fluidité.
+
+Merci de votre fidélité et de vous entraîner avec nous ! Si vous aimez cette nouvelle version, n’hésitez pas à laisser un avis sur l’App Store !
+```
+
+---
+
+<a id="whats-new-es"></a>
+### 🇪🇸 Español (ES) (1980 / 4000 znaków)
+```text
+¡Tras varios años de espera, iFunSchool regresa a lo grande con su mayor actualización hasta la fecha! Hemos reconstruido la aplicación desde cero para iOS para que el entrenamiento mental y el aprendizaje diario sean más divertidos, dinámicos y gratificantes.
+
+NOVEDADES DE ESTA VERSIÓN:
+
+DISEÑO TOTALMENTE RENOVADO
+• Interfaz moderna, fresca y clara, diseñada a medida para los modelos más recientes de iPhone e iPad.
+• Gráficos cuidados, tipografía nítida y animaciones ultrafluidas que convierten cada partida en una experiencia visual atractiva.
+
+SUSCRIPCIÓN SÚPER ECONÓMICA EN VEZ DE COMPRAS SUELTAS
+• ¡Decimos adiós a las complicadas compras individuales! Las hemos sustituido por una suscripción única y muy económica.
+• Desbloquea acceso completo a los 15 juegos y a todos los niveles de dificultad — incluyendo entrada directa al codiciado nivel Divino.
+• ¡Sigue disfrutando de la versión de prueba gratuita para jugar sin ningún compromiso!
+
+CONTADOR DE DÍAS Y RACHA DIARIA (STREAK)
+• Crea un hábito constante de agilidad mental con el nuevo contador de actividad diaria.
+• Cuenta tus días consecutivos de práctica, mantén encendida tu racha y comprueba cómo tu mente gana agilidad día a día.
+
+SEGUIMIENTO DE PROGRESO DETALLADO EN JUEGOS CLAVE
+• Cuadrícula visual de progreso disponible para juegos seleccionados: Banderas del mundo, Capitales, Elementos químicos y operaciones aritméticas (Multiplicación, División, Suma, Resta).
+• Descubre al instante qué elementos dominas por completo, cuáles necesitas reforzar y cuáles te quedan por aprender.
+• El algoritmo inteligente repite de forma prioritaria las preguntas falladas para ayudarte a superar cualquier dificultad.
+
+RENDIMIENTO Y FLUIDEZ
+• Tiempos de carga mínimos, compatibilidad optimizada con las últimas versiones de iOS y mejoras generales de estabilidad.
+
+¡Gracias por tu paciencia y por entrenar con iFunSchool! Si te gusta esta nueva versión, te agradeceríamos mucho tu reseña en el App Store.
+```
 
 ---
 
@@ -99,32 +284,34 @@ Privacy Policy: https://ifunschool.beling.pl/en/privacy
 > 💡 **Adnotacja:** Fragment na końcu opisu z linkami do EULA i Privacy Policy jest wymagany przez Apple w szczególności dla wersji **Apple TV (tvOS)**.
 
 
-### What's New in This Version (1490 / 4000 znaków)
+### What's New in This Version (1727 / 4000 znaków)
 ```text
-Welcome to the biggest update yet! We’ve completely revamped iFunSchool with a sleek modern design and powerful new learning tools.
+After several years, iFunSchool is back with our biggest update ever! We’ve completely rebuilt the app from the ground up for iOS, making your daily brain training and learning more enjoyable, engaging, and rewarding.
 
-BRAND NEW DESIGN & EXPERIENCE
-• Fresh, modern look with vibrant graphics, clean typography, and buttery-smooth animations.
-• Polished interfaces designed for faster gameplay and delightful navigation.
+HERE’S WHAT’S NEW:
 
-SMART ADAPTIVE LEARNING & ERROR CORRECTION
-• Visual Progress Screen: see your mastery of all world flags, periodic table elements, and math operations at a glance!
-• Smart Question Engine: questions now smartly adapt to your performance. The game automatically reintroduces questions you missed earlier, helping you turn weaknesses into strengths and memorize all flags effortlessly.
+✨ ALL-NEW MODERN DESIGN
+• Completely refreshed, sleek, and intuitive interface designed specifically for modern iPhones and iPads.
+• Crisp visuals, beautiful typography, and buttery-smooth animations that make learning a pure joy.
 
-DAILY PROGRESS & STREAK TRACKING
-• Daily Training Tracker: monitor your everyday practice and build a lasting learning habit.
-• Watch your streak grow as you complete your daily brain workouts!
+⭐ AFFORDABLE ALL-IN-ONE SUBSCRIPTION
+• No more confusing one-off purchases! We’ve replaced individual IAPs with a single, super-affordable subscription.
+• Unlocks full access to all 15 games and all difficulty levels — including instant access to the legendary Godlike mode.
+• You can still try and play for free before subscribing!
 
-NEW SUPER-AFFORDABLE SUBSCRIPTION
-• We've replaced complicated individual purchases with one ultra-low-cost subscription.
-• Unlocks all levels across all 15 games (upon collecting the required stars).
-• Grants INSTANT unrestricted access to the legendary GODLIKE difficulty level without needing any stars!
-• You can still try the game 100% free (up to 15 stars).
+🔥 DAY COUNTER & DAILY STREAKS
+• Build a lasting brain training habit with our new daily streak tracker.
+• Count your consecutive days of practice, track your daily activity, and watch your skills sharpen day after day.
 
-PERFORMANCE IMPROVEMENTS
-• Faster loading, optimized responsiveness, and various bug fixes for the smoothest brain training experience.
+📊 DETAILED PROGRESS TRACKER FOR KEY GAMES
+• Visual progress tracking is now live for select games: World Flags, Capitals, Chemical Elements, and arithmetic operations (Multiplication, Division, Addition, Subtraction).
+• See at a glance which items you have mastered, which ones need practice, and which ones are yet to be discovered.
+• Smart repetition automatically reintroduces questions you missed, helping you turn weaknesses into strengths.
 
-Enjoying iFunSchool? Please leave us a review on the App Store!
+⚡ PERFORMANCE & POLISH
+• Lightning-fast loading, optimized for the latest iOS versions, and overall stability improvements.
+
+Thank you for your patience and for learning with iFunSchool! If you enjoy the new update, please leave a review on the App Store.
 ```
 
 ---
@@ -225,31 +412,34 @@ Privacy Policy: https://ifunschool.beling.pl/en/privacy
 > 💡 **Adnotacja:** Fragment na końcu opisu z linkami do EULA i Privacy Policy jest wymagany przez Apple w szczególności dla wersji **Apple TV (tvOS)**.
 
 
-### What's New in This Version (1401 / 4000 znaków)
+### What's New in This Version (1846 / 4000 znaków)
 ```text
-Oto największa aktualizacja w historii iFunSchool! Przygotowaliśmy zupełnie nowy wygląd oraz inteligentne narzędzia do nauki:
+Po kilku latach przerwy iFunSchool powraca z największą aktualizacją w historii! Całkowicie przebudowaliśmy aplikację na iOS, aby codzienny trening umysłu i nauka były jeszcze przyjemniejsze, bardziej motywujące i skuteczne.
 
-CAŁKOWICIE NOWY WYGLĄD
-• Nowoczesny, świeży i przejrzysty interfejs z piękną grafiką i płynnymi animacjami.
-• Wygodniejsza nawigacja i jeszcze większa czytelność pytań oraz statystyk.
+OTO CO NOWEGO:
 
-INTELIGENTNY SYSTEM NAUKI I EKRAN POSTĘPU
-• Ekran Postępu: śledź opanowanie wszystkich możliwych flag państw świata, pierwiastków chemicznych i operacji matematycznych!
-• Nauka na błędach: algorytm losowania pytań inteligentnie zapamiętuje pomyłki i powtarza trudne pytania tak długo, aż je w pełni opanujesz. To najlepszy i najszybszy sposób na naukę flag i tabliczki mnożenia!
+✨ CAŁKOWICIE NOWY WYGLĄD
+• Nowoczesny, świeży i przejrzysty interfejs zaprojektowany od nowa z myślą o współczesnych iPhone’ach i iPadach.
+• Piękna oprawa graficzna, dopracowana typografia i płynne animacje, które umilają każdą sesję nauki.
 
-CODZIENNY POSTĘP I SERIA (STREAK)
-• Nowy licznik codziennego postępu: trenuj regularnie każdego dnia, buduj nawyk i obserwuj swoje postępy na osi czasu.
+⭐ JEDNA, TANIA SUBSKRYPCJA ZAMIAST WIELU ZAKUPÓW
+• Koniec ze skomplikowanymi zakupami jednorazowymi! Zastąpiliśmy je jedną, niezwykle tanią i przystępną subskrypcją.
+• Zapewnia pełen dostęp do wszystkich 15 gier oraz wszystkich poziomów trudności — w tym natychmiastowy wstęp do elitarnego poziomu Boskiego.
+• Wersja próbna pozostaje w pełni bezpłatna — możesz wypróbować grę bez żadnych opłat!
 
-JEDNA, MEGA TANIA SUBSKRYPCJA
-• Koniec ze starymi zakupami jednorazowymi (IAP)! Wprowadziliśmy jedną, niezwykle tanią subskrypcję, która:
-  - Otwiera dostęp do wszystkich poziomów w 15 grach (po zdobyciu gwiazdek).
-  - Daje NATYCHMIASTOWY dostęp do legendarnego poziomu BOSKIEGO (bez wymogu zbierania gwiazdek!).
-  - Darmowy pakiet próbny (do 15 gwiazdek) nadal pozostaje bezpłatny!
+🔥 LICZENIE DNI I CODZIENNA SERIA (STREAK)
+• Buduj zdrowy nawyk regularnego treningu dzięki nowemu licznikowi codziennej aktywności.
+• Licz dni z rzędu, utrzymaj swoją serię i obserwuj, jak Twoja sprawność umysłowa i refleks rosną każdego dnia.
 
-SZYBKOŚĆ I OPTYMALIZACJA
-• Błyskawiczne uruchamianie, zoptymalizowana pamięć i poprawki stabilności.
+📊 SZCZEGÓŁOWY EKRAN POSTĘPU DLA WYBRANYCH GIER
+• Dedykowany podgląd postępów dla kluczowych gier: Flagi państw świata, Stolice, Pierwiastki chemiczne oraz podstawowe operacje matematyczne (Mnożenie, Dzielenie, Dodawanie, Odejmowanie).
+• Przejrzysta siatka pokazuje dokładnie, które elementy masz już opanowane, a które wymagają powtórki.
+• Inteligentny algorytm nauki częściej przypomina pytania, w których zdarzyła się pomyłka, pomagając szybko wyeliminować błędy.
 
-Podoba Ci się nowa wersja? Zostaw swoją opinię w App Store!
+⚡ SZYBKOŚĆ I OPTYMALIZACJA
+• Błyskawiczne uruchamianie, pełne dopasowanie do najnowszych wydań iOS oraz liczne ulepszenia stabilności.
+
+Dziękujemy za cierpliwość i wspólne trenowanie umysłu! Jeśli podoba Ci się nowe iFunSchool, zostaw opinię w App Store!
 ```
 
 ---
@@ -350,31 +540,34 @@ Privacy Policy: https://ifunschool.beling.pl/en/privacy
 > 💡 **Adnotacja:** Fragment na końcu opisu z linkami do EULA i Privacy Policy jest wymagany przez Apple w szczególności dla wersji **Apple TV (tvOS)**.
 
 
-### What's New in This Version (1277 / 4000 znaków)
+### What's New in This Version (1882 / 4000 znaków)
 ```text
-Das bisher größte Update für iFunSchool ist da! Wir haben die App von Grund auf modernisiert:
+Nach mehreren Jahren Pause meldet sich iFunSchool mit dem bisher größten Update zurück! Wir haben die App für iOS von Grund auf neu entwickelt, damit Gehirntraining und tägliches Lernen noch effektiver sind und mehr Spaß machen.
 
-BRANDNEUES DESIGN
-• Frischer, eleganter Look mit moderner Typografie, lebendigen Farben und flüssigen Animationen.
-• Optimierte Menüs für blitzschnellen Zugriff auf deine Lieblingsspiele.
+DAS IST NEU:
 
-INTELLIGENTES LERNEN & FORTSCHRITTS-BILD
-• Visuelle Fortschrittsanzeige: Behalte den Überblick über alle Flaggen, Elemente und Rechenarten!
-• Gezielte Fehlerkorrektur: Fragen wiederholen sich gezielt, wenn du zuvor einen Fehler gemacht hast. So lernst du jede Flagge und jede Rechenaufgabe im Handumdrehen!
+✨ BRANDNEUES MODERNES DESIGN
+• Frischer, eleganter und übersichtlicher Look, maßgeschneidert für moderne iPhones und iPads.
+• Gestochen scharfe Grafiken, saubere Typografie und flüssige Animationen für ein rundum begeisterndes Lernerlebnis.
 
-TÄGLICHER FORTSCHRITT & STREAKS
-• Tägliche Trainingsmessung: Verfolge deine tägliche Aktivität, halte deine Serie aufrecht und festige deine Lerngewohnheiten.
+⭐ GÜNSTIGES ALL-IN-ONE-ABO STATT EINZELKÄUFE
+• Schluss mit unübersichtlichen Einzelkäufen: Wir haben die alten In-App-Käufe durch ein einziges, besonders günstiges Abonnement ersetzt.
+• Voller Zugriff auf alle 15 Spiele und sämtliche Schwierigkeitsstufen — inklusive sofortiger Freischaltung des ultimativen Gottgleich-Modus.
+• Kostenloser Schnupperbereich bleibt erhalten — probiere das Spiel risikofrei aus!
 
-NEUES, SUPERGÜNSTIGES ABO
-• Frühere In-App-Käufe wurden durch ein extrem günstiges All-Access-Abo ersetzt:
-  - Voller Zugriff auf alle Stufen aller 15 Spiele (nach Sammeln der Sterne).
-  - SOFORTIGER Freischaltung des GOTTGLEICH-Modus (ohne erforderliche Sterne!).
-  - Kostenloser Schnupperbereich bis 15 Sterne bleibt gratis erhalten.
+🔥 TAGESZÄHLER & TRAININGS-SERIEN (STREAKS)
+• Etabliere eine tägliche Lernroutine mit dem neuen Aktivitätszähler.
+• Zähle deine aufeinanderfolgenden Trainingstage, halte deine Serie aktiv und verfolge deine geistigen Fortschritte von Tag zu Tag.
 
-SCHNELLER & STABILER
-• Schnellere Ladezeiten, flüssigere Übergänge und zahlreiche Detailverbesserungen.
+📊 DETAILLIERTER FORTSCHRITT FÜR AUSGEWÄHLTE SPIELE
+• Neue visuelle Fortschrittsanzeige für ausgewählte Wissensgebiete: Flaggen der Welt, Hauptstädte, Chemische Elemente sowie Grundrechenarten (Multiplikation, Division, Addition, Subtraktion).
+• Erkenne auf einen Blick, welche Aufgaben du bereits meisterst, wo noch Übungsbedarf besteht und was noch unentdeckt ist.
+• Die intelligente Fehlerkorrektur stellt dir verpasste Fragen gezielt erneut, bis du sie fehlerfrei beherrschst.
 
-Gefällt dir iFunSchool? Wir freuen uns über deine Bewertung im App Store!
+⚡ SCHNELLER & STABILER
+• Blitzschnelle Ladezeiten, vollständige Optimierung für aktuelle iOS-Versionen und spürbare Performance-Verbesserungen.
+
+Vielen Dank für deine Treue! Wenn dir die neue Version gefällt, freuen wir uns über deine Bewertung im App Store!
 ```
 
 ---
@@ -475,31 +668,34 @@ Privacy Policy: https://ifunschool.beling.pl/en/privacy
 > 💡 **Adnotacja:** Fragment na końcu opisu z linkami do EULA i Privacy Policy jest wymagany przez Apple w szczególności dla wersji **Apple TV (tvOS)**.
 
 
-### What's New in This Version (1286 / 4000 znaków)
+### What's New in This Version (1967 / 4000 znaków)
 ```text
-La mise à jour majeure d'iFunSchool est enfin là ! Découvrez une toute nouvelle expérience :
+Après plusieurs années d’absence, iFunSchool fait son grand retour avec sa plus importante mise à jour ! Nous avons entièrement reconstruit l’application pour iOS afin de rendre votre entraînement cérébral quotidien plus motivant, intuitif et enrichissant.
 
-NOUVEAU DESIGN ÉPURÉ ET MODERNE
-• Interface entièrement repensée, graphismes vivants, typographie soignée et animations fluides.
-• Navigation plus rapide et ergonomie pensée pour un confort de jeu optimal.
+VOICI LES NOUVEAUTÉS :
 
-APPRENTISSAGE INTELLIGENT & ÉCRAN DE PROGRESSION
-• Grille de progression globale : suivez votre maîtrise de tous les drapeaux du monde, des éléments chimiques et des calculs.
-• Répétition ciblée des erreurs : le jeu réintroduit automatiquement les questions que vous avez manquées jusqu'à parfaite assimilation. Idéal pour mémoriser les drapeaux !
+✨ UN TOUT NOUVEAU DESIGN ÉPURÉ
+• Interface moderne, élégante et claire, repensée sur mesure pour les iPhone et iPad actuels.
+• Graphismes soignés, typographie nette et animations parfaitement fluides pour un confort d’apprentissage idéal.
 
-SUIVI DE PROGRESSION QUOTIDIENNE
-• Mesurez vos entraînements chaque jour et développez une routine stimulante avec le compteur de série.
+⭐ UN ABONNEMENT ULTRA ACCESSIBLE AU LIEU DES ACHATS MULTIPLES
+• Fini les achats ponctuels fastidieux : nous les avons remplacés par un abonnement unique à tout petit prix.
+• Débloquez l’accès illimité à l’ensemble des 15 jeux et à tous les niveaux de difficulté — avec un accès immédiat au légendaire mode Divin.
+• Vous pouvez toujours tester le jeu gratuitement avant de vous abonner !
 
-NOUVEL ABONNEMENT ULTRA ACCESSIBLE
-• Remplacement des anciens achats intégrés par un abonnement unique à prix mini :
-  - Débloque tous les niveaux dans les 15 jeux (au fil de vos étoiles).
-  - Ouvre un accès DIRECT et sans condition d'étoiles au redoutable mode DIVIN !
-  - Essai gratuit maintenu jusqu'à 15 étoiles.
+🔥 COMPTEUR DE JOURS & SÉRIES ACTIVES (STREAKS)
+• Ancrez une habitude d’apprentissage solide grâce au nouveau suivi de pratique quotidienne.
+• Comptez vos jours d’entraînement consécutifs, maintenez votre série active et observez votre mémoire et votre rapidité s’améliorer chaque jour.
 
-PERFORMANCE ET STABILITÉ
-• Chargements plus rapides, réactivité accrue et corrections de bugs mineurs.
+📊 SUIVI DÉTAILLÉ DE PROGRESSION SUR CERTAINS JEUX
+• Grille de progression visuelle désormais disponible pour les catégories phares : Drapeaux du monde, Capitales, Éléments chimiques et calculs fondamentaux (Multiplication, Division, Addition, Soustraction).
+• Visualisez d’un simple coup d’œil les notions maîtrisées, celles nécessitant une révision et celles restant à découvrir.
+• L’algorithme intelligent répète automatiquement les questions manquées jusqu’à assimilation complète.
 
-Vous aimez iFunSchool ? Merci de laisser un avis sur l'App Store !
+⚡ PERFORMANCE ET STABILITÉ
+• Chargements instantanés, parfaite compatibilité avec les dernières versions d’iOS et corrections de fluidité.
+
+Merci de votre fidélité et de vous entraîner avec nous ! Si vous aimez cette nouvelle version, n’hésitez pas à laisser un avis sur l’App Store !
 ```
 
 ---
@@ -600,31 +796,34 @@ Privacy Policy: https://ifunschool.beling.pl/en/privacy
 > 💡 **Adnotacja:** Fragment na końcu opisu z linkami do EULA i Privacy Policy jest wymagany przez Apple w szczególności dla wersji **Apple TV (tvOS)**.
 
 
-### What's New in This Version (1324 / 4000 znaków)
+### What's New in This Version (1980 / 4000 znaków)
 ```text
-¡Llega la mayor actualización de iFunSchool! Hemos renovado la experiencia por completo:
+¡Tras varios años de espera, iFunSchool regresa a lo grande con su mayor actualización hasta la fecha! Hemos reconstruido la aplicación desde cero para iOS para que el entrenamiento mental y el aprendizaje diario sean más divertidos, dinámicos y gratificantes.
 
-NUEVO DISEÑO MODERNO Y ELEGANTE
-• Aspecto totalmente renovado con gráficos vivos, tipografía clara y animaciones fluidas.
-• Interfaz optimizada para una navegación más rápida y cómoda.
+NOVEDADES DE ESTA VERSIÓN:
 
-APRENDIZAJE INTELIGENTE Y PANTALLA DE PROGRESO
-• Pantalla de Progreso: consulta de un vistazo el dominio de todas las banderas del mundo, elementos químicos y operaciones matemáticas.
-• Corrección de errores activa: el sistema detecta tus fallos y te repite las preguntas erradas hasta que las domines por completo. ¡Aprenderte todas las banderas nunca fue tan fácil!
+✨ DISEÑO TOTALMENTE RENOVADO
+• Interfaz moderna, fresca y clara, diseñada a medida para los modelos más recientes de iPhone e iPad.
+• Gráficos cuidados, tipografía nítida y animaciones ultrafluidas que convierten cada partida en una experiencia visual atractiva.
 
-PROGRESO DIARIO Y MEDICIÓN DE RACHA
-• Registro de entrenamiento diario: sigue tu progreso día tras día y consolida un hábito de agilidad mental.
+⭐ SUSCRIPCIÓN SÚPER ECONÓMICA EN VEZ DE COMPRAS SUELTAS
+• ¡Decimos adiós a las complicadas compras individuales! Las hemos sustituido por una suscripción única y muy económica.
+• Desbloquea acceso completo a los 15 juegos y a todos los niveles de dificultad — incluyendo entrada directa al codiciado nivel Divino.
+• ¡Sigue disfrutando de la versión de prueba gratuita para jugar sin ningún compromiso!
 
-NUEVA SUSCRIPCIÓN ULTRA ECONÓMICA
-• Decimos adiós a las antiguas compras individuales (IAP) con una suscripción súper accesible:
-  - Desbloquea todos los niveles de los 15 juegos (al reunir las estrellas necesarias).
-  - Acceso INMEDIATO al legendario nivel DIVINO (¡sin requisito de estrellas!).
-  - Prueba gratuita de hasta 15 estrellas disponible sin compromiso.
+🔥 CONTADOR DE DÍAS Y RACHA DIARIA (STREAK)
+• Crea un hábito constante de agilidad mental con el nuevo contador de actividad diaria.
+• Cuenta tus días consecutivos de práctica, mantén encendida tu racha y comprueba cómo tu mente gana agilidad día a día.
 
-RENDIMIENTO Y OPTIMIZACIÓN
-• Carga más veloz, mayor fluidez y corrección de pequeños errores.
+📊 SEGUIMIENTO DE PROGRESO DETALLADO EN JUEGOS CLAVE
+• Cuadrícula visual de progreso disponible para juegos seleccionados: Banderas del mundo, Capitales, Elementos químicos y operaciones aritméticas (Multiplicación, División, Suma, Resta).
+• Descubre al instante qué elementos dominas por completo, cuáles necesitas reforzar y cuáles te quedan por aprender.
+• El algoritmo inteligente repite de forma prioritaria las preguntas falladas para ayudarte a superar cualquier dificultad.
 
-¿Te gusta iFunSchool? ¡Déjanos tu valoración en el App Store!
+⚡ RENDIMIENTO Y FLUIDEZ
+• Tiempos de carga mínimos, compatibilidad optimizada con las últimas versiones de iOS y mejoras generales de estabilidad.
+
+¡Gracias por tu paciencia y por entrenar con iFunSchool! Si te gusta esta nueva versión, te agradeceríamos mucho tu reseña en el App Store.
 ```
 
 ---

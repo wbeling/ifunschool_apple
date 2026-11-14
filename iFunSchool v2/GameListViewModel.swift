@@ -13,7 +13,7 @@ class GameListViewModel: ObservableObject {
     @Published var totalSilverStars: Int = 0
     @Published var totalScore: Double = 0.0
     
-    private let gamesPerPage = 15
+    private let gamesPerPage = 16
     private var cancellables = Set<AnyCancellable>()
 
     init() {
@@ -76,8 +76,8 @@ class GameListViewModel: ObservableObject {
             self.totalGoldStars = rawGoldCount
             self.isStarLimitReached = false
         } else {
-            self.totalGoldStars = min(rawGoldCount, 15)
-            self.isStarLimitReached = (rawGoldCount >= 15)
+            self.totalGoldStars = min(rawGoldCount, 16)
+            self.isStarLimitReached = (rawGoldCount >= 16)
         }
 
         self.totalSilverStars = silverCount
@@ -121,7 +121,7 @@ class GameListViewModel: ObservableObject {
                 }
             } else if !hasEnoughGoldStars {
                 games[i].gameStatus = .locked
-                if reqGold >= 16 && !isStarLimitUnlocked {
+                if reqGold >= 17 && !isStarLimitUnlocked {
                     games[i].lockReason = .requiresPurchase
                 } else {
                     games[i].lockReason = .notEnoughStars

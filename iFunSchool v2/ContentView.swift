@@ -13,6 +13,7 @@ struct ContentView: View {
     @State private var isShowingHeaderActionSheet = false
     @State private var selectedProgressCategory: ProgressCategory = .addition
     @State private var activeGameItem: GameItem? = nil
+    @State private var scrollToGameId: String? = nil
 
     private enum HeaderFocusItem: Hashable {
         case settings
@@ -60,19 +61,33 @@ struct ContentView: View {
 
     var body: some View {
         ZStack {
+            mainMenuContentView
+                .disabled(activeGameItem != nil)
+                .accessibilityHidden(activeGameItem != nil)
+
             if let game = activeGameItem {
                 GameView(
                     gameType: game.gameType,
                     level: game.level,
                     onDismiss: {
+                        let playedId = activeGameItem?.id
+                        let playedLevel = activeGameItem?.level
                         withAnimation(.easeInOut(duration: 0.25)) {
                             activeGameItem = nil
+                        }
+                        if let selLevel = viewModel.selectedLevel, let playedLevel = playedLevel, selLevel != playedLevel {
+                            viewModel.selectedLevel = playedLevel
+                        }
+                        if let playedId = playedId {
+                            viewModel.expandedGameId = playedId
+                            DispatchQueue.main.async {
+                                scrollToGameId = playedId
+                            }
                         }
                     }
                 )
                 .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .trailing)))
-            } else {
-                mainMenuContentView
+                .zIndex(1)
             }
         }
         .onAppear {
@@ -129,37 +144,48 @@ struct ContentView: View {
             levelSelectorBar
 
             // Games List
-            ScrollView {
-                LazyVStack(spacing: 12) {
-                    ForEach(viewModel.filteredGames) { game in
-                        GameRowView(
-                            game: game,
-                            isExpanded: viewModel.expandedGameId == game.id,
-                            rawGoldStars: viewModel.totalGoldStars,
-                            onTap: {
-                                withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
-                                    viewModel.toggleExpand(gameId: game.id)
-                                }
-                            },
-                            onPlay: {
-                                if game.isUnlocked {
-                                    withAnimation(.easeInOut(duration: 0.25)) {
-                                        activeGameItem = game
+            ScrollViewReader { scrollProxy in
+                ScrollView {
+                    LazyVStack(spacing: 12) {
+                        ForEach(viewModel.filteredGames) { game in
+                            GameRowView(
+                                game: game,
+                                isExpanded: viewModel.expandedGameId == game.id,
+                                rawGoldStars: viewModel.totalGoldStars,
+                                onTap: {
+                                    withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
+                                        viewModel.toggleExpand(gameId: game.id)
                                     }
-                                } else if game.level >= .medium || game.level == .godlike || game.lockReason == .requiresPurchase {
-                                    isShowingStore = true
+                                },
+                                onPlay: {
+                                    if game.isUnlocked {
+                                        withAnimation(.easeInOut(duration: 0.25)) {
+                                            activeGameItem = game
+                                        }
+                                    } else if game.level >= .medium || game.level == .godlike || game.lockReason == .requiresPurchase {
+                                        isShowingStore = true
+                                    }
+                                },
+                                onShowProgressGrid: {
+                                    selectedProgressCategory = categoryForGameType(game.gameType)
+                                    isShowingProgressGrid = true
                                 }
-                            },
-                            onShowProgressGrid: {
-                                selectedProgressCategory = categoryForGameType(game.gameType)
-                                isShowingProgressGrid = true
-                            }
-                        )
+                            )
+                            .id(game.id)
+                        }
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.top, 12)
+                    .padding(.bottom, 24)
+                }
+                .onScrollTargetChange(of: scrollToGameId) { targetId in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        withAnimation(.easeInOut(duration: 0.3)) {
+                            scrollProxy.scrollTo(targetId, anchor: .center)
+                        }
+                        scrollToGameId = nil
                     }
                 }
-                .padding(.horizontal, 16)
-                .padding(.top, 12)
-                .padding(.bottom, 24)
             }
 
             // Global Footer Bar
@@ -492,6 +518,7 @@ struct ContentView: View {
         case .multiplication: return .multiplication
         case .division: return .division
         case .flags: return .flags
+        case .capitals: return .capitals
         case .chemSymbols, .chemNames: return .elements
         default: return .addition
         }
@@ -519,349 +546,7 @@ struct FilterChip: View {
     }
 }
 
-// MARK: - Game Row Card Component
-struct GameRowView: View {
-    let game: GameItem
-    let isExpanded: Bool
-    let rawGoldStars: Int
-    let onTap: () -> Void
-    let onPlay: () -> Void
-    var onShowProgressGrid: (() -> Void)? = nil
 
-    @StateObject private var storeKitService = StoreKitService.shared
-    @State private var progressRefreshTrigger: Bool = false
-
-    // Progress Computation Helpers
-    private var hasProgressTracking: Bool {
-        !levelItemKeys.isEmpty
-    }
-
-    private var levelItemKeys: [String] {
-        _ = progressRefreshTrigger
-        return QuestionGenerator.shared.itemKeysForLevel(gameType: game.gameType, level: game.level)
-    }
-
-    private var progressTotalCount: Int {
-        levelItemKeys.count
-    }
-
-    private var progressCorrectCount: Int {
-        guard !levelItemKeys.isEmpty else { return 0 }
-        let dict = ItemProgressTracker.shared.getProgressDict()
-        return levelItemKeys.filter { key in
-            dict[key]?.status == .correct
-        }.count
-    }
-
-    private var progressWrongCount: Int {
-        guard !levelItemKeys.isEmpty else { return 0 }
-        let dict = ItemProgressTracker.shared.getProgressDict()
-        return levelItemKeys.filter { key in
-            dict[key]?.status == .incorrect
-        }.count
-    }
-
-    private var progressUnaskedCount: Int {
-        max(0, progressTotalCount - (progressCorrectCount + progressWrongCount))
-    }
-
-    private var progressSummaryText: String {
-        let label = NSLocalizedString("progress_summary_total", comment: "Mastered")
-        return "\(label): \(progressCorrectCount) / \(progressTotalCount) (\(progressPercent)%)"
-    }
-
-    private var progressPercent: Int {
-        guard progressTotalCount > 0 else { return 0 }
-        return Int((Double(progressCorrectCount) / Double(progressTotalCount)) * 100.0)
-    }
-
-    var body: some View {
-        VStack(spacing: 0) {
-            // Header Row (Entire Row is Clickable)
-            Button(action: onTap) {
-                HStack(spacing: 14) {
-                    // Icon
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 12)
-                            .fill(iconBackgroundColor)
-                            .frame(width: 48, height: 48)
-                        
-                        Image(systemName: game.gameType.systemIcon)
-                            .font(.title2)
-                            .foregroundColor(game.isUnlocked ? .white : .gray)
-                    }
-
-                    // Title & Level
-                    VStack(alignment: .leading, spacing: 4) {
-                        HStack(spacing: 6) {
-                            Text(game.gameType.title)
-                                .font(.headline)
-                                .foregroundColor(game.isUnlocked ? .primary : .secondary)
-
-                            if !game.isUnlocked {
-                                Image(systemName: "lock.fill")
-                                    .font(.caption)
-                                    .foregroundColor(.secondary)
-                            }
-                        }
-
-                        Text(game.level.title)
-                            .font(.caption.bold())
-                            .padding(.horizontal, 8)
-                            .padding(.vertical, 2)
-                            .background(game.level == .godlike ? Color.black : levelBadgeColor.opacity(0.15))
-                            .foregroundColor(game.level == .godlike ? Color.white : levelBadgeColor)
-                            .cornerRadius(6)
-                    }
-
-                    Spacer()
-
-                    // Quick Stars / Status Summary
-                    HStack(spacing: 4) {
-                        if game.levelStars > 0 {
-                            HStack(spacing: 3) {
-                                ForEach(1...4, id: \.self) { starIndex in
-                                    Image(systemName: starIndex <= game.levelStars ? "star.fill" : "star")
-                                        .font(.caption2)
-                                        .foregroundColor(starIndex <= game.levelStars ? .gray : .gray.opacity(0.3))
-                                }
-
-                                Image(systemName: game.levelStars == 5 ? "star.circle.fill" : "star.circle")
-                                    .font(.subheadline)
-                                    .foregroundColor(game.levelStars == 5 ? .yellow : .yellow.opacity(0.4))
-                            }
-                        } else if game.isUnlocked {
-                            Text(LocalizedStringKey("badge_new"))
-                                .font(.caption2.bold())
-                                .padding(.horizontal, 6)
-                                .padding(.vertical, 2)
-                                .background(Color.green.opacity(0.2))
-                                .foregroundColor(.green)
-                                .cornerRadius(4)
-                        } else {
-                            Text(LocalizedStringKey("badge_locked"))
-                                .font(.caption2.bold())
-                                .padding(.horizontal, 6)
-                                .padding(.vertical, 2)
-                                .background(Color.red.opacity(0.15))
-                                .foregroundColor(.red)
-                                .cornerRadius(4)
-                        }
-
-                        Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
-                            .font(.caption.bold())
-                            .foregroundColor(.secondary)
-                            .padding(.leading, 4)
-                    }
-                }
-                .padding(14)
-                .contentShape(Rectangle()) // Makes entire row clickable including empty spaces
-            }
-            .buttonStyle(FunRowButtonStyle())
-
-            // Expanded Details Section
-            if isExpanded {
-                Divider()
-                    .padding(.horizontal, 14)
-
-                VStack(alignment: .leading, spacing: 12) {
-                    if game.isUnlocked {
-                        // Played Status Summary
-                        HStack(spacing: 12) {
-                            StatusPill(
-                                title: NSLocalizedString("status_title", comment: "Status"),
-                                value: game.gameStatus.title,
-                                color: statusColor,
-                                iconName: statusIcon
-                            )
-
-                            if game.levelStars > 0 {
-                                StatusPill(
-                                    title: NSLocalizedString("highscore_title", comment: "High Score"),
-                                    value: "\(game.highScore) pts",
-                                    color: .blue,
-                                    iconName: "trophy.fill"
-                                )
-                            }
-                        }
-
-                        // Learning Progress Card for Flags & Chemistry Games
-                        if hasProgressTracking {
-                            HStack {
-                                VStack(alignment: .leading, spacing: 3) {
-                                    Text(progressSummaryText)
-                                        .font(.subheadline.bold())
-                                        .foregroundColor(.primary)
-                                    HStack(spacing: 8) {
-                                        Text("🟢 \(progressCorrectCount)")
-                                            .font(.caption)
-                                        Text("🔴 \(progressWrongCount)")
-                                            .font(.caption)
-                                        Text("⚪ \(progressUnaskedCount)")
-                                            .font(.caption)
-                                    }
-                                }
-                                Spacer()
-                                Button(action: {
-                                    onShowProgressGrid?()
-                                }) {
-                                    HStack(spacing: 4) {
-                                        Image(systemName: "book.fill")
-                                        Text(LocalizedStringKey("nav_progress"))
-                                            .font(.caption.bold())
-                                    }
-                                    .padding(.horizontal, 10)
-                                    .padding(.vertical, 6)
-                                    .background(Color.green.opacity(0.15))
-                                    .foregroundColor(.green)
-                                    .cornerRadius(8)
-                                }
-                                .buttonStyle(FunRowButtonStyle())
-                            }
-                            .padding(10)
-                            .background(Color.secondary.opacity(0.08))
-                            .cornerRadius(10)
-                        }
-
-                        // Play Button
-                        Button(action: onPlay) {
-                            HStack {
-                                Spacer()
-                                Label(game.levelStars > 0 ? NSLocalizedString("btn_play_again", comment: "Play Again") : NSLocalizedString("btn_start_game", comment: "Start Game"), systemImage: "play.fill")
-                                    .font(.headline)
-                                    .foregroundColor(.white)
-                                Spacer()
-                            }
-                            .padding(.vertical, 12)
-                            .background(Color.blue)
-                            .cornerRadius(12)
-                        }
-                        .buttonStyle(FunActionButtonStyle())
-                        .accessibilityIdentifier("btn_start_game")
-                    } else {
-                        // Locked Info Section
-                        HStack(spacing: 12) {
-                            Image(systemName: "lock.circle.fill")
-                                .font(.title)
-                                .foregroundColor(.red)
-
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text(lockReasonTitle)
-                                    .font(.headline)
-                                    .foregroundColor(.primary)
-
-                                if game.level != .godlike {
-                                    HStack(spacing: 4) {
-                                        Text(LocalizedStringKey("req_stars_prefix"))
-                                        
-                                        if game.requiredGoldStars > 0 {
-                                            Image(systemName: "star.circle.fill")
-                                                .foregroundColor(.yellow)
-                                                .font(.caption)
-                                            Text("\(game.requiredGoldStars)")
-                                        }
-                                    }
-                                    .font(.caption)
-                                    .foregroundColor(.secondary)
-                                }
-                            }
-
-                            Spacer()
-
-                            if (game.level >= .medium || game.level == .godlike) && (game.lockReason == .requiresPurchase || game.lockReason == .requiresSubscription || game.lockReason == .godlikeLocked) {
-                                Button(action: onPlay) {
-                                    Text(LocalizedStringKey("btn_buy"))
-                                        .font(.subheadline.bold())
-                                        .foregroundColor(.white)
-                                        .padding(.horizontal, 16)
-                                        .padding(.vertical, 8)
-                                        .background(FunColors.chalkboardGreen)
-                                        .cornerRadius(10)
-                                }
-                                .buttonStyle(FunActionButtonStyle())
-                            }
-                        }
-                    }
-                }
-                .padding(14)
-                .background(Color.secondary.opacity(0.05))
-            }
-        }
-        .background(Color.secondary.opacity(0.06))
-        .cornerRadius(16)
-        .overlay(
-            RoundedRectangle(cornerRadius: 16)
-                .stroke(Color.primary.opacity(0.06), lineWidth: 1)
-        )
-        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("iFunSchoolItemProgressUpdated"))) { _ in
-            progressRefreshTrigger.toggle()
-        }
-    }
-
-    private var iconBackgroundColor: Color {
-        switch game.gameType {
-        case .addition, .subtraction, .multiplication, .division, .order, .sequences, .equations:
-            return .blue
-        case .memoryAdd, .memoryAddSub, .memoryAddSubMult, .memoryShapes, .memoryColors:
-            return .purple
-        case .chemSymbols, .chemNames:
-            return .green
-        case .flags:
-            return .orange
-        }
-    }
-
-    private var levelBadgeColor: Color {
-        switch game.level {
-        case .beginner: return .green
-        case .easy: return .blue
-        case .medium: return .orange
-        case .hard: return .purple
-        case .ultimate: return .red
-        case .godlike: return .black
-        }
-    }
-
-    private var statusColor: Color {
-        switch game.gameStatus {
-        case .perfect: return .green
-        case .standard: return .blue
-        case .unplayed: return .gray
-        case .locked: return .red
-        }
-    }
-
-    private var statusIcon: String {
-        switch game.gameStatus {
-        case .perfect: return "star.circle.fill"
-        case .standard: return "play.circle.fill"
-        case .unplayed: return "circle"
-        case .locked: return "lock.fill"
-        }
-    }
-
-    private var lockReasonTitle: String {
-        if game.lockReason == .requiresPurchase || game.lockReason == .requiresSubscription || game.lockReason == .godlikeLocked {
-            return NSLocalizedString("lock_reason_godlike_title", comment: "Purchase Required")
-        }
-        return NSLocalizedString("lock_stars_req_title", comment: "Stars Required")
-    }
-
-    private var lockReasonMessage: String {
-        if game.level == .godlike && (game.lockReason == .requiresPurchase || game.lockReason == .godlikeLocked) {
-            return NSLocalizedString("lock_reason_godlike", comment: "Unlock Master level in Shop")
-        } else if game.lockReason == .requiresPurchase || game.lockReason == .requiresSubscription {
-            return NSLocalizedString("lock_reason_requires_purchase_msg", comment: "Unlock in Shop to play this level")
-        }
-        
-        if game.requiredGoldStars > 0 {
-            let formatStr = NSLocalizedString("lock_stars_req_msg", comment: "Collect stars to unlock")
-            return String(format: formatStr, game.requiredGoldStars)
-        } else {
-            return ""
-        }
-    }
-}
 
 // MARK: - Helper Status Pill
 struct StatusPill: View {
@@ -890,6 +575,25 @@ struct StatusPill: View {
         .padding(.vertical, 6)
         .background(color.opacity(0.12))
         .cornerRadius(8)
+    }
+}
+
+fileprivate extension View {
+    @ViewBuilder
+    func onScrollTargetChange(of id: String?, action: @escaping (String) -> Void) -> some View {
+        if #available(iOS 17.0, macOS 14.0, tvOS 17.0, *) {
+            self.onChange(of: id) { _, newId in
+                if let newId = newId {
+                    action(newId)
+                }
+            }
+        } else {
+            self.onChange(of: id) { newId in
+                if let newId = newId {
+                    action(newId)
+                }
+            }
+        }
     }
 }
 
