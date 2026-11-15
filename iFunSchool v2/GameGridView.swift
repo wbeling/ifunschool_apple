@@ -18,6 +18,11 @@ struct GameGridView: View {
     let onOpenStore: () -> Void
     let onShowProgressGrid: (ProgressCategory) -> Void
 
+    #if os(tvOS)
+    @FocusState private var focusedTileType: GameType?
+    #endif
+    @FocusState private var focusedExpandedItemId: String?
+
     private var horizontalPadding: CGFloat {
         #if os(tvOS)
         return 36
@@ -65,6 +70,9 @@ struct GameGridView: View {
                                         )
                                         .frame(maxWidth: .infinity)
                                         .id("grid_tile_\(group.gameType.rawValue)")
+                                        #if os(tvOS)
+                                        .focused($focusedTileType, equals: group.gameType)
+                                        #endif
                                     }
 
                                     // Pad incomplete last row so all grid cells share equal width
@@ -80,10 +88,19 @@ struct GameGridView: View {
                                     GameGridExpandedDetailView(
                                         group: expandedGroup,
                                         totalGoldStars: totalGoldStars,
+                                        focusedExpandedItemId: $focusedExpandedItemId,
                                         onClose: {
+                                            #if os(tvOS)
+                                            let closingType = expandedGroup.gameType
+                                            #endif
                                             withAnimation(.spring(response: 0.35, dampingFraction: 0.82)) {
                                                 onToggleExpand(expandedGroup.gameType)
                                             }
+                                            #if os(tvOS)
+                                            DispatchQueue.main.async {
+                                                focusedTileType = closingType
+                                            }
+                                            #endif
                                         },
                                         onPlay: onPlay,
                                         onOpenStore: onOpenStore,
@@ -102,10 +119,26 @@ struct GameGridView: View {
                 }
                 .onChange(of: expandedGameType) { _, newType in
                     guard let newType = newType else { return }
+                    #if os(tvOS)
+                    let firstItemId = groups
+                        .first(where: { $0.gameType == newType })?
+                        .levels
+                        .first(where: { $0.hasGridActionButton })?
+                        .id
+                    #endif
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
                         withAnimation(.easeInOut(duration: 0.3)) {
                             scrollProxy.scrollTo("grid_expanded_\(newType.rawValue)", anchor: .center)
                         }
+                        #if os(tvOS)
+                        if let firstItemId = firstItemId, expandedGameType == newType {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                                if expandedGameType == newType {
+                                    focusedExpandedItemId = firstItemId
+                                }
+                            }
+                        }
+                        #endif
                     }
                 }
                 .onChange(of: scrollToGameType) { _, targetType in
@@ -364,6 +397,7 @@ struct GameGridTileView: View {
 struct GameGridExpandedDetailView: View {
     let group: GameGroup
     let totalGoldStars: Int
+    var focusedExpandedItemId: FocusState<String?>.Binding
     let onClose: () -> Void
     let onPlay: (GameItem) -> Void
     let onOpenStore: () -> Void
@@ -432,6 +466,7 @@ struct GameGridExpandedDetailView: View {
                     GameGridDifficultyRow(
                         item: item,
                         totalGoldStars: totalGoldStars,
+                        focusedExpandedItemId: focusedExpandedItemId,
                         onPlay: { onPlay(item) },
                         onOpenStore: onOpenStore
                     )
@@ -446,6 +481,9 @@ struct GameGridExpandedDetailView: View {
                 .stroke(group.gameType.categoryColor.opacity(0.35), lineWidth: 1.5)
         )
         .shadow(color: Color.black.opacity(colorScheme == .dark ? 0.35 : 0.08), radius: 8, y: 3)
+        #if os(tvOS)
+        .focusSection()
+        #endif
         .accessibilityIdentifier("grid_expanded_detail_\(group.gameType.rawValue)")
     }
 
@@ -462,6 +500,7 @@ struct GameGridExpandedDetailView: View {
 private struct GameGridDifficultyRow: View {
     let item: GameItem
     let totalGoldStars: Int
+    var focusedExpandedItemId: FocusState<String?>.Binding
     let onPlay: () -> Void
     let onOpenStore: () -> Void
 
@@ -553,6 +592,7 @@ private struct GameGridDifficultyRow: View {
                     .cornerRadius(10)
                 }
                 .buttonStyle(FunActionButtonStyle(cornerRadius: 10))
+                .focused(focusedExpandedItemId, equals: item.id)
                 .accessibilityIdentifier("btn_start_game_\(item.id)")
             } else if isPurchaseGated {
                 Button(action: onOpenStore) {
@@ -569,6 +609,7 @@ private struct GameGridDifficultyRow: View {
                     .cornerRadius(10)
                 }
                 .buttonStyle(FunActionButtonStyle(cornerRadius: 10))
+                .focused(focusedExpandedItemId, equals: item.id)
             } else {
                 Text(LocalizedStringKey("badge_locked"))
                     .font(.caption2.bold())
@@ -601,8 +642,7 @@ private struct GameGridDifficultyRow: View {
     }
 
     private var isPurchaseGated: Bool {
-        (item.level >= .medium || item.level == .godlike) &&
-        (item.lockReason == .requiresPurchase || item.lockReason == .requiresSubscription || item.lockReason == .godlikeLocked)
+        item.isGridPurchaseGated
     }
 
     private var lockReasonDescription: String {
@@ -616,6 +656,17 @@ private struct GameGridDifficultyRow: View {
         } else {
             return NSLocalizedString("lock_reason_not_enough_stars", comment: "Collect more stars")
         }
+    }
+}
+
+private extension GameItem {
+    var isGridPurchaseGated: Bool {
+        (level >= .medium || level == .godlike) &&
+        (lockReason == .requiresPurchase || lockReason == .requiresSubscription || lockReason == .godlikeLocked)
+    }
+
+    var hasGridActionButton: Bool {
+        isUnlocked || isGridPurchaseGated
     }
 }
 
