@@ -79,7 +79,7 @@ class StoreKitService: ObservableObject {
     }
 
     var goldStarsLimit: Int {
-        return 96
+        return 126
     }
 
     // MARK: - Product Fetching & Duration Sorting

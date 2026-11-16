@@ -585,6 +585,11 @@ struct ContentView: View {
         case .flags: return .flags
         case .capitals: return .capitals
         case .chemSymbols, .chemNames: return .elements
+        case .romanNumerals: return .romanNumerals
+        case .powersRoots: return .powersRoots
+        case .fractions: return .fractions
+        case .unitConversions: return .unitConversions
+        case .chemCompounds: return .compounds
         default: return .addition
         }
     }

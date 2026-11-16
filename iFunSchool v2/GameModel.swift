@@ -1,6 +1,40 @@
 import Foundation
 import SwiftUI
 
+enum ProgressCategory: String, CaseIterable, Identifiable {
+    case addition = "Dodawanie"
+    case subtraction = "Odejmowanie"
+    case multiplication = "Mnożenie"
+    case division = "Dzielenie"
+    case flags = "Flagi"
+    case capitals = "Stolice"
+    case elements = "Pierwiastki"
+    case compounds = "Związki"
+    case romanNumerals = "Rzymskie"
+    case powersRoots = "Potęgi"
+    case fractions = "Ułamki"
+    case unitConversions = "Jednostki"
+
+    var id: String { rawValue }
+
+    var title: String {
+        switch self {
+        case .addition: return NSLocalizedString("progress_cat_addition", comment: "Addition")
+        case .subtraction: return NSLocalizedString("progress_cat_subtraction", comment: "Subtraction")
+        case .multiplication: return NSLocalizedString("progress_cat_multiplication", comment: "Multiplication")
+        case .division: return NSLocalizedString("progress_cat_division", comment: "Division")
+        case .flags: return NSLocalizedString("progress_cat_flags", comment: "Flags")
+        case .capitals: return NSLocalizedString("progress_cat_capitals", comment: "Capitals")
+        case .elements: return NSLocalizedString("progress_cat_elements", comment: "Elements")
+        case .compounds: return NSLocalizedString("progress_cat_compounds", comment: "Chemical Compounds")
+        case .romanNumerals: return NSLocalizedString("progress_cat_roman", comment: "Roman Numerals")
+        case .powersRoots: return NSLocalizedString("progress_cat_powers", comment: "Powers & Roots")
+        case .fractions: return NSLocalizedString("progress_cat_fractions", comment: "Fractions & Percentages")
+        case .unitConversions: return NSLocalizedString("progress_cat_units", comment: "Unit Conversions")
+        }
+    }
+}
+
 enum GameType: Int, CaseIterable, Identifiable {
     case addition = 1
     case multiplication = 2
@@ -18,6 +52,11 @@ enum GameType: Int, CaseIterable, Identifiable {
     case chemNames = 14
     case flags = 15
     case capitals = 16
+    case romanNumerals = 17
+    case powersRoots = 18
+    case fractions = 19
+    case unitConversions = 20
+    case chemCompounds = 21
 
     var id: Int { rawValue }
 
@@ -39,6 +78,11 @@ enum GameType: Int, CaseIterable, Identifiable {
         case .chemNames: return NSLocalizedString("game_chem_names", comment: "Chemical Names")
         case .flags: return NSLocalizedString("game_flags", comment: "Country Flags")
         case .capitals: return NSLocalizedString("game_capitals", comment: "Countries - Cities")
+        case .romanNumerals: return NSLocalizedString("game_roman_numerals", comment: "Roman Numerals")
+        case .powersRoots: return NSLocalizedString("game_powers_roots", comment: "Powers & Roots")
+        case .fractions: return NSLocalizedString("game_fractions", comment: "Fractions & Percentages")
+        case .unitConversions: return NSLocalizedString("game_unit_conversions", comment: "Unit Conversions")
+        case .chemCompounds: return NSLocalizedString("game_chem_compounds", comment: "Chemical Compounds")
         }
     }
 
@@ -60,16 +104,23 @@ enum GameType: Int, CaseIterable, Identifiable {
         case .chemNames: return "flask.fill"
         case .flags: return "flag.fill"
         case .capitals: return "building.2.fill"
+        case .romanNumerals: return "building.columns.fill"
+        case .powersRoots: return "x.squareroot"
+        case .fractions: return "percent"
+        case .unitConversions: return "ruler.fill"
+        case .chemCompounds: return "testtube.2"
         }
     }
 
     var categoryColor: Color {
         switch self {
-        case .addition, .subtraction, .multiplication, .division, .order, .sequences, .equations:
+        case .addition, .subtraction, .multiplication, .division, .order, .sequences, .equations, .romanNumerals, .powersRoots, .fractions:
             return .blue
         case .memoryAdd, .memoryAddSub, .memoryAddSubMult, .memoryShapes, .memoryColors:
             return .purple
-        case .chemSymbols, .chemNames:
+        case .unitConversions:
+            return .teal
+        case .chemSymbols, .chemNames, .chemCompounds:
             return .green
         case .flags, .capitals:
             return .orange
@@ -85,6 +136,11 @@ enum GameType: Int, CaseIterable, Identifiable {
         case .flags: return .flags
         case .capitals: return .capitals
         case .chemSymbols, .chemNames: return .elements
+        case .romanNumerals: return .romanNumerals
+        case .powersRoots: return .powersRoots
+        case .fractions: return .fractions
+        case .unitConversions: return .unitConversions
+        case .chemCompounds: return .compounds
         default: return nil
         }
     }

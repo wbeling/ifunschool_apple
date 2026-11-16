@@ -274,5 +274,129 @@ final class QuestionGeneratorTests: XCTestCase {
         XCTAssertEqual(Set(qAskCountry.options).count, 4)
         XCTAssertEqual(qAskCountry.options[qAskCountry.correctIndex], gen.localizedCountryName(for: "Poland"))
     }
+
+    // MARK: - 9. Roman Numerals Tests
+    func testRomanNumeralsAllLevelsAndProgress() throws {
+        let gen = QuestionGenerator.shared
+        XCTAssertEqual(gen.toRoman(4), "IV")
+        XCTAssertEqual(gen.toRoman(49), "XLIX")
+        XCTAssertEqual(gen.toRoman(1999), "MCMXCIX")
+        XCTAssertEqual(gen.toRoman(3999), "MMMCMXCIX")
+
+        XCTAssertEqual(gen.itemKeysForLevel(gameType: .romanNumerals, level: .beginner).count, 20)
+        XCTAssertEqual(gen.itemKeysForLevel(gameType: .romanNumerals, level: .easy).count, 50)
+        XCTAssertEqual(gen.itemKeysForLevel(gameType: .romanNumerals, level: .medium).count, 100)
+        XCTAssertEqual(gen.itemKeysForLevel(gameType: .romanNumerals, level: .hard).count, 40)
+        XCTAssertEqual(gen.itemKeysForLevel(gameType: .romanNumerals, level: .ultimate).count, 40)
+        XCTAssertTrue(gen.itemKeysForLevel(gameType: .romanNumerals, level: .godlike).isEmpty)
+
+        for level in GameLevel.allCases {
+            for _ in 0..<25 {
+                let q = gen.generateQuestion(gameType: .romanNumerals, level: level)
+                XCTAssertFalse(q.text.isEmpty)
+                XCTAssertEqual(q.options.count, 4)
+                XCTAssertEqual(Set(q.options).count, 4)
+                XCTAssertTrue(q.correctIndex >= 0 && q.correctIndex < 4)
+            }
+            let session = gen.generateGameQuestions(gameType: .romanNumerals, level: level, playerID: "test_roman", count: 15)
+            XCTAssertEqual(session.count, 15)
+            XCTAssertEqual(Set(session.map { $0.itemKey }).count, 15, "Session questions should be unique for Roman Numerals \(level)")
+        }
+    }
+
+    // MARK: - 10. Powers & Roots Tests
+    func testPowersRootsAllLevelsAndProgress() throws {
+        let gen = QuestionGenerator.shared
+        XCTAssertEqual(gen.itemKeysForLevel(gameType: .powersRoots, level: .beginner).count, 25)
+        XCTAssertEqual(gen.itemKeysForLevel(gameType: .powersRoots, level: .easy).count, 40)
+        XCTAssertEqual(gen.itemKeysForLevel(gameType: .powersRoots, level: .medium).count, 31)
+        XCTAssertEqual(gen.itemKeysForLevel(gameType: .powersRoots, level: .hard).count, 39)
+        XCTAssertEqual(gen.itemKeysForLevel(gameType: .powersRoots, level: .ultimate).count, 26)
+        XCTAssertTrue(gen.itemKeysForLevel(gameType: .powersRoots, level: .godlike).isEmpty)
+
+        for level in GameLevel.allCases {
+            for _ in 0..<25 {
+                let q = gen.generateQuestion(gameType: .powersRoots, level: level)
+                XCTAssertFalse(q.text.isEmpty)
+                XCTAssertEqual(q.options.count, 4)
+                XCTAssertEqual(Set(q.options).count, 4)
+                XCTAssertTrue(q.correctIndex >= 0 && q.correctIndex < 4)
+            }
+            let session = gen.generateGameQuestions(gameType: .powersRoots, level: level, playerID: "test_powers", count: 15)
+            XCTAssertEqual(session.count, 15)
+            XCTAssertEqual(Set(session.map { $0.itemKey }).count, 15, "Session questions should be unique for Powers & Roots \(level)")
+        }
+    }
+
+    // MARK: - 11. Fractions, Decimals & Percentages Tests
+    func testFractionsAllLevelsAndProgress() throws {
+        let gen = QuestionGenerator.shared
+        XCTAssertEqual(gen.itemKeysForLevel(gameType: .fractions, level: .beginner).count, 25)
+        XCTAssertEqual(gen.itemKeysForLevel(gameType: .fractions, level: .easy).count, 30)
+        XCTAssertEqual(gen.itemKeysForLevel(gameType: .fractions, level: .medium).count, 30)
+        XCTAssertEqual(gen.itemKeysForLevel(gameType: .fractions, level: .hard).count, 30)
+        XCTAssertEqual(gen.itemKeysForLevel(gameType: .fractions, level: .ultimate).count, 30)
+        XCTAssertTrue(gen.itemKeysForLevel(gameType: .fractions, level: .godlike).isEmpty)
+
+        for level in GameLevel.allCases {
+            for _ in 0..<25 {
+                let q = gen.generateQuestion(gameType: .fractions, level: level)
+                XCTAssertFalse(q.text.isEmpty)
+                XCTAssertEqual(q.options.count, 4)
+                XCTAssertEqual(Set(q.options).count, 4)
+                XCTAssertTrue(q.correctIndex >= 0 && q.correctIndex < 4)
+            }
+            let session = gen.generateGameQuestions(gameType: .fractions, level: level, playerID: "test_frac", count: 15)
+            XCTAssertEqual(session.count, 15)
+            XCTAssertEqual(Set(session.map { $0.itemKey }).count, 15, "Session questions should be unique for Fractions \(level)")
+        }
+    }
+
+    // MARK: - 12. Unit Conversions & SI Prefixes Tests
+    func testUnitConversionsAllLevelsAndProgress() throws {
+        let gen = QuestionGenerator.shared
+        XCTAssertEqual(gen.allUnitConversionItems.count, 150)
+        for level in GameLevel.allCases {
+            XCTAssertEqual(gen.itemKeysForLevel(gameType: .unitConversions, level: level).count, 25)
+            for _ in 0..<25 {
+                let q = gen.generateQuestion(gameType: .unitConversions, level: level)
+                XCTAssertFalse(q.text.isEmpty)
+                XCTAssertEqual(q.options.count, 4)
+                XCTAssertEqual(Set(q.options).count, 4)
+                XCTAssertTrue(q.correctIndex >= 0 && q.correctIndex < 4)
+            }
+            let session = gen.generateGameQuestions(gameType: .unitConversions, level: level, playerID: "test_units", count: 15)
+            XCTAssertEqual(session.count, 15)
+            XCTAssertEqual(Set(session.map { $0.itemKey }).count, 15, "Session questions should be unique for Unit Conversions \(level)")
+        }
+    }
+
+    // MARK: - 13. Chemical Compounds & Formulas Tests
+    func testChemCompoundsAllLevelsAndProgress() throws {
+        let gen = QuestionGenerator.shared
+        XCTAssertEqual(gen.allCompounds.count, 100)
+        XCTAssertEqual(Set(gen.allCompounds.map { $0.formula }).count, 100)
+        XCTAssertEqual(Set(gen.allCompounds.map { $0.key }).count, 100)
+
+        XCTAssertEqual(gen.itemKeysForLevel(gameType: .chemCompounds, level: .beginner).count, 20)
+        XCTAssertEqual(gen.itemKeysForLevel(gameType: .chemCompounds, level: .easy).count, 40)
+        XCTAssertEqual(gen.itemKeysForLevel(gameType: .chemCompounds, level: .medium).count, 40)
+        XCTAssertEqual(gen.itemKeysForLevel(gameType: .chemCompounds, level: .hard).count, 40)
+        XCTAssertEqual(gen.itemKeysForLevel(gameType: .chemCompounds, level: .ultimate).count, 35)
+        XCTAssertEqual(gen.itemKeysForLevel(gameType: .chemCompounds, level: .godlike).count, 30)
+
+        for level in GameLevel.allCases {
+            for _ in 0..<25 {
+                let q = gen.generateQuestion(gameType: .chemCompounds, level: level)
+                XCTAssertFalse(q.text.isEmpty)
+                XCTAssertEqual(q.options.count, 4)
+                XCTAssertEqual(Set(q.options).count, 4)
+                XCTAssertTrue(q.correctIndex >= 0 && q.correctIndex < 4)
+            }
+            let session = gen.generateGameQuestions(gameType: .chemCompounds, level: level, playerID: "test_compounds", count: 15)
+            XCTAssertEqual(session.count, 15)
+            XCTAssertEqual(Set(session.map { $0.itemKey }).count, 15, "Session questions should be unique for Chemical Compounds \(level)")
+        }
+    }
 }
 

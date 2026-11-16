@@ -305,11 +305,13 @@ struct GameRowView: View {
 
     private var iconBackgroundColor: Color {
         switch game.gameType {
-        case .addition, .subtraction, .multiplication, .division, .order, .sequences, .equations:
+        case .addition, .subtraction, .multiplication, .division, .order, .sequences, .equations, .romanNumerals, .powersRoots, .fractions:
             return .blue
         case .memoryAdd, .memoryAddSub, .memoryAddSubMult, .memoryShapes, .memoryColors:
             return .purple
-        case .chemSymbols, .chemNames:
+        case .unitConversions:
+            return .teal
+        case .chemSymbols, .chemNames, .chemCompounds:
             return .green
         case .flags, .capitals:
             return .orange

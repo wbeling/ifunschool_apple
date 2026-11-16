@@ -1,1 +1,7 @@
 - new home screen view with icons (the list is still available if you want to use it)
+- new games added:
+ * Roman Numerals
+ * Powers * Roots
+ * Fractions & Percentages
+ * Unit Conversions
+ * Chemical Compounds

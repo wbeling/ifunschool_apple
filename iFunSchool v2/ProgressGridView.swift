@@ -1,29 +1,5 @@
 import SwiftUI
 
-enum ProgressCategory: String, CaseIterable, Identifiable {
-    case addition = "Dodawanie"
-    case subtraction = "Odejmowanie"
-    case multiplication = "Mnożenie"
-    case division = "Dzielenie"
-    case flags = "Flagi"
-    case capitals = "Stolice"
-    case elements = "Pierwiastki"
-
-    var id: String { rawValue }
-
-    var title: String {
-        switch self {
-        case .addition: return NSLocalizedString("progress_cat_addition", comment: "Addition")
-        case .subtraction: return NSLocalizedString("progress_cat_subtraction", comment: "Subtraction")
-        case .multiplication: return NSLocalizedString("progress_cat_multiplication", comment: "Multiplication")
-        case .division: return NSLocalizedString("progress_cat_division", comment: "Division")
-        case .flags: return NSLocalizedString("progress_cat_flags", comment: "Flags")
-        case .capitals: return NSLocalizedString("progress_cat_capitals", comment: "Capitals")
-        case .elements: return NSLocalizedString("progress_cat_elements", comment: "Elements")
-        }
-    }
-}
-
 enum ProgressFilter: String, CaseIterable, Identifiable {
     case all = "Wszystkie"
     case correct = "Poprawne"
@@ -160,6 +136,10 @@ struct ProgressGridView: View {
                         ForEach(filteredElementsItems, id: \.element.symbol) { item in
                             elementGridCell(item: item)
                         }
+                    } else if selectedCategory == .compounds {
+                        ForEach(filteredCompoundsItems, id: \.compound.formula) { item in
+                            compoundGridCell(item: item)
+                        }
                     } else {
                         ForEach(filteredMathItems, id: \.key) { item in
                             mathGridCell(item: item)
@@ -222,6 +202,11 @@ struct ProgressGridView: View {
         case .flags: return "flag.fill"
         case .capitals: return "building.2.fill"
         case .elements: return "atom"
+        case .compounds: return "testtube.2"
+        case .romanNumerals: return "building.columns.fill"
+        case .powersRoots: return "x.squareroot"
+        case .fractions: return "percent"
+        case .unitConversions: return "ruler.fill"
         }
     }
 
@@ -243,6 +228,13 @@ struct ProgressGridView: View {
     struct ElementProgressItem {
         let element: ElementInfo
         let atomicNumber: Int
+        let localizedName: String
+        let status: ItemStatus
+    }
+
+    struct CompoundProgressItem {
+        let compound: CompoundInfo
+        let indexNumber: Int
         let localizedName: String
         let status: ItemStatus
     }
@@ -319,8 +311,53 @@ struct ProgressGridView: View {
         }
     }
 
+    private var allCompoundsItems: [CompoundProgressItem] {
+        _ = refreshTrigger
+        let dict = ItemProgressTracker.shared.getProgressDict()
+        return generator.allCompounds.enumerated().map { index, comp in
+            let itemKey = "comp_\(comp.formula)"
+            let status = dict[itemKey]?.status ?? .notAsked
+            let localized = generator.localizedCompoundName(for: comp)
+            return CompoundProgressItem(compound: comp, indexNumber: index + 1, localizedName: localized, status: status)
+        }
+    }
+
+    private var filteredCompoundsItems: [CompoundProgressItem] {
+        switch selectedFilter {
+        case .all: return allCompoundsItems
+        case .correct: return allCompoundsItems.filter { $0.status == .correct }
+        case .incorrect: return allCompoundsItems.filter { $0.status == .incorrect }
+        case .notAsked: return allCompoundsItems.filter { $0.status == .notAsked }
+        }
+    }
+
     private var currentMathItems: [MathProgressItem] {
         _ = refreshTrigger
+        let dict = ItemProgressTracker.shared.getProgressDict()
+
+        if selectedCategory == .romanNumerals {
+            return generator.allTrackableRomanNumbers.map { num in
+                let key = "roman_\(num)"
+                let status = dict[key]?.status ?? .notAsked
+                return MathProgressItem(key: key, expression: "\(num)", resultStr: generator.toRoman(num), status: status)
+            }
+        } else if selectedCategory == .powersRoots {
+            return generator.allPowerRootItems.map { item in
+                let status = dict[item.key]?.status ?? .notAsked
+                return MathProgressItem(key: item.key, expression: item.expression, resultStr: item.answer, status: status)
+            }
+        } else if selectedCategory == .fractions {
+            return generator.allFractionItems.map { item in
+                let status = dict[item.key]?.status ?? .notAsked
+                return MathProgressItem(key: item.key, expression: item.expression, resultStr: item.answer, status: status)
+            }
+        } else if selectedCategory == .unitConversions {
+            return generator.allUnitConversionItems.map { item in
+                let status = dict[item.key]?.status ?? .notAsked
+                return MathProgressItem(key: item.key, expression: item.expression, resultStr: item.answer, status: status)
+            }
+        }
+
         let keys: [String]
         switch selectedCategory {
         case .addition:
@@ -334,8 +371,6 @@ struct ProgressGridView: View {
         default:
             keys = []
         }
-
-        let dict = ItemProgressTracker.shared.getProgressDict()
 
         return keys.map { key in
             let status = dict[key]?.status ?? .notAsked
@@ -398,6 +433,11 @@ struct ProgressGridView: View {
             correctCount = allElementsItems.filter { $0.status == .correct }.count
             wrongCount = allElementsItems.filter { $0.status == .incorrect }.count
             notAskedCount = allElementsItems.filter { $0.status == .notAsked }.count
+        } else if selectedCategory == .compounds {
+            total = allCompoundsItems.count
+            correctCount = allCompoundsItems.filter { $0.status == .correct }.count
+            wrongCount = allCompoundsItems.filter { $0.status == .incorrect }.count
+            notAskedCount = allCompoundsItems.filter { $0.status == .notAsked }.count
         } else {
             total = currentMathItems.count
             correctCount = currentMathItems.filter { $0.status == .correct }.count
@@ -538,6 +578,39 @@ struct ProgressGridView: View {
         .buttonStyle(ProgressGridCellButtonStyle(status: item.status))
     }
 
+    // MARK: - Compound Grid Cell
+    private func compoundGridCell(item: CompoundProgressItem) -> some View {
+        Button(action: {}) {
+            VStack(spacing: 4) {
+                HStack {
+                    Text("\(item.indexNumber)")
+                        .font(.caption2.bold())
+                        .foregroundColor(.secondary)
+                    Spacer()
+                    statusIndicator(status: item.status)
+                }
+
+                Text(item.compound.formula)
+                    .font(.title3.bold())
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.65)
+                    .foregroundColor(.primary)
+
+                Text(item.localizedName)
+                    .font(.caption2.weight(.medium))
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.75)
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(.secondary)
+                    .frame(height: 28)
+            }
+            .padding(10)
+            .background(cardBackgroundColor(for: item.status))
+            .cornerRadius(12)
+        }
+        .buttonStyle(ProgressGridCellButtonStyle(status: item.status))
+    }
+
     // MARK: - Math Grid Cell
     private func mathGridCell(item: MathProgressItem) -> some View {
         Button(action: {}) {
@@ -549,10 +622,14 @@ struct ProgressGridView: View {
 
                 Text(item.expression)
                     .font(.title3.bold())
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.65)
                     .foregroundColor(.primary)
 
                 Text("= \(item.resultStr)")
                     .font(.caption.bold())
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.65)
                     .foregroundColor(.secondary)
             }
             .padding(10)
