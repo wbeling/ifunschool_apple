@@ -468,22 +468,34 @@ struct ContentView: View {
 
     // MARK: - Global Footer Bar
     private var globalFooterBar: some View {
-        ViewThatFits(in: .horizontal) {
-            // 1. Full Footer (with text labels) when enough horizontal space exists
-            footerContent(showLabels: true)
+        footerBarContent
+            .padding(.horizontal, 20)
+            .padding(.vertical, 10)
+            .background(.ultraThinMaterial)
+            .overlay(
+                Rectangle()
+                    .frame(height: 1)
+                    .foregroundColor(Color.gray.opacity(0.2)),
+                alignment: .top
+            )
+    }
 
-            // 2. Compact Footer (stars + number, total points only) when space is constrained
-            footerContent(showLabels: false)
+    @ViewBuilder
+    private var footerBarContent: some View {
+        if #available(iOS 16.0, macOS 13.0, tvOS 16.0, *) {
+            ViewThatFits(in: .horizontal) {
+                // 1. Full Footer (with text labels) when enough horizontal space exists
+                footerContent(showLabels: true)
+
+                // 2. Compact Footer (stars + number, total points only) when space is constrained
+                footerContent(showLabels: false)
+            }
+        } else {
+            HorizontalFitFallback(
+                full: footerContent(showLabels: true),
+                compact: footerContent(showLabels: false)
+            )
         }
-        .padding(.horizontal, 20)
-        .padding(.vertical, 10)
-        .background(.ultraThinMaterial)
-        .overlay(
-            Rectangle()
-                .frame(height: 1)
-                .foregroundColor(Color.gray.opacity(0.2)),
-            alignment: .top
-        )
     }
 
     @ViewBuilder
@@ -645,6 +657,67 @@ struct StatusPill: View {
         .padding(.vertical, 6)
         .background(color.opacity(0.12))
         .cornerRadius(8)
+    }
+}
+
+private struct ContainerWidthPreferenceKey: PreferenceKey {
+    static let defaultValue: CGFloat = 0
+
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value = nextValue()
+    }
+}
+
+private struct FullContentWidthPreferenceKey: PreferenceKey {
+    static let defaultValue: CGFloat = 0
+
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value = nextValue()
+    }
+}
+
+/// Measures whether the full horizontal footer fits within the available width on iOS versions prior to 16.0.
+private struct HorizontalFitFallback<Full: View, Compact: View>: View {
+    let full: Full
+    let compact: Compact
+
+    @State private var containerWidth: CGFloat = 0
+    @State private var fullIdealWidth: CGFloat = 0
+
+    private var showsFull: Bool {
+        containerWidth == 0 || fullIdealWidth == 0 || fullIdealWidth <= containerWidth
+    }
+
+    var body: some View {
+        ZStack {
+            if showsFull {
+                full
+            } else {
+                compact
+            }
+        }
+        .frame(maxWidth: .infinity)
+        .background(
+            GeometryReader { proxy in
+                Color.clear
+                    .preference(key: ContainerWidthPreferenceKey.self, value: proxy.size.width)
+            }
+        )
+        .background(
+            full
+                .fixedSize(horizontal: true, vertical: false)
+                .hidden()
+                .accessibilityHidden(true)
+                .allowsHitTesting(false)
+                .background(
+                    GeometryReader { proxy in
+                        Color.clear
+                            .preference(key: FullContentWidthPreferenceKey.self, value: proxy.size.width)
+                    }
+                )
+        )
+        .onPreferenceChange(ContainerWidthPreferenceKey.self) { containerWidth = $0 }
+        .onPreferenceChange(FullContentWidthPreferenceKey.self) { fullIdealWidth = $0 }
     }
 }
 

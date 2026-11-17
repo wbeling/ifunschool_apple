@@ -111,7 +111,7 @@ class StreakTracker: ObservableObject {
     // MARK: - Refresh Streak State
     func refreshStreakData(for playerID: String = ScoreStorage.shared.activePlayerID) {
         let datesSet = getPlayedDates(for: playerID)
-        let count = min(30, datesSet.count)
+        let count = min(21, datesSet.count)
         let sortedRecords = Array(datesSet).sorted { r1, r2 in
             if r1.year != r2.year { return r1.year < r2.year }
             if r1.month != r2.month { return r1.month < r2.month }
@@ -126,7 +126,7 @@ class StreakTracker: ObservableObject {
             DispatchQueue.main.async {
                 self.streakCount = count
                 self.hasPlayedToday = playedToday
-                self.currentGoalDay = min(30, count + 1)
+                self.currentGoalDay = min(21, count + 1)
                 self.playedDatesRecords = sortedRecords
                 NotificationCenter.default.post(name: NSNotification.Name("iFunSchoolStreakUpdated"), object: nil)
 
@@ -168,7 +168,7 @@ class StreakTracker: ObservableObject {
                 datesSet.insert(todayRecord)
                 self.persistPlayedDates(datesSet, for: playerID)
 
-                let newCount = min(30, datesSet.count)
+                let newCount = min(21, datesSet.count)
                 let sortedRecords = Array(datesSet).sorted { r1, r2 in
                     if r1.year != r2.year { return r1.year < r2.year }
                     if r1.month != r2.month { return r1.month < r2.month }
@@ -178,7 +178,7 @@ class StreakTracker: ObservableObject {
                 DispatchQueue.main.async {
                     self.streakCount = newCount
                     self.hasPlayedToday = true
-                    self.currentGoalDay = min(30, newCount + 1)
+                    self.currentGoalDay = min(21, newCount + 1)
                     self.playedDatesRecords = sortedRecords
                     NotificationCenter.default.post(name: NSNotification.Name("iFunSchoolStreakUpdated"), object: nil)
 

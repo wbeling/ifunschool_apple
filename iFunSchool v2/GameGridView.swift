@@ -117,7 +117,8 @@ struct GameGridView: View {
                     .padding(.top, 12)
                     .padding(.bottom, 24)
                 }
-                .onChange(of: expandedGameType) { _, newType in
+                // we need to support iOS 16.7
+                .onChange(of: expandedGameType) { newType in
                     guard let newType = newType else { return }
                     #if os(tvOS)
                     let firstItemId = groups
@@ -141,7 +142,8 @@ struct GameGridView: View {
                         #endif
                     }
                 }
-                .onChange(of: scrollToGameType) { _, targetType in
+                // we need to support iOS 16.7
+                .onChange(of: scrollToGameType) { targetType in
                     guard let targetType = targetType else { return }
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) {
                         withAnimation(.easeInOut(duration: 0.3)) {
@@ -218,9 +220,11 @@ struct GameGridTileView: View {
                 // Game Icon + optional Godlike Crown indicator
                 ZStack(alignment: .topTrailing) {
                     ZStack {
-                        RoundedRectangle(cornerRadius: iconCornerRadius)
-                            .fill(group.gameType.categoryColor.gradient)
-                            .frame(width: iconSize, height: iconSize)
+                        CategoryIconBackground(
+                            color: group.gameType.categoryColor,
+                            cornerRadius: iconCornerRadius
+                        )
+                        .frame(width: iconSize, height: iconSize)
 
                         Image(systemName: group.gameType.systemIcon)
                             .font(iconSymbolFont)
@@ -410,9 +414,11 @@ struct GameGridExpandedDetailView: View {
             // Detail Header
             HStack(spacing: 12) {
                 ZStack {
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(group.gameType.categoryColor.gradient)
-                        .frame(width: headerIconSize, height: headerIconSize)
+                    CategoryIconBackground(
+                        color: group.gameType.categoryColor,
+                        cornerRadius: 10
+                    )
+                    .frame(width: headerIconSize, height: headerIconSize)
 
                     Image(systemName: group.gameType.systemIcon)
                         .font(.headline)
@@ -655,6 +661,21 @@ private struct GameGridDifficultyRow: View {
             return String(format: formatStr, item.requiredGoldStars)
         } else {
             return NSLocalizedString("lock_reason_not_enough_stars", comment: "Collect more stars")
+        }
+    }
+}
+
+private struct CategoryIconBackground: View {
+    let color: Color
+    let cornerRadius: CGFloat
+
+    var body: some View {
+        if #available(iOS 16.0, macOS 13.0, tvOS 16.0, *) {
+            RoundedRectangle(cornerRadius: cornerRadius)
+                .fill(color.gradient)
+        } else {
+            RoundedRectangle(cornerRadius: cornerRadius)
+                .fill(color)
         }
     }
 }

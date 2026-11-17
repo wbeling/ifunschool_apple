@@ -211,9 +211,14 @@ class QuestionGenerator {
         if localized != key {
             return localized
         }
-        let preferredLang = Bundle.main.preferredLocalizations.first?.split(separator: "-").first.map(String.init)?.lowercased()
-            ?? Locale.current.language.languageCode?.identifier.lowercased()
-            ?? "en"
+        let preferredLang: String
+        if let bundleLang = Bundle.main.preferredLocalizations.first?.split(separator: "-").first.map(String.init)?.lowercased() {
+            preferredLang = bundleLang
+        } else if #available(iOS 16.0, macOS 13.0, tvOS 16.0, *) {
+            preferredLang = Locale.current.language.languageCode?.identifier.lowercased() ?? "en"
+        } else {
+            preferredLang = Locale.current.languageCode?.lowercased() ?? "en"
+        }
         return compound.names[preferredLang] ?? compound.names["en"] ?? compound.formula
     }
 

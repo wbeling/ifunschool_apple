@@ -29,6 +29,14 @@ class GameListViewModel: ObservableObject {
                 }
             }
             .store(in: &cancellables)
+
+        NotificationCenter.default.publisher(for: NSNotification.Name("iFunSchoolStreakUpdated"))
+            .sink { [weak self] _ in
+                DispatchQueue.main.async {
+                    self?.loadUserScores()
+                }
+            }
+            .store(in: &cancellables)
     }
 
     var availableLevels: [GameLevel] {
@@ -71,14 +79,16 @@ class GameListViewModel: ObservableObject {
 
         let isGodlikeUnlocked = StoreKitService.shared.isGodlikeUnlocked
         let isStarLimitUnlocked = StoreKitService.shared.isStarLimitUnlocked
+        let streakCount = StreakTracker.shared.streakCount
+        let maxFreeStars = (gamesPerPage - 1) + min(streakCount, gamesPerPage)
 
         self.rawGoldStars = rawGoldCount
         if isStarLimitUnlocked {
             self.totalGoldStars = rawGoldCount
             self.isStarLimitReached = false
         } else {
-            self.totalGoldStars = min(rawGoldCount, 21)
-            self.isStarLimitReached = (rawGoldCount >= 21)
+            self.totalGoldStars = min(rawGoldCount, maxFreeStars)
+            self.isStarLimitReached = (rawGoldCount >= maxFreeStars)
         }
 
         self.totalSilverStars = silverCount
@@ -87,50 +97,27 @@ class GameListViewModel: ObservableObject {
         // Update games with status, stars, and lock reason
         for i in 0..<games.count {
             let keyStr = "\(games[i].gameType.rawValue)_\(games[i].level.rawValue)"
+            let level = games[i].level
+            let typeIndex = games[i].gameType.rawValue
             let reqGold = games[i].requiredGoldStars
 
-            let hasEnoughGoldStars = (self.totalGoldStars >= reqGold)
-            let isGodlike = (games[i].level == .godlike)
+            let isTierAllowed: Bool
+            switch level {
+            case .beginner, .easy:
+                isTierAllowed = true
+            case .medium:
+                isTierAllowed = isStarLimitUnlocked || (streakCount >= typeIndex)
+            case .hard, .ultimate:
+                isTierAllowed = isStarLimitUnlocked
+            case .godlike:
+                isTierAllowed = isGodlikeUnlocked
+            }
 
-            if isGodlike {
-                if !isGodlikeUnlocked {
-                    games[i].gameStatus = .locked
-                    games[i].lockReason = .requiresPurchase
-                    games[i].highScore = 0
-                    games[i].perfectTime = 0
-                    games[i].levelStars = 0
-                } else {
-                    games[i].lockReason = nil
-                    if let record = scoresDict[keyStr] {
-                        games[i].highScore = Int(record.topScore)
-                        games[i].perfectTime = record.topTime
-                        games[i].levelStars = record.topStars
+            let isUnlockedForUser = (level == .godlike)
+                ? isTierAllowed
+                : (isTierAllowed && rawGoldCount >= reqGold)
 
-                        if record.topStars == 0 {
-                            games[i].gameStatus = .unplayed
-                        } else if record.topStars >= 5 {
-                            games[i].gameStatus = .perfect
-                        } else {
-                            games[i].gameStatus = .standard
-                        }
-                    } else {
-                        games[i].highScore = 0
-                        games[i].perfectTime = 0
-                        games[i].levelStars = 0
-                        games[i].gameStatus = .unplayed
-                    }
-                }
-            } else if !hasEnoughGoldStars {
-                games[i].gameStatus = .locked
-                if reqGold >= 22 && !isStarLimitUnlocked {
-                    games[i].lockReason = .requiresPurchase
-                } else {
-                    games[i].lockReason = .notEnoughStars
-                }
-                games[i].highScore = 0
-                games[i].perfectTime = 0
-                games[i].levelStars = 0
-            } else {
+            if isUnlockedForUser {
                 games[i].lockReason = nil
                 if let record = scoresDict[keyStr] {
                     games[i].highScore = Int(record.topScore)
@@ -150,6 +137,12 @@ class GameListViewModel: ObservableObject {
                     games[i].levelStars = 0
                     games[i].gameStatus = .unplayed
                 }
+            } else {
+                games[i].gameStatus = .locked
+                games[i].lockReason = isTierAllowed ? .notEnoughStars : .requiresPurchase
+                games[i].highScore = 0
+                games[i].perfectTime = 0
+                games[i].levelStars = 0
             }
         }
 

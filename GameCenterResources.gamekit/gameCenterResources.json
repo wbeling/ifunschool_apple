@@ -40,6 +40,96 @@
           "url" : "pl\/AchievementImage-pl.beling.ifunschool.add100-pl.png"
         }
       ],
+      "pl.beling.ifunschool.capitals10-de-DE" : [
+        {
+          "localID" : "pl.beling.ifunschool.capitals10-de-DE",
+          "url" : "de-DE\/AchievementImage-pl.beling.ifunschool.capitals10-de-DE.png"
+        }
+      ],
+      "pl.beling.ifunschool.capitals10-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.capitals10-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.capitals10-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.capitals10-es-ES" : [
+        {
+          "localID" : "pl.beling.ifunschool.capitals10-es-ES",
+          "url" : "es-ES\/AchievementImage-pl.beling.ifunschool.capitals10-es-ES.png"
+        }
+      ],
+      "pl.beling.ifunschool.capitals10-fr-FR" : [
+        {
+          "localID" : "pl.beling.ifunschool.capitals10-fr-FR",
+          "url" : "fr-FR\/AchievementImage-pl.beling.ifunschool.capitals10-fr-FR.png"
+        }
+      ],
+      "pl.beling.ifunschool.capitals10-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.capitals10-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.capitals10-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.capitals50-de-DE" : [
+        {
+          "localID" : "pl.beling.ifunschool.capitals50-de-DE",
+          "url" : "de-DE\/AchievementImage-pl.beling.ifunschool.capitals50-de-DE.png"
+        }
+      ],
+      "pl.beling.ifunschool.capitals50-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.capitals50-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.capitals50-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.capitals50-es-ES" : [
+        {
+          "localID" : "pl.beling.ifunschool.capitals50-es-ES",
+          "url" : "es-ES\/AchievementImage-pl.beling.ifunschool.capitals50-es-ES.png"
+        }
+      ],
+      "pl.beling.ifunschool.capitals50-fr-FR" : [
+        {
+          "localID" : "pl.beling.ifunschool.capitals50-fr-FR",
+          "url" : "fr-FR\/AchievementImage-pl.beling.ifunschool.capitals50-fr-FR.png"
+        }
+      ],
+      "pl.beling.ifunschool.capitals50-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.capitals50-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.capitals50-pl.png"
+        }
+      ],
+      "pl.beling.ifunschool.capitals100-de-DE" : [
+        {
+          "localID" : "pl.beling.ifunschool.capitals100-de-DE",
+          "url" : "de-DE\/AchievementImage-pl.beling.ifunschool.capitals100-de-DE.png"
+        }
+      ],
+      "pl.beling.ifunschool.capitals100-en-US" : [
+        {
+          "localID" : "pl.beling.ifunschool.capitals100-en-US",
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.capitals100-en-US.png"
+        }
+      ],
+      "pl.beling.ifunschool.capitals100-es-ES" : [
+        {
+          "localID" : "pl.beling.ifunschool.capitals100-es-ES",
+          "url" : "es-ES\/AchievementImage-pl.beling.ifunschool.capitals100-es-ES.png"
+        }
+      ],
+      "pl.beling.ifunschool.capitals100-fr-FR" : [
+        {
+          "localID" : "pl.beling.ifunschool.capitals100-fr-FR",
+          "url" : "fr-FR\/AchievementImage-pl.beling.ifunschool.capitals100-fr-FR.png"
+        }
+      ],
+      "pl.beling.ifunschool.capitals100-pl" : [
+        {
+          "localID" : "pl.beling.ifunschool.capitals100-pl",
+          "url" : "pl\/AchievementImage-pl.beling.ifunschool.capitals100-pl.png"
+        }
+      ],
       "pl.beling.ifunschool.div10-en-US" : [
         {
           "localID" : "pl.beling.ifunschool.div10-en-US",
@@ -133,7 +223,7 @@
       "pl.beling.ifunschool.flags50-en-US" : [
         {
           "localID" : "pl.beling.ifunschool.flags50-en-US",
-          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.flags50-en-US.png"
+          "url" : "https:\/\/is1-ssl.mzstatic.com\/image\/thumb\/PurpleSource211\/v4\/e8\/de\/b4\/e8deb469-ee91-33db-2899-7dfa3e2cc16b\/ach_flags_50.png\/1024x1024bb.png"
         }
       ],
       "pl.beling.ifunschool.flags50-pl" : [
@@ -445,31 +535,31 @@
       "pl.beling.ifunschool.stars400-en-US" : [
         {
           "localID" : "pl.beling.ifunschool.stars400-en-US",
-          "url" : "about:blank"
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.stars400-en-US.png"
         }
       ],
       "pl.beling.ifunschool.stars450-en-US" : [
         {
           "localID" : "pl.beling.ifunschool.stars450-en-US",
-          "url" : "about:blank"
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.stars450-en-US.png"
         }
       ],
       "pl.beling.ifunschool.stars500-en-US" : [
         {
           "localID" : "pl.beling.ifunschool.stars500-en-US",
-          "url" : "about:blank"
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.stars500-en-US.png"
         }
       ],
       "pl.beling.ifunschool.stars550-en-US" : [
         {
           "localID" : "pl.beling.ifunschool.stars550-en-US",
-          "url" : "about:blank"
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.stars550-en-US.png"
         }
       ],
       "pl.beling.ifunschool.stars600-en-US" : [
         {
           "localID" : "pl.beling.ifunschool.stars600-en-US",
-          "url" : "about:blank"
+          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.stars600-en-US.png"
         }
       ],
       "pl.beling.ifunschool.streak1-en-US" : [
@@ -1141,7 +1231,7 @@
       "pl.beling.ifunschool.streak23-pl" : [
         {
           "localID" : "pl.beling.ifunschool.streak23-pl",
-          "url" : "pl\/AchievementImage-pl.beling.ifunschool.streak23-pl.png"
+          "url" : "https:\/\/is1-ssl.mzstatic.com\/image\/thumb\/PurpleSource221\/v4\/91\/3d\/b0\/913db09f-537c-6fa5-12c9-14c0c72af715\/ach_streak_23.png\/1024x1024bb.png"
         }
       ],
       "pl.beling.ifunschool.streak24-de-DE" : [
@@ -1243,7 +1333,7 @@
       "pl.beling.ifunschool.streak27-en-US" : [
         {
           "localID" : "pl.beling.ifunschool.streak27-en-US",
-          "url" : "en-US\/AchievementImage-pl.beling.ifunschool.streak27-en-US.png"
+          "url" : "https:\/\/is1-ssl.mzstatic.com\/image\/thumb\/PurpleSource221\/v4\/69\/bd\/85\/69bd85ae-f1e0-05ab-9731-f9f78a4b8581\/ach_streak_27.png\/1024x1024bb.png"
         }
       ],
       "pl.beling.ifunschool.streak27-es-ES" : [
@@ -1438,6 +1528,117 @@
           "locale" : "pl",
           "localID" : "pl.beling.ifunschool.add100-pl",
           "name" : "Dodawanie - Złoto (100%)"
+        }
+      ],
+      "pl.beling.ifunschool.capitals10" : [
+        {
+          "afterEarnedDescription" : "10% der Welthauptstädte erkannt",
+          "beforeEarnedDescription" : "Erkenne 10% der Welthauptstädte",
+          "locale" : "de-DE",
+          "localID" : "pl.beling.ifunschool.capitals10-de-DE",
+          "name" : "Hauptstädte - Bronze (10%)"
+        },
+        {
+          "afterEarnedDescription" : "Identified 10% of world capitals",
+          "beforeEarnedDescription" : "Identify 10% of world capitals",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.capitals10-en-US",
+          "name" : "Capitals - Bronze (10%)"
+        },
+        {
+          "afterEarnedDescription" : "Has identificado el 10% de las capitales del mundo",
+          "beforeEarnedDescription" : "Identifica el 10% de las capitales del mundo",
+          "locale" : "es-ES",
+          "localID" : "pl.beling.ifunschool.capitals10-es-ES",
+          "name" : "Capitales - Bronce (10%)"
+        },
+        {
+          "afterEarnedDescription" : "Vous avez identifié 10% des capitales du monde",
+          "beforeEarnedDescription" : "Identifiez 10% des capitales du monde",
+          "locale" : "fr-FR",
+          "localID" : "pl.beling.ifunschool.capitals10-fr-FR",
+          "name" : "Capitales - Bronze (10%)"
+        },
+        {
+          "afterEarnedDescription" : "Poznano 10% stolic świata",
+          "beforeEarnedDescription" : "Poznaj 10% stolic świata",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.capitals10-pl",
+          "name" : "Stolice - Brąz (10%)"
+        }
+      ],
+      "pl.beling.ifunschool.capitals50" : [
+        {
+          "afterEarnedDescription" : "50% der Welthauptstädte erkannt",
+          "beforeEarnedDescription" : "Erkenne 50% der Welthauptstädte",
+          "locale" : "de-DE",
+          "localID" : "pl.beling.ifunschool.capitals50-de-DE",
+          "name" : "Hauptstädte - Silber (50%)"
+        },
+        {
+          "afterEarnedDescription" : "Identified 50% of world capitals",
+          "beforeEarnedDescription" : "Identify 50% of world capitals",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.capitals50-en-US",
+          "name" : "Capitals - Silver (50%)"
+        },
+        {
+          "afterEarnedDescription" : "Has identificado el 50% de las capitales del mundo",
+          "beforeEarnedDescription" : "Identifica el 50% de las capitales del mundo",
+          "locale" : "es-ES",
+          "localID" : "pl.beling.ifunschool.capitals50-es-ES",
+          "name" : "Capitales - Plata (50%)"
+        },
+        {
+          "afterEarnedDescription" : "Vous avez identifié 50% des capitales du monde",
+          "beforeEarnedDescription" : "Identifiez 50% des capitales du monde",
+          "locale" : "fr-FR",
+          "localID" : "pl.beling.ifunschool.capitals50-fr-FR",
+          "name" : "Capitales - Argent (50%)"
+        },
+        {
+          "afterEarnedDescription" : "Poznano 50% stolic świata",
+          "beforeEarnedDescription" : "Poznaj 50% stolic świata",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.capitals50-pl",
+          "name" : "Stolice - Srebro (50%)"
+        }
+      ],
+      "pl.beling.ifunschool.capitals100" : [
+        {
+          "afterEarnedDescription" : "Alle Welthauptstädte gemeistert",
+          "beforeEarnedDescription" : "Meistere alle Welthauptstädte",
+          "locale" : "de-DE",
+          "localID" : "pl.beling.ifunschool.capitals100-de-DE",
+          "name" : "Hauptstädte - Gold (100%)"
+        },
+        {
+          "afterEarnedDescription" : "Mastered all world capitals",
+          "beforeEarnedDescription" : "Master all world capitals",
+          "locale" : "en-US",
+          "localID" : "pl.beling.ifunschool.capitals100-en-US",
+          "name" : "Capitals - Gold (100%)"
+        },
+        {
+          "afterEarnedDescription" : "Has dominado todas las capitales del mundo",
+          "beforeEarnedDescription" : "Domina todas las capitales del mundo",
+          "locale" : "es-ES",
+          "localID" : "pl.beling.ifunschool.capitals100-es-ES",
+          "name" : "Capitales - Oro (100%)"
+        },
+        {
+          "afterEarnedDescription" : "Vous avez maîtrisé toutes les capitales du monde",
+          "beforeEarnedDescription" : "Maîtrisez toutes les capitales du monde",
+          "locale" : "fr-FR",
+          "localID" : "pl.beling.ifunschool.capitals100-fr-FR",
+          "name" : "Capitales - Or (100%)"
+        },
+        {
+          "afterEarnedDescription" : "Opanowano wszystkie stolice świata",
+          "beforeEarnedDescription" : "Opanuj wszystkie stolice świata",
+          "locale" : "pl",
+          "localID" : "pl.beling.ifunschool.capitals100-pl",
+          "name" : "Stolice - Złoto (100%)"
         }
       ],
       "pl.beling.ifunschool.div10" : [
@@ -4233,6 +4434,39 @@
         "repeatable" : false,
         "showBeforeEarned" : true,
         "vendorIdentifier" : "pl.beling.ifunschool.streak30"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Capitals 10%",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.capitals10"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Capitals 50%",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.capitals50"
+      },
+      {
+        "activityProperties" : {
+
+        },
+        "archived" : false,
+        "points" : 1,
+        "referenceName" : "Capitals 100%",
+        "repeatable" : false,
+        "showBeforeEarned" : true,
+        "vendorIdentifier" : "pl.beling.ifunschool.capitals100"
       }
     ],
     "leaderboardImages" : {

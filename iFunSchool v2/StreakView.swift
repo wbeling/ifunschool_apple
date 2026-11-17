@@ -45,10 +45,10 @@ struct StreakView: View {
                 .padding(.horizontal, 24)
                 .padding(.vertical, 14)
 
-            // Main Grid 1 to 30 Days
+            // Main Grid 1 to 21 Days
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 14) {
-                    ForEach(1...30, id: \.self) { day in
+                    ForEach(1...21, id: \.self) { day in
                         streakDayCell(day: day)
                     }
                 }
@@ -74,13 +74,13 @@ struct StreakView: View {
     // MARK: - Summary Header Card
     private var summaryHeaderCard: some View {
         _ = refreshTrigger
-        let streak = streakTracker.streakCount
-        let percent = Int((Double(streak) / 30.0) * 100.0)
+        let streak = min(streakTracker.streakCount, 21)
+        let percent = Int((Double(streak) / 21.0) * 100.0)
 
         return VStack(spacing: 10) {
             HStack {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("\(NSLocalizedString("streak_title", comment: "Dni z rzędu")): \(streak) / 30 (\(percent)%)")
+                    Text("\(NSLocalizedString("streak_title", comment: "Dni z rzędu")): \(streak) / 21 (\(percent)%)")
                         .font(.headline.bold())
                         .foregroundColor(.primary)
 
@@ -114,7 +114,7 @@ struct StreakView: View {
                             endPoint: .trailing
                         )
                     )
-                    .frame(width: geo.size.width * CGFloat(streak) / 30.0)
+                    .frame(width: geo.size.width * CGFloat(streak) / 21.0)
                 }
             }
             .frame(height: 10)
@@ -124,14 +124,14 @@ struct StreakView: View {
         .cornerRadius(14)
     }
 
-    // MARK: - Individual Day Grid Cell (1 to 30)
+    // MARK: - Individual Day Grid Cell (1 to 21)
     private func streakDayCell(day: Int) -> some View {
         _ = refreshTrigger
-        let streak = streakTracker.streakCount
+        let streak = min(streakTracker.streakCount, 21)
         let hasPlayedToday = streakTracker.hasPlayedToday
 
         let isCompleted = day <= streak
-        let isCurrentTarget = (!hasPlayedToday && day == streak + 1 && day <= 30)
+        let isCurrentTarget = (!hasPlayedToday && day == streak + 1 && day <= 21)
 
         return Button(action: {}) {
             VStack(spacing: 6) {
